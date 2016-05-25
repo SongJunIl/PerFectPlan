@@ -9,6 +9,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}.SOng </P>
+<P>  The time on the server is ${serverTime}.Song </P>
 </body>
 </html>

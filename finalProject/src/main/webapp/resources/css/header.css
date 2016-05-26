@@ -5,8 +5,17 @@
 			background-color: black;
 		}
 	
-		#main-body{
-			height: 600px;
+		#main-body{height: 1200px;}		
+		#nav_li_log1{margin-left: 140px;}
+		.input-group-addon:first-child{width: 65px;}
+		
+		#modal_logform{
+			width: 300px;
+			margin: 0 auto;
 		}
-
-
+		.form-control{width: 235px;}
+		#modal_logbtn_1{margin-right: 140px;}
+		#modal_logbtn_2{margin-right: 20px;}
+		
+		
+		

@@ -31,6 +31,7 @@
 			background-color: blue;
 		}
 		
+		#p_top_menu_center{width: 850px; margin: 0 auto;}
 		.p_top_menu_list{
 			vertical-align:middle;
 			text-align:center;
@@ -52,11 +53,12 @@
 	<div id="p_my_top" >
 		<div id=p_top_title></div>
 		<div id=p_top_menu>
-			<div class="p_top_menu_list" id=""><span id="p_top_menu_home" onmouseover="ontop()" onmouseout="outtop()">Home</span></div>
-			<div class="p_top_menu_list"><span id="p_top_menu_Schedule" onmouseover="ontop1()" onmouseout="outtop1()">Schedule</span></div>
-			<div class="p_top_menu_list"><span id="p_top_menu_reviewnscrap" onmouseover="ontop2()" onmouseout="outtop2()">Review & Scrap</span></div>
-			<div class="p_top_menu_list" id="QnA"><span id="p_top_menu_QnA" onmouseover="ontop3()" onmouseout="outtop3()">QnA</span></div>
-												
+			<div id=p_top_menu_center>
+				<div class="p_top_menu_list" id=""><span id="p_top_menu_home" onmouseover="ontop()" onmouseout="outtop()">Home</span></div>
+				<div class="p_top_menu_list"><span id="p_top_menu_Schedule" onmouseover="ontop1()" onmouseout="outtop1()">Schedule</span></div>
+				<div class="p_top_menu_list"><span id="p_top_menu_reviewnscrap" onmouseover="ontop2()" onmouseout="outtop2()">Review & Scrap</span></div>
+				<div class="p_top_menu_list" id="QnA"><span id="p_top_menu_QnA" onmouseover="ontop3()" onmouseout="outtop3()">QnA</span></div>
+			</div>										
 		</div>	
 	</div>
 

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-<%@include file="/resources/css/header.css" %>    
+<%@include file="/resources/css/header.css" %>  
+<%@ include file="/WEB-INF/views/temp/script.jspf" %>
 </style>
-    
-<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 
 <script type="text/javascript">
@@ -12,17 +12,25 @@
 	function on1() {p_Schedule.innerText="여행 일정";}
 	function on2() {p_How.innerText="이용 방법";}
 	function on3() {p_notice.innerText="공지 사항";}	
-	/*session (로그인 했을 때 보이는 코드 해줘야함)  */	
-	function on4() {p_mypage.innerText="마이 페이지";}		
+	
+	function on4() {p_log.innerText="로그인";}		
+	function on5() {p_join.innerText="회원가입";}			
+	/*session (로그인 했을 때 보이는 코드 해줘야함) 전에는 로그인 & 회원가입  */	
+	function on6() {p_mypage.innerText="마이 페이지";}		
+	function on7() {p_logout.innerText="로그아웃";}		
 	
 	
 	function out() {p_travel.innerText="Travel Spot";}
 	function out1() {p_Schedule.innerText="Schedule";}
 	function out2() {p_How.innerText="How to use";}
 	function out3() {p_notice.innerText="Notice";}
-	/*session (로그인 했을 때 보이는 코드 해줘야함)  */
-	function out4() {p_mypage.innerText="My page";}
-</script>
+	
+	function out4() {p_log.innerText="Login";}
+	function out5() {p_join.innerText="join";}
+	/*session (로그인 했을 때 보이는 코드 해줘야함) 전에는 로그인 & 회원가입  */
+	function out6() {p_mypage.innerText="my page";}
+	function out7() {p_logout.innerText="logOut";}
+	</script>
 
 
 <head>
@@ -79,7 +87,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
+                    <li class="hidden" id="p_nav_li_margin">
                         <a href="#page-top"></a>
                     </li>
                     <li>
@@ -92,12 +100,23 @@
                         <a class="page-scroll" href="#About"><span id="p_How" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#notice"><span id="p_notice" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
+                        <a class="page-scroll" href="#About"><span id="p_notice" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
+                    </li>
+                    
+                    <li class="nav_li_log" id="nav_li_log1">
+                        <a class="page-scroll" href="#notice"><span id="p_log" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="#notice"><span id="p_logout" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="#notice"><span id="p_join" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
                     </li>
                     <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
-                    <li>
-                        <a class="page-scroll" href="#team"><span id="p_mypage" onmouseover="on4()" onmouseout="out4()">my page</span></a>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="#team"><span id="p_mypage" onmouseover="on6()" onmouseout="out6()">my page</span></a>
                     </li>
+                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -105,3 +124,66 @@
         <!-- /.container-fluid -->
     </nav>
     <div id="main-top-gongbaek"></div>
+    
+    
+    
+    
+    
+    
+
+<!--login Modal -->
+<div class="modal fade" id="p_loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">login</h4>
+      </div>
+      <div class="modal-body">
+        	
+        	<div id="modal_logform">
+	        		<div class="input-group input-group-lg"> <span class="input-group-addon" id="sizing-addon1"> ID</span>
+	 			    <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+					</div><br>
+					<div class="input-group input-group-lg"> <span class="input-group-addon" id="sizing-addon1">PW</span>
+	 			    <input type="text" class="form-control" placeholder="PassWord" aria-describedby="sizing-addon1">
+					</div><br>
+        	</div>
+        	
+      </div>
+      <div class="modal-footer">
+			<button type="button" class="btn btn-success" id="modal_logbtn_2">아이디 & 비밀번호 찾기</button>
+			<button type="button" class="btn btn-info" id="modal_logbtn_1">회원 가입</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--join Modal -->
+<div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">join</h4>
+      </div>
+      <div class="modal-body">
+        	회원가입 해버리자
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+
+    
+    
+    
+    
+    
+    

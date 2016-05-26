@@ -20,6 +20,8 @@
 }
 #inner_text{
 	color: white;
+	width: 100%;
+	text-align: center;
 	
 }
 </style>

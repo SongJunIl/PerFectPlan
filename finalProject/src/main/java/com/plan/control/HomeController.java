@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="test")
+	public void test(){
+		System.out.println("haha");
+	}
+	
 }

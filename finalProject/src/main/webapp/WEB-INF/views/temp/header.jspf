@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-<%@include file="../../../resources/css/header.css" %>    
+<%@include file="/resources/css/header.css" %>    
 </style>
     
 <html lang="en">
@@ -40,6 +40,43 @@
 
     <!-- Custom Fonts -->
     <link href="./resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+<html lang="en">
+
+
+<script type="text/javascript">
+	function on() {p_travel.innerText="여행지";}
+	function on1() {p_Schedule.innerText="여행 일정";}
+	function on2() {p_How.innerText="이용 방법";}
+	function on3() {p_mypage.innerText="마이 페이지";}	
+	
+	function out() {p_travel.innerText="Travel Spot";}
+	function out1() {p_Schedule.innerText="Schedule";}
+	function out2() {p_How.innerText="How to use";}
+	function out3() {p_mypage.innerText="my page";}
+	</script>
+
+
+<head>
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Agency - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${pageContext.request.contextPath}/resources/css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>

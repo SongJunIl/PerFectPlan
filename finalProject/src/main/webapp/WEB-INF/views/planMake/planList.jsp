@@ -8,6 +8,7 @@
 <style type="text/css">
 *{
 	margin: 0;
+	overflow: hidden;
 }
 #planList_header{
 	width: 100%;
@@ -16,11 +17,39 @@
 }
 #planList_inner{
 	width: 1092px;
+	margin: 0 auto;
 	
 }
 #inner_text{
+	width:100%;
 	color: white;
-	
+	font-family: 'nanum_b';
+    padding-top: 55px;
+    padding-bottom: 55px;
+    font-size: 36px;
+    text-align: center;
+}
+
+#inner_pbtn{
+	width: 500px;
+	height: 60px;
+	margin: 0 auto;
+}
+
+#inner_pbtn_1{
+	width:200px;
+	height: 60px;
+	float: left;
+	text-align: center;
+	background-color: #848d9c;
+}
+#inner_pbtn_2{
+	width:170px;
+	height: 60px;
+	float: right;
+	text-align: center;
+	margin-right: 120px;
+	background-color: #848d9c;
 }
 </style>
 
@@ -34,8 +63,19 @@
 		<div id="inner_text">
 			누구나 쉽게 일정을 계획할 수 있습니다.
 		</div>
-		<div id="inner_img"></div>
-		<div id="inner_btn"></div>
+		<div id="inner_img">
+			<img src="${pageContext.request.contextPath}/resources/img/plan/planList_header.jpg">
+		</div>
+		<div id="inner_pbtn">
+			<div id="inner_pbtn_1">
+				<img src="${pageContext.request.contextPath}/resources/img/plan/makePlan.jpg">
+				<span>새로운 일정 만들기</span>
+			</div>
+			<div id="inner_pbtn_2">
+				<img src="${pageContext.request.contextPath}/resources/img/plan/myPlan.jpg">
+				<span>My Planner</span>
+			</div>
+		</div>
 	</div>
 </div>
 

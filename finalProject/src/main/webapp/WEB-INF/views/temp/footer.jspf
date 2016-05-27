@@ -1,5 +1,5 @@
 <style>
-<%@include file="../../../resources/css/footer.css" %>    
+<%@include file="/resources/css/footer.css" %>    
 </style>
 
 

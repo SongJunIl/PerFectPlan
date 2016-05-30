@@ -107,7 +107,6 @@
                 <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>
         </div>
-    </header>
 
     <!-- Services Section -->
     <section id="services">

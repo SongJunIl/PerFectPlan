@@ -19,11 +19,7 @@
 	function outtop2() {p_top_menu_reviewnscrap.innerText="review & Scrap";}
 	function outtop3() {p_top_menu_QnA.innerText="QnA";}
 	function outtop4() {p_top_menu_myinfo.innerText="My info";}	
-	$(document).ready(function() {
-	    $('a[data-toggle="tab"]').on('hidden.bs.tab', function(e){
-		alert("이벤트 실행됨");
-	    });
-	});
+
 </script>
 
 	<style type="text/css">
@@ -51,7 +47,7 @@
 		}
 		#p_top_menu_center{width: 1010px; margin: 0 auto;}
 		.p_tab_title_tab{width: 200px;}
-		.p_home_body{width: 800px; height: 1000px; background-color: green; margin: 0 auto; margin-top: 30px}
+		.p_home_body{width: 800px; height: 1000px; background-color: green; margin: 0 auto; margin-top: 150px;}
 		.p_home_body_d1{height: 350px; margin-top: 10px; }
 		#p_home_body_d1_1{background-color: aqua;}
 		#p_home_body_d1_2{background-color: orange;}
@@ -68,7 +64,57 @@
 		#p_panel_body_list_img{width:770px; height: 250px; background-color: fuchsia;}
 		#p_panel_body_list_img_info{width:770px; margin-top: 200px; height:50px; background-color:lime; display: inline-block;}
 		#p_panel_body_list_contents{width:770px; height: 100px; background-color: olive;}
-		
+		#p_home_body_mypage{
+						display:block;
+						width: 400px; 
+						height: 350px; 
+						margin-top: 150px; 
+						margin: 0 auto; 
+						background-color: white;
+						vertical-align: middle;
+						text-align: center;
+						}
+			.input-group{display: inline-flex;}
+			#p_addon_1{width: 80px;}
+			#p_addon_2{width: 80px;}
+			#p_addon_3{width: 80px;}
+			#p_addon_4{width: 80px;}
+				.button {
+			    border: none;
+			    color: white;
+			    padding: 8px 16px;
+			    text-align: center;
+			    text-decoration: none;
+			    display: inline-block;
+			    font-size: 8px;
+			    margin: 4px 2px;
+			    -webkit-transition-duration: 0.4s; /* Safari */
+			    transition-duration: 0.4s;
+			    cursor: pointer;
+			}	
+			.button3 {
+			    background-color: white; 
+			    color: black; 
+			    border: 2px solid #f44336;
+			}
+			
+			.button3:hover {
+			    background-color: #f44336;
+			    color: white;
+			}
+			.button5 {
+			    background-color: white;
+			    color: black;
+			    border: 2px solid #555555;
+			}
+			
+			.button5:hover {
+			    background-color: #555555;
+			    color: white;
+			}
+			#p_mypage_moutbt{margin-top: 150px;}
+			#p_modal_mout{margin-top: 350px;}
+			
 	</style>	
 </Head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -206,7 +252,55 @@
 			<div class="p_home_body"><h1>QnA</h1></div>
 	  </div>
 	  <div role="tabpanel" class="tab-pane fade" id="myinfo" aria-labelledby="myinfo-tab">
-			<div class="p_home_body"><h1>my info</h1></div>
+			<div class="p_home_body">
+						<div id="p_home_body_mypage">
+							<table class="table table-striped">
+								<tr>
+									<td><h1>my info</h1></td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_1">ID</span>
+  										<input type="text" class="form-control" readonly="memberID" aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_2">PW</span>
+  										<input type="password" class="form-control" placeholder="PassWord" aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_3">Name</span>
+  										<input type="text" class="form-control" placeholder="name"  aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_4" >Email</span>
+  										<input type="text" class="form-control" placeholder="Email"  aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><button class="button button3">수정 취소</button><span>              </span><button class="button button5">수정 완료</button></td>
+								</tr>
+							</table>
+							<div id="p_mypage_moutbt"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" id="">회원 탈퇴</button></div>						
+
+										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+										  <div class="modal-dialog modal-sm">
+										    <div class="modal-content" id="p_modal_mout">
+										    	
+										      <br><br><span>정말로 탈퇴 하시겠습니까?</span><br><br><br>
+										      <button class="button button3">예</button><span>              </span>
+										      <button class="button button5">아니오</button>
+										    </div>	
+										  </div>
+										</div>
+						</div>
+			
+			</div>
 	  </div>
 	 
 	</div>

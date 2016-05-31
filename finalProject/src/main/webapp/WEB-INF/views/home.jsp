@@ -6,12 +6,6 @@
 
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-<h1> ParkParkParkParkParkParkParkParkParkParkParkPark</h1>
-
-<P>  The time on the server is ${serverTime}.Song </P>
 
 <head>
 

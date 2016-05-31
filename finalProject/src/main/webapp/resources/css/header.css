@@ -17,6 +17,14 @@
 		.form-control{width: 235px;}
 		#modal_logbtn_1{margin-right: 140px;}
 		#modal_logbtn_2{margin-right: 20px;}
+		#p_logmd_footer{background-color: black;}
+		#p_joinmd_footer{background-color: black;}
+		#p_md_footer{width: 350px; margin: 0 auto;}
+		.p_md_footer_1{width: 170px;}
+		#p_md_f1{float: left;}
+		#p_md_f2{float: right;}
 		
-		
-		
+		#p_logform_id{width: 210px; margin-left: 100px;}		
+		#p_logform_pw{width: 210px; margin-left: 100px;}
+		#p_loginbt{margin-left: 60px;}
+		#p_mdjoin_total{width: 260px; margin: 0 auto;}

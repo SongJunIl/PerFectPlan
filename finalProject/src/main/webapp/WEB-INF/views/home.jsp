@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
-<%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<%-- <%@ include file="/WEB-INF/views/temp/header.jspf" %> --%>
 <head>
 
 </head>

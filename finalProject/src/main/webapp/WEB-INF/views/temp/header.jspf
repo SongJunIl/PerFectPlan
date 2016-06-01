@@ -84,30 +84,30 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services"><span id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
+                        <a class="page-scroll" href="#services"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio"><span id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
+                        <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#About"><span id="p_How" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
+                        <a class="page-scroll" href="#About"><span id="p_How" class="p_span_title_font" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#About"><span id="p_notice" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
+                        <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
                     </li>
                     
                     <li class="nav_li_log" id="nav_li_log1">
-                        <a class="page-scroll" href="#notice"><span id="p_log" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
+                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
                     </li>
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_logout" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
+                        <a class="page-scroll" href="#notice"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
                     </li>
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_join" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
+                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
                     </li>
                     <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#team"><span id="p_mypage" onmouseover="on6()" onmouseout="out6()">my page</span></a>
+                        <a class="page-scroll" href="#team"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
                     </li>
                    
                 </ul>
@@ -185,21 +185,21 @@
       <div class="modal-body">
       		<div id="p_mdjoin_total">
       			<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">ID</span>
+				  <span class="input-group-addon" id="p_join_addon1">ID</span>
 				  <input type="text" class="form-control" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
 				  <div id="p_idcheckresult"></div>
 				</div><br>
       			<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">PW</span>
+				  <span class="input-group-addon" id="p_join_addon2">PW</span>
 				  <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
 				  <div id="p_pwcheckresult"></div>
 				</div><br>
 				<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">Name</span>
+				  <span class="input-group-addon" id="p_join_addon3">Name</span>
 				  <input type="text" class="form-control" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
 				</div><br>
 				<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">e-mail</span>
+				  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
 				  <input type="text" class="form-control" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
 					<div id="p_emailcheckresult"></div>
 				</div>

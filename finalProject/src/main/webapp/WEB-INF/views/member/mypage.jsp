@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<%@ include file="/resources/css/mypage.css" %>
 <Head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -22,107 +23,82 @@
 
 </script>
 
-	<style type="text/css">
-		
-		#p_my_top{
-			height: 300px;
-			background-color: orange;
-		}
-		#p_top_title{
-			height: 270px;
-			background-color: lime;
-		}
-		#p_top_menu{
-			height: 50px;
-			background-color: blue;
-		}
-		
-		.p_top_menu_list{
-			vertical-align:middle;
-			text-align:center;
-			font:bolder;
-			font-size:20px;
-			width: 170px;
-			display: inline-block;
-		}
-		#p_top_menu_center{width: 1010px; margin: 0 auto;}
-		.p_tab_title_tab{width: 200px;}
-		.p_home_body{width: 800px; height: 1000px; background-color: green; margin: 0 auto; margin-top: 150px;}
-		.p_home_body_d1{height: 350px; margin-top: 10px; }
-		#p_home_body_d1_1{background-color: aqua;}
-		#p_home_body_d1_2{background-color: orange;}
-		#p_home_body_d1_3{background-color: lime;}
-		.p_home_body_title{float: left;}
-		.p_home_body_plus{float: right; margin-top: 10px; margin-right: 15px;}
-		.p_home_body_d1_header{clear: both; border-bottom: 1px black solid; height: 75px;}
-	
-		.p_ac_1{display: inline-block; margin-left: 15px;}
-		#p_ac_delete{display:inline-block; margin-top:-15px; float: right; width: 50px;}	
-		#p_ac_trash{margin-left: 20px;}
-		
-		.p_panel_body_list{width: 800px; height: 350px;}
-		#p_panel_body_list_img{width:770px; height: 250px; background-color: fuchsia;}
-		#p_panel_body_list_img_info{width:770px; margin-top: 200px; height:50px; background-color:lime; display: inline-block;}
-		#p_panel_body_list_contents{width:770px; height: 100px; background-color: olive;}
-		#p_home_body_mypage{
-						display:block;
-						width: 400px; 
-						height: 350px; 
-						margin-top: 150px; 
-						margin: 0 auto; 
-						background-color: white;
-						vertical-align: middle;
-						text-align: center;
-						}
-			.input-group{display: inline-flex;}
-			#p_addon_1{width: 80px;}
-			#p_addon_2{width: 80px;}
-			#p_addon_3{width: 80px;}
-			#p_addon_4{width: 80px;}
-				.button {
-			    border: none;
-			    color: white;
-			    padding: 8px 16px;
-			    text-align: center;
-			    text-decoration: none;
-			    display: inline-block;
-			    font-size: 8px;
-			    margin: 4px 2px;
-			    -webkit-transition-duration: 0.4s; /* Safari */
-			    transition-duration: 0.4s;
-			    cursor: pointer;
-			}	
-			.button3 {
-			    background-color: white; 
-			    color: black; 
-			    border: 2px solid #f44336;
-			}
-			
-			.button3:hover {
-			    background-color: #f44336;
-			    color: white;
-			}
-			.button5 {
-			    background-color: white;
-			    color: black;
-			    border: 2px solid #555555;
-			}
-			
-			.button5:hover {
-			    background-color: #555555;
-			    color: white;
-			}
-			#p_mypage_moutbt{margin-top: 150px;}
-			#p_modal_mout{margin-top: 350px;}
-			
-	</style>	
 </Head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 
+<!-- Tab menu -->
 <div id="main-body" >
 	<div id="p_my_top" >
-		<div id=p_top_title></div>
+				<div id=p_top_title>
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							  <!-- Indicators -->
+							  <ol class="carousel-indicators">
+							    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							    <li data-target="#myCarousel" data-slide-to="1"></li>
+							    <li data-target="#myCarousel" data-slide-to="2"></li>
+							    <li data-target="#myCarousel" data-slide-to="4"></li>
+							    <li data-target="#myCarousel" data-slide-to="5"></li>
+							    <li data-target="#myCarousel" data-slide-to="6"></li>
+							    <li data-target="#myCarousel" data-slide-to="7"></li>
+							    <li data-target="#myCarousel" data-slide-to="8"></li>
+							    <li data-target="#myCarousel" data-slide-to="9"></li>
+							    <li data-target="#myCarousel" data-slide-to="10"></li>
+							    <li data-target="#myCarousel" data-slide-to="11"></li>
+							  </ol>
+							
+							  <!-- Wrapper for slides -->
+							  <div class="carousel-inner" role="listbox">
+							    <div class="item active">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo1.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo2.jpg">							    
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo3.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo4.jpg">
+							    </div>
+							 	 <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo5.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo6.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo7.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo8.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo9.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo10.jpg">
+							    </div>
+							  
+							  </div>
+							
+							  <!-- Left and right controls -->
+							  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+							    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+							    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>
+			
+			
+			
+				</div>
 		<div id=p_top_menu>
 			<div id=p_top_menu_center>
 				<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -140,6 +116,8 @@
 
 
 <div class="container">
+	
+	<!-- Home tab -->
 	
 	<div id="myTabContent" class="tab-content">
 	  <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
@@ -185,6 +163,7 @@
 	  
 	  
 	  
+	  <!--schedule tab  -->
 	  
 	  <div role="tabpanel" class="tab-pane fade" id="schedule" aria-labelledby="schedule-tab">
 			<div class="p_home_body">
@@ -204,10 +183,10 @@
 								    <div id="collapse1" class="panel-collapse collapse in">
 								      <div class="panel-body">
 								      			<div class="p_panel_body_list">
-										      		<div id="p_panel_body_list_img">
-										      			<div id="p_panel_body_list_img_info">g</div>
+										      		<div class="p_body_div_1" id="p_panel_body_list_img">
+										      			<div class="p_body_div_2" id="p_panel_body_list_img_info">g</div>
 										      		</div>
-													<div id="p_panel_body_list_contents"></div>	      			
+													<div class="p_body_div_3" id="p_panel_body_list_contents"></div>	      			
 								      			
 								      			</div>
 								      </div>
@@ -245,14 +224,75 @@
 			
 			</div>
 	  </div>
+	 
+	 
+	 
+	 
+	 
+	  
+	  <!-- review n scrap tab -->
+	  
 	  <div role="tabpanel" class="tab-pane fade" id="reviewnscrap" aria-labelledby="reviewnscrap-tab">
-			<div class="p_home_body"><h1>review n scrap</h1></div>
+			<div class="p_home_body" id="p_home_body_reviewnsacrap_1">
+				
+					<div class="p_reviewnscrap_1" id="p_review_1">
+												<div class="p_review_list">	
+												<h1>review</h1>
+													<div id="p_review_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2"  id="p_review_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_review_body_list_contents"></div>	
+												</div>
+												
+												<div class="p_review_list">	
+													<div id="p_review_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2"  id="p_review_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_review_body_list_contents"></div>	
+												</div>
+					</div>
+					<div class="p_reviewnscrap_1" id="p_scrap_1">
+												<div class="p_scrap_list">
+												<h1>scrap</h1>
+													<div id="p_scrap_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2" id="p_scrap_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_scrap_body_list_contents"></div>	
+												</div>
+					
+												<div class="p_scrap_list">
+													<div id="p_scrap_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2" id="p_scrap_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_scrap_body_list_contents"></div>	
+												</div>
+					
+					
+					</div>
+				
+					
+			
+			</div>
 	  </div>
+	  
+	  
+	  
+	  
+	  <!--QnA tab  -->
+	  
 	  <div role="tabpanel" class="tab-pane fade" id="QnA" aria-labelledby="QnA-tab">
 			<div class="p_home_body"><h1>QnA</h1></div>
 	  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  <!--my info tab  -->
+	  
 	  <div role="tabpanel" class="tab-pane fade" id="myinfo" aria-labelledby="myinfo-tab">
-			<div class="p_home_body">
+			<div class="p_home_body" ">
 						<div id="p_home_body_mypage">
 							<table class="table table-striped">
 								<tr>

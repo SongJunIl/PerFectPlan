@@ -81,6 +81,37 @@
 							    </div>
 							    <div class="item">
 							      <img class="p_slide_img" src="${pageContext.request.contextPath}/resources/img/mypage/photo10.jpg">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo1.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo2.jpg">							    
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo3.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo4.jpg">
+							    </div>
+							 	 <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo5.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo6.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo7.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo8.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo9.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo10.jpg">
 							    </div>
 							  
 							  </div>

@@ -74,8 +74,8 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll" id="p_header_logo">
                 <!-- 프로젝트 로고 -->
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
+                <a class="navbar-brand page-scroll" href="./"><img src="${pageCotext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
+                <a class="navbar-brand page-scroll" href="./"><img src="${pageCotext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -85,7 +85,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
+                        <a class="page-scroll" href="city/city"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>

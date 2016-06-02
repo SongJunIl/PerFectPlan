@@ -206,93 +206,157 @@
 <div id="city">
 	<div id="city_title"><h2>국내 도시</h2></div>
 	<div id="city_list">
-		<table id="li   st_table" class="list_table">
+		<table id="list_table" class="list_table">
 			<tr>
-				<td><a href="cityView?ename=Gwangju"><input type="text" value="광주" class="smallCity" readonly="readonly"></a></td>
-				<td><input type="text" value="대구" class="smallCity" readonly="readonly"></td>
-				<td><input type="text" value="대전" class="smallCity" readonly="readonly"></td>
-				<td><input type="text" value="부산" class="smallCity" readonly="readonly"></td>
-				<td><input type="text" value="서울" class="smallCity" readonly="readonly"></td>
-				<td><input type="text" value="울산" class="smallCity" readonly="readonly"></td>
-				<td><input type="text" value="인천" class="smallCity"readonly="readonly"></td>
-				<td><input type="text" value="제주도" class="smallCity" readonly="readonly"></td>
+				<td><a href="cityView?e_name=Gwangju"><input type="text" value="광주" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Daegu"><input type="text" value="대구" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Daejeon"><input type="text" value="대전" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Busan"><input type="text" value="부산" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Seoul"><input type="text" value="서울" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Ulsan"><input type="text" value="울산" class="smallCity" readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Incheon"><input type="text" value="인천" class="smallCity"readonly="readonly"></a></td>
+				<td><a href="cityView?e_name=Jeju"><input type="text" value="제주도" class="smallCity" readonly="readonly"></a></td>
 			</tr>
 			<tr>
-				<td><input type="text" value="강원도" onclick="drop_city()" class="bigCity" id="gangWon" readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경기도" onclick="drop_city()" class="bigCity" id="gyeonGi" readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경상남도" onclick="drop_city()" class="bigCity" id="gsn" readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경상북도" onclick="drop_city()" class="bigCity" id="gsb"readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="전라남도" onclick="drop_city()" class="bigCity" id="jln"readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="전라북도" onclick="drop_city()" class="bigCity" id="jlb" readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="충청남도" onclick="drop_city()" class="bigCity" id="ccn" readonly="readonly"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="충청북도" readonly="readonly" class="bigCity" id="ccb"><img src="/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="강원도" onclick="drop_city()" class="bigCity" id="gangWon" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="경기도" onclick="drop_city()" class="bigCity" id="gyeonGi" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="경상남도" onclick="drop_city()" class="bigCity" id="gsn" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="경상북도" onclick="drop_city()" class="bigCity" id="gsb"readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="전라남도" onclick="drop_city()" class="bigCity" id="jln"readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="전라북도" onclick="drop_city()" class="bigCity" id="jlb" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="충청남도" onclick="drop_city()" class="bigCity" id="ccn" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="충청북도" readonly="readonly" class="bigCity" id="ccb"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
 			</tr>
 		</table> 
 		<div id="gangWon_detailCity" class="detail_city">
 			<table class="list_table">
 					<tr>
-						<td>강릉</td><td>고성</td><td>동해</td><td>삼척</td><td>속초</td></tr>
-					<tr><td>양구</td><td>양양</td><td>영월</td><td>원주</td><td>인제</td></tr>
-					<tr><td>정선</td><td>철원</td><td>춘천</td><td>태백</td><td>평창</td></tr>
-					<tr><td>홍천</td><td>화천</td><td>횡성</td><td></td><td></td></tr>
+						<td><a href="cityView?e_name=Gangneung">강릉</a></td>
+						<td><a href="cityView?e_name=Goseong ">고성</a></td>
+						<td><a href="cityView?e_name=Donghae">동해</a></td>
+						<td><a href="cityView?e_name=Samcheok">삼척</a></td>
+						<td><a href="cityView?e_name=Sokcho">속초</a></td>
+					</tr>
+					<tr>
+						<td><a href="cityView?e_name=Yanggu ">양구</a></td>
+						<td><a href="cityView?e_name=Yangyang ">양양</a></td>
+						<td><a href="cityView?e_name=Yeongwol ">영월</a></td>
+						<td><a href="cityView?e_name=Wonju">원주</a></td>
+						<td><a href="cityView?e_name=Inje ">인제</a></td>
+					</tr>
+					<tr>
+						<td><a href="cityView?e_name=Jeongseon ">정선</a></td>
+						<td><a href="cityView?e_name=Cheorwon ">철원</a></td>
+						<td><a href="cityView?e_name=Chuncheon">춘천</a></td>
+						<td><a href="cityView?e_name=Taebaek">태백</a></td>
+						<td><a href="cityView?e_name=Pyeongchang ">평창</a></td>
+					</tr>
+					<tr>
+						<td><a href="cityView?e_name=Hongcheon ">홍천</a></td>
+						<td><a href="cityView?e_name=Hwacheon ">화천</a></td>
+						<td><a href="cityView?e_name=Hoengseong ">횡성</a></td>
+						<td></td><td></td>
+					</tr>
 			</table>
 		</div>
 		<div id="gyeonGi_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   가평   </td><td>   고양   </td><td>   과천   </td><td>   광명   </td><td>   광주   </td></tr>
-					<tr><td>   구리   </td><td>   군포   </td><td>   김포   </td><td>   남양주   </td><td>   동두천   </td></tr>   
-					<tr><td>   부천   </td><td>   성남   </td><td>   수원   </td><td>   시흥   </td><td>   안산   </td></tr>   
-					<tr><td>   안성   </td><td>   안양   </td><td>   양주   </td><td>   양평   </td><td>   여주   </td></tr>   
-					<tr><td>   연천   </td><td>   오산   </td><td>   용인   </td><td>   의왕   </td><td>   의정부   </td></tr>   
-					<tr><td>   이천   </td><td>   파주   </td><td>   평택   </td><td>   포천   </td><td>   하남   </td></tr>   
-					<tr><td>   화성   </td></tr>
+					<tr>
+						<td><a href="cityView?e_name=Gapyeong">가평</a></td><td><a href="cityView?e_name=Goyang">고양</a></td>
+						<td><a href="cityView?e_name=Gwacheon">과천</a></td>
+						<td><a href="cityView?e_name=Gwangmyeong">광명</a></td>
+						<td><a href="cityView?e_name=Gwangju">광주</a></td>
+					</tr>
+					<tr>
+						<td><a href="cityView?e_name=Guri">구리</a></td>
+						<td><a href="cityView?e_name=Gunpo">군포</a></td>
+						<td><a href="cityView?e_name=Gimpo">김포</a></td>
+						<td><a href="cityView?e_name=Namyangju">남양주</a></td>
+						<td><a href="cityView?e_name=Dongducheon">동두천</a></td>
+					</tr>   
+					<tr>
+						<td>   <a href="cityView?e_name=Bucheon">부천</a>   </td>
+						<td>   <a href="cityView?e_name=Seongnam">성남</a>   </td>
+						<td>   <a href="cityView?e_name=Suwon">수원</a>   </td>
+						<td>   <a href="cityView?e_name=Siheung">시흥</a>   </td>
+						<td>   <a href="cityView?e_name=Ansan">안산</a>   </td>
+					</tr>   
+					<tr>
+						<td>   <a href="cityView?e_name=Anseong">안성</a>   </td>
+						<td>   <a href="cityView?e_name=Anyang">안양</a>   </td>
+						<td>   <a href="cityView?e_name=Yangju">양주</a>   </td>
+						<td>   <a href="cityView?e_name=Yangpyeong">양평</a>   </td>
+						<td>   <a href="cityView?e_name=Yeoju">여주</a>   </td>
+					</tr>   
+					<tr>
+						<td>   <a href="cityView?e_name=Yeoncheon">연천</a>   </td>
+						<td>   <a href="cityView?e_name=Osan">오산</a>   </td>
+						<td>   <a href="cityView?e_name=Yongin">용인</a>   </td>
+						<td>   <a href="cityView?e_name=Uiwang">의왕</a>   </td>
+						<td>   <a href="cityView?e_name=Uijeongbu">의정부</a>   </td>
+					</tr>   
+					<tr>
+						<td>   <a href="cityView?e_name=Icheon">이천</a>   </td>
+						<td>   <a href="cityView?e_name=Paju">파주</a>   </td>
+						<td>   <a href="cityView?e_name=Pyeongtaek">평택</a>   </td>
+						<td>   <a href="cityView?e_name=Pocheon">포천</a>   </td>
+						<td>   <a href="cityView?e_name=Hanam">하남</a>   </td>
+					</tr>   
+					<tr>
+						<td>   <a href="cityView?e_name=Hwaseong">화성   </td>
+					</tr>
 			</table>
 		</div>
 		<div id="gsn_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   거제   </td><td>   거창   </td><td>   고성   </td><td>   김해   </td><td>   남해   </td></tr>   
-					<tr><td>   마산   </td><td>   밀양   </td><td>   사천   </td><td>   산청   </td><td>   양산   </td></tr>   
-					<tr><td>   의령   </td><td>   진주   </td><td>   진해   </td><td>   창녕   </td><td>   창원   </td></tr>   
-					<tr><td>   통영   </td><td>   하동   </td><td>   함안   </td><td>   함양   </td><td>   합천   </td></tr>   
+					<tr><td>	<a href="cityView?e_name=Geoje">거제</a>	</td><td>	<a href="cityView?e_name=Geochang ">거창</a>	</td><td>	<a href="cityView?e_name=Goseong ">고성</a>	</td><td>	<a href="cityView?e_name=Gimhae">김해</a>	</td><td>	<a href="cityView?e_name=Namhae ">남해</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Masan">마산</a>	</td><td>	<a href="cityView?e_name=Miryang">밀양</a>	</td><td>	<a href="cityView?e_name=Sacheon">사천</a>	</td><td>	<a href="cityView?e_name=Sancheong ">산청</a>	</td><td>	<a href="cityView?e_name=Yangsan">양산</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Uiryeong ">의령</a>	</td><td>	<a href="cityView?e_name=Jinju">진주</a>	</td><td>	<a href="cityView?e_name=Jinhae">진해</a>	</td><td>	<a href="cityView?e_name=Changnyeong ">창녕</a>	</td><td>	<a href="cityView?e_name=Changwon">창원</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Tongyeong">통영</a>	</td><td>	<a href="cityView?e_name=Hadong ">하동</a>	</td><td>	<a href="cityView?e_name=Haman ">함안</a>	</td><td>	<a href="cityView?e_name=Hamyang ">함양</a>	</td><td>	<a href="cityView?e_name=Hapcheon ">합천</a>	</td></tr>
+  
 			</table>
 		</div>
 		<div id="gsb_detailCity" class="detail_city">
 			<table class="list_table">
-				<tr><td>   경산   </td><td>   경주   </td><td>   고령   </td><td>   구미   </td><td>   군위   </td></tr>   
-				<tr><td>   김천   </td><td>   문경   </td><td>   봉화   </td><td>   상주   </td><td>   성주   </td></tr>   
-				<tr><td>   안동   </td><td>   영덕   </td><td>   영양   </td><td>   영주   </td><td>   영천   </td></tr>   
-				<tr><td>   예천   </td><td>   울릉   </td><td>   울진   </td><td>   의성   </td><td>   청도   </td></tr>   
-				<tr><td>   청송   </td><td>   칠곡   </td><td>   포항   </td><td>      </td><td>      </td></tr> 
+				<tr><td>	<a href="cityView?e_name=Gyeongsan">경산</a>	</td><td>	<a href="cityView?e_name=Gyeongju">경주</a>	</td><td>	<a href="cityView?e_name=Goryeong ">고령</a>	</td><td>	<a href="cityView?e_name=Gumi">구미</a>	</td><td>	<a href="cityView?e_name=Gunwi ">군위</a>	</td></tr>
+				<tr><td>	<a href="cityView?e_name=Gimcheon">김천</a>	</td><td>	<a href="cityView?e_name=Mungyeong">문경</a>	</td><td>	<a href="cityView?e_name=Bonghwa ">봉화</a>	</td><td>	<a href="cityView?e_name=Sangju">상주</a>	</td><td>	<a href="cityView?e_name=Seongju ">성주</a>	</td></tr>
+				<tr><td>	<a href="cityView?e_name=Andong">안동</a>	</td><td>	<a href="cityView?e_name=Yeongdeok ">영덕</a>	</td><td>	<a href="cityView?e_name=Yeongyang ">영양</a>	</td><td>	<a href="cityView?e_name=Yeongju">영주</a>	</td><td>	<a href="cityView?e_name=Yeongcheon">영천</a>	</td></tr>
+				<tr><td>	<a href="cityView?e_name=Yecheon ">예천</a>	</td><td>	<a href="cityView?e_name=Ulleung ">울릉</a>	</td><td>	<a href="cityView?e_name=Uljin ">울진</a>	</td><td>	<a href="cityView?e_name=Uiseong ">의성</a>	</td><td>	<a href="cityView?e_name=Cheongdo ">청도</a>	</td></tr>
+				<tr><td>	<a href="cityView?e_name=Cheongsong ">청송</a>	</td><td>	<a href="cityView?e_name=Chilgok ">칠곡</a>	</td><td>	<a href="cityView?e_name=Pohang">포항</a>	</td><td>		</td><td>		</td></tr>
 			</table>
 		</div>
 		<div id="jln_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   강진   </td><td>   고흥   </td><td>   곡성   </td><td>   광양   </td><td>   구례   </td></tr>   
-					<tr><td>   나주   </td><td>   담양   </td><td>   목포   </td><td>   무안   </td><td>   보성   </td></tr>   
-					<tr><td>   순천   </td><td>   신안   </td><td>   여수   </td><td>   영광   </td><td>   영암   </td></tr>   
-					<tr><td>   완도   </td><td>   장성   </td><td>   장흥   </td><td>   진도   </td><td>   함평   </td></tr>   
-					<tr><td>   해남   </td><td>   화순   </td><td>      </td><td>      </td><td>      </td></tr>
+					<tr><td>	<a href="cityView?e_name=Gangjin ">강진</a>	</td><td>	<a href="cityView?e_name=Goheung ">고흥</a>	</td><td>	<a href="cityView?e_name=Gokseong ">곡성</a>	</td><td>	<a href="cityView?e_name=Gwangyang">광양</a>	</td><td>	<a href="cityView?e_name=Gurye ">구례</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Naju">나주</a>	</td><td>	<a href="cityView?e_name=Damyang ">담양</a>	</td><td>	<a href="cityView?e_name=Mokpo">목포</a>	</td><td>	<a href="cityView?e_name=Muan ">무안</a>	</td><td>	<a href="cityView?e_name=Boseong ">보성</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Suncheon">순천</a>	</td><td>	<a href="cityView?e_name=Sinan ">신안</a>	</td><td>	<a href="cityView?e_name=Yeosu">여수</a>	</td><td>	<a href="cityView?e_name=Yeonggwang ">영광</a>	</td><td>	<a href="cityView?e_name=Yeongam ">영암</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Wando ">완도</a>	</td><td>	<a href="cityView?e_name=Jangseong ">장성</a>	</td><td>	<a href="cityView?e_name=Jangheung ">장흥</a>	</td><td>	<a href="cityView?e_name=Jindo ">진도</a>	</td><td>	<a href="cityView?e_name=Hampyeong ">함평</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Haenam ">해남</a>	</td><td>	<a href="cityView?e_name=Hwasun ">화순</a>	</td><td>		</td><td>		</td><td>		</td></tr>
+
 			</table>
 		</div>
 		<div id="jlb_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   고창   </td><td>   군산   </td><td>   김제   </td><td>   남원   </td><td>   무주   </td></tr>   
-					<tr><td>   부안   </td><td>   순창   </td><td>   완주   </td><td>   익산   </td><td>   임실   </td></tr>   
-					<tr><td>   장수   </td><td>   전주   </td><td>   정읍   </td><td>   진안   </td><td>      </td></tr>   
+					<tr><td>	<a href="cityView?e_name=Gochang ">고창</a>	</td><td>	<a href="cityView?e_name=Gunsan">군산</a>	</td><td>	<a href="cityView?e_name=Gimje">김제</a>	</td><td>	<a href="cityView?e_name=Namwon">남원</a>	</td><td>	<a href="cityView?e_name=Muju ">무주</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Buan ">부안</a>	</td><td>	<a href="cityView?e_name=Sunchang ">순창</a>	</td><td>	<a href="cityView?e_name=Wanju ">완주</a>	</td><td>	<a href="cityView?e_name=Iksan">익산</a>	</td><td>	<a href="cityView?e_name=Imsil ">임실</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Jangsu ">장수</a>	</td><td>	<a href="cityView?e_name=Jeonju">전주</a>	</td><td>	<a href="cityView?e_name=Jeongeup">정읍</a>	</td><td>	<a href="cityView?e_name=Jinan ">진안</a>	</td><td>		</td></tr>
+
 			</table>
 		</div>
 		<div id="ccn_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   공주   </td><td>   금산   </td><td>   논산   </td><td>   당진   </td><td>   보령   </td></tr>   
-					<tr><td>   부여   </td><td>   서산   </td><td>   서천   </td><td>   아산   </td><td>   예산   </td></tr>   
-					<tr><td>   천안   </td><td>   청양   </td><td>   태안   </td><td>   홍성   </td><td>   계룡   </td></tr>   
+					<tr><td>	<a href="cityView?e_name=Gongju">공주</a>	</td><td>	<a href="cityView?e_name=Geumsan ">금산</a>	</td><td>	<a href="cityView?e_name=Nonsan">논산</a>	</td><td>	<a href="cityView?e_name=Dangjin">당진</a>	</td><td>	<a href="cityView?e_name=Boryeong">보령</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Buyeo ">부여</a>	</td><td>	<a href="cityView?e_name=Seosan">서산</a>	</td><td>	<a href="cityView?e_name=Seocheon ">서천</a>	</td><td>	<a href="cityView?e_name=Asan">아산</a>	</td><td>	<a href="cityView?e_name=Yesan ">예산</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Cheonan">천안</a>	</td><td>	<a href="cityView?e_name=Cheongyang ">청양</a>	</td><td>	<a href="cityView?e_name=Taean ">태안</a>	</td><td>	<a href="cityView?e_name=Hongseong ">홍성</a>	</td><td>	<a href="cityView?e_name=Gyeryong">계룡</a>	</td></tr>
+  
 			</table>
 		</div>
 		<div id="ccb_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>   괴산   </td><td>   단양   </td><td>   보은   </td><td>   영동   </td><td>   옥천   </td></tr>   
-					<tr><td>   음성   </td><td>   제천   </td><td>   진천   </td><td>   청원   </td><td>   청주   </td></tr>   
-					<tr><td>   충주   </td><td>   증평   </td><td>      </td><td>      </td><td>      </td></tr>   
+					<tr><td>	<a href="cityView?e_name=Goesan ">괴산</a>	</td><td>	<a href="cityView?e_name=Danyang ">단양</a>	</td><td>	<a href="cityView?e_name=Boeun ">보은</a>	</td><td>	<a href="cityView?e_name=Yeongdong ">영동</a>	</td><td>	<a href="cityView?e_name=Okcheon ">옥천</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Eumseong ">음성</a>	</td><td>	<a href="cityView?e_name=Jecheon">제천</a>	</td><td>	<a href="cityView?e_name=Jincheon ">진천</a>	</td><td>	<a href="cityView?e_name=Cheongwon">청원</a>	</td><td>	<a href="cityView?e_name=Cheongju">청주</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Chungju">충주</a>	</td><td>	<a href="cityView?e_name=Jeungpyeong ">증평</a>	</td><td>		</td><td>		</td><td>		</td></tr>
+ 
 			</table>
 		</div>
 	</div>

@@ -316,7 +316,7 @@
 </head>
 <body>
 <div id ="section">
-		<div id="cityTitle"><h2>SEOUL</h2></div>
+		<div id="cityTitle"><h2>${cityView.e_name}&nbsp;&nbsp;&nbsp;&nbsp;${cityView.city_name}</h2></div>
 		<div id="h">
 			<div class="menu_list"><input type="text" class="menu_name" value="H O M E" readonly="readonly"> </div>
 			<div class="menu_list"><input type="text" class="menu_name" value="A T T R A C T I O N" readonly="readonly"></div>
@@ -329,19 +329,19 @@
 
 				<div class="mySlides fade">
 				  <div class="numbertext">1 / 3</div>
-				  <img src="/resources/img/city/slideCity/img_nature_wide.jpg" style="width:100%" >
+				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_nature_wide.jpg" style="width:100%" >
 				  <div class="text">Caption Text</div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">2 / 3</div>
-				  <img src="/resources/img/city/slideCity/img_fjords_wide.jpg" style="width:100%" >
+				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_fjords_wide.jpg" style="width:100%" >
 				  <div class="text">Caption Two</div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">3 / 3</div>
-				  <img src="/resources/img/city/slideCity/img_mountains_wide.jpg" style="width:100%" >
+				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_mountains_wide.jpg" style="width:100%" >
 				  <div class="text">Caption Three</div>
 				</div>
 				
@@ -402,32 +402,32 @@
 			<!--   <div id="quick" style="position: absolute; top: 200px; border:solid 3px #336699; width:150px; height:150px;"></div> -->
 			
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length} ;
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
+	var slideIndex = 1;
+	showSlides(slideIndex);
+	
+	function plusSlides(n) {
+	  showSlides(slideIndex += n);
+	}
+	
+	function currentSlide(n) {
+	  showSlides(slideIndex = n);
+	}
+	
+	function showSlides(n) {
+	  var i;
+	  var slides = document.getElementsByClassName("mySlides");
+	  var dots = document.getElementsByClassName("dot");
+	  if (n > slides.length) {slideIndex = 1}    
+	  if (n < 1) {slideIndex = slides.length} ;
+	  for (i = 0; i < slides.length; i++) {
+	      slides[i].style.display = "none";  
+	  }
+	  for (i = 0; i < dots.length; i++) {
+	      dots[i].className = dots[i].className.replace(" active", "");
+	  }
+	  slides[slideIndex-1].style.display = "block";  
+	  dots[slideIndex-1].className += " active";
+	}
 </script>
 </body>
 </html>

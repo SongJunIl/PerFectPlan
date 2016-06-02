@@ -2,6 +2,7 @@ package com.plan.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,11 +21,8 @@ public class CityController {
 	}
 	
 	@RequestMapping("/cityView")
-	public void cityView(@RequestParam("ename") String ename){
-		
-		
+	public void cityView(@RequestParam("e_name") String e_name, Model model){
+		cityService.cityView(e_name, model);
 	}
 	
-	@RequestMapping("/Nf")
-	public void Nf(){}
 }

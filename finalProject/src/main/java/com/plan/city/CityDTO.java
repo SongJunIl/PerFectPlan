@@ -2,10 +2,25 @@ package com.plan.city;
 
 public class CityDTO {
 	private int no;
-	private String big_name;
 	private String city_name;
+	private String e_name;
+	private String big_name;
 	private double city_xlocation;
 	private double city_ylocation;
+	private int jim;
+	
+	public int getJim() {
+		return jim;
+	}
+	public void setJim(int jim) {
+		this.jim = jim;
+	}
+	public String getE_name() {
+		return e_name;
+	}
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
+	}
 	public int getNo() {
 		return no;
 	}

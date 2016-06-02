@@ -519,7 +519,6 @@ function getTimeHTML(distance) {
 
     return content;
 }
-    xxxx
 	
 	
 	

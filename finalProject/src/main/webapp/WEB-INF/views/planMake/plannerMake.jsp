@@ -99,7 +99,7 @@
 </head>
 <body>
 <!-- header -->
-<%-- <%@ include file="/WEB-INF/views/temp/header.jspf" %> --%>
+<%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- section -->
 <div id="plan_planner_maker">
 	<div id="planner_date_box">
@@ -138,7 +138,11 @@
 	</div>
 	
 	<div id="planner_schedule_box">
-		
+		<div id="Pschedule_list_header">
+			DAY1
+			<span>│</span>
+			06.05(금요일)
+		</div>
 	
 	</div>
 </div>
@@ -151,6 +155,10 @@
 <div style="cursor: pointer"  id="cacao">카카오</div>
 <div style="cursor: pointer"  id="yunmot">생태연못</div>
 <div style="cursor: pointer"  id="batt">터밭</div>
+
+<!-- footer -->
+<%@ include file="/WEB-INF/views/temp/footer.jspf" %>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c13f7a56e3fd7a30f74913f2574d70f1"></script>

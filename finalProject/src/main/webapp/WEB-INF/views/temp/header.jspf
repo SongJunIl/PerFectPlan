@@ -75,7 +75,6 @@
             <div class="navbar-header page-scroll" id="p_header_logo">
                 <!-- 프로젝트 로고 -->
                 <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -133,19 +132,19 @@
         <h4 class="modal-title" id="myModalLabel">login</h4>
       </div>
       <div class="modal-body">
-        	
-        	<div id="modal_logform">
-					<form class="form-horizontal">
+
+        	<div id="modal_logform" >
+					<form class="form-horizontal" action="/login">
 					  <div class="form-group">
 					    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 					    <div class="col-sm-10-input">
-					      <input type="email" class="form-control" id="p_logform_id" placeholder="아이디를 입력하세요.">
+					      <input type="email" class="form-control" name="id" id="p_logform_id" placeholder="아이디를 입력하세요.">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 					    <div class="col-sm-10-input">
-					      <input type="password" class="form-control" id="p_logform_pw" placeholder="비밀번호를 입력하세요.">
+					      <input type="password" class="form-control" name="pw" id="p_logform_pw" placeholder="비밀번호를 입력하세요.">
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -179,38 +178,40 @@
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">join</h4>
-      </div>
-      <div class="modal-body">
-      		<div id="p_mdjoin_total">
-      			<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon1">ID</span>
-				  <input type="text" class="form-control" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
-				  <div id="p_idcheckresult"></div>
-				</div><br>
-      			<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon2">PW</span>
-				  <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
-				  <div id="p_pwcheckresult"></div>
-				</div><br>
-				<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon3">Name</span>
-				  <input type="text" class="form-control" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
-				</div><br>
-				<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
-				  <input type="text" class="form-control" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
-					<div id="p_emailcheckresult"></div>
-				</div>
-      		</div>
-
-      </div>
-      <div class="modal-footer" id="p_joinmd_footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
+      <form action="join" method="post">
+		     	<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">join</h4>
+     			 </div>
+		      <div class="modal-body">
+		      		<div id="p_mdjoin_total">
+		      			<div class="input-group">
+						  <span class="input-group-addon" id="p_join_addon1">ID</span>
+						  <input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
+						  <div id="p_idcheckresult"></div>
+						</div><br>
+		      			<div class="input-group">
+						  <span class="input-group-addon" id="p_join_addon2">PW</span>
+						  <input type="password" class="form-control" name="pw" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
+						  <div id="p_pwcheckresult"></div>
+						</div><br>
+						<div class="input-group">
+						  <span class="input-group-addon" id="p_join_addon3">Name</span>
+						  <input type="text" class="form-control" name="name" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
+						</div><br>
+						<div class="input-group">
+						  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
+						  <input type="text" class="form-control" name="email" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
+							<div id="p_emailcheckresult"></div>
+						</div>
+		      		</div>
+		      </div>
+		      <div class="modal-footer" id="p_joinmd_footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		</form>
+    
     </div>
   </div>
 </div>

@@ -1,11 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
-<%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<%-- <%@ include file="/WEB-INF/views/temp/header.jspf" %> --%>
 <head>
 
 </head>
 <body>
+<h1>
+	Hello world!  
+</h1>
+<h1> ParkParkParkParkParkParkParkParkParkParkParkPark</h1>
+
+<P>  The time on the server is ${serverTime}.Song </P>
 
 <head>
 

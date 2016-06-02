@@ -99,7 +99,7 @@
 </head>
 <body>
 <!-- header -->
-<%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<%-- <%@ include file="/WEB-INF/views/temp/header.jspf" %> --%>
 <!-- section -->
 <div id="plan_planner_maker">
 	<div id="planner_date_box">

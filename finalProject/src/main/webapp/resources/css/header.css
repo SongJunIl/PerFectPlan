@@ -5,8 +5,38 @@
 			background-color: black;
 		}
 	
-		#main-body{
-			height: 600px;
+		#main-body{height: 1700px; }		
+		#nav_li_log1{margin-left: 140px;}
+		.input-group-addon:first-child{width: 65px;}
+		
+		#modal_logform{
+			width: 300px;
+			margin: 0 auto;
 		}
 
+		#p_perfectLOGO_1{margin-top: 10px;}
+		#bs-example-navbar-collapse-1{margin-top: 15px;}
+		#p_header_top1{position: inherit; background-color: white; padding: inherit; color: black;}
 
+		.form-control{width: 235px;}
+		#modal_logbtn_1{margin-right: 140px;}
+		#modal_logbtn_2{margin-right: 20px;}
+		
+		
+
+		#p_logform_id{width: 210px; margin-left: 100px;}		
+		#p_logform_pw{width: 210px; margin-left: 100px;}
+		#p_loginbt{margin-left: 60px;}
+		#p_mdjoin_total{width: 260px; margin: 0 auto;}
+		#p_join_addon1{width: 80px;}
+		#p_join_addon2{width: 80px;}	
+		#p_join_addon3{width: 80px;}
+		#p_join_addon4{width: 80px;}
+		
+		.p_span_title_font{color: black;}
+
+.navbar-default{
+	background-image: none;
+}
+
+		

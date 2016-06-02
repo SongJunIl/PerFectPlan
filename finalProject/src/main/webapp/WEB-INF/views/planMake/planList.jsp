@@ -130,7 +130,7 @@
 </head>
 <body>
 <!-- header -->
-
+<%-- 
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 
 <!-- section -->
@@ -172,7 +172,7 @@
 			<div class="pfilter_rigth_filter">
 			
 			</div>
-			<div class="pfilter_clear"></div>
+			<div class="pfilter_clear"></div> --%>
 			
 			<div class="pfilter_filter_title">
 				여행지

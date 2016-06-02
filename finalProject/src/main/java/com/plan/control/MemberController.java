@@ -4,9 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/planMake/*")
-public class PlanController {
+@RequestMapping("member")
+public class MemberController {
+
+	@RequestMapping("mypage")
+	public void mypage(){
+		
+	}
 	
-	@RequestMapping(value="planList")
-	public void planList(){}
+	
 }

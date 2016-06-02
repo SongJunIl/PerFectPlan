@@ -4,7 +4,7 @@
 <%@include file="/resources/css/header.css" %>  
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
 </style>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <script type="text/javascript">
 	function on() {p_travel.innerText="여행지";}
@@ -79,13 +79,13 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="p_nav_bar">
                     <li class="hidden" id="p_nav_li_margin">
                         <a href="#page-top"></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
-                    </li>
+                    </li>	
                     <li>
                         <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
                     </li>
@@ -95,20 +95,24 @@
                     <li>
                         <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
                     </li>
-                    
-                    <li class="nav_li_log" id="nav_li_log1">
-                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
-                    </li>
+                    <c:if test="${ not empty member }">
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
-                    </li>
-                    <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
+                        <a class="page-scroll" href="member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
                     </li>
                     <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
                     <li class="nav_li_log">
                         <a class="page-scroll" href="#team"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
                     </li>
+                    </c:if>
+                    <c:if test="${empty member}">
+                    
+                    <li class="nav_li_log" id="nav_li_log1">
+                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
+                    </li>
+                    </c:if>
                    
                 </ul>
             </div>
@@ -134,11 +138,11 @@
       <div class="modal-body">
 
         	<div id="modal_logform" >
-					<form class="form-horizontal" action="/login">
+					<form class="form-horizontal" action="member/login" method="post">
 					  <div class="form-group">
 					    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 					    <div class="col-sm-10-input">
-					      <input type="email" class="form-control" name="id" id="p_logform_id" placeholder="아이디를 입력하세요.">
+					      <input type="text" class="form-control" name="id" id="p_logform_id" placeholder="아이디를 입력하세요.">
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -178,7 +182,7 @@
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="join" method="post">
+      <form action="member/join" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title" id="myModalLabel">join</h4>

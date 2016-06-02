@@ -14,14 +14,14 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void join(MemberDTO mdto) throws Exception {
-		sqlsession.insert(namespace, mdto);
+		sqlsession.insert(namespace+"join", mdto);
 		
 	}
 	
 	@Override
 	public MemberDTO login(MemberDTO mdto) throws Exception {
 		
-		return sqlsession.selectOne(namespace, mdto);
+		return sqlsession.selectOne(namespace+"login", mdto);
 	}
 	
 	

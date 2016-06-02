@@ -28,7 +28,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute MemberDTO mdto, Model model){
-		memberService.login(mdto);
+		mdto=memberService.login(mdto);
 		model.addAttribute("mem", mdto);
 	}
 	@RequestMapping(value="/logout")

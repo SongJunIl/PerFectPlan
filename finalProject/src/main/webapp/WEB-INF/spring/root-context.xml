@@ -5,4 +5,27 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+		
+		<!-- mybatis step1) dataSource -->
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+			<property name="url" value="jdbc:oracle:thin:@192.168.152.132:1521:xe"></property>
+			<property name="username" value="perple"></property>
+			<property name="password" value="perple"></property>
+		</bean>
+		
+		<!-- mybatis step2) sqlFactory -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+			<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+		</bean>
+		
+		<!-- mybatis step3) sqlSession  -->
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+		</bean>
+		
+		
+		
+		
 </beans>

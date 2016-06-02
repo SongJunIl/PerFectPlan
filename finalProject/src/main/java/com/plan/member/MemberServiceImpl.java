@@ -1,5 +1,10 @@
 package com.plan.member;
 
-public class MemberServiceImpl implements MemberService {
+import org.springframework.stereotype.Service;
 
+@Service
+public class MemberServiceImpl implements MemberService {
+	
+	
+	
 }

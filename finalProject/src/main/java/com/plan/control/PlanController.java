@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/planMake/*")
 public class PlanController {
 	
+	@RequestMapping(value="planSelectCity")
+	public void planSelectCity(){}
+	
 	@RequestMapping(value="plannerMake")
 	public void plannerMake(){}
 	

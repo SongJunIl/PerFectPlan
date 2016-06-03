@@ -32,68 +32,86 @@
 	}
 	#map{
 		float:left;
-		width: 1478px;
+		width: 1638px;
 		height: 905px;
 	
 	}
-	.pday_list_day{
-		float: left;
-	}
-	#pday_list_term{
-		float: left;
-		margin-left: 30px;
-		margin-right: 10px;
-	}
-	#pday_list_edit{
-		float: left;
-	}
-	#pday_list_body, #pday_list_header{
-		padding-left: 0px;
-		margin-bottom: 0px;
-	}
-	#pday_list_header_inner{
-		width: 160px;
-		height: 50px;
-		line-height:50px;
-		border-top: 1px gray solid;
-		border-bottom: 1px gray solid;
-		color:white;
-		list-style-type:none; 
-		padding-left: 0px;
-		
-	}
 	
-	.pday_list_body_inner{
-		width: 160px;
-		height: 70px;
-		line-height:50px;
-		color:white;
-		list-style-type:none; 
-		padding-left: 0px;
-		border-bottom: 1px gray solid;
-	}
-	.pday_list_day{
+	#plan_select_city{
+		background-color: white;
+		width: 265px;
+		height: 905px;
 		float: left;
-		height: 30px;
-		font-size: 20px;
+	}
+	#pselect_city_header{
+		overflow:hidden;
+		background-color: gray;
+		color: white;
+		width: 265px;
+		height: 50px; 
+		line-height: 50px;
+	}
+	#pselect_city_title{
+		width: 150px;
 		font-weight: bolder;
-		margin-left: 30px;
-	}
-	.pday_list_week{
-		float: left;
-		height: 30px;
-		margin-left: 15px;
-	}
-	.pday_list_date{
-		float: left;
-		height: 30px;
-		margin-left: 30px;
-	}
-	.pday_list_city{
-		float: left;
-		height: 30px;
-		margin-left: 15px;
+		font-size: 25px;
 		
+		text-align: center;
+		float: left;
+	}
+	#pselect_city_img img{
+		width: 30px;
+		height: 30px;
+		overflow: auto;
+		float: left;
+		vertical-align: middle;
+		margin-left: 20px;
+		margin-top: 10px;
+	}
+	#pselect_city_body{
+		margin-top:10px;
+		width: 265px;
+		height: 855px;
+		overflow: auto;
+	}
+	.pcity_inner_name{
+		margin-top:15px;
+		line-height: normal;
+		text-align: center;
+	}
+	.pcity_inner_img{
+		float: left;
+	}
+	.pcity_inner_name{
+		float: left;
+		margin-left: 10px;
+	}
+	.pcity_inner_addbtn{
+		float: right;
+	}
+	.pcity_inner_img img{
+		border: 1px solid gray;
+		width: 60px;
+		height: 60px;
+		overflow: auto;
+	}
+	.pcity_inner_addbtn img{
+		border: 1px solid gray;
+		width: 40px;
+		height: 40px;
+		overflow: auto;
+	}
+	.pselect_city_inner{
+		width: 265px;
+		height: 70px;
+		line-height: 65px;
+		border-bottom: 1px gray solid;
+		border-top: 1px gray solid;
+	}
+	.pcity_inner_box{
+		width: 220px;
+		height: 70px;
+		margin: 0 auto;
 	}
 </style>
 </head>
@@ -101,49 +119,51 @@
 <!-- header -->
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- section -->
-<div id="plan_planner_maker">
-	<div id="planner_date_box">
-		<ul id="pday_list_header">
-			<li id="pday_list_header_inner">
-				<div id="pday_list_term">06.5~06.8</div>
-				<div id="pday_list_edit">수정</div>
-			</li>
-		</ul>
-		<ul	id="pday_list_body">
-			<li class="pday_list_body_inner">
-				<div class="pday_list_day">DAY1</div>
-				<div class="pday_list_week">일요일</div>
-				<div class="clear"></div>
-				<div class="pday_list_date">06.05</div>
-				<div class="pday_list_city">서울</div>
-			</li>
-			
-			<li class="pday_list_body_inner">
-				<div class="pday_list_day">DAY2</div>
-				<div class="pday_list_week">월요일</div>
-				<div class="clear"></div>
-				<div class="pday_list_date">06.06</div>
-				<div class="pday_list_city">서울</div>
-			</li>
-			
-			<li class="pday_list_body_inner">
-				<div class="pday_list_day">DAY3</div>
-				<div class="pday_list_week">화요일</div>
-				<div class="clear"></div>
-				<div class="pday_list_date">06.07</div>
-				<div class="pday_list_city">서울</div>
-			</li>
-		
-		</ul>
+<div id="plan_select_city">
+	<div id="pselect_city_header">
+		<div id="pselect_city_img"><img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png"></div>
+		<div id="pselect_city_title">대한민국</div>
 	</div>
 	
-	<div id="planner_schedule_box">
-		<div id="Pschedule_list_header">
-			DAY1
-			<span>│</span>
-			06.05(금요일)
+	<div id="pselect_city_body">
+		<div class="pselect_city_inner">
+			<div class="pcity_inner_box">
+				<div class="pcity_inner_img">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+				</div>
+				<div class="pcity_inner_name">
+					<div class="pcity_inner_kname">
+					서울
+					</div>
+					<div class="pcity_inner_ename">
+					Seoul
+				</div>
+				</div>
+				<div class="pcity_inner_addbtn">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png">
+				</div>
+			</div>	
 		</div>
-	
+		
+		<div class="pselect_city_inner">
+			<div class="pcity_inner_box">
+				<div class="pcity_inner_img">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+				</div>
+				<div class="pcity_inner_name">
+					<div class="pcity_inner_kname">
+					서울
+					</div>
+					<div class="pcity_inner_ename">
+					Seoul
+				</div>
+				</div>
+				<div class="pcity_inner_addbtn">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png">
+				</div>
+			</div>	
+		</div>
+		
 	</div>
 </div>
 
@@ -155,6 +175,7 @@
 <div style="cursor: pointer"  id="cacao">카카오</div>
 <div style="cursor: pointer"  id="yunmot">생태연못</div>
 <div style="cursor: pointer"  id="batt">터밭</div>
+
 
 
 </body>
@@ -169,8 +190,8 @@ $(function() {
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	    mapOption = { 
-	        center: new daum.maps.LatLng(37.5666102, 126.9783881), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
+	        center: new daum.maps.LatLng(36.3666102, 127.8783881), // 지도의 중심좌표
+	        level: 13 // 지도의 확대 레벨
 	    };
 
 	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

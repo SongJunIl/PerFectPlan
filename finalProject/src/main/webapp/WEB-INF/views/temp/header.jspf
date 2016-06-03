@@ -45,13 +45,13 @@
     <title>Agency - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/resources/css/agency.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/agency.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -74,12 +74,16 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll" id="p_header_logo">
                 <!-- 프로젝트 로고 -->
+<<<<<<< HEAD
                 <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
 <<<<<<< HEAD
 =======
                 <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
                 <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
 >>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
+=======
+                <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
+>>>>>>> refs/heads/final1
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

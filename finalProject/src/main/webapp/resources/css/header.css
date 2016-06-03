@@ -4,16 +4,27 @@
 			border-bottom: 1px solid black;
 			background-color: black;
 		}
+<<<<<<< HEAD
 	
 		#main-body{height: 1700px; }		
 		#nav_li_log1{margin-left: 140px;}
+=======
+		#p_nav_bar{width: 950px;}
+		#main-body{height: 1700px; }		
+		#nav_li_log1{margin-left: 250px;}
+>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
 		.input-group-addon:first-child{width: 65px;}
 		
 		#modal_logform{
 			width: 300px;
 			margin: 0 auto;
 		}
+<<<<<<< HEAD
 
+=======
+		
+		#p_logout{margin-left: 250px;}
+>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
 		#p_perfectLOGO_1{margin-top: 10px;}
 		#bs-example-navbar-collapse-1{margin-top: 15px;}
 		#p_header_top1{position: inherit; background-color: white; padding: inherit; color: black;}

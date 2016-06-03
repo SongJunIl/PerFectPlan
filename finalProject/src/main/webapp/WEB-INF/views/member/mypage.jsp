@@ -81,6 +81,40 @@
 							    </div>
 							    <div class="item">
 							      <img class="p_slide_img" src="/resources/img/mypage/photo10.jpg">
+<<<<<<< HEAD
+=======
+							      <img class="p_slide_img" src="/resources/img/mypage/photo1.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo2.jpg">							    
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo3.jpg">
+							    </div>
+							
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo4.jpg">
+							    </div>
+							 	 <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo5.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo6.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo7.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo8.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo9.jpg">
+							    </div>
+							    <div class="item">
+							      <img class="p_slide_img" src="/resources/img/mypage/photo10.jpg">
+>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
 							    </div>
 							  
 							  </div>
@@ -234,6 +268,7 @@
 	  
 	  <div role="tabpanel" class="tab-pane fade" id="reviewnscrap" aria-labelledby="reviewnscrap-tab">
 			<div class="p_home_body" id="p_home_body_reviewnsacrap_1">
+<<<<<<< HEAD
 				
 					<div class="p_reviewnscrap_1" id="p_review_1">
 												<div class="p_review_list">	
@@ -348,6 +383,137 @@
 
 
 
+=======
+					<div class="p_reviewnscrap_1" id="p_review_1">
+												<div class="p_review_list">	
+												<h1>review</h1>
+													<div id="p_review_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2"  id="p_review_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_review_body_list_contents"></div>	
+												</div>
+												
+												<div class="p_review_list">	
+													<div id="p_review_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2"  id="p_review_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_review_body_list_contents"></div>	
+												</div>
+					</div>
+					<div class="p_reviewnscrap_1" id="p_scrap_1">
+												<div class="p_scrap_list">
+												<h1>scrap</h1>
+													<div id="p_scrap_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2" id="p_scrap_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_scrap_body_list_contents"></div>	
+												</div>
+					
+												<div class="p_scrap_list">
+													<div id="p_scrap_body_list_img" class="p_body_div_1">
+										      			<div class="p_body_div_2" id="p_scrap_body_list_img_info">g</div>
+										      		</div>
+													<div class="p_body_div_3" id="p_scrap_body_list_contents"></div>	
+												</div>
+					
+					
+					</div>
+				
+					
+			
+			</div>
+	  </div>
+	  
+	  
+	  
+	  
+	  <!--QnA tab  -->
+	  
+	  <div role="tabpanel" class="tab-pane fade" id="QnA" aria-labelledby="QnA-tab">
+			<div class="p_home_body"><h1>QnA</h1></div>
+	  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  <!--my info tab  -->
+	  
+	  <div role="tabpanel" class="tab-pane fade" id="myinfo" aria-labelledby="myinfo-tab">
+			<div class="p_home_body" ">
+						<div id="p_home_body_mypage">
+							<table class="table table-striped">
+								<tr>
+									<td><h1>my info</h1><input type="hidden" name="num" value="${member.num}"></td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_1">ID</span>
+  										<input type="text" class="form-control" name="id" readonly="memberID" value="${member.id}" aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_2">PW</span>
+  										<input type="password" class="form-control" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_3">Name</span>
+  										<input type="text" class="form-control" placeholder="name" name="name" value="${member.name }"  aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><div class="input-group"><span class="input-group-addon" id="p_addon_4" >Email</span>
+  										<input type="text" class="form-control" placeholder="Email" name="email" value="${member.email }" aria-describedby="basic-addon1">
+											</div>
+									</td>
+								</tr>
+								<tr>
+									<td><button class="button button3">수정 취소</button><span>              </span><button class="button button5" id="p_update_btn">수정 완료</button></td>
+								</tr>
+							</table>
+							<div id="p_mypage_moutbt"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" id="">회원 탈퇴</button></div>						
+
+										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+										  <div class="modal-dialog modal-sm">
+										    <div class="modal-content" id="p_modal_mout">
+										    	
+										      <br><br><span>정말로 탈퇴 하시겠습니까?</span><br><br><br>
+										      <button class="button button3">예</button><span>              </span>
+										      <button class="button button5">아니오</button>
+										    </div>	
+										  </div>
+										</div>
+						</div>
+			
+			</div>
+	  </div>
+	 
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	function() {
+		$("#p_update_btn").on('click',function(){
+			
+			$.ajax({
+				url:"update",
+				type:"POST",
+				data:"num=${num}&pw=${pw}&name=${name}&email=${email}",
+				success:function(data){
+					Alert(data.num);
+				}
+			});
+		});
+	}
+
+</script>
+>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
 
 
 

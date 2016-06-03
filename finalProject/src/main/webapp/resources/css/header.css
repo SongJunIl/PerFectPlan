@@ -34,8 +34,24 @@
 		#p_join_addon3{width: 80px;}
 		#p_join_addon4{width: 80px;}
 		
+		.p_idnpw_margin{margin-top: 10px;}
 		.p_span_title_font{color: black;}
-
+		.p_myinfo_input{margin: 0 auto;}
+		#p_update_btn{float: right; margin-right: 100px}
+		#p_updatecancel_btn{float: left; margin-left: 100px;}
+		#p_logmd_footer{background-color: black;}
+		#p_joinmd_footer{background-color: black;}
+		#p_md_f1{float: left;  margin-left: 100px;}
+		#p_md_f2{margin-right: 170px;}
+		#p_join_md_1{height: 345px;}
+		#p_modal_idnpw{
+		text-align: center;
+    	width: 400px;
+   		height: 200px;
+   		margin-top: 360px;
+   		}
+		#p_md_idnpw_1{margin-top: 50px;	}
+		
 .navbar-default{
 	background-image: none;
 }

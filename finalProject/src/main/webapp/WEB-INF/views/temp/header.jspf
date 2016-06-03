@@ -131,7 +131,7 @@
 <!--login Modal -->
 <div class="modal fade" id="p_loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">login</h4>
@@ -168,21 +168,42 @@
       <div class="modal-footer" id="p_logmd_footer">
 			<div id="p_md_footer">
 						<div class="p_md_footer_1" id="p_md_f1">
-						<a href="">아이디 & 비밀번호 찾기</a>
+						<a data-toggle="modal" data-target=".bs-example-modal-sm-idnpw">아이디 & 비밀번호 찾기</a>
 						</div>
 						<div class="p_md_footer_1" id="p_md_f2">
-						<a href="">회원 가입</a>
+						<a data-toggle="modal" data-target="#p_joinmodal">회원 가입</a>
 						</div>						
 			</div>
       </div>
     </div>
   </div>
 </div>
+								<!-- id&pw 찾기 modal -->
+			<div class="modal fade bs-example-modal-sm-idnpw" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			  <div class="modal-dialog modal-sm">
+			    <div class="modal-content" id="p_modal_idnpw">
+			      		<div>
+			      			<form class="form-inline" id="p_md_idnpw_1">
+							  <div class="form-group">
+							    <label for="exampleInputName2">가입된 이메일로 id & pw 찾기</label>
+							  </div>
+							  <div class="form-group p_idnpw_margin">
+							    <label for="exampleInputEmail2">Email</label>
+							    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="이메일을 입력하세요.">
+							  </div>
+							  <button type="submit" class="btn btn-default p_idnpw_margin">Send</button>
+							</form>
+			      		
+			      		</div>
+			    </div>
+			  </div>
+			</div>
+
 
 <!--join Modal -->
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" id="p_join_md_1">
       <form action="${pageContext.request.contextPath}/member/join" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -206,7 +227,7 @@
 						</div><br>
 						<div class="input-group">
 						  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
-						  <input type="text" class="form-control" name="email" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
+						  <input type="email" class="form-control" name="email" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
 							<div id="p_emailcheckresult"></div>
 						</div>
 		      		</div>

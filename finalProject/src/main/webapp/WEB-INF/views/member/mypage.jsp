@@ -292,39 +292,41 @@
 			<div class="p_home_body" ">
 						<div id="p_home_body_mypage">
 							<form action="${pageContext.request.contextPath}/member/update" method="post">
+								<div>
 							<table class="table table-striped">
 								<tr>
 									<td><h1>my info</h1><input type="hidden" name="no" value="${member.no}"></td>
 								</tr>
 								<tr>
-									<td><div class="input-group"><span class="input-group-addon" id="p_addon_1">ID</span>
+									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_1">ID</span>
   										<input type="text" class="form-control" name="id" readonly="memberID" value="${member.id}" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
-									<td><div class="input-group"><span class="input-group-addon" id="p_addon_2">PW</span>
+									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_2">PW</span>
   										<input type="password" class="form-control" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
-									<td><div class="input-group"><span class="input-group-addon" id="p_addon_3">Name</span>
+									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_3">Name</span>
   										<input type="text" class="form-control" placeholder="name" name="name" value="${member.name}"  aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
-									<td><div class="input-group"><span class="input-group-addon" id="p_addon_4" >Email</span>
-  										<input type="text" class="form-control" placeholder="Email" name="email" value="${member.email}" aria-describedby="basic-addon1">
+									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_4" >Email</span>
+  										<input type="email" class="form-control" placeholder="Email" name="email" value="${member.email}" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
-								<tr>
-									<td><a href="${pageContext.request.contextPath}/member/mypage"><button class="button button3">수정 취소</button></a><span>              </span><button type="submit" class="button button5" id="p_update_btn">수정 완료</button></td>
-								</tr>
+								
 							</table>
+									<button type="submit" class="button button5" id="p_update_btn">수정 완료</button>
+							  </div>
 							</form>
+									<a href="${pageContext.request.contextPath}/member/mypage"><button class="button button3" id="p_updatecancel_btn">수정 취소</button></a><span>              </span>
 							<div id="p_mypage_moutbt"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" id="">회원 탈퇴</button></div>						
 
 										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">

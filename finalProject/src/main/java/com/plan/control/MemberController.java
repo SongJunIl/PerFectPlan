@@ -29,7 +29,9 @@ public class MemberController {
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute MemberDTO mdto, Model model){
 		mdto=memberService.login(mdto);
+		System.out.println(mdto);
 		model.addAttribute("mem", mdto);
+		
 	}
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
@@ -44,7 +46,21 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/update", method= RequestMethod.POST)
+	public String update(@ModelAttribute MemberDTO mdto, Model model){
+		int result =memberService.update(mdto);
+		model.addAttribute("result", result);
+		model.addAttribute("mem", mdto);
+		
+		return "redirect:/";
+	}
 	
+	@RequestMapping(value="/delete" ,method= RequestMethod.POST)
+	public String delete(int no,HttpSession session){
+		memberService.delete(no);
+		memberService.logout(session);
+		return "redirect:/";
+	}
 	
 	
 }

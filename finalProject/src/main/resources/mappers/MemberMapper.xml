@@ -13,11 +13,11 @@
 	</select>  
   
   	<update id="update" parameterType="com.plan.member.MemberDTO">
-		update member set pw=#{pw},name=#{name},{email=#{email} where num=#{num}   		
+		update member set pw=#{pw},name=#{name},email=#{email} where no=#{no}   		
   	</update>
   
-  	<delete id="delete">
-  		delete member where num=#{num}
+  	<delete id="delete" parameterType="com.plan.member.MemberDTO">
+  		delete member where no=#{no}
   	</delete>
   
   

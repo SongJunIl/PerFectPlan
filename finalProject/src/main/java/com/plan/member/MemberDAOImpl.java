@@ -24,5 +24,18 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlsession.selectOne(namespace+"login", mdto);
 	}
 	
+	@Override
+	public int update(MemberDTO mdto) throws Exception {
+		
+		return sqlsession.update(namespace+"update", mdto);
+		 
+	}
+	
+	@Override
+	public void delete(int no) throws Exception {
+		sqlsession.delete(namespace+"delete",no);
+	}
+	
+	
 	
 }

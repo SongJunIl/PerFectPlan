@@ -39,6 +39,29 @@ public class MemberServiceImpl implements MemberService {
 		session.invalidate();		
 	}
 	
+	@Override
+	public int update(MemberDTO mdto) {
+		int result=0;
+		try {
+				result=mdao.update(mdto);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return result;
+	}
+	
+	@Override
+	public void delete(int no) {
+		try {
+			mdao.delete(no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	

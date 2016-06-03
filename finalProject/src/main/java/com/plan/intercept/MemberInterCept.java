@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.plan.member.MemberDTO;
+
 public class MemberInterCept extends HandlerInterceptorAdapter{
 
 	@Override
@@ -17,11 +19,11 @@ public class MemberInterCept extends HandlerInterceptorAdapter{
 		Object obj = modelAndView.getModel().get("mem");
 		modelAndView.setViewName("home");
 		if(obj != null){
-			session.setAttribute("member", modelAndView.getModel());
+			session.setAttribute("member", modelAndView.getModel().get("mem"));
 			response.sendRedirect(request.getContextPath()+"/");
-		}/*else{
+		}else{
 			response.sendRedirect(request.getContextPath()+"/");
-		}*/
+		}
 		
 	}
 	

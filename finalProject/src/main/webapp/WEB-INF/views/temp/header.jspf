@@ -74,9 +74,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll" id="p_header_logo">
                 <!-- 프로젝트 로고 -->
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-                <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
+                <a class="navbar-brand page-scroll" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,21 +96,22 @@
                         <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
                     </li>
                     <c:if test="${ not empty member }">
+                   
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
                     </li>
                     <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#team"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/mypage"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
                     </li>
                     </c:if>
                     <c:if test="${empty member}">
                     
                     <li class="nav_li_log" id="nav_li_log1">
-                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
+                        <a class="page-scroll"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
                     </li>
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
+                        <a class="page-scroll"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
                     </li>
                     </c:if>
                    
@@ -140,7 +139,7 @@
       <div class="modal-body">
 
         	<div id="modal_logform" >
-					<form class="form-horizontal" action="member/login" method="post">
+					<form class="form-horizontal" action="${pageContext.request.contextPath}/member/login" method="post">
 					  <div class="form-group">
 					    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 					    <div class="col-sm-10-input">
@@ -184,7 +183,7 @@
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="member/join" method="post">
+      <form action="${pageContext.request.contextPath}/member/join" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title" id="myModalLabel">join</h4>

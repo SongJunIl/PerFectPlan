@@ -265,7 +265,6 @@
 	  
 	  <div role="tabpanel" class="tab-pane fade" id="reviewnscrap" aria-labelledby="reviewnscrap-tab">
 			<div class="p_home_body" id="p_home_body_reviewnsacrap_1">
-				
 					<div class="p_reviewnscrap_1" id="p_review_1">
 												<div class="p_review_list">	
 												<h1>review</h1>
@@ -327,34 +326,34 @@
 						<div id="p_home_body_mypage">
 							<table class="table table-striped">
 								<tr>
-									<td><h1>my info</h1></td>
+									<td><h1>my info</h1><input type="hidden" name="num" value="${member.num}"></td>
 								</tr>
 								<tr>
 									<td><div class="input-group"><span class="input-group-addon" id="p_addon_1">ID</span>
-  										<input type="text" class="form-control" readonly="memberID" aria-describedby="basic-addon1">
+  										<input type="text" class="form-control" name="id" readonly="memberID" value="${member.id}" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group"><span class="input-group-addon" id="p_addon_2">PW</span>
-  										<input type="password" class="form-control" placeholder="PassWord" aria-describedby="basic-addon1">
+  										<input type="password" class="form-control" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group"><span class="input-group-addon" id="p_addon_3">Name</span>
-  										<input type="text" class="form-control" placeholder="name"  aria-describedby="basic-addon1">
+  										<input type="text" class="form-control" placeholder="name" name="name" value="${member.name }"  aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group"><span class="input-group-addon" id="p_addon_4" >Email</span>
-  										<input type="text" class="form-control" placeholder="Email"  aria-describedby="basic-addon1">
+  										<input type="text" class="form-control" placeholder="Email" name="email" value="${member.email }" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
-									<td><button class="button button3">수정 취소</button><span>              </span><button class="button button5">수정 완료</button></td>
+									<td><button class="button button3">수정 취소</button><span>              </span><button class="button button5" id="p_update_btn">수정 완료</button></td>
 								</tr>
 							</table>
 							<div id="p_mypage_moutbt"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm" id="">회원 탈퇴</button></div>						
@@ -378,7 +377,23 @@
 </div>
 
 
+<script type="text/javascript">
 
+	function() {
+		$("#p_update_btn").on('click',function(){
+			
+			$.ajax({
+				url:"update",
+				type:"POST",
+				data:"num=${num}&pw=${pw}&name=${name}&email=${email}",
+				success:function(data){
+					Alert(data.num);
+				}
+			});
+		});
+	}
+
+</script>
 
 
 

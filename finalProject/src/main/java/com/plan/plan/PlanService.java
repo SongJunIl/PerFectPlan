@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.plan.big.BigDTO;
 
-public interface PlanDAO {
+public interface PlanService {
 	
-	public List<BigDTO> bigCity_list();
-	
+	public List<BigDTO> s_bigCity_list();
 }

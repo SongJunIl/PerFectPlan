@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,6 +127,8 @@
 	</div>
 	
 	<div id="pselect_city_body">
+	
+	<c:forEach items="bigCity" var="bigList" >
 		<div class="pselect_city_inner">
 			<div class="pcity_inner_box">
 				<div class="pcity_inner_img">
@@ -133,10 +136,10 @@
 				</div>
 				<div class="pcity_inner_name">
 					<div class="pcity_inner_kname">
-					서울
+					${bigList.name }
 					</div>
 					<div class="pcity_inner_ename">
-					Seoul
+					${bigList.ename }
 				</div>
 				</div>
 				<div class="pcity_inner_addbtn">
@@ -144,6 +147,9 @@
 				</div>
 			</div>	
 		</div>
+	
+	</c:forEach>
+		
 		
 		<div class="pselect_city_inner">
 			<div class="pcity_inner_box">

@@ -128,7 +128,8 @@
 	
 	<div id="pselect_city_body">
 	
-	<c:forEach items="bigCity" var="bigList" >
+	<c:forEach items="${bigCity}" var="bigList" >
+		
 		<div class="pselect_city_inner">
 			<div class="pcity_inner_box">
 				<div class="pcity_inner_img">
@@ -136,39 +137,19 @@
 				</div>
 				<div class="pcity_inner_name">
 					<div class="pcity_inner_kname">
-					${bigList.name }
+					${bigList.big_name }
 					</div>
 					<div class="pcity_inner_ename">
-					${bigList.ename }
+					${bigList.big_ename }
 				</div>
 				</div>
 				<div class="pcity_inner_addbtn">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png" >
 				</div>
 			</div>	
 		</div>
 	
 	</c:forEach>
-		
-		
-		<div class="pselect_city_inner">
-			<div class="pcity_inner_box">
-				<div class="pcity_inner_img">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
-				</div>
-				<div class="pcity_inner_name">
-					<div class="pcity_inner_kname">
-					서울
-					</div>
-					<div class="pcity_inner_ename">
-					Seoul
-				</div>
-				</div>
-				<div class="pcity_inner_addbtn">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png">
-				</div>
-			</div>	
-		</div>
 		
 	</div>
 </div>

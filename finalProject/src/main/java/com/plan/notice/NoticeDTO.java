@@ -3,15 +3,15 @@ package com.plan.notice;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private int no;
+	private int com_no;
 	private String title;
 	private String contents;
 	private Date reg_date;
 	public int getNo() {
-		return no;
+		return com_no;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setNo(int com_no) {
+		this.com_no = com_no;
 	}
 	public String getTitle() {
 		return title;

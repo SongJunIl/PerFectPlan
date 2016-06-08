@@ -62,5 +62,17 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/samrtEditor2Inputarea")
+	public String smartEditor2Inputarea(){
+		return "SE2/smart_editor2_inputarea";
+	}
+	
+	@RequestMapping(value="/smarteditor2InputareaIe8")
+	public String smartEditor2InputareaIe8(){
+		return "SE2/smart_editor2_inputarea_ie8";
+	}
+	
+	
+	
 	
 }

@@ -21,9 +21,44 @@
 	function outtop3() {p_top_menu_QnA.innerText="QnA";}
 	function outtop4() {p_top_menu_myinfo.innerText="My info";}	
 
-	
-</script>
+	$('.collapse').collapse();
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/SE2/js/HuskyEZCreator.js"></script>
+<script type="text/javascript">
+$(function(){
+    //전역변수
+    var obj = [];               
+    //스마트에디터 프레임생성
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: obj,
+        elPlaceHolder: "ir2",
+        sSkinURI: "${pageContext.request.contextPath}/resources/SE2/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true, 
+        }
+    });
+    //전송버튼
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+        //폼 submit
+        $("#frm").submit();
+    })
+})
+    
+
+
+  
+    
+   
+</script>
 </Head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
@@ -114,6 +149,9 @@
 
 
 <div class="container">
+	<!-- 회원 img 넣을 div 생성  <img src="..." alt="..." class="img-rounded">-->
+	
+	
 	
 	<!-- Home tab -->
 	
@@ -122,7 +160,7 @@
 	    <div class="p_home_body">
 		<div class="p_home_body_d1" id="p_home_body_d1_1">
 			<div class="p_home_body_d1_header">
-				<div class="p_home_body_title"><h1>recently Schedule</h1></div><div class="p_home_body_plus"><a href=""><span class="glyphicon glyphicon-plus" aria-hidden="true">더보기</span></a></div>
+				<div class="p_home_body_title"><h1>recently Schedule</h1></div><div class="p_home_body_plus"></div>
 			</div>
 								<div id="p_home_body_Schedule">
 									
@@ -132,7 +170,7 @@
 		</div>
 		<div class="p_home_body_d1" id="p_home_body_d1_2">
 			<div class="p_home_body_d1_header">
-				<div class="p_home_body_title"><h1>recently Review & Scrap</h1></div><div class="p_home_body_plus"><a href=""><span class="glyphicon glyphicon-plus" aria-hidden="true">더보기</span></a></div>		
+				<div class="p_home_body_title"><h1>recently Review & Scrap</h1></div><div class="p_home_body_plus"></div>		
 			</div>
 			
 								<div id="p_home_body_review">
@@ -146,7 +184,7 @@
 		</div>	
 		<div class="p_home_body_d1" id="p_home_body_d1_3">
 			<div class="p_home_body_d1_header">
-				<div class="p_home_body_title"><h1>recently QnA</h1></div><div class="p_home_body_plus"><a href=""><span class="glyphicon glyphicon-plus" aria-hidden="true">더보기</span></a></div>		
+				<div class="p_home_body_title"><h1>recently QnA</h1></div><div class="p_home_body_plus"></div>		
 		 	</div>
 								<div id="p_home_body_QnA">
 								
@@ -165,6 +203,7 @@
 	  
 	  <div role="tabpanel" class="tab-pane fade" id="schedule" aria-labelledby="schedule-tab">
 			<div class="p_home_body">
+				
 			
 								<div class="panel-group" id="accordion">
 								  <div class="panel panel-default">
@@ -278,7 +317,59 @@
 	  <!--QnA tab  -->
 	  
 	  <div role="tabpanel" class="tab-pane fade" id="QnA" aria-labelledby="QnA-tab">
-			<div class="p_home_body"><h1>QnA</h1></div>
+			<div id="p_qna_writebtn"><button type="button" id="modalbt1" data-toggle="modal" data-target="#p_qnaWritemodal" class="btn btn-warning">질문 하기</button></div>
+			<div class="p_home_body"><h1>QnA</h1> 
+				<div id="p_qna_form">
+					<div class="p_qna_list">
+						<div id="p_scrap_body_list_img" class="p_body_div_1">
+							<div id="p_qna_list_img"></div>
+							<div>
+								<table border="1">
+									<tr>
+										<td class="p_qna_table_td_1">title</td>
+									</tr>
+									<tr>
+										<td class="p_qna_table_td_1 p_qna_table_con" >contents</td>
+									</tr>
+									<tr>
+										<td class="p_qna_table_td_1">reg_date</td>
+									</tr>
+								</table>
+							</div>				
+			      		</div>
+							<div class="p_qna_list_body_1" id="p_qna_body_list_contents">
+									<div id="p_qna_view_btn">
+									<button class="btn btn-warning" data-toggle="modal" data-target="#p_qnaReplymodal">답변 하기</button><span>            </span>
+									<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="p_qna_view_btn_1">답변 보기</button>
+									</div>
+										<div class="collapse" id="collapseExample">
+
+										  	<div id="p_scrap_body_list_img" class="p_body_div_1">
+												<div id="p_qna_list_img"></div>
+													<div>
+													
+															<table border="1">
+																<tr>
+																	<td class="p_qna_table_td_1">title</td>
+																</tr>
+																<tr>
+																	<td class="p_qna_table_td_1 p_qna_table_con" >contents</td>
+																</tr>
+																<tr>
+																	<td class="p_qna_table_td_1">reg_date</td>
+																</tr>
+															</table>
+													</div>				
+			      							</div>
+										</div>
+							</div>	
+					</div>
+				
+				
+				</div>
+			</div>
+			
+			
 	  </div>
 	  
 	  
@@ -346,6 +437,18 @@
 			</div>
 	  </div>
 	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	</div>
 </div>
 
@@ -354,9 +457,53 @@
 
 
 
+<!--QnA write Modal -->
+<div class="modal fade" id="p_qnaWritemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" id="p_qna_md_2">
+      <form action=" " method="post">
+    <div class="modal-content" id="p_qna_md_3">
+		     	<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">질문 하기</h4>
+     			</div>
+					<input type="text" id="p_qna_mdtitle"  name="title" placeholder="제목을 입력하세요.">
+							<div class="modal-body">
+					<textarea name="smarteditor" id="ir2" rows="10" cols="100" style="width: 568px; height: 170px;" placeholder="내용을 입력하세요."></textarea>
+								</div>
+		      </div>
+		      <div class="modal-footer" id="p_joinmd_footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		</form>
+    
+    </div>
+  </div>
+</div>
 
-
-
+<!--QnA Replywrite Modal -->
+<div class="modal fade" id="p_qnaReplymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" id="p_qna_md_2">
+      <form action=" " method="post">
+    <div class="modal-content" id="p_qna_md_3">
+		     	<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">답변 하기</h4>
+     			</div>
+					<input type="text" id="p_qna_mdtitle"  name="title" placeholder="제목을 입력하세요.">
+							<div class="modal-body">
+					<textarea name="smarteditor" id="ir3" rows="10" cols="100" style="width: 568px; height: 170px;" placeholder="내용을 입력하세요."></textarea>
+								</div>
+		      </div>
+		      <div class="modal-footer" id="p_joinmd_footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		</form>
+    
+    </div>
+  </div>
+</div>
 
 
 

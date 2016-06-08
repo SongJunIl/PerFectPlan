@@ -103,5 +103,23 @@
 			
 			.p_slide_img{width: 100%; height: 100%;}
 
+			#p_qna_form{height: 250px; background-color: orange;			}
+			.p_qna_list{height: 500px; background-color: gray; margin-top: 10px;}
+			#p_qna_list_img{width: 170px; height: 250px; background-color: blue; float: left; display: inline-block;}
+			.p_qna_list_title{height: 25px; background-color: fuchsia; float: right; display: inline-block;}
+			.p_qna_list_contents{height: 175px; background-color:lime; float: right; display: inline-block;}
+			#p_review_body_list_contents{height: 50px;}
+			#p_qna_writebtn{float: right; margin-right: 200px;}
+			
+			.p_qna_table_td_1{width: 1%; height: 34px;}
+			.p_qna_table_con{height: 180px;}
+			.p_qna_list_body_1{height: 200px;}
+			
+			#p_qna_view_btn{width: 250px; margin: 0 auto;}
+			#p_qna_view_btn_1{margin-left: 65px;}
+			#p_qna_mdtitle{margin-left: 16px; margin-top: 20px; width: 567px;}
+			#p_qna_md_2{margin-top: 200px;}
+			#p_qna_md_3{height: 415px;}
+			
 			
 </style>			

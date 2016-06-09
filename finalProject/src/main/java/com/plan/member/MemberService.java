@@ -9,5 +9,5 @@ public interface MemberService {
 	public void logout(HttpSession session);
 	public int update(MemberDTO mdto);
 	public void delete(int no);
-
+	public MemberDTO getemail(MemberDTO mdto);
 }

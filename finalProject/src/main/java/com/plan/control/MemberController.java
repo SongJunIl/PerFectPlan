@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
@@ -70,6 +71,18 @@ public class MemberController {
 	@RequestMapping(value="/smarteditor2InputareaIe8")
 	public String smartEditor2InputareaIe8(){
 		return "SE2/smart_editor2_inputarea_ie8";
+	}
+	
+	@RequestMapping(value="/email")
+	public String email(@ModelAttribute MemberDTO mdto,Model model){
+		
+		if(memberService.getemail(mdto)==null){
+			model.addAttribute("message", "일치하는 이메일이없다.");
+		}else{
+			
+		}
+		
+		return "redirect:/";
 	}
 	
 	

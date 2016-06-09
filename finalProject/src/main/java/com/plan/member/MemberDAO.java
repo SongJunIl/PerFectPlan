@@ -10,4 +10,7 @@ public interface MemberDAO {
 	public int update(MemberDTO mdto) throws Exception;
 	
 	public void delete(int no)throws Exception;
+	
+	public MemberDTO getEmail(MemberDTO mdto)throws Exception; 
+	
 }

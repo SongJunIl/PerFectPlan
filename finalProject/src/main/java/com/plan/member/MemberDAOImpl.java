@@ -36,6 +36,11 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlsession.delete(namespace+"delete",no);
 	}
 	
+	@Override
+	public MemberDTO getEmail(MemberDTO mdto) throws Exception {
+		return 	sqlsession.selectOne(namespace+"email", mdto);
+	}
+	
 	
 	
 }

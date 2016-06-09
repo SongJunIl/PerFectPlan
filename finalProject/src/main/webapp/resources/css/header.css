@@ -55,5 +55,5 @@
 .navbar-default{
 	background-image: none;
 }
-
-		
+		#p_email_form{margin-top: 10px;}
+		#p_email_send{margin-top: -5px;}

@@ -25,6 +25,15 @@ public class MemberInterCept extends HandlerInterceptorAdapter{
 			response.sendRedirect(request.getContextPath()+"/");
 		}
 		
+	   Object obj2= modelAndView.getModel().get("message");
+	   modelAndView.setViewName("home");
+	   if(obj2 !=null){
+		   session.setAttribute("message", modelAndView.getModel().get("message"));
+		   response.sendRedirect(request.getContextPath()+"/");
+	   }
+	   
+	
+	
 	}
 	
 	

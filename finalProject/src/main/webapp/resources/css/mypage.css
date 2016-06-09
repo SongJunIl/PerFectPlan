@@ -29,7 +29,7 @@
 		
 		.p_panel_body_list{width: 800px; height: 350px;}
 		#p_panel_body_list_img{width:770px; height: 250px; }
-		.p_body_div_1{background-color: fuchsia;}
+		/* .p_body_div_1{background-color: fuchsia;} */
 		.p_body_div_2{background-color: lime;}
 		.p_body_div_3{background-color: navy;}
 		#p_panel_body_list_img_info{width:770px; margin-top: 200px; height:50px;  display: inline-block;}
@@ -96,7 +96,7 @@
 			#p_review_body_list_img{height: 250px;}
 			#p_review_body_list_img_info{height: 50px;}
 			#p_review_body_list_contents{height: 100px;}
-			#p_scrap_body_list_img{height: 250px;}
+			#p_scrap_body_list_img{height: 250px; border: 1px solid black;}
 			#p_scrap_body_list_img_info{height: 50px;}
 			#p_scrap_body_list_contents{height: 100px;}
 			
@@ -104,7 +104,7 @@
 			.p_slide_img{width: 100%; height: 100%;}
 
 			#p_qna_form{height: 250px; background-color: orange;			}
-			.p_qna_list{height: 500px; background-color: gray; margin-top: 10px;}
+			.p_qna_list{height: 1000px; background-color:  margin-top: 10px;}
 			#p_qna_list_img{width: 170px; height: 250px; background-color: blue; float: left; display: inline-block;}
 			.p_qna_list_title{height: 25px; background-color: fuchsia; float: right; display: inline-block;}
 			.p_qna_list_contents{height: 175px; background-color:lime; float: right; display: inline-block;}
@@ -116,10 +116,32 @@
 			.p_qna_list_body_1{height: 200px;}
 			
 			#p_qna_view_btn{width: 250px; margin: 0 auto;}
-			#p_qna_view_btn_1{margin-left: 65px;}
+			#p_qna_view_btn_1{margin-left: 65px; }
+			#p_qna_view_btn_2{float: right;}
 			#p_qna_mdtitle{margin-left: 16px; margin-top: 20px; width: 567px;}
 			#p_qna_md_2{margin-top: 200px;}
 			#p_qna_md_3{height: 415px;}
 			
+			.p_qna_table_img_1{width: 50px; height: 50px;}
+			#p_header_margin{margin-left: 340px;}
 			
+			
+			.p_qna_d_userimg{width: 80px; height: 80px; background-color: lime; display: inline-block;}
+			.p_qna_d_title{vertical-align:bottom; margin-bottom:20px; margin-left:15px; height:40px; width:650px;
+					font-size:27px;	border:1px solid black;	 background-color:maroon; display:inline-block;}
+			.p_qna_d_contents{margin-top:10px; height: 120px; background-color: green; border: 3px solid black;} 
+			.p_qna_d_id{margin-left:280px; margin-top:8px; font-size:17px; width: 100px; height: 30px; background-color: olive; display: inline-block;}
+ 			.p_qna_d_reg_date{width:100px; height:20px; background-color:red; display: inline-block;} 
+
+
+
+
+
+
+
+
+
+
+
+
 </style>			

@@ -30,6 +30,12 @@
 	/*session (로그인 했을 때 보이는 코드 해줘야함) 전에는 로그인 & 회원가입  */
 	function out6() {p_mypage.innerText="my page";}
 	function out7() {p_logout.innerText="logOut";}
+	
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	
+	
 	</script>
 
 
@@ -99,11 +105,19 @@
                     <c:if test="${ not empty member }">
                    
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
+                        <a class="page-scroll" id="p_header_margin" href="${pageContext.request.contextPath}/member/userimg"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"></a>
                     </li>
-                    <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
                     <li class="nav_li_log">
-                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/mypage"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/plan"><img src="${pageContext.request.contextPath}/resources/img/login/plan.png" data-toggle="tooltip" data-placement="bottom" title="여행 일정"></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/clip"><img src="${pageContext.request.contextPath}/resources/img/login/clip.png" data-toggle="tooltip" data-placement="bottom" title="클립 보드" ></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/mypage"><img src="${pageContext.request.contextPath}/resources/img/login/more.png" data-toggle="tooltip" data-placement="bottom" title="마이 페이지"></a>
+                    </li>
+                    <li class="nav_li_log">
+                        <a class="page-scroll" href="${pageContext.request.contextPath}/member/logout"><img src="${pageContext.request.contextPath}/resources/img/login/logout.png" data-toggle="tooltip" data-placement="bottom" title="로그 아웃"></a>
                     </li>
                     </c:if>
                     <c:if test="${empty member}">

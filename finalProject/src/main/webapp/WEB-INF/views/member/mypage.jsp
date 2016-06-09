@@ -322,44 +322,25 @@ $(function(){
 				<div id="p_qna_form">
 					<div class="p_qna_list">
 						<div id="p_scrap_body_list_img" class="p_body_div_1">
-							<div id="p_qna_list_img"></div>
-							<div>
-								<table border="1">
-									<tr>
-										<td class="p_qna_table_td_1">title</td>
-									</tr>
-									<tr>
-										<td class="p_qna_table_td_1 p_qna_table_con" >contents</td>
-									</tr>
-									<tr>
-										<td class="p_qna_table_td_1">reg_date</td>
-									</tr>
-								</table>
-							</div>				
+							<!-- <div id="p_qna_list_img"></div> -->
+									<div class="p_qna_d_userimg"><span>userimg</span></div><div class="p_qna_d_title"><span>title</span></div>
+									<div class="p_qna_d_contents"><span>contents</span></div>
+									<div class="p_qna_d_id"><span>id</span></div><div class="p_qna_d_reg_date"><span>reg_date</span></div>
+									<!--관리자만 볼 수 있는 버튼  -->
+									<c:if test="${ not empty admin }">
+									<button class="btn btn-warning" data-toggle="modal" data-target="#p_qnaReplymodal" id="p_qna_view_btn_2">답변 하기</button>
+									</c:if>
 			      		</div>
 							<div class="p_qna_list_body_1" id="p_qna_body_list_contents">
 									<div id="p_qna_view_btn">
-									<button class="btn btn-warning" data-toggle="modal" data-target="#p_qnaReplymodal">답변 하기</button><span>            </span>
 									<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="p_qna_view_btn_1">답변 보기</button>
 									</div>
 										<div class="collapse" id="collapseExample">
-
 										  	<div id="p_scrap_body_list_img" class="p_body_div_1">
-												<div id="p_qna_list_img"></div>
-													<div>
-													
-															<table border="1">
-																<tr>
-																	<td class="p_qna_table_td_1">title</td>
-																</tr>
-																<tr>
-																	<td class="p_qna_table_td_1 p_qna_table_con" >contents</td>
-																</tr>
-																<tr>
-																	<td class="p_qna_table_td_1">reg_date</td>
-																</tr>
-															</table>
-													</div>				
+												<!-- <div id="p_qna_list_img"></div> -->
+												<div class="p_qna_d_userimg"><span>userimg</span></div><div class="p_qna_d_title"><span>title</span></div>
+												<div class="p_qna_d_contents"><span>contents</span></div>
+												<div class="p_qna_d_id"><span>id</span></div><div class="p_qna_d_reg_date"><span>reg_date</span></div>
 			      							</div>
 										</div>
 							</div>	

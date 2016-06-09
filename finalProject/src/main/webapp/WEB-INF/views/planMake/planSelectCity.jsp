@@ -10,7 +10,7 @@
 	*{
 		margin: 0px;
 	}	
-	#plan_planner_maker{
+	/* #plan_planner_maker{
 		width: 425px;
 		height: 905px;
 		float: left;
@@ -27,28 +27,30 @@
 		width: 265px;
 		height: 905px;
 		background-color: gray;
-	}
+	} */
 	.clear{
 		clear: both;
 	}
-	#map{
+	#map_inner,#map{
 		float:left;
-		width: 1638px;
-		height: 905px;
-	
+		width: 1603px;
+		height: 893px;
+		
+		
 	}
 	
 	#plan_select_city{
 		background-color: white;
-		width: 265px;
-		height: 905px;
+		width: 300px;
+		height: 825px;
 		float: left;
+		
 	}
 	#pselect_city_header{
 		overflow:hidden;
 		background-color: gray;
 		color: white;
-		width: 265px;
+		width: 300px;
 		height: 50px; 
 		line-height: 50px;
 	}
@@ -71,8 +73,8 @@
 	}
 	#pselect_city_body{
 		margin-top:10px;
-		width: 265px;
-		height: 855px;
+		width: 300px;
+		height: 825px;
 		overflow: auto;
 	}
 	.pcity_inner_name{
@@ -86,6 +88,9 @@
 	.pcity_inner_name{
 		float: left;
 		margin-left: 10px;
+	}
+	.pcity_inner_kname{
+		text-align: left;
 	}
 	.pcity_inner_addbtn{
 		float: right;
@@ -103,19 +108,162 @@
 		overflow: auto;
 	}
 	.pselect_city_inner{
-		width: 265px;
+		width: 280px;
 		height: 70px;
 		line-height: 65px;
 		border-bottom: 1px gray solid;
 		border-top: 1px gray solid;
 	}
 	.pcity_inner_box{
-		width: 220px;
+		width: 245px;
 		height: 70px;
 		margin: 0 auto;
 	}
+	.pcity_inner_addbtn{
+		cursor: pointer;
+	}
+
+/* map쪽에 플래너 css */	
+	.sidenav {
+	border-radius : 7px;
+    margin-top:10px;
+    margin-left:10px;
+    /* height: 700px; */
+    width: 0;
+    z-index: 90;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 1s;
+    /* padding-top: 60px; */
+    float: left;
+   	min-height: 300px;
+   	max-height: 700px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 1s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#planner_nav_header{
+	width: 350px;
+	height: 50px;
+	color: white;
+	background-color: #1a7ad9;
+}
+#planner_nav_title{
+	width:150px;
+	float: left;
+	margin-left: 20px;
+	font-weight: bolder;
+	font-size: 25px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+#planner_nav_date{
+	float: left;
+	margin-right: 15px;
+	width: 90px;
+	height: 50px;
+	line-height: 50px;
+}
+#planner_nav_date img{
+	margin-right: 5px;
+}
+
+#datepicker {
+	color: white;
+	background: url(${pageContext.request.contextPath}/resources/img/plan/pn_cal_btn.png) no-repeat 125px 7px;
+	font-size: 12px;
+	width: 150px;
+	height: 30px;
+	border: 1px white double;
+}
+#planner_nav_btn{
+	width: 100%;
+	height: 80px;
+	border-top: 1px gray solid; 
+	padding-top: 16px;
+}
+
+#planner_nav_btn_go{
+	width: 270px;
+	height: 45px;
+	background-color: #49b2e9;
+	border: solid #3099dd 1px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 45px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 16px;
+}
+
+
+.planner_nav_inner{
+	background-color: #efefef;
+	width: 280px;
+	height: 40px;
+	margin: 5px auto;
+	border-radius: 10px; 
+	/* display: none; */
+}
+.planner_nav_inner_box{
+	width: 260px;
+	height: 30px;
+	margin: 0 auto;
 	
-	.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+}
+.planner_nav_inner_img{
+	float: left;
+	margin-left: 20px;
+	margin-top: 8px; 
+}
+.planner_nav_inner_name{
+	float: left;
+	margin-left: 20px;
+	text-align: center;
+	margin-top: 8px;
+}
+.planner_nav_inner_day{
+	float: right;
+	margin-right: 20px; 
+}
+.planner_nav_inner_line{
+	width:100%;
+	text-align: center;
+}
+.planner_nav_inner_img{
+	cursor: pointer;
+}
+/* map에대한 css */	
+.dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
 .number {font-weight:bold;color:#ee6152;margin-left: 10px;}
@@ -123,64 +271,27 @@
 .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
 .distanceInfo .label {display:inline-block;width:50px;color: black;margin-right: 5px;}
 .distanceInfo:after {content:none;}
+
 </style>
-</head>
-<body>
-<!-- header -->
-<%@ include file="/WEB-INF/views/temp/header.jspf" %>
-<!-- section -->
-<div id="plan_select_city">
-	<div id="pselect_city_header">
-		<div id="pselect_city_img"><img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png"></div>
-		<div id="pselect_city_title">대한민국</div>
-	</div>
-	
-	<div id="pselect_city_body">
-	
-	<c:forEach items="${bigCity}" var="bigList" >
-		
-		<div class="pselect_city_inner">
-			<div class="pcity_inner_box">
-				<div class="pcity_inner_img">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
-				</div>
-				<div class="pcity_inner_name">
-					<div class="pcity_inner_kname">
-					${bigList.big_name }
-					</div>
-					<div class="pcity_inner_ename">
-					${bigList.big_ename }
-				</div>
-				</div>
-				<div class="pcity_inner_addbtn">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png" >
-				</div>
-			</div>	
-		</div>
-	
-	</c:forEach>
-		
-	</div>
-</div>
 
-
-
-
-	<div id="map"></div>
-<div style="cursor: pointer;" title="green" id="green">근린공원</div>
-<div style="cursor: pointer;" id="green_cancel">cancel</div>
-<div style="cursor: pointer;" title="cacao" id="cacao">카카오</div>
-<div style="cursor: pointer;" title="yunmot" id="yunmot">생태연못</div>
-<div style="cursor: pointer;" title="batt" id="batt">터밭</div>
-
-
-</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c13f7a56e3fd7a30f74913f2574d70f1"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-$(function() {
-	
 
+$(function() {
+	var big_length = $(".big_List").val();
+	var big_array =[];
+	for(var a=0;a<big_length;a++){
+		big_array.push({
+            big_name: $(".big_name"+a).val(), 
+            big_ename: $(".big_name"+a).val(), 
+            big_xlocation: $(".big_xlocation"+a).val(),
+            big_ylocation: $(".big_ylocation"+a).val()
+        })
+	}
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
 		center: new daum.maps.LatLng(36.3666102, 127.8783881), // 지도의 중심좌표
@@ -189,7 +300,24 @@ $(function() {
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 var positions = [];
-var positions2 = [
+var positions2 = [];
+
+var j=0;
+var i=0;
+var check = true;
+
+for(a=0;a<big_array.length;a++){
+	positions2.push({
+			big_name:big_array[a].big_name,
+            title: big_array[a].big_ename,
+            big_xlocation :big_array[a].big_xlocation,
+	        big_ylocation :big_array[a].big_ylocation,
+            latlng: new daum.maps.LatLng(big_array[a].big_xlocation, big_array[a].big_ylocation)
+	});	
+	
+}
+
+/* var positions2 = [
                  {
                      title: '카카오', 
                      latlng: new daum.maps.LatLng(33.450705, 126.570677)
@@ -206,7 +334,7 @@ var positions2 = [
                      title: '근린공원',
                      latlng: new daum.maps.LatLng(33.451393, 126.570738)
                  }
-             ];
+             ]; */
 
 
 //===============================================================================
@@ -222,7 +350,6 @@ var imageSrc = "http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
 
 var marker=[];	
 var marker2=[];
-var marker3;
 for (var i = 0; i < positions2.length; i ++) {
     
    /*  // 마커 이미지의 이미지 크기 입니다
@@ -239,10 +366,147 @@ for (var i = 0; i < positions2.length; i ++) {
 	       /*  image : markerImage // 마커 이미지  */
 	    	}));
 }
-var j=0;
-var i=0;
-var check = true;
-$("#green").click(function() {
+	var content2='';
+	var allcont;
+	var marktitle;
+	var k =0;
+	var index =0;
+	$(".big_btn").click(function() {
+		for(k=0; k<big_array.length;k++){
+			if($(this).attr("data_index")==k){
+				index = k;
+				break;
+			}
+		}
+		marktitle = big_array[k].big_ename;
+	
+		for(i=0;i<positions.length;i++){
+			if(positions[i].title == marktitle){
+				check = false;
+				break;
+			}else{
+				
+				check=true;
+			}
+		}
+		
+		if(check){
+			 	
+			
+			positions.push({
+				big_name:big_array[k].big_name,
+		        title: big_array[k].big_ename ,
+		        big_xlocation :big_array[k].big_xlocation,
+		        big_ylocation :big_array[k].big_ylocation,
+		        latlng: new daum.maps.LatLng(big_array[k].big_xlocation, big_array[k].big_ylocation)
+		    });
+			
+			openNav();
+			for(i=0; i<positions.length;i++){
+				
+				if(i>0&&i<positions.length){
+					content2 += '<div class="planner_nav_inner_line">';
+					content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png"></div>';
+				}
+				
+				content2 += '<div class="planner_nav_inner nav_inner'+i+'">';
+				content2 += '<div class="planner_nav_inner_box">' ;
+				content2 += '<div class="planner_nav_inner_img nav_close'+i+'" data_index="'+i+'">';
+				content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png"></div>';
+				content2 += '<div class="planner_nav_inner_name">';
+				content2 += positions[i].big_name+'</div>';
+				content2 += '<div class="planner_nav_inner_day">';
+				content2 += '</div></div></div>'
+				
+				
+				
+			}
+				$("#planner_nav_body").html(content2);
+				content2="";
+			addMark();
+			
+		}
+	});
+
+//==============================마커 및 리스트 제거===============================
+	// 이벤트 위임
+	$(document).on("click", ".planner_nav_inner_img", function() {
+		var index = $(this).attr("data_index");
+		
+		positions.splice(index,1);
+		
+		
+		
+		for(j=0;j<marker.length;j++){
+			marker[j].setMap(null);
+			
+		}
+		
+			openNav();
+			for(i=0; i<positions.length;i++){
+				
+				if(i>0&&i<positions.length){
+					content2 += '<div class="planner_nav_inner_line">';
+					content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png"></div>';
+				}
+				
+				content2 += '<div class="planner_nav_inner nav_inner'+i+'">';
+				content2 += '<div class="planner_nav_inner_box">' ;
+				content2 += '<div class="planner_nav_inner_img nav_close'+i+'" data_index="'+i+'">';
+				content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png"></div>';
+				content2 += '<div class="planner_nav_inner_name">';
+				content2 += positions[i].big_name+'</div>';
+				content2 += '<div class="planner_nav_inner_day">';
+				content2 += '</div></div></div>'
+				
+				
+				
+			}
+				$("#planner_nav_body").html(content2);
+				content2="";
+			removeMark();
+	})
+	/* $(".planner_nav_inner_img").click(function() {
+		
+		
+			
+		
+	}); */
+	
+	
+/* for(a=0;a<big_array.length;a++){
+	
+	$("#big_btn"+a).click(function() {
+		var marktitle = big_array[a].big_ename;
+		alert(marktitle);
+		for(i=0;i<positions.length;i++){
+			if(positions[i].title == marktitle){
+				positions[i].title;
+				check = false;
+				break;
+			}else{
+				
+				check=true;
+			}
+		}
+		
+		if(check){
+			 	
+			
+		positions.push({
+	        title: big_array[a].big_ename ,
+	        latlng: new daum.maps.LatLng(big_array[a].big_xlocation, big_array[a].big_ylocation)
+	    });
+		
+		
+		addMark();
+		
+		}
+	})
+} */
+
+
+/* $("#green").click(function() {
 	var marktitle = $("#green").attr("title");
 	
 	for(i=0;i<positions.length;i++){
@@ -268,7 +532,7 @@ $("#green").click(function() {
 	addMark();
 	
 	}
-})
+}) */
 
 $("#green_cancel").click(function() {
 	alert("aaaaaaaaa");
@@ -277,7 +541,6 @@ $("#green_cancel").click(function() {
 	for(i=0;i<positions.length;i++){
 		if(positions[i].title == marktitle){
 			positions.splice(i,1);
-			
 			break;
 		}
 	}
@@ -289,7 +552,7 @@ $("#green_cancel").click(function() {
 	
 });
 
-
+/* 
 $("#cacao").click(function() {
 	marktitle = $("#cacao").attr("title");
 	for(i=0;i<positions.length;i++){
@@ -344,7 +607,7 @@ $("#batt").click(function() {
     });
 	addMark();	
 	}
-})
+}) */
 
 //==============================================================================================
 function removeMark(){
@@ -354,7 +617,7 @@ function removeMark(){
 	for (i = 0; i < positions.length; i ++) {
 	
     // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new daum.maps.Size(50, 50); 
+    var imageSize = new daum.maps.Size(30, 41); 
     
     // 마커 이미지를 생성합니다    
     var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
@@ -476,7 +739,7 @@ function addMark(){
 	for (i = 0; i < positions.length; i ++) {
     
     // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new daum.maps.Size(50, 50); 
+    var imageSize = new daum.maps.Size(30, 41); 
     
     // 마커 이미지를 생성합니다    
     var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
@@ -664,12 +927,22 @@ circleOverlay.setMap(map);
 
 if (distance > 0) {
     // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
-    var distanceOverlay = new daum.maps.CustomOverlay({
-        content: '<div class="dotOverlay">거리 <span class="number">' + distance + '</span>m</div>',
-        position: position,
-        yAnchor: 1,
-        zIndex: 2
-    });
+    	if(distance>1000){
+	    var distanceOverlay = new daum.maps.CustomOverlay({
+	    		content: '<div class="dotOverlay">거리 <span class="number">' + (distance*0.001).toPrecision(6) + '</span>km</div>',
+	    		position: position,
+	    	    yAnchor: 1,
+	    	    zIndex: 2
+	    });
+    	}else{
+    		var distanceOverlay = new daum.maps.CustomOverlay({
+	        content: '<div class="dotOverlay">거리 <span class="number">' + distance + '</span>m</div>',
+	        position: position,
+	        yAnchor: 1,
+	        zIndex: 2
+    		});
+    	}
+       
 
     // 지도에 표시합니다
     distanceOverlay.setMap(map);
@@ -724,7 +997,12 @@ bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
 // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
 var content = '<div style="background-color: white;color : black"><ul class="dotOverlay distanceInfo">';
 content += '    <li>';
-content += '        <span class="label">총거리 : </span><span class="number">' + distance + '</span>m';
+if(distance>1000){
+content += '        <span class="label">총거리 : </span><span class="number">' + (distance*0.001).toPrecision(6) + '</span>km';
+}else{
+	content += '        <span class="label">총거리 : </span><span class="number">' + distance + '</span>m';	
+}
+
 content += '    </li>';
 content += '    <li>';
 content += '        <span class="label">도보 : </span>' + walkHour + walkMin;
@@ -738,8 +1016,139 @@ return content;
 }
 
 
-
+// datepicker
+$("#datepicker").datepicker(
+				{
+					inline : true,
+					dateFormat : "yy-mm-dd", /* 날짜 포맷 */
+					prevText : 'prev',
+					nextText : 'next',
+					changeMonth : true, /* 월 선택박스 사용 */
+					changeYear : true, /* 년 선택박스 사용 */
+					showOtherMonths : true, /* 이전/다음 달 일수 보이기 */
+					selectOtherMonths : true, /* 이전/다음 달 일 선택하기 */
+					buttonImageOnly : true,
+					minDate : 0,
+					closeText : '닫기',
+					currentText : '오늘',
+					showMonthAfterYear : true, /* 년과 달의 위치 바꾸기 */
+					/* 한글화 */
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ],
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ],
+					dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+					dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+					showAnim : 'slideDown',
+					/* 날짜 유효성 체크 */
+					onClose: function(selectedDate) {
+						$('#fromDate').datepicker("option", "minDate",
+								selectedDate);
+					}
+				});
 
 });
+//=======================================================================================
+
+// map planner show
+function openNav() {
+    document.getElementById("mySidenav").style.width = "350px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
 </script>
+</head>
+<body>
+<!-- header -->
+<%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<!-- section -->
+<div id="plan_select_city">
+	<div id="pselect_city_header">
+		<div id="pselect_city_img"><img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png"></div>
+		<div id="pselect_city_title">대한민국</div>
+	</div>
+	
+	<div id="pselect_city_body">
+	
+		<input class="big_List" type="hidden" value="${bigCity.size() }">
+	<c:forEach items="${bigCity}" var="bigList" varStatus="i">
+		
+		<input class="big_name${i.index}" type="hidden" value="${bigList.big_name }">
+		<input class="big_ename${i.index}" type="hidden" value="${bigList.big_ename }">
+		<input class="big_xlocation${i.index}" type="hidden" value="${bigList.big_xlocation }">
+		<input class="big_ylocation${i.index}" type="hidden" value="${bigList.big_ylocation }">
+		
+		<div class="pselect_city_inner">
+			<div class="pcity_inner_box">
+				<div class="pcity_inner_img">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+				</div>
+				<div class="pcity_inner_name">
+					<div class="pcity_inner_kname">
+					${bigList.big_name }
+					</div>
+					<div class="pcity_inner_ename">
+					${bigList.big_ename }
+				</div>
+				</div>
+				<div class="pcity_inner_addbtn big_btn" id="big_btn${i.index}" data_index="${i.index}">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png" >
+				</div>
+				<div class="clear"></div>
+			</div>	
+		</div>
+	
+	</c:forEach>
+		
+	</div>
+</div>
+
+
+
+<div id="map_inner">
+	
+	<div id="map">
+		<div id="mySidenav" class="sidenav">
+		 <!--  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a> -->
+		  <div id="planner_nav_header">
+		  	<div id="planner_nav_title">여행도시</div>
+		  	<div id="planner_nav_date" >
+		  		<input class="box pri" type="text" name="start_day" readonly="readonly" id="datepicker" value="출발일">
+		  	</div>
+		  	<div class="clear"></div>
+		  </div>
+		  <div id="planner_nav_body">
+		  	
+				<%-- <div class="planner_nav_inner nav_inner${i2.index }">
+					<div class="planner_nav_inner_box">
+						<div class="planner_nav_inner_img nav_close${i2.index }">
+							<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png">
+						</div>
+						<div class="planner_nav_inner_name">
+							
+						</div>
+						<div class="planner_nav_inner_day">
+							
+						</div>
+					</div>	
+				</div> --%>
+			
+		  </div>
+		  <div id="planner_nav_btn">
+		  	<div id="planner_nav_btn_go">상세 일정 만들기</div>
+		  </div>
+		</div>
+	</div>
+</div>
+<!-- <div style="cursor: pointer;" title="green" id="green">근린공원</div>
+<div style="cursor: pointer;" id="green_cancel">cancel</div>
+<div style="cursor: pointer;" title="cacao" id="cacao">카카오</div>
+<div style="cursor: pointer;" title="yunmot" id="yunmot">생태연못</div>
+<div style="cursor: pointer;" title="batt" id="batt">터밭</div> -->
+
+
+</body>
 </html>

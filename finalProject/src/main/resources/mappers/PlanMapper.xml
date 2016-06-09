@@ -5,7 +5,7 @@
   
   <mapper namespace="PlanMapper">
   	<select id="bigCity_list" resultType="com.plan.big.BigDTO">
-  		select * from bigcity
+  		select * from bigcity order by no asc
   	</select>
   
   

@@ -10,7 +10,7 @@
 
 	<div id= ></div>
 
-
+<a href="./spot/spotList">Spot List</a>
 
 
 

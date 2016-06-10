@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,19 @@
 		width: 500px;
 		height: 400px;
 		margin-left: 30px;
-		background-color: fuchsia;
+	}
+	#month{
+		width: 500px;
+		height: 200px;
+		background-color: aqua;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	#week{
+		width: 500px;
+		height: 150px;
+		margin-top : 15px;
+		background-color: blue;
 	}
 	#thema{
 		overflow: hidden;
@@ -74,12 +87,14 @@
 		width: 1092px;
 		height: 350px;
 		margin-left: 165px;
-		background-color: aqua;
 	}
 	.thema_image{
-		width: 364px;
+		width: 345px;
 		height: 350px;
 		float: left;
+	}
+	#thema_2, #thema_3{
+		margin-left: 20px;
 	}
 	#popular{
 		text-align: center;
@@ -95,10 +110,18 @@
 		width: 263px;
 		height: 233px;
 		float: left;
-		background-color: black;
 		border: 1px solid gray;
 		margin-right:10px;
    		margin-bottom: 10px;
+	}
+	#spotIMG{
+		width: 263px;
+		height: 200px;
+		background-color: fuchsia;
+	}
+	#spotNAME{
+		width: 263px;
+		height: 33px;
 	}
 	.openAll{
 		width: 1092px;
@@ -129,7 +152,15 @@
 		width: 1092px;
 		height: 260px;
 		margin-left: 165px;
-		background-color: aqua;
+	}
+	.plan_inner_list{
+		float: left;
+		width: 348px;
+		height: 260px;
+		border: 1px solid gray;
+	}
+	#plan2, #plan3{
+		margin-left: 21px;
 	}
 	#community{
 		text-align: center;
@@ -147,15 +178,20 @@
 		float: left;
 	}
 	#banner{
-		float: left;
 		width: 280px;
-		height: 300px;
-		margin-left: 10px; 
+		height: 200px;
+		position:absolute;
 		background-color: yellow;
-		
-		position:relative;
 		/* left:1000px; 
 		top:200px; */
+	}
+	#out_banner{
+		float: left;
+		width: 280px;
+		height: auto;
+		margin-left: 10px; 
+		position: relative;
+		background-color: blue;
 	}
 	.community_inner_list{
 		width: 800px; 
@@ -178,14 +214,21 @@
 	 	margin-top: 30px;
 	 	float: left;
 	}
+	#idDate{
+		float: left;
+	}
+	#counts{
+		float: left;
+		margin-left: 15px;
+	}
 	#community_contents{
-		width:800px;
+		width:740px;
 		height: 80px; 
 		overflow: hidden;
 		padding-top: 20px;
 		padding-left: 60px;
-		background-color: white;
-		
+		background-color: yellow;
+		font-size: 12px;
 	}
 	
 /* 이미지 슬라이드 */
@@ -293,28 +336,92 @@
 		});
 	}); */
 
-   /* $(function() {
+    $(function() {
       for(var i=1;i<3;i++){
          $("#"+(i*4)).css("margin-right","0px");
          
       }
-   }); */
-   
+   }); 
+/*   
    //scroll the message box to the top offset of browser's scrool bar  
    $(window).scroll(function()  
    {  
-       $('#banner').animate({top:$(window).scrollTop()+"px" },{queue: false, duration: 900});    
+       $('#banner').animate({top:$(window).scrollTop()+"px" },{queue: false, duration: 100000});    
    });  
    //when the close button at right corner of the message box is clicked   
    $('#banner').click(function()  
    {  
        //the messagebox gets scrool down with top property and gets hidden with zero opacity   
        $('#banner').animate({ top:"+=15px",opacity:0 }, "slow");  
-   });  
-
+   });  */  
+/*    $(document).ready(function() {
+	   
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#banner").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	 
+		$(window).scroll(function() {
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			var newPosition = scrollTop + floatPosition + "px";
+	 
+			// 애니메이션 없이 바로 따라감
+			 $("#floatMenu").css('top', newPosition);
+			 
+	 
+			$("#banner").stop().animate({
+				"top" : newPosition
+			}, 500);
+	 
+		}).scroll();
+	 
+	}); */
+/* 	var ele = document.getElementById("banner");
+	var y = ele.scrollTop;
+	
+	$(document).ready(function()
+		    // 문서가 로드될 때
+		    {
+		        var currentPosition = $("#banner").css("top");
+		        alert("배너 top" +currentPosition);
+		        // slidemenu div가 top일 때의 px를 int형으로 변환 = 1
+		        $(window).scroll(function()
+		        // 스크롤바가 움직일 때 마다 콜백 한다
+		        {
+		            var position = $(window).scrollTop();
+		            // 현재 스크롤의 top위치 스크롤 됐을 때만
+		            alert("currentPosition : " +currentPosition + " Position : " + position);
+		            $("#banner").stop().animate({"top":y+currentPosition+"px"},1000);
+		// slidemenu를 움직이기, animate메소드는 두개의 인자를 가진다
+		// animate("속성","값") or 위치, 시간 
+		// position :1 + currentPosition : 현재 스크롤의 top 위치
+		        });
+		    }); */
+		    
+		    var ele = document.getElementById("banner");
+			var y = ele.scrollTop;
+		    
+		    $(document).ready(function()
+		    	    // 문서가 로드될 때
+		    	    {
+		    	        var currentPosition = parseInt($("#banner").css("top"));
+		    	        // slidemenu div가 top일 때의 px를 int형으로 변환 = 1
+		    	        $(window).scroll(function()
+		    	        // 스크롤바가 움직일 때 마다 콜백 한다
+		    	        {
+		    	            var position = $(window).scrollTop();
+		    	            // 현재 스크롤의 top위치 스크롤 됐을 때만
+		    	            //alert("currentPosition : " +currentPosition + " Position : " + position);
+		    	            $("#banner").stop().animate({"top":position+y+"px"},1000);
+		    	// slidemenu를 움직이기, animate메소드는 두개의 인자를 가진다
+		    	// animate("속성","값") or 위치, 시간 
+		    	// position :1 + currentPosition : 현재 스크롤의 top 위치
+		    	        });
+		    	    });
 </script>
 </head>
 <body>
+<!-- <body onload="InitializeM();"> -->
 <div id ="section">
 		<div id="cityTitle"><h2>${cityView.e_name}&nbsp;&nbsp;&nbsp;&nbsp;${cityView.city_name}</h2></div>
 		<div id="h">
@@ -329,20 +436,20 @@
 
 				<div class="mySlides fade">
 				  <div class="numbertext">1 / 3</div>
-				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_nature_wide.jpg" style="width:100%" >
-				  <div class="text">Caption Text</div>
+				  <img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${cityView.city_img1}" style="width:100%">
+				  <div class="text"></div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">2 / 3</div>
-				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_fjords_wide.jpg" style="width:100%" >
-				  <div class="text">Caption Two</div>
+				  <img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${cityView.city_img2}" style="width:100%">
+				  <div class="text"></div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">3 / 3</div>
-				  <img src="${pageCotext.request.contextPath}/resources/img/city/slideCity/img_mountains_wide.jpg" style="width:100%" >
-				  <div class="text">Caption Three</div>
+				 <img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${cityView.city_img3}" style="width:100%">
+				  <div class="text"></div>
 				</div>
 				
 				<a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -358,27 +465,44 @@
 				</div>
 		 	</div>
 			<div id="weather">
+				<h4>평균 기온</h4>
 				<div id="month"></div>
+				<h4>주간 날씨</h4>
 				<div id="week"></div>
 			</div> 
 		</div>
 		<div id="thema"><h2>TRAVEL THEMA</h2></div>
 		<div id="thema_menu">
-			<div id="thema_1" class="thema_image"></div>
-			<div id="thema_2" class="thema_image"></div>
-			<div id="thema_3" class="thema_image"></div>
+			<div id="thema_1" class="thema_image"><img src="${pageContext.request.contextPath}/resources/img/city/thema_1.jpg"></div>
+			<div id="thema_2" class="thema_image"><img src="${pageContext.request.contextPath}/resources/img/city/thema_2.jpg"></div>
+			<div id="thema_3" class="thema_image"><img src="${pageContext.request.contextPath}/resources/img/city/thema_3.jpg"></div>
 		</div>	
 		<div id="popular"><h2>인기 장소</h2></div>
 		<div id="popular_list">
-		<%for(int i=0;i<8;i++){ %>
-			<div class="popular_inner_list" id="<%=i+1%>">
-					
-			</div>
-		<%} %>
-		</div>	
+		<c:forEach items="${spotView}" var="spot" varStatus="spot_list">
+ 		
+			<div class="popular_inner_list" id="${spot_list.index+1}">
+				<div id="spotIMG"><img src="${pageContext.request.contextPath}/resources/img/city/hj1.jpg"></div>
+				<div id="spotNAME">&nbsp;&nbsp;&nbsp;&nbsp;${spot.spot_name}</div>
+			</div> 
+		
+		
+		</c:forEach>
+ 		</div>	
 		<div class="openAll"><input type="button" value="관광명소 모두 보기" class="openButton"></div>
-		<div id="plan"><h2>서울 인기 일정</h2></div>
-		<div id="plan_list"></div>
+		<div id="plan"><h2>${cityView.city_name} 인기 일정</h2></div>
+		<div id="plan_list">
+		
+		<div id="plan1" class="plan_inner_list"></div>
+		<div id="plan2" class="plan_inner_list"></div>
+		<div id="plan3" class="plan_inner_list"></div>
+	<%-- 		<c:forEach items="${planView}" var="plan">
+				${plan.plan_no}
+				${plan.plan_name}
+				${plan.s_date}
+				${plan.season}
+			</c:forEach> --%>
+		</div>
 		<div class="openAll"><input type="button" value="여행일정 모두 보기" class="openButton"></div>
 		<div id="community"><h2>서울 커뮤니티</h2></div>
 		<div id="community_list">
@@ -388,15 +512,30 @@
 				<div class="community_inner_list">
 					<div class="photo"></div>
 					<div class="community_user_text">
-						<div id="idDate"></div>
-						<div id="counts"></div>
+						<div id="idDate">2016-06-05</div>
+						<div id="counts">0</div>
 					</div>
-					<div id="community_contents"></div>
+					<div id="community_contents">고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요고성볼게 많아요</div>
 				</div>
 				<%} %>
 			</div>
-			<div id="banner"></div>
-	
+			<div id="out_banner">
+			<div id="banner">
+				<c:if test="${not empty sessionScope.member}">
+					<div>
+						<div id="myImg"></div>
+						<div id="myName"></div>
+					</div>		
+					<div id="review_write_button"><input type="button" id="" value="리 뷰 작 성"></div>	
+					<div><input type="button"value="나의 리뷰"></div>	
+				</c:if>
+				<c:if test="${empty member}">
+					<div id="review_write_button"><input type="button" id="" value="로  그  인"></div>
+				</c:if>
+			
+			</div>
+			</div>
+		</div>
 </div>
 
 			<!--   <div id="quick" style="position: absolute; top: 200px; border:solid 3px #336699; width:150px; height:150px;"></div> -->

@@ -5,10 +5,32 @@ public class CityDTO {
 	private String city_name;
 	private String e_name;
 	private String big_name;
+	private String city_img1;
+	private String city_img2;
+	private String city_img3;
 	private double city_xlocation;
 	private double city_ylocation;
 	private int jim;
 	
+	
+	public String getCity_img2() {
+		return city_img2;
+	}
+	public void setCity_img2(String city_img2) {
+		this.city_img2 = city_img2;
+	}
+	public String getCity_img3() {
+		return city_img3;
+	}
+	public void setCity_img3(String city_img3) {
+		this.city_img3 = city_img3;
+	}
+	public String getCity_img1() {
+		return city_img1;
+	}
+	public void setCity_img1(String city_img1) {
+		this.city_img1 = city_img1;
+	}
 	public int getJim() {
 		return jim;
 	}

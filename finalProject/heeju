@@ -1,0 +1,37 @@
+
+
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B inner join SPOT on B.spot_name = SPOT.spot_name;
+select plan.* from (select A.plan_no from (select count(plan_no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3) B inner join PLAN on B.plan_no = PLAN.plan_no;
+select count(no) total,spot_name from jim group by spot_name order by total desc;
+select * from (select rownum R, A.* from (select * from bank order by no desc) A) where R between ? and ?";
+
+
+
+select A.plan_no from (select count(no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3
+
+select * from city;
+
+select * from spot;
+
+select * from jim;
+
+select * from plan;
+
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <4) B join SPOT on B.spot_name = SPOT.spot_name;
+
+select plan.* from (select A.plan_no from (select count(plan_no) total,plan_no from jim group by plan_no order by total desc) A where rownum <4) B join plan on B.plan_no = PLAN.plan_no;
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B join SPOT on B.spot_name = SPOT.spot_name
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3 and is not null) B join SPOT on B.spot_name = SPOT.spot_name;
+
+select count(no) total,spot_name from jim group by spot_name order by total desc
+
+insert into plan values(0,'tjsdlswkd0216','부산여행',sysdate,sysdate,2,'여름',12,1);
+insert into plan values(1,'tjsdlswkd0216','경주여행',sysdate,sysdate,1,'가을',24,0);
+insert into plan values(2,'tjsdlswkd0216','서울 타임머신 여행',sysdate,sysdate,4,'여름',12,1);
+insert into plan values(3,'tjsdlswkd0216','울산여행',sysdate,sysdate,1,'봄',26,1);
+insert into plan values(4,'tjsdlswkd0216','전주여행',sysdate,sysdate,3,'봄',38,0);
+insert into plan values(5,'tjsdlswkd0216','강릉여행',sysdate,sysdate,2,'겨울',8,1);
+insert into plan values(6,'tjsdlswkd0216','울산여행',sysdate,sysdate,2,'여름',41,1);
+insert into plan values(7,'tjsdlswkd0216','목포여행',sysdate,sysdate,1,'가을',25,0);
+insert into plan values(8,'tjsdlswkd0216','구례여행',sysdate,sysdate,3,'가을',52,0);
+insert into plan values(9,'tjsdlswkd0216','일산여행',sysdate,sysdate,3,'봄',13,1);

@@ -1,5 +1,8 @@
 package com.plan.spot;
 
-public class SpotDAOImpl implements SpotDAO {
+import org.springframework.beans.factory.annotation.Autowired;
 
+public class SpotDAOImpl implements SpotDAO {
+	
+	
 }

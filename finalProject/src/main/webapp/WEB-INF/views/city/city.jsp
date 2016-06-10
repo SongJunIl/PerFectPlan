@@ -21,11 +21,14 @@
 		    	if( $("#"+id+"_detailCity").css("display") == "block"){
 		    		$("#"+id+"_detailCity").slideUp("quick");
 		    		$("#"+id).css("color","gray");
+		    		$("#"+id).css("font-weight","lighter");
 		    	}else{
 		    		$(".bigCity").css("color", "gray");
 			    	$(".detail_city").slideUp("quick");
-			    	$("#"+id).css("color","blue");
-			    	$(".arrowImg").css("-webkit-transform","rotate(180deg)")
+			    	$("#"+id).css("color","#0000cc");
+			    	$("#"+id).css("font-weight","bold");
+			    	
+			    	/* $(".arrowImg").css("-webkit-transform","rotate(180deg)") */
 			        $("#"+id+"_detailCity").slideDown("quick");
 		    	}
 		    });
@@ -46,7 +49,7 @@
 		height: 400px;
 		width: 1440px;
 		overflow: hidden;
-		background-image:url("/resources/img/city/main2.png");
+		background-image:url("${pageContext.request.contextPath}/resources/img/city/main2.png");
 	}
 	#searchBox{
 		width: 600px;
@@ -56,6 +59,7 @@
 		opacity: 0.5;
 		background-color: black;
 		overflow: hidden;
+		
 	}
 	#search{
 		width: 550px;
@@ -83,11 +87,17 @@
 		margin: 0 auto;
 		overflow: hidden;
 	} 
+	.detail_city{
+		width: 1085px;
+		height: auto;
+		display: none;
+	}
  	.list_table{
-		width: 1087px;
+		width: 1068px;
 		height: auto;
 		color: #555555; 
 		margin: 0 auto;
+		font-size: 13px;
 		text-align: center;
 		border-spacing: 0px;
 		background-color: white;
@@ -95,7 +105,7 @@
 		border: 1px solid #cfcfcf;
 	}
 	#list_table tr{
-		height: 20px;
+	height: 30px;
 		border: 1px solid  #cfcfcf;
 		border-collapse: collapse;
 		border-spacing: 0px;
@@ -186,10 +196,15 @@
 		margin-left: 380px;
 		background-color: black; 
 	}
-	.detail_city{
-		width: 1092px;
-		height: auto;
-		display: none;
+	a{
+		text-decoration: none;
+		color: gray;
+	}
+	a:VISITED {
+		color:gray;
+	}
+	a:HOVER{
+		color:gray;
 	}
 </style>
 </head>
@@ -218,14 +233,14 @@
 				<td><a href="cityView?e_name=Jeju"><input type="text" value="제주도" class="smallCity" readonly="readonly"></a></td>
 			</tr>
 			<tr>
-				<td><input type="text" value="강원도" onclick="drop_city()" class="bigCity" id="gangWon" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경기도" onclick="drop_city()" class="bigCity" id="gyeonGi" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경상남도" onclick="drop_city()" class="bigCity" id="gsn" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="경상북도" onclick="drop_city()" class="bigCity" id="gsb"readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="전라남도" onclick="drop_city()" class="bigCity" id="jln"readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="전라북도" onclick="drop_city()" class="bigCity" id="jlb" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="충청남도" onclick="drop_city()" class="bigCity" id="ccn" readonly="readonly"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
-				<td><input type="text" value="충청북도" readonly="readonly" class="bigCity" id="ccb"><img src="${pageCotext.request.contextPath}/resources/img/city/downArrow.png" class="arrowImg"></td>
+				<td><input type="text" value="강원도" onclick="drop_city()" class="bigCity" id="gangWon" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="경기도" onclick="drop_city()" class="bigCity" id="gyeonGi" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="경상남도" onclick="drop_city()" class="bigCity" id="gsn" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="경상북도" onclick="drop_city()" class="bigCity" id="gsb"readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="전라남도" onclick="drop_city()" class="bigCity" id="jln"readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="전라북도" onclick="drop_city()" class="bigCity" id="jlb" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="충청남도" onclick="drop_city()" class="bigCity" id="ccn" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/downArrow.png"></td>
+				<td><input type="text" value="충청북도" readonly="readonly" class="bigCity" id="ccb"></td>
 			</tr>
 		</table> 
 		<div id="gangWon_detailCity" class="detail_city">
@@ -238,7 +253,7 @@
 						<td><a href="cityView?e_name=Sokcho">속초</a></td>
 					</tr>
 					<tr>
-						<td><a href="cityView?e_name=Yanggu ">양구</a></td>
+						<td><a href="cityView?e_name=Yanggu">양구</a></td>
 						<td><a href="cityView?e_name=Yangyang ">양양</a></td>
 						<td><a href="cityView?e_name=Yeongwol ">영월</a></td>
 						<td><a href="cityView?e_name=Wonju">원주</a></td>
@@ -262,7 +277,8 @@
 		<div id="gyeonGi_detailCity" class="detail_city">
 			<table class="list_table">
 					<tr>
-						<td><a href="cityView?e_name=Gapyeong">가평</a></td><td><a href="cityView?e_name=Goyang">고양</a></td>
+						<td><a href="cityView?e_name=Gapyeong">가평</a></td>
+						<td><a href="cityView?e_name=Goyang">고양</a></td>
 						<td><a href="cityView?e_name=Gwacheon">과천</a></td>
 						<td><a href="cityView?e_name=Gwangmyeong">광명</a></td>
 						<td><a href="cityView?e_name=Gwangju">광주</a></td>
@@ -304,12 +320,16 @@
 					</tr>   
 					<tr>
 						<td>   <a href="cityView?e_name=Hwaseong">화성   </td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 			</table>
 		</div>
 		<div id="gsn_detailCity" class="detail_city">
 			<table class="list_table">
-					<tr><td>	<a href="cityView?e_name=Geoje">거제</a>	</td><td>	<a href="cityView?e_name=Geochang ">거창</a>	</td><td>	<a href="cityView?e_name=Goseong ">고성</a>	</td><td>	<a href="cityView?e_name=Gimhae">김해</a>	</td><td>	<a href="cityView?e_name=Namhae ">남해</a>	</td></tr>
+					<tr><td>	<a href="cityView?e_name=Geoje">거제</a>	</td><td>	<a href="cityView?e_name=Geochang ">거창</a>	</td><td>	<a href="cityView?e_name=Goseong1">고성</a>	</td><td>	<a href="cityView?e_name=Gimhae">김해</a>	</td><td>	<a href="cityView?e_name=Namhae ">남해</a>	</td></tr>
 					<tr><td>	<a href="cityView?e_name=Masan">마산</a>	</td><td>	<a href="cityView?e_name=Miryang">밀양</a>	</td><td>	<a href="cityView?e_name=Sacheon">사천</a>	</td><td>	<a href="cityView?e_name=Sancheong ">산청</a>	</td><td>	<a href="cityView?e_name=Yangsan">양산</a>	</td></tr>
 					<tr><td>	<a href="cityView?e_name=Uiryeong ">의령</a>	</td><td>	<a href="cityView?e_name=Jinju">진주</a>	</td><td>	<a href="cityView?e_name=Jinhae">진해</a>	</td><td>	<a href="cityView?e_name=Changnyeong ">창녕</a>	</td><td>	<a href="cityView?e_name=Changwon">창원</a>	</td></tr>
 					<tr><td>	<a href="cityView?e_name=Tongyeong">통영</a>	</td><td>	<a href="cityView?e_name=Hadong ">하동</a>	</td><td>	<a href="cityView?e_name=Haman ">함안</a>	</td><td>	<a href="cityView?e_name=Hamyang ">함양</a>	</td><td>	<a href="cityView?e_name=Hapcheon ">합천</a>	</td></tr>
@@ -379,6 +399,8 @@
 		
 	</div>
 </div>
+
+
 <!-- <script type="text/javascript">
  function drop_city(id){
 	alert(id);

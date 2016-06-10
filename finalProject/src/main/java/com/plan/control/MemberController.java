@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
@@ -74,18 +75,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/email")
-	public String email(@ModelAttribute MemberDTO mdto,Model model){
-		
+	public void email(@ModelAttribute MemberDTO mdto,Model model){
 		if(memberService.getemail(mdto)==null){
-			model.addAttribute("message", "일치하는 이메일이없다.");
+			model.addAttribute("message", "일치하는 이메일이 없습니다.");
 		}else{
-			
+			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
+			model.addAttribute("mem", mdto);
 		}
-		
-		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/id")
+	public void id(@ModelAttribute MemberDTO mdto, Model model){
+		if(memberService.getid(mdto)==null){
+			model.addAttribute("idcheck", "사용가능한 아이디입니다.");
+		}else{
+			model.addAttribute("idcheck", "중복된 아이디입니다.");
+		}
+
 	
+	
+	
+	
+	
+	}
 	
 	
 }

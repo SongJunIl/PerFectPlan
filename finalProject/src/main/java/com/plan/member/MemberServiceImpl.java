@@ -76,5 +76,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
+	@Override
+	public MemberDTO getid(MemberDTO mdto) {
+		
+		try {
+			 mdto=mdao.getid(mdto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mdto;
+	}
+	
 	
 }

@@ -13,4 +13,5 @@ public interface MemberDAO {
 	
 	public MemberDTO getEmail(MemberDTO mdto)throws Exception; 
 	
+	public MemberDTO getid(MemberDTO mdto)throws Exception; 
 }

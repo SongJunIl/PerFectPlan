@@ -26,13 +26,14 @@
 	
 	
 	<dependencies>
-		
-		<!-- java mail -->
-    <dependency>
-        <groupId>javax.mail</groupId>
-        <artifactId>mail</artifactId>
-        <version>1.4.7</version>
-    </dependency>
+	
+<dependency>
+       <groupId>com.sun.mail</groupId>
+       <artifactId>javax.mail</artifactId>
+       <version>1.5.5</version>
+</dependency>
+
+
 		
 		
 		<!-- smarteditor -->

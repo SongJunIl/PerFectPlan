@@ -11,7 +11,10 @@ public interface MemberDAO {
 	
 	public void delete(int no)throws Exception;
 	
-	public MemberDTO getEmail(MemberDTO mdto)throws Exception; 
-	
 	public MemberDTO getid(MemberDTO mdto)throws Exception; 
+	
+	public MemberDTO getEmail(MemberDTO mdto)throws Exception; 
+
+	public MemberDTO getEmailck(MemberDTO mdto)throws Exception; 
+
 }

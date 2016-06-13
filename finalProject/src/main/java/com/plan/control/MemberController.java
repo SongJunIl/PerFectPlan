@@ -2,6 +2,7 @@ package com.plan.control;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.ha.backend.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.plan.email.MailService;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
 
@@ -21,6 +23,8 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private MailService mailservice;
 	
 	@RequestMapping("mypage")
 	public void mypage(){
@@ -75,12 +79,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/email")
-	public void email(@ModelAttribute MemberDTO mdto,Model model){
+	public void email(@ModelAttribute MemberDTO mdto,Model model,Model model2){
 		if(memberService.getemail(mdto)==null){
+			model.addAttribute("message", "일치하는 이메일이 없습니다.");
+			model2.addAttribute("echeck", "사용가능한 이메일입니다.");
+		}else{
+			model2.addAttribute("echeck", "중복된 이메일 입니다.");
+			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
+			model.addAttribute("mem", mdto);
+			model.addAttribute("cant","2" );
+		}
+	}
+	
+	@RequestMapping(value="/emailck")
+	public void emailck(@ModelAttribute MemberDTO mdto,Model model,HttpSession session){
+		if(memberService.getemailck(mdto)==null){
 			model.addAttribute("message", "일치하는 이메일이 없습니다.");
 		}else{
 			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
-			model.addAttribute("mem", mdto);
+			session.setAttribute("mem", mdto);
 		}
 	}
 	
@@ -90,14 +107,17 @@ public class MemberController {
 			model.addAttribute("idcheck", "사용가능한 아이디입니다.");
 		}else{
 			model.addAttribute("idcheck", "중복된 아이디입니다.");
+			model.addAttribute("cant", "1");
 		}
-
-	
-	
-	
-	
-	
 	}
+
+
+/*	@RequestMapping(value="/emailsend")
+	public void mailsend(@ModelAttribute MemberDTO mdto,Model model) {
+		
+		mailservice.sendMail(mdto.getId());
+		
+	}*/
 	
 	
 }

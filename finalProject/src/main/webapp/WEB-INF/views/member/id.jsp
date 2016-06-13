@@ -4,17 +4,19 @@
 
 
 <c:choose>
-	<c:when test="${not empty mem }">
-	<input type="hidden" class="p_check" value="keep">
+	<c:when test="${not empty cant}">
+	<!-- 중복이면 사용불가 1 -->
+	<input type="hidden" id="p_idnotok" value="1">
 	<span>${idcheck}</span>
 	</c:when>
 	<c:otherwise>
-		<input type="hidden" class="p_check" value="stop">
+	<!-- 사용가능하면 2  -->
+		<input type="hidden" id="p_idok" value="2">
 	<span>${idcheck}</span>
 	</c:otherwise>
-
-
 </c:choose>
+
+
 	
 	
 

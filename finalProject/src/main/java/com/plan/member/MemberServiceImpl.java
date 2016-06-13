@@ -88,5 +88,17 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 	}
 	
+	@Override
+	public MemberDTO getemailck(MemberDTO mdto) {
+
+		try {
+			mdto=mdao.getEmailck(mdto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mdto;
+				
+	}
 	
 }

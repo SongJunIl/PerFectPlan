@@ -68,4 +68,7 @@
 		#p_join_namecheck{height: 30px;}
 		#p_join_echeck{height: 30px;}		
 		.p_j_check{width: 161px;margin: 0 auto; margin-top: 10px;}
-		#p_join_echeck{width: 161px;margin: 0 auto; margin-top: 10px;}
+		#p_join_echeck{width: 180px;margin: 0 auto; margin-top: 0px;}
+		#p_emailcheckresult{ margin: 0 auto; width: 165px; margin-top: 10px;}
+		
+		

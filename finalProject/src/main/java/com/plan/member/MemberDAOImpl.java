@@ -46,5 +46,9 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlsession.selectOne(namespace+"id", mdto);
 	}
 	
+	@Override
+	public MemberDTO getEmailck(MemberDTO mdto) throws Exception {
+		return sqlsession.selectOne(namespace+"emailck",mdto);
+	}
 	
 }

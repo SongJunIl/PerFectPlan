@@ -31,18 +31,16 @@
 	function out6() {p_mypage.innerText="my page";}
 	function out7() {p_logout.innerText="logOut";}
 	
-	function go() {
+	
+	
+	
 		
-		$("#p_joinbtn").click(function () {
-			if("#p_keep").val()=="keep"){
-				
-			}else{
-				
-			}
 		
-		})
-	}
+		
+		
+		
 
+	/*  */
 </script>
 
 <script type="text/javascript">
@@ -51,7 +49,7 @@ $(function () {
 			var t = $("#exampleInputEmail2").val();
 			$.ajax({
 				type:"POST",
-				url:"${pageContext.request.contextPath}/member/email",
+				url:"${pageContext.request.contextPath}/member/emailck",
 				data:{
 						email:t
 					 },
@@ -73,6 +71,89 @@ $(function () {
 								$("#p_idcheckresult").html(data); 	 
 					 }
 			});
+		});
+		
+		$("#p_join_echeck").change(function () {
+			var e = $("#p_join_echeck").val();
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/member/email",
+				data:{
+						email:e
+					 },
+					 success: function (data){
+								$("#p_emailcheckresult").html(data); 	 
+					 }
+			});
+		});
+		
+		
+		$("#p_joinbtn").click(function () {
+			
+			/* 공백 처리  */
+			
+			var joinid = $('#p_join_idcheck').val();
+			var joinpw = $('#p_join_pwcheck').val();			
+			var joinname = $('#p_join_namecheck').val();
+			var joinemail = $('#p_join_echeck').val();
+			
+			if (joinid == '' || joinid == null){
+				alert('ID를 입력하세요');
+				return;
+			}
+			if (joinpw == '' || joinpw == null){
+				alert('pw를 입력하세요');
+				return;
+			}
+			
+			if (joinname == '' || joinname == null){
+				alert('name를 입력하세요');
+				return;
+			}
+			if (joinemail == '' || joinemail == null){
+				alert('email를 입력하세요');
+				return;
+			}
+			/* 이메일테스트  */
+			var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+			if(regex.test(joinemail) === false) {
+			 alert("잘못된 이메일 형식입니다.");
+			 return false;
+			} 
+			//-->
+			/* 회원가입 처리 */
+			/* alert($("#p_idok").val());
+			alert($("#p_idnotok").val());
+			alert($("#p_echeckok").val());
+			alert($("#p_echecknotok").val());  */
+			
+			  if($("#p_idok").val() ==2 && $("#p_echeckok").val() ==2){	
+				var keep = 1;
+				/* 회원가입 진행*/
+			}else{
+				var keep = 2;
+				/* 회원가입 오류  */
+			}  
+		
+			 if(keep==1){
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/member/join",
+					data:{
+						id:$("#p_join_idcheck").val(),
+						pw:$("#p_join_pwcheck").val(),
+						name:$("#p_join_namecheck").val(),
+						email:$("#p_join_echeck").val()	
+					},
+					success: function () {
+						alert("회원가입 성공");
+						window.location.reload();
+					}
+				})
+			}else{
+				alert("입력 한 정보를 확인하세요.");
+			}
+			
 		});
 		
 		
@@ -269,7 +350,7 @@ $(function () {
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content" id="p_join_md_1">
-      <form action="${pageContext.request.contextPath}/member/join" method="post">
+      <form id="p_joinform" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title" id="myModalLabel">join</h4>
@@ -278,27 +359,27 @@ $(function () {
 		      		<div id="p_mdjoin_total">
 		      			<div class="input-group">
 						  <span class="input-group-addon" id="p_join_addon1">ID</span>
-						  <input type="text" class="form-control" id="p_join_idcheck" name="id" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
+						  <input type="text" class="form-control p_join_form" id="p_join_idcheck" name="id" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
 						</div><div id="p_idcheckresult" class="p_j_check"></div><br>
 		      			<div class="input-group">
 						  <span class="input-group-addon" id="p_join_addon2">PW</span>
-						  <input type="password" class="form-control" id="p_join_pwcheck" name="pw" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
+						  <input type="password" class="form-control p_join_form" id="p_join_pwcheck" name="pw" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
 						  <div id="p_pwcheckresult"></div>
 						</div><br>
 						<div class="input-group">
 						  <span class="input-group-addon" id="p_join_addon3">Name</span>
-						  <input type="text" class="form-control" id="p_join_namecheck" name="name" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
+						  <input type="text" class="form-control p_join_form" id="p_join_namecheck" name="name" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
 						</div><br>
 						<div class="input-group">
 						  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
-						  <input type="email" class="form-control" id="p_join_echeck" name="email" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
+						  <input type="email" class="form-control p_join_form" id="p_join_echeck" name="email" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
 						</div>
 						<div id="p_emailcheckresult"></div>
 		      		</div>
 		      </div>
 		      <div class="modal-footer" id="p_joinmd_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary" id="p_joinbtn" onclick="go()">Save</button>
+		        <button type="button" class="btn btn-primary" id="p_joinbtn" >Save</button><!-- onclick="go()" -->
 		      </div>
 		</form>
     

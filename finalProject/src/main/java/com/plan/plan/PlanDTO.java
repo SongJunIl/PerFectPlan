@@ -1,6 +1,9 @@
 package com.plan.plan;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class PlanDTO {
 	private int plan_no;
@@ -13,6 +16,26 @@ public class PlanDTO {
 	private String season;
 	private int counts;
 	private int state;
+	
+	public PlanDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	public PlanDTO(Date s_date,int days) {
+		// TODO Auto-generated constructor stub
+		this.s_date = s_date;
+		set_F_date(days);
+	}
+	
+	private void set_F_date(int days){
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(this.s_date);
+		cal.add(Calendar.DAY_OF_MONTH, days-1);
+		
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+	    this.f_date = Date.valueOf(fm.format(cal.getTime()));
+	    System.out.println( this.f_date);
+	}
+	
 	public int getPlan_no() {
 		return plan_no;
 	}

@@ -7,6 +7,44 @@
   	<select id="bigCity_list" resultType="com.plan.big.BigDTO">
   		select * from bigcity order by no asc
   	</select>
-  
-  
+  	
+  	<select id="gang_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='Gangwon' order by no asc
+  	</select>
+  	
+  	<select id="gyeong_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='Gyeonggi' order by no asc
+  	</select>
+  	
+  	<select id="gyeongsangS_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='GyeongsangSouth' order by no asc
+  	</select>
+  	
+  	<select id="gyeongsangN_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='GyeongsangNorth' order by no asc
+  	</select>
+  	
+  	<select id="chungcheongS_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='ChungcheongSouth' order by no asc
+  	</select>
+  	
+  	<select id="chungcheongN_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='ChungcheongNorth' order by no asc
+  	</select>
+  	
+  	<select id="jeollaS_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='JeollaSouth' order by no asc
+  	</select>
+  	
+  	<select id="jeollaN_list" resultType="com.plan.city.CityDTO">
+  		select * from city where big_ename='JeollaNorth' order by no asc
+  	</select>
+  	
+  	
+  	<!-- plan DB 중간넣기 -->
+  	<!-- <insert id="plan_insert" parameterType="com.plan.plan.planDTO">
+  		insert into plan values(plan_seq.nextval,'mamamoo',null,#{s_date},#{f_date},0,null,0,0)
+  	</insert> -->
+  	
+  	
   </mapper>

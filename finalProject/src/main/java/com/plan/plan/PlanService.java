@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
+import com.plan.dayPlan.DayPlanDTO;
 
 public interface PlanService {
 	
@@ -25,6 +26,10 @@ public interface PlanService {
 	
 	public List<CityDTO> s_jeollaN_list();
 	
-	/*public void s_plan_insert(PlanDTO planDTO);*/
+	public void s_plan_insert(PlanDTO planDTO);
+	
+	public int s_plan_no();
+	
+	public void s_dayPlan_insert(DayPlanDTO dayPlanDTO);
 	
 }

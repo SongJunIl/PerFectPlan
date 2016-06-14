@@ -5,7 +5,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
+import com.plan.dayPlan.DayPlanDTO;
 import com.plan.plan.PlanDTO;
 import com.plan.plan.PlanService;
 
@@ -34,29 +36,45 @@ public class PlanController {
 	public void planMake(@RequestParam("all_positions") String all_positions,@RequestParam("start_day") String start_day,Model model){
 		System.out.println("planMake_submit 들어옴");
 		String plan_city[] = all_positions.split(",");
-		ArrayList<HashMap<String, String>> ar =new ArrayList<>();
+		ArrayList<DayPlanDTO> ar =new ArrayList<>();
 		System.out.println(plan_city.length);
 		
 		int days =0;
 		for(int i =0;i<plan_city.length;i=i+5){
-			HashMap<String, String> hs = new HashMap<>();
-			hs.put("city_name", plan_city[i]);
-			hs.put("city_xlocation", plan_city[i+1]);
-			hs.put("city_ylocation", plan_city[i+2]);
-			hs.put("city_day", plan_city[i+3]);
-			hs.put("city_no", plan_city[i+4]);
-			
+			for(int j=0;j<Integer.parseInt(plan_city[i+3]);j++){
+			DayPlanDTO dayPlanDTO = new DayPlanDTO();
+			dayPlanDTO.setDaily_xloaction(Double.parseDouble(plan_city[i+1]));
+			dayPlanDTO.setDaily_yloaction(Double.parseDouble(plan_city[i+2]));
+			dayPlanDTO.setCity_no(Integer.parseInt(plan_city[i+4]));
+					
+			ar.add(dayPlanDTO);
+			}
 			days += Integer.parseInt(plan_city[i+3]);
-			ar.add(hs);
-			
 		}
+		
 		Date start_date = Date.valueOf(start_day);
 		System.out.println(start_date);
 		System.out.println(days);
 		PlanDTO planDTO = new PlanDTO(start_date,days);
 		/*planDTO.setId(id);//session 받아서 넣기*/
-		/*planService.s_plan_insert(planDTO);*/
+		// plan DB에 값넣기
+		planService.s_plan_insert(planDTO);
+		int plan_no = planService.s_plan_no();
 		
+		// plan no가져와서 dayDTO에 값넣고 date값 계산해서 넣기
+		for(int i=0;i<ar.size();i++){
+			Calendar cal = new GregorianCalendar();
+			cal.setTime(start_date);
+			cal.add(Calendar.DAY_OF_MONTH, i);
+			
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		    ar.get(i).setDaily_date(Date.valueOf(fm.format(cal.getTime())));
+		    ar.get(i).setPlan_no(plan_no);
+		    System.out.println(ar.get(i).getDaily_date());
+		}
+		for(int i=0;i<ar.size();i++){
+			planService.s_dayPlan_insert(ar.get(i));
+		}
 	}
 	
 	//일정 만들기
@@ -86,6 +104,6 @@ public class PlanController {
 	
 	
 	
-	@RequestMapping(value="planList")
+	@RequestMapping(value="/planList")
 	public void planList(){}
 }

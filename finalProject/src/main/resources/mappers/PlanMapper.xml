@@ -42,9 +42,19 @@
   	
   	
   	<!-- plan DB 중간넣기 -->
-  	<!-- <insert id="plan_insert" parameterType="com.plan.plan.planDTO">
+  	<insert id="plan_insert" parameterType="com.plan.plan.PlanDTO">
   		insert into plan values(plan_seq.nextval,'mamamoo',null,#{s_date},#{f_date},0,null,0,0)
-  	</insert> -->
+  	</insert>
   	
+  	<!-- plan DB No 가져오기 -->
+  	<select id="get_plan_no" resultType="java.lang.Integer">
+		  	select Max(plan_no) from plan
+  	</select>
   	
+  	<!-- dayPlan DB insert for문 -->
+  	<insert id="dayPlan_insert" parameterType="com.plan.dayPlan.DayPlanDTO">
+	  	
+  			insert into dailyplan values(dailyplan_seq.nextval,#{plan_no},#{daily_date},#{city_no},#{daily_xloaction},#{daily_yloaction})
+	  	
+	 </insert>
   </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
+import com.plan.dayPlan.DayPlanDTO;
 @Service
 public class PlanServiceImpl implements PlanService {
 	@Autowired
@@ -14,74 +15,166 @@ public class PlanServiceImpl implements PlanService {
 	
 	@Override
 	public List<BigDTO> s_bigCity_list() {
-		return pdao.bigCity_list();
+		
+		
+			try {
+				return pdao.bigCity_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		
 	}
 	
 	@Override
 	public List<CityDTO> s_gang_list() {
 		// TODO Auto-generated method stub
-		return pdao.gang_list();
+		
+			try {
+				return pdao.gang_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_gyeong_list() {
 		// TODO Auto-generated method stub
-		return pdao.gyeong_list();
+		
+			try {
+				return pdao.gyeong_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_gyeongsangS_list() {
 		// TODO Auto-generated method stub
-		return pdao.gyeongsangS_list();
+		
+			try {
+				return pdao.gyeongsangS_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_gyeongsangN_list() {
 		// TODO Auto-generated method stub
-		return pdao.gyeongsangN_list();
+		
+			try {
+				return pdao.gyeongsangN_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_jeollaS_list() {
 		// TODO Auto-generated method stub
-		return pdao.jeollaS_list();
-	
+		
+			try {
+				return pdao.jeollaS_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		
 	}
 	
 	@Override
 	public List<CityDTO> s_jeollaN_list() {
 		// TODO Auto-generated method stub
-		return pdao.jeollaN_list();
+		
+			try {
+				return pdao.jeollaN_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_chungcheongS_list() {
 		// TODO Auto-generated method stub
-		return pdao.chungcheongS_list();
+		
+			try {
+				return pdao.chungcheongS_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	@Override
 	public List<CityDTO> s_chungcheongN_list() {
 		// TODO Auto-generated method stub
-		return pdao.chungcheongN_list();
+		
+			try {
+				return pdao.chungcheongN_list();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 	
 	//=====plan DB insert=====================================================================
-/*	@Override
+	@Override
 	public void s_plan_insert(PlanDTO planDTO) {
 		// TODO Auto-generated method stub
+		
+			try {
+				pdao.plan_insert(planDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	//======plan NO get========================================================================
+	@Override
+	public int s_plan_no() {
+		// TODO Auto-generated method stub
 		try {
-			pdao.plan_insert(planDTO);
+			return pdao.get_plan_no();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	//======dayPlan DB에 반복 값넣기==========================================================================
+	@Override
+	public void s_dayPlan_insert(DayPlanDTO dayPlanDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.dayPlan_insert(dayPlanDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 }

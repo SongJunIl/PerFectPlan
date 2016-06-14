@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
+import com.plan.dayPlan.DayPlanDTO;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
 	
@@ -72,11 +73,24 @@ public class PlanDAOImpl implements PlanDAO {
 		return  sqlSession.selectList(namespace+"chungcheongN_list");
 	}
 	
-	/*@Override
+	//=====plan DB 넣기========================================================
+	@Override
 	public void plan_insert(PlanDTO planDTO) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace+"plan_insert", planDTO);
 		
-	}*/
-	
+	}
+	//======plan NO 가져오기==============================================================
+	@Override
+	public int get_plan_no() throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne(namespace+"get_plan_no");
+	}
+	//=======dayPlan DB에 반복해서 값넣기================================================================
+	@Override
+	public void dayPlan_insert(DayPlanDTO dayPlanDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+"dayPlan_insert", dayPlanDTO);
+	}
 }

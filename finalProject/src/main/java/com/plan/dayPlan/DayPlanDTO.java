@@ -7,7 +7,8 @@ public class DayPlanDTO {
 	private int plan_no;
 	private Date daily_date;
 	private int city_no;
-	private String id;
+	private double daily_xloaction;
+	private double daily_yloaction;
 	
 	
 	public int getDaily_no() {
@@ -34,12 +35,19 @@ public class DayPlanDTO {
 	public void setPlan_no(int plan_no) {
 		this.plan_no = plan_no;
 	}
-	public String getId() {
-		return id;
+	public double getDaily_xloaction() {
+		return daily_xloaction;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setDaily_xloaction(double daily_xloaction) {
+		this.daily_xloaction = daily_xloaction;
 	}
+	public double getDaily_yloaction() {
+		return daily_yloaction;
+	}
+	public void setDaily_yloaction(double daily_yloaction) {
+		this.daily_yloaction = daily_yloaction;
+	}
+
 	
 	
 }

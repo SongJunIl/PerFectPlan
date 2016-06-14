@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.plan.email.MailService;
+import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
 
@@ -24,7 +24,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
-	private MailService mailservice;
+	private EmailSender emailsender;
 	
 	@RequestMapping("mypage")
 	public void mypage(){
@@ -78,7 +78,7 @@ public class MemberController {
 		return "SE2/smart_editor2_inputarea_ie8";
 	}
 	
-	@RequestMapping(value="/email")
+	@RequestMapping(value="/email",method = RequestMethod.POST)
 	public void email(@ModelAttribute MemberDTO mdto,Model model,Model model2){
 		if(memberService.getemail(mdto)==null){
 			model.addAttribute("message", "일치하는 이메일이 없습니다.");
@@ -88,16 +88,6 @@ public class MemberController {
 			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
 			model.addAttribute("mem", mdto);
 			model.addAttribute("cant","2" );
-		}
-	}
-	
-	@RequestMapping(value="/emailck")
-	public void emailck(@ModelAttribute MemberDTO mdto,Model model,HttpSession session){
-		if(memberService.getemailck(mdto)==null){
-			model.addAttribute("message", "일치하는 이메일이 없습니다.");
-		}else{
-			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
-			session.setAttribute("mem", mdto);
 		}
 	}
 	
@@ -111,13 +101,33 @@ public class MemberController {
 		}
 	}
 
-
-/*	@RequestMapping(value="/emailsend")
-	public void mailsend(@ModelAttribute MemberDTO mdto,Model model) {
+	
+	/*이메일 체크*/
+	@RequestMapping(value="/emailck",method = RequestMethod.POST)
+	public void emailck(@ModelAttribute MemberDTO mdto,Model model,HttpSession session){
+		if(memberService.getemailck(mdto,model)==null){
+			model.addAttribute("message", "일치하는 이메일이 없습니다.");
+		}else{
+			model.addAttribute("message", "메일로 정보를 확인하시겠습니까?.");
+			
+		}
+	}
+	
+	
+	
+	//이메일 보내기
+ 
+  @RequestMapping(value="/emailsend",method = RequestMethod.POST)
+  @ResponseBody
+	public String mailsend(@ModelAttribute MemberDTO mdto) {
 		
-		mailservice.sendMail(mdto.getId());
-		
-	}*/
+		try {
+			emailsender.send(mdto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "ok";
+	}
 	
 	
 }

@@ -53,8 +53,8 @@ $(function () {
 				data:{
 						email:t
 					 },
-					 success: function (data){
-								$("#p_test").html(data); 	 
+					 success: function (result){
+								$("#p_test").html(result); 	 
 					 }
 			});
 		});
@@ -329,17 +329,16 @@ $(function () {
 			  <div class="modal-dialog modal-sm">
 			    <div class="modal-content" id="p_modal_idnpw">
 			      		<div id="p_email_form">
-			      			<form action="">
+			      			
 							  <div class="form-group">
 							    <label for="exampleInputName2">가입된 이메일로 id & pw 찾기</label>
 							  </div>
 							  <div class="form-group p_idnpw_margin">
 							   <p id="p_idnpw_title">Email</p>
 							    <input type="email" class="form-control" id="exampleInputEmail2" name="email" placeholder="이메일을 입력하세요.">
-							    <button type="button" class="btn btn-default p_idnpw_margin" id="p_email_send">Send</button>
+							    <button type="button" class="btn btn-default p_idnpw_margin" id="p_email_send">찾기</button>
 							  </div>
 								<div id="p_test"></div>
-			      			</form>
 			      		
 			      		</div>
 			    </div>

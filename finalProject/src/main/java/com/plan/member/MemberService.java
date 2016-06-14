@@ -2,6 +2,8 @@ package com.plan.member;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.ui.Model;
+
 public interface MemberService {
 
 	public void join(MemberDTO mdto);
@@ -12,5 +14,5 @@ public interface MemberService {
 	public MemberDTO getid(MemberDTO mdto);
 	public MemberDTO getemail(MemberDTO mdto);
 
-	public MemberDTO getemailck(MemberDTO mdto);
+	public MemberDTO getemailck(MemberDTO mdto,Model model);
 }

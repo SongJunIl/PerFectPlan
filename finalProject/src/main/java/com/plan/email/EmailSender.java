@@ -11,18 +11,20 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.plan.member.MemberDTO;
+
 @Component
 public class EmailSender {
 	
-	public void send() throws Exception{
+	public void send(MemberDTO mdto) throws Exception{
 		String host = "smtp.gmail.com";
         String username = "apptor0728@gmail.com"; //지메일 인증
         String password = "final123"; //
         
         // 메일 내용
-        String recipient = "받는사람이메일";
-        String subject = "지메일을 사용한 발송 테스트입니다.";
-        String body = "내용 무";
+        String recipient = mdto.getEmail();
+        String subject = "perfect plan 에 가입된 귀하의 정보입니다.";
+        String body = "아이디는 :"+mdto.getId()+" 패스워드는 :"+ mdto.getPw()+"입니다.";
         
         //properties 설정
         Properties props = new Properties();

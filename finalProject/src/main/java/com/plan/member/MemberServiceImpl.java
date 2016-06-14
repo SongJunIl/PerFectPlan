@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -89,10 +90,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberDTO getemailck(MemberDTO mdto) {
+	public MemberDTO getemailck(MemberDTO mdto, Model model) {
 
 		try {
 			mdto=mdao.getEmailck(mdto);
+			model.addAttribute("mem", mdto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

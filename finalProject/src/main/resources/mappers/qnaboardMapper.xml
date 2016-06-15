@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="qnaboardMapper">
+  	<insert id="qna_write">
+  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate,${m_img})
+  	</insert>
+  
+  	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
+  		select * from qna_board where id=#{id} order by reg_date desc
+  	</select>
+
+  	
+  </mapper>

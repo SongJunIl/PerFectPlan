@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
+import com.plan.qna.QnaDTO;
+import com.plan.qna.QnaService;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("/member/**")
 public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private QnaService qnaservice;
 	
 	@Autowired
 	private EmailSender emailsender;
@@ -35,7 +40,6 @@ public class MemberController {
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute MemberDTO mdto, Model model){
 		mdto=memberService.login(mdto);
-		System.out.println(mdto);
 		model.addAttribute("mem", mdto);
 		
 	}
@@ -94,6 +98,7 @@ public class MemberController {
 	@RequestMapping(value="/id")
 	public void id(@ModelAttribute MemberDTO mdto, Model model){
 		if(memberService.getid(mdto)==null){
+			
 			model.addAttribute("idcheck", "사용가능한 아이디입니다.");
 		}else{
 			model.addAttribute("idcheck", "중복된 아이디입니다.");
@@ -113,14 +118,11 @@ public class MemberController {
 		}
 	}
 	
-	
-	
 	//이메일 보내기
  
   @RequestMapping(value="/emailsend",method = RequestMethod.POST)
   @ResponseBody
 	public String mailsend(@ModelAttribute MemberDTO mdto) {
-		
 		try {
 			emailsender.send(mdto);
 		} catch (Exception e) {
@@ -129,5 +131,40 @@ public class MemberController {
 		return "ok";
 	}
 	
+  
+  //qna_board
+
+  @RequestMapping(value="/qna_write",method = RequestMethod.POST)
+  	public String qnawrite(@ModelAttribute QnaDTO qdto){
+	  	qnaservice.qna_write(qdto);
+	  return "redirect:/member/mypage";
+  }
+  
+  @RequestMapping(value="/qna_list",method = RequestMethod.POST)
+  public void qnalist(@ModelAttribute QnaDTO qdto,Model model){
+	  System.out.println("ok");
+	  if(qnaservice.qna_getview(qdto)==null){
+		  model.addAttribute("qnamessage", "질문 하신 글이 없습니다.");
+	  }else{
+		  qdto=qnaservice.qna_getview(qdto);
+		  model.addAttribute("qnalist", qdto);
+	  }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 	
 }

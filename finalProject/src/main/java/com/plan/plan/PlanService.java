@@ -5,6 +5,8 @@ import java.util.List;
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
+import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.spot.SpotDTO;
 
 public interface PlanService {
 	
@@ -31,5 +33,11 @@ public interface PlanService {
 	public int s_plan_no();
 	
 	public void s_dayPlan_insert(DayPlanDTO dayPlanDTO);
+	
+	public List<DayPlanReDTO> s_get_dayPalnReDTO(DayPlanReDTO dayPlanReDTO);
+	
+	public PlanDTO s_get_planDTOone(PlanDTO planDTO);
+	
+	public List<SpotDTO> s_get_pspotList(int city_no);
 	
 }

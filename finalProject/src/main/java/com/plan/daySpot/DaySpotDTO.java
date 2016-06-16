@@ -4,6 +4,7 @@ public class DaySpotDTO {
 	private int no;
 	private int dp_no;
 	private String spot_name;
+	
 	public int getNo() {
 		return no;
 	}

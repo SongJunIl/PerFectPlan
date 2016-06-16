@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
+import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.spot.SpotDTO;
 @Service
 public class PlanServiceImpl implements PlanService {
 	@Autowired
@@ -177,4 +179,49 @@ public class PlanServiceImpl implements PlanService {
 			e.printStackTrace();
 		}
 	}
+	
+	//=======dayPlanReDTO 데이터 값 리스트로 받기==============================================================================
+	@Override
+	public List<DayPlanReDTO> s_get_dayPalnReDTO(DayPlanReDTO dayPlanReDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.get_dayPalnReDTO(dayPlanReDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	//=======planDB에서 plan_no값인 값 하나 빼오기=========================================================
+	@Override
+	public PlanDTO s_get_planDTOone(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.get_planDTOone(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//=======spotList 얻어오기===================================================================
+	@Override
+	public List<SpotDTO> s_get_pspotList(int city_no) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.get_pspotList(city_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	
+	
+	
 }

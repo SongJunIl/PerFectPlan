@@ -1217,9 +1217,9 @@ function closeNav() {
 					${bigList.big_ename }
 				</div>
 				</div>
-				<c:if test="${bigList.big_ename == 'Seoul' || bigList.big_ename == 'Busan' || bigList.big_ename == 'Daegu'|| bigList.big_ename == 'Incheon'|| 
-							bigList.big_ename == 'Gwangju'|| bigList.big_ename == 'Daejeon'|| bigList.big_ename == 'Ulsan'||	bigList.big_ename == 'Jeju'}">
-				
+				<%-- <c:if test="${bigList.big_ename == 'Seoul' || bigList.big_ename == 'Busan' || bigList.big_ename == 'Daegu'|| bigList.big_ename == 'Incheon'|| 
+							bigList.big_ename == 'Gwangju'|| bigList.big_ename == 'Daejeon'|| bigList.big_ename == 'Ulsan'||	bigList.big_ename == 'Jeju'}"> --%>
+				<c:if test="${bigList.no < 164}">
 					<div class="pcity_inner_addbtn big_btn" id="big_btn${i.index}" data-kind="big" data-index="${i.index}">
 						<img src="${pageContext.request.contextPath}/resources/img/plan/spot_to_inspot_a.png" >
 					</div>

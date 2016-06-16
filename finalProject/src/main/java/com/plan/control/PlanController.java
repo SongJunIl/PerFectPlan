@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
+import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.plan.PlanDTO;
 import com.plan.plan.PlanService;
+import com.plan.spot.SpotDTO;
 
 
 
@@ -30,6 +32,13 @@ import com.plan.plan.PlanService;
 public class PlanController {
 	@Autowired
 	private PlanService planService;
+	
+	//spot ajax로 가져오기
+	@RequestMapping(value="/pspotList", method=RequestMethod.POST)
+	public void pspotList(@RequestParam("city_no") int city_no,Model model){
+		List<SpotDTO> pspot_list = planService.s_get_pspotList(city_no);
+		model.addAttribute("spot_List", pspot_list);
+	}
 	
 	//일정만들기 데이터 넘기기
 	@RequestMapping(value="/plannerMake", method=RequestMethod.POST)
@@ -57,6 +66,7 @@ public class PlanController {
 		System.out.println(days);
 		PlanDTO planDTO = new PlanDTO(start_date,days);
 		/*planDTO.setId(id);//session 받아서 넣기*/
+		
 		// plan DB에 값넣기
 		planService.s_plan_insert(planDTO);
 		int plan_no = planService.s_plan_no();
@@ -72,9 +82,26 @@ public class PlanController {
 		    ar.get(i).setPlan_no(plan_no);
 		    System.out.println(ar.get(i).getDaily_date());
 		}
+		
+		// plan에서 선택한 날짜와 지역을 가지고 상세일정 테이블 만들기
 		for(int i=0;i<ar.size();i++){
 			planService.s_dayPlan_insert(ar.get(i));
 		}
+		
+		//dayPlanReDTO 리스트로 받아오기
+		DayPlanReDTO dayPlanReDTO = new DayPlanReDTO();
+		dayPlanReDTO.setPlan_no(plan_no);
+		List<DayPlanReDTO> DayPlanReDTO_ar = planService.s_get_dayPalnReDTO(dayPlanReDTO);
+		for(int i=0;i<DayPlanReDTO_ar.size();i++){
+			DayPlanReDTO_ar.get(i).get_dailyWeek(DayPlanReDTO_ar.get(i).getDaily_date());
+		}
+		//plan DB테이블에서 데이터값 받아와서 DTO에 저장시키기
+		planDTO.setPlan_no(plan_no);
+		planDTO = planService.s_get_planDTOone(planDTO);
+		
+		model.addAttribute("daylist",DayPlanReDTO_ar);
+		model.addAttribute("planDTO", planDTO);
+		
 	}
 	
 	//일정 만들기

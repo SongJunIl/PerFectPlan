@@ -57,4 +57,23 @@
   			insert into dailyplan values(dailyplan_seq.nextval,#{plan_no},#{daily_date},#{city_no},#{daily_xloaction},#{daily_yloaction})
 	  	
 	 </insert>
+	 
+	 <!-- datPlanReDTO에 data넣어서 리스트로 받아오기 -->
+	 <select id="get_dayPalnReDTO" resultType="com.plan.dayPlan.DayPlanReDTO" parameterType="com.plan.dayPlan.DayPlanDTO">
+	 	select * from dailyplan join city on dailyplan.CITY_NO = city.NO where plan_no = #{plan_no} order by daily_date
+	 </select>
+	 
+	 <!-- planDB에서 plan_no값인 값 하나 빼오기 -->
+	 <select id="get_planDTOone" resultType="com.plan.plan.PlanDTO" parameterType="com.plan.plan.PlanDTO">
+	 	select * from plan where plan_no=#{plan_no}
+	 </select>
+	 
+	 <!-- spot List 가져오기 -->
+	 <select id="get_pspotList" resultType="com.plan.spot.SpotDTO" parameterType="java.lang.Integer">
+	 	select * from spot where city_no=#{city_no}
+	 </select>
+	 
+	 
+	 
+	 
   </mapper>

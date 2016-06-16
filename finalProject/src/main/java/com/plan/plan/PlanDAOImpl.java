@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
+import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.spot.SpotDTO;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
 	
@@ -92,5 +94,25 @@ public class PlanDAOImpl implements PlanDAO {
 	public void dayPlan_insert(DayPlanDTO dayPlanDTO) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace+"dayPlan_insert", dayPlanDTO);
+	}
+	//=======dayPlanReDTO 데이터 값 리스트로 받기==============================================================================
+	@Override
+	public List<DayPlanReDTO> get_dayPalnReDTO(DayPlanReDTO dayPlanReDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"get_dayPalnReDTO", dayPlanReDTO);
+	}
+	//=======planDB에서 plan_no값인 값 하나 빼오기=========================================================
+	@Override
+	public PlanDTO get_planDTOone(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne(namespace+"get_planDTOone", planDTO);
+	}
+	
+	//=======spotList 얻어오기===================================================================
+	@Override
+	public List<SpotDTO> get_pspotList(int city_no) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"get_pspotList", city_no);
 	}
 }

@@ -78,7 +78,28 @@ $(function(){
 				 }
 		});
 	});	
+	
+	$("#replyqna_submit").click(function () {
+		var i = $("#p_qnaid").val();
+		$.ajax({
+			type:"POST",
+			url:"${pageContext.request.contextPath}/member/qna_list",
+			data:{
+					id:i
+				 },
+				 success: function (result){
+								$(".p_qna_body").html(result);
+				 },
+				 error : function(){
+					 alert("error");
+				 }
+		});
+	});	
+	
 });
+
+
+
 </script>
 </Head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -159,7 +180,16 @@ $(function(){
 				  <li role="presentation" class="active"><a data-target="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_home" onmouseover="ontop()" onmouseout="outtop()">Home</span></div></a></li>
 				  <li role="presentation" class=""><a data-target="#schedule" role="tab" id="schedule-tab" data-toggle="tab" aria-controls="schedule" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list"><span id="p_top_menu_Schedule" onmouseover="ontop1()" onmouseout="outtop1()">Schedule</span></div></a></li>
 				  <li role="presentation" class=""><a data-target="#reviewnscrap" role="tab" id="reviewnscrap-tab" data-toggle="tab" aria-controls="reviewnscrap" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list"><span id="p_top_menu_reviewnscrap" onmouseover="ontop2()" onmouseout="outtop2()">Review & Scrap</span></div></a></li>				
-				  <li role="presentation" class="" id="p_qnalist_1"><a data-target="#QnA" role="tab" id="QnA-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_QnA" onmouseover="ontop3()" onmouseout="outtop3()">QnA</span><input type="hidden" id="p_qnaid" value="${member.id}"></div></a></li>
+				  <li role="presentation" class="" id="p_qnalist_1"><a data-target="#QnA" role="tab" id="QnA-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_QnA" onmouseover="ontop3()" onmouseout="outtop3()">QnA</span>
+				  <c:choose>
+				  	<c:when test="${empty admin }">
+				  	 <input type="hidden" id="p_qnaid" value="${member.id}"></div>
+				  	</c:when>
+				  	<c:otherwise>
+				  	 <input type="hidden" id="p_qnaid" value="${admin.id}"></div>
+				  	</c:otherwise>
+				  </c:choose>
+				 </a></li>
 				  <li role="presentation" class=""><a data-target="#myinfo" role="tab" id="myinfo-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_myinfo" onmouseover="ontop4()" onmouseout="outtop4()">My Info</span></div></a></li>	
 				</ul>
 			</div>										
@@ -446,7 +476,7 @@ $(function(){
 					<textarea name="contents" id="SmartEditor" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
 							</div>
 		      </div>
-		      <div class="modal-footer" id="p_joinmd_footer">
+		      <div class="modal-footer" id="p_qna_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        <button type="button" id="savebutton" class="btn btn-primary">Save</button>
 		      </div>
@@ -459,22 +489,22 @@ $(function(){
 <!--QnA Replywrite Modal -->
 <div class="modal fade" id="p_qnaReplymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" id="p_qna_md_2">
-      <!-- <form action=" " method="post"> -->
-    <div class="modal-content" id="p_qna_md_3">
+      <form action="${pageContext.request.contextPath}/member/replyqna_write" method="post">
+  		  <div class="modal-content" id="p_qna_md_4">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title" id="myModalLabel">답변 하기</h4>
      			</div>
 					<input type="text" id="p_qna_mdtitle"  name="title" placeholder="제목을 입력하세요.">
-							<div class="modal-body">
+							<div class="modal-body" id="replyqna_md_body">
 					<textarea name="replycontents" id="ir3" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
 								</div>
 		      </div>
-		      <div class="modal-footer" id="p_joinmd_footer">
+		      <div class="modal-footer" id="p_replymd_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary">Save</button>
+		        <button type="submit" id="replyqna_submit" class="btn btn-primary">Save</button>
 		      </div>
-		<!-- </form> -->
+		</form>
     
     </div>
   </div>

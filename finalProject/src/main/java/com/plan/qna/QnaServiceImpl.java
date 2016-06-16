@@ -2,6 +2,7 @@ package com.plan.qna;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class QnaServiceImpl implements QnaService {
@@ -34,24 +35,32 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public QnaDTO qna_getview(QnaDTO qdto) {
+	public void qna_getview(QnaDTO qdto,Model model) {
 		try {
-			qdto=qnadao.getQna_view(qdto);
+			  if(qnadao.getQna_view(qdto)==null){
+				  model.addAttribute("qnamessage", "질문 하신 글이 없습니다.");
+			  }else{
+				  model.addAttribute("qna_list", qnadao.getQna_view(qdto));
+			  }
+			  
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return qdto;
 	}
 
 	@Override
-	public void replyQna_write(QnaDTO qdto) {
-		// TODO Auto-generated method stub
-
+	public void replyQna_write(ReplyQnaDTO rqdto) {
+		try {
+			qnadao.replyQna_write(rqdto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public int replyQna_update(QnaDTO qdto) {
+	public int replyQna_update(ReplyQnaDTO rqdto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -63,7 +72,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public QnaDTO replyQna_getview(QnaDTO qdto) {
+	public ReplyQnaDTO replyQna_getview(ReplyQnaDTO rqdto) {
 		// TODO Auto-generated method stub
 		return null;
 	}

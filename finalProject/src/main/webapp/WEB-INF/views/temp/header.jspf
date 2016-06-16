@@ -231,7 +231,7 @@ $(function () {
                     <li>
                         <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
                     </li>
-                    <c:if test="${ not empty member }">
+                    <c:if test="${ not empty member || not empty admin }">
                    
                     <li class="nav_li_log">
                         <a class="page-scroll" id="p_header_margin" href="${pageContext.request.contextPath}/member/userimg"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"></a>
@@ -249,7 +249,7 @@ $(function () {
                         <a class="page-scroll" href="${pageContext.request.contextPath}/member/logout"><img src="${pageContext.request.contextPath}/resources/img/login/logout.png" data-toggle="tooltip" data-placement="bottom" title="로그 아웃"></a>
                     </li>
                     </c:if>
-                    <c:if test="${empty member}">
+                    <c:if test="${empty member && empty admin}">
                     
                     <li class="nav_li_log" id="nav_li_log1">
                         <a class="page-scroll"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>

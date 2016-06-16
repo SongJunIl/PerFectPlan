@@ -17,8 +17,12 @@ public class MemberInterCept extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		Object obj = modelAndView.getModel().get("mem");
+		Object admin = modelAndView.getModel().get("admin");
 		modelAndView.setViewName("home");
-		if(obj != null){
+		if(admin != null){
+			session.setAttribute("admin", modelAndView.getModel().get("admin"));
+			response.sendRedirect(request.getContextPath()+"/");
+		 }else if(obj != null){
 			session.setAttribute("member", modelAndView.getModel().get("mem"));
 			response.sendRedirect(request.getContextPath()+"/");
 		}else{
@@ -27,6 +31,7 @@ public class MemberInterCept extends HandlerInterceptorAdapter{
 		
 	   Object obj2= modelAndView.getModel().get("message");
 	   modelAndView.setViewName("home");
+	   
 	   if(obj2 !=null){
 		   session.setAttribute("message", modelAndView.getModel().get("message"));
 		   response.sendRedirect(request.getContextPath()+"/");

@@ -5,11 +5,19 @@
   
   <mapper namespace="qnaboardMapper">
   	<insert id="qna_write">
-  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate,${m_img})
+  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, 0)
   	</insert>
   
   	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
   		select * from qna_board where id=#{id} order by reg_date desc
+  	</select>
+
+	<insert id="replyqna_write">
+  		insert into replyqna_board values (qna_seq.nextval,${qnalist_no}, #{id}, #{title}, #{contents}, sysdate,${m_img})
+  	</insert>
+
+	<select id="replyqna_view" resultType="com.plan.qna.ReplyQnaDTO">
+  		select * from replyqna_board where id=#{id} and qnalist_no=#{qnalist_no}
   	</select>
 
   	

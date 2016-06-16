@@ -17,6 +17,7 @@ import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
 import com.plan.qna.QnaDTO;
 import com.plan.qna.QnaService;
+import com.plan.qna.ReplyQnaDTO;
 
 @Controller
 @RequestMapping("/member/**")
@@ -40,7 +41,12 @@ public class MemberController {
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute MemberDTO mdto, Model model){
 		mdto=memberService.login(mdto);
-		model.addAttribute("mem", mdto);
+		if(mdto.getId().equals("admin")){
+			model.addAttribute("admin", mdto);
+		}else{
+			model.addAttribute("mem", mdto);
+		}
+		
 		
 	}
 	@RequestMapping(value="/logout")
@@ -142,20 +148,19 @@ public class MemberController {
   
   @RequestMapping(value="/qna_list",method = RequestMethod.POST)
   public void qnalist(@ModelAttribute QnaDTO qdto,Model model){
-	  System.out.println("ok");
-	  if(qnaservice.qna_getview(qdto)==null){
-		  model.addAttribute("qnamessage", "질문 하신 글이 없습니다.");
-	  }else{
-		  qdto=qnaservice.qna_getview(qdto);
-		  model.addAttribute("qnalist", qdto);
-	  }
+	  qnaservice.qna_getview(qdto, model);
+	  
   }
   
   
   
+  //replyqna_board
   
-  
-  
+  @RequestMapping(value="/replyqna_write",method = RequestMethod.POST)
+  public String replyqna_write(@ModelAttribute ReplyQnaDTO rqdto){
+	  qnaservice.replyQna_write(rqdto);
+	  return "redirect:/";
+  }
   
   
   

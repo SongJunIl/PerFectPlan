@@ -1,8 +1,11 @@
 package com.plan.qna;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 
 @Repository
@@ -32,23 +35,30 @@ public class QnaDAOImpl implements QnaDAO {
 	}
 
 	@Override
-	public QnaDTO getQna_view(QnaDTO qdto) throws Exception {
-		return sqlsession.selectOne(namespace+"qna_view", qdto);
+	public List<QnaDTO> getQna_view(QnaDTO qdto) throws Exception {
+		return sqlsession.selectList(namespace+"qna_view", qdto);
 	}
 
 	@Override
-	public void replyQna_write(QnaDTO qdto) throws Exception {
-		sqlsession.insert(namespace+"replyqna_write", qdto);
+	public void replyQna_write(ReplyQnaDTO rqdto) throws Exception {
+		sqlsession.insert(namespace+"replyqna_write", rqdto);
 	}
 
 	@Override
-	public int replyQna_update(QnaDTO qdto) throws Exception {
-		return sqlsession.update(namespace+"replyqna_update",qdto);
+	public int replyQna_update(ReplyQnaDTO rqdto) throws Exception {
+		return sqlsession.update(namespace+"replyqna_update",rqdto);
 	}
 
 	@Override
 	public void replyQna_delete(int no) throws Exception {
 		sqlsession.delete(namespace+"replyqna_delete",no);
+	}
+	
+	
+	@Override
+	public ReplyQnaDTO getReplyQna_view(ReplyQnaDTO rqdto) throws Exception {
+
+		return rqdto;
 	}
 
 }

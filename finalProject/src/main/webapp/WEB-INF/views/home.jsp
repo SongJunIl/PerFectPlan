@@ -2,6 +2,8 @@
 <html>
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
+	<%=session.getAttribute("admin") %>
+
 <head>
 
 </head>

@@ -1,20 +1,48 @@
 package com.plan.spot;
 
+
 public class SpotDTO {
-	private int no;
+	private int num;
 	private String big_name;
+	private String spot_img;
 	private String city_name;
 	private String spot_name;
 	private String contents;
+	private String spot_address;
+	private String category;
+	private String address;
+	private String phone;
+	private String website;
 	private double spot_xlocation;
 	private double spot_ylocation;
 	private int counts;
 	private int thema;
-	public int getNo() {
-		return no;
+	private int ref;
+	
+
+	public String getSpot_address() {
+		return spot_address;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setSpot_address(String spot_address) {
+		this.spot_address = spot_address;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getSpot_img() {
+		return spot_img;
+	}
+	public void setSpot_img(String spot_img) {
+		this.spot_img = spot_img;
 	}
 	public String getBig_name() {
 		return big_name;
@@ -64,6 +92,29 @@ public class SpotDTO {
 	public void setThema(int thema) {
 		this.thema = thema;
 	}
-	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 	
 }

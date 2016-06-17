@@ -6,32 +6,30 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-	<bean id="dataSoruce" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@192.168.152.134:1521:xe"></property>
-		<property name="username" value="perple"></property>
-		<property name="password" value="perple"></property>
+		<!-- mybatis 1) DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@172.16.186.141:1521:xe"></property>
+		<property name="username" value="user01"></property>
+		<property name="password" value="user01"></property>
 	</bean>
-	<!-- mybatis 2) SqlFactory -->
+	
+	<!-- mybatis 2) sqlFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSoruce"></property>
+		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
-	<!-- mybatis 3) SqlSession -->
+	
+	<!-- mybatis 3) sqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<context:component-scan base-package="com.plan.spot" use-default-filters="true">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
-
-
-
-	
+	<context:component-scan base-package="com.plan.fileup" use-default-filters="true">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 </beans>
-
-
-
-
-
-

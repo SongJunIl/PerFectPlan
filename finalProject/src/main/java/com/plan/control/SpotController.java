@@ -85,9 +85,9 @@ public class SpotController {
 		return savedName;
 	}
 	@RequestMapping(value="/spotView")
-	public void spotdView(@RequestParam int num, Model model){
+	public void spotdView(@RequestParam int num, Model model , String icon){
 		spotService.spotView(num, model);
-		spotService.spotReplyView(num, model);
+		spotService.spotReplyView(num, model,icon);
 	}
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)

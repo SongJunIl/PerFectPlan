@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Service
 public class SpotServiceImpl implements SpotService {
@@ -90,6 +92,7 @@ public class SpotServiceImpl implements SpotService {
 	public void spotReply(ReplyDTO replyDTO) {
 		try {
 			spotDAO.spotReply(replyDTO);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,33 +101,51 @@ public class SpotServiceImpl implements SpotService {
 	}
 	
 	@Override
-	public void spotReplyView(int num, Model model) {
+	public void spotReplyView(@RequestParam int num, Model model,String icon) {
 		try {
 			model.addAttribute("spotReply",spotDAO.spotReplyView(num));
-			HashMap<String ,Integer> icon = new HashMap<>();
+			HashMap<String ,Integer> icon3 = new HashMap<>();
+			HashMap<String, Double> icon2 = new HashMap<>();
+	 
+	
 			//게이지 평균 
 			int totalicon = spotDAO.totalicon(num);
 			int badicon = spotDAO.badicon(num);
 			int sosoicon = spotDAO.sosoicon(num);
 			int goodicon = spotDAO.goodicon(num);
 			
-			//게이지 평균
-			badicon=(badicon*100)/totalicon;
-			sosoicon=(sosoicon*100)/totalicon;
-			goodicon=(goodicon*100)/totalicon;
+			
+			
+			//10점평균
+			double totalicon2 = spotDAO.totalicon(num);
+			totalicon2=((badicon*3)+(sosoicon*5)+(goodicon*10))/totalicon2;
+			totalicon2=(int)(totalicon2*10)/10.0;
 			
 			//게이지 평균
-			icon.put("badicon", badicon);
-			icon.put("sosoicon", sosoicon);
-			icon.put("goodicon", goodicon);
+			badicon=((badicon*200)/totalicon);
+			sosoicon=((sosoicon*200)/totalicon);
+			goodicon=((goodicon*200)/totalicon);
 			
-			model.addAttribute("icon",icon);
+			
+			//게이지 평균
+			icon3.put("badicon", badicon);
+			icon3.put("sosoicon", sosoicon);
+			icon3.put("goodicon", goodicon);
+			icon3.put("totalicon", totalicon);
+		
+	
+			//10점평균
+			icon2.put("totalicon2", totalicon2);
+			
+			model.addAttribute("icon",icon3);
+			model.addAttribute("icon2",icon2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+
 	@Override
 	public void spotReplyDelete(int num) {
 		try {

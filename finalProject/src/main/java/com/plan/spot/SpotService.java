@@ -18,7 +18,7 @@ public interface SpotService {
 	
 	public void spotDelect(int num);
 	
-	public void spotReplyView(int num, Model model);
+	public void spotReplyView(int num, Model model,String icon);
 	
 	public void spotReply(ReplyDTO replyDTO);
 	
@@ -27,6 +27,7 @@ public interface SpotService {
 	public void spotReplyUpdate(ReplyDTO replyDTO);
 	
 	public void category(int curPage,Model model,String type,String category);
+
 	
 	
 }

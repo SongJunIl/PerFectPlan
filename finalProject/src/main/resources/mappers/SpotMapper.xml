@@ -36,11 +36,11 @@
   </select>
   
   <update id="spotUpdate" parameterType="com.plan.spot.SpotDTO">
-  	update spot set spot_name=#{spot_name}, big_name=#{big_name}, city_name=#{city_name}, contents=#{contents}, spot_xlocation=#{spot_xlocation}, spot_ylocation= #{spot_ylocation}, thema= #{thema}, counts=0 , spot_img=#{spot_img},spot_address=#{spot_address} where num=#{num}
+  	update spot set spot_name=#{spot_name}, big_name=#{big_name}, city_name=#{city_name}, contents=#{contents}, spot_xlocation=#{spot_xlocation}, spot_ylocation= #{spot_ylocation}, thema= #{thema}, counts=0 , spot_img=#{spot_img},spot_address=#{spot_address},category=#{category},address=#{address},phone=#{phone},website=#{website} where num=#{num}
   </update>
   
   <insert id="spotWrite" parameterType="com.plan.spot.SpotDTO">
-  	insert into spot values(spot_SEQ.nextVal,#{spot_name},#{big_name},#{city_name},#{contents},#{spot_xlocation},#{spot_ylocation},#{thema},0,#{spot_img},spot_SEQ.currVal,#{spot_address})
+  	insert into spot values(spot_SEQ.nextVal,#{spot_name},#{big_name},#{city_name},#{contents},#{spot_xlocation},#{spot_ylocation},#{thema},0,#{spot_img},spot_SEQ.currVal,#{spot_address},#{category},#{address},#{phone},#{website})
   </insert>
   
   <select id="spotView" resultType="com.plan.spot.SpotDTO">

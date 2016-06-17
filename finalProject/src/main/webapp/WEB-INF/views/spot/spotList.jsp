@@ -5,20 +5,24 @@
 <html>
 <head>
 <style type="text/css">
+  #h{
+ 	margin-left: 200px;
+ 	margin-top: 25px;
+  }
   .menu_list{
       height: 48px;
-      width: 271px;
+      width: 220px;
       float: left;
       text-align: center;
       border: 1px solid black;
       background-color: navy;
    }
    .menu_name{
-      width : 265px;
+      width : 100px;
       height: 45px;
       border: 0px;
       color: white;
-      font-size: 20px;
+      font-size: 10px;
       font-weight: bold;
       text-align: center;
       background-color: navy;
@@ -29,14 +33,15 @@
    background-position: right; 
    }
    ul.tabs {
-    margin: 0;
+    margin-top:20px;
+    margin-left:200px;
     padding: 0;
     float: left;
     list-style: none;
     height: 32px;
     border-bottom: 1px solid #eee;
     border-left: 1px solid #eee;
-    width: 100%;
+    width:885px;
     font-family:"dotum";
     font-size:12px;
 }
@@ -44,7 +49,7 @@ ul.tabs li {
     float: left;
     text-align:center;
     cursor: pointer;
-    width:82px;
+    width:140px;
     height: 31px;
     line-height: 31px;
     border: 1px solid #eee;
@@ -58,6 +63,37 @@ ul.tabs li.active {
     background: #FFFFFF;
     border-bottom: 1px solid #FFFFFF;
 }
+table.type03 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #369;
+    margin : 0 auto;
+   
+}
+table.type03 th {
+    width: 250px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+table.type03 td {
+    width: 640px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+#search_bar{margin-left: 190px; margin-top: 20px;}
+#curPage{ text-align: center; margin-left: 280px;}
+#write_btn{float: right; margin-right: 200px;}
+#g{height: 20px; background-color: white;}
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -75,51 +111,62 @@ ul.tabs li.active {
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="h">
+	<div id="h">
          <div class="menu_list"><input type="text" class="menu_name" value="H O M E" readonly="readonly"> </div>
          <div class="menu_list"><input type="text" class="menu_name" value="A T T R A C T I O N" readonly="readonly"></div>
          <div class="menu_list"><input type="text" class="menu_name" value="T R A V E L P L A N" readonly="readonly"></div>
-         <div class="menu_list"><input type="text" class="menu_name" value="M A P" readonly="readonly"></div>
-          <div class="menu_list"><input type="text" class="menu_name" value="M A P" readonly="readonly"></div>
+         <div class="menu_list"><input type="text" class="menu_name" value="M A P" readonly="readonly"></div>  
       </div>
  
-<h2></h2>
+
 <table class="table table-bordered">
 	<thead>
 	<div id="container">
     <ul class="tabs">
+    	
         <li class="active" rel="tab1" id="all_category" value="1">전체</li>
         <li class="active"rel="tab2" id="spot_category" value="2">관광지</li>
         <li class="active"rel="tab3" id="landmark_category" value="3">랜드마크</li>
     </ul>
     </div>
     </thead>
-    <tbody>
-			<div id="list_all">
-		<%-- <c:forEach items="${list}" var="dto">
-			<tr>
-				<td width="200px" height="100%"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="200px" height="150px"></a></td>
-				<td>
-					<a href="spotView?num=${dto.num}">${dto.spot_name}</a><br>
-					<div><img  src="${pageContext.request.contextPath}/resources/img/btn/postion.png">&nbsp;&nbsp;${dto.spot_address} </div><br>
-					<div>${dto.contents}</div>
-					<span> <img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"></span>
-				</td>
-			</tr>
-		</c:forEach> --%>
-			</div>
-	</tbody>
+    
+    <table class="type03" id="list_all">
+   <c:forEach items="${list}" var="dto"> 
+    <tr>
+        <th scope="row" width="300px" height="300px"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="100%" height="300px"></a></th>
+        <td><a href="spotView?num=${dto.num}">{dto.spot_name}</a>
+        <p><img  src="${pageContext.request.contextPath}/resources/img/btn/postion.png">&nbsp;&nbsp;${dto.spot_address}</p>
+        <p>${dto.contents}</p><br>
+        <p><img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"></p>
+        </td>
+    </tr>
+    
+    <tr >
+    <th></th>
+    <td></td>
+    </tr>
+    
+    </c:forEach>
+		</table>
 </table>
-<div>
+	
+
+<!-- 검색바 --> 
+<div id="search_bar">
 	<form action="./search" method="get">
-		<select name="searchType">
+		<select name="searchType" >
 			<option value="spot_name">관광지</option>
 		</select>
 		<input type="text" name="searchWord" id="spot_such">
 		<input type="submit" value="SEARCH">
 	</form>
 </div>
-<div>
+
+<div id="write_btn">
+<input type="button" class="btn btn-primary" name="write" id="write" value="글쓰기">
+</div>
+<div id="curPage">
 	<c:if test="${page.curBlock > 1}">
 		<a href="./spotList?curPage=${page.startNum-1}">[이전]</a>
 	</c:if>
@@ -131,7 +178,7 @@ ul.tabs li.active {
 	</c:if>
 </div>
 
-<input type="button" class="btn btn-primary" name="write" id="write" value="글쓰기">
+
 
 </body>
 <script type="text/javascript">
@@ -152,7 +199,8 @@ ul.tabs li.active {
 		                	 $("#list_all").html(data);     
 		                }
 			 });
-		$( ".active" ).click(function() {
+
+	$( ".active" ).click(function() {
 		if($(this).attr("value") == 1){
 		$("#all_category").css("background-color","#FF6600");
 		$("#spot_category").css("background-color","white");
@@ -204,11 +252,10 @@ ul.tabs li.active {
 			                	 $("#list_all").html(data);     
 			                }
 				 });
-		         
-		
 			}
 		});
 	});
+
 </script>
 </html>
 

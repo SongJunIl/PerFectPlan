@@ -9,9 +9,9 @@
 		<!-- mybatis 1) DataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@192.168.50.216:1521:xe"></property>
-		<property name="username" value="user04"></property>
-		<property name="password" value="user04"></property>
+		<property name="url" value="jdbc:oracle:thin:@172.16.186.141:1521:xe"></property>
+		<property name="username" value="user01"></property>
+		<property name="password" value="user01"></property>
 	</bean>
 	
 	<!-- mybatis 2) sqlFactory -->

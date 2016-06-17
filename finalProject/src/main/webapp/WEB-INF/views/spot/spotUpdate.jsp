@@ -17,6 +17,10 @@
 	thema 		   : <input type="text" name="thema"><br>
 	spot_address :<input type="text" name="spot_address"><br>
 	img : <input type="file" name="file"><br>
+	category : <input type="text" name="category"><br>
+	address : <input type="text" name="address"><br>
+	phone : <input type="text" name="phone"><br>
+	website : <input type="text" name="website">
 	<input type="hidden" name="num" value="${param.num}">
 		<input type="submit">
 	</form>

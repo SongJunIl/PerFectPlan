@@ -50,15 +50,35 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public void replyQna_write(ReplyQnaDTO rqdto) {
+	public void replyQna_getview(QnaDTO qdto,Model model) {
+		try {
+			if(qnadao.getReplyQna_list(qdto)==null){
+				model.addAttribute("qnamessage", "유저가 질문한 글이 없습니다.");
+			}else{
+				model.addAttribute("qna_list", qnadao.getReplyQna_list(qdto));
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	@Override
+	public void replyQna_write(ReplyQnaDTO rqdto,int com_no) {
 		try {
 			qnadao.replyQna_write(rqdto);
+			qnadao.replyQna_replyupdate(com_no);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
 	@Override
 	public int replyQna_update(ReplyQnaDTO rqdto) {
 		// TODO Auto-generated method stub
@@ -72,9 +92,19 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public ReplyQnaDTO replyQna_getview(ReplyQnaDTO rqdto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void replyqna_getreplyview(ReplyQnaDTO rqdto,Model model) {
+		try {
+			qnadao.replyqna_view(rqdto);
+			model.addAttribute("replyqna", rqdto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
 	}
+	
+	
+	
+	
+	
 
 }

@@ -63,10 +63,18 @@ $(function(){
 <script type="text/javascript">
 $(function(){
 	$("#p_qnalist_1").click(function () {
+		
 		var i = $("#p_qnaid").val();
-		$.ajax({
+		var juso="";
+		var sess = $("#session_id").val();
+		if(sess=='admin'){
+			 juso = "qna_replylist";
+		}else if(sess!=null&&sess!='admin' ){ 
+			juso = "qna_list";
+		}
+		 $.ajax({
 			type:"POST",
-			url:"${pageContext.request.contextPath}/member/qna_list",
+			url:"${pageContext.request.contextPath}/member/"+juso,
 			data:{
 					id:i
 				 },
@@ -76,7 +84,8 @@ $(function(){
 				 error : function(){
 					 alert("error");
 				 }
-		});
+		}); 
+			 sess = null;
 	});	
 	
 	$("#replyqna_submit").click(function () {
@@ -96,6 +105,9 @@ $(function(){
 		});
 	});	
 	
+	
+	
+	
 });
 
 
@@ -106,6 +118,8 @@ $(function(){
 <body>
 
 <!-- Tab menu -->
+<input type="hidden" id="session_id" value="${sessionScope.admin.id }">
+
 <div id="main-body" >
 	<div id="p_my_top" >
 				<div id=p_top_title>
@@ -497,8 +511,8 @@ $(function(){
      			</div>
 					<input type="text" id="p_qna_mdtitle"  name="title" placeholder="제목을 입력하세요.">
 							<div class="modal-body" id="replyqna_md_body">
-					<textarea name="replycontents" id="ir3" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
-								</div>
+					<textarea name="contents" id="ir3" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
+							</div><div id="p_hidden_d_ata"></div>
 		      </div>
 		      <div class="modal-footer" id="p_replymd_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -508,7 +522,6 @@ $(function(){
     
     </div>
   </div>
-</div>
 
 
 

@@ -9,12 +9,14 @@ public interface QnaService {
 	public void qna_delete(int no);
 	public void qna_getview(QnaDTO qdto,Model model);
 	
+	public void replyqna_getreplyview(ReplyQnaDTO rqdto,Model model);
+	
 	
 	/*관리자*/
-	public void replyQna_write(ReplyQnaDTO rqdto);
+	public void replyQna_write(ReplyQnaDTO rqdto,int com_no);
 	public int replyQna_update(ReplyQnaDTO rqdto);
 	public void replyQna_delete(int no);
-	public ReplyQnaDTO replyQna_getview(ReplyQnaDTO rqdto);
+	public void replyQna_getview(QnaDTO qdto,Model model);
 	
 	
 }

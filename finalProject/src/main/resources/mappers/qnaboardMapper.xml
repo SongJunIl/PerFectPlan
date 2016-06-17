@@ -5,7 +5,7 @@
   
   <mapper namespace="qnaboardMapper">
   	<insert id="qna_write">
-  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, 0)
+  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, 0,0)
   	</insert>
   
   	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
@@ -13,12 +13,22 @@
   	</select>
 
 	<insert id="replyqna_write">
-  		insert into replyqna_board values (qna_seq.nextval,${qnalist_no}, #{id}, #{title}, #{contents}, sysdate,${m_img})
+  		insert into replyqna_board values (replyqna_seq.nextval,${qnalist_no}, #{id}, #{contents}, sysdate,0, #{title})
+  			<!-- 질문 한 글에 qna_check 를 0에서 1로 업데이트 해줘야함.. -->
   	</insert>
 
-	<select id="replyqna_view" resultType="com.plan.qna.ReplyQnaDTO">
-  		select * from replyqna_board where id=#{id} and qnalist_no=#{qnalist_no}
+	<!-- 관리자가  유저에게 답글을 써야하는 것을 보는 뷰 -->
+	<select id="replyqna_replyview" resultType="com.plan.qna.QnaDTO">
+  		select * from qna_board where qna_check=0 order by reg_date desc
   	</select>
 
-  	
+	<!-- 유저가 관리자가 쓴 글을 보는 뷰 -->
+	<select id="replyqna_view" resultType="com.plan.qna.ReplyQnaDTO">
+  		select * from replyqna_board where qnalist_no=#{qnalist_no} 
+  	</select>
+
+	<update id="replyqna_replyupdate" parameterType="com.plan.qna.QnaDTO">
+		update qna_board set qna_check=1 where com_no=#{com_no}	 	
+  	</update>
+	  	
   </mapper>

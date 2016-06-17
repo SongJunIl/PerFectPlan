@@ -149,7 +149,6 @@ public class MemberController {
   @RequestMapping(value="/qna_list",method = RequestMethod.POST)
   public void qnalist(@ModelAttribute QnaDTO qdto,Model model){
 	  qnaservice.qna_getview(qdto, model);
-	  
   }
   
   
@@ -157,14 +156,22 @@ public class MemberController {
   //replyqna_board
   
   @RequestMapping(value="/replyqna_write",method = RequestMethod.POST)
-  public String replyqna_write(@ModelAttribute ReplyQnaDTO rqdto){
-	  qnaservice.replyQna_write(rqdto);
-	  return "redirect:/";
+  public String replyqna_write(@ModelAttribute ReplyQnaDTO rqdto,@RequestParam("com_no") String com_no1){
+	  int com_no = Integer.parseInt(com_no1); 
+	  qnaservice.replyQna_write(rqdto,com_no);
+	  return "redirect:/member/mypage";
   }
   
+  @RequestMapping(value="/qna_replylist", method =RequestMethod.POST)
+  public void qna_userreply(@ModelAttribute QnaDTO qdto,Model model){
+	    qnaservice.replyQna_getview(qdto, model);
+	  
+  }
   
-  
-  
+  @RequestMapping(value="/replyqna_getreplyview", method=RequestMethod.POST)
+  public void replyqna_getreplyview(@ModelAttribute ReplyQnaDTO rqdto,Model model){
+	  qnaservice.replyqna_getreplyview(rqdto, model);
+  }
   
   
   

@@ -9,6 +9,14 @@ public class QnaDTO {
 	private String contents;
 	private Date reg_date;
 	private String m_img;
+	private String qna_check;
+	
+	public String getQna_check() {
+		return qna_check;
+	}
+	public void setQna_check(String qna_check) {
+		this.qna_check = qna_check;
+	}
 	public String getM_img() {
 		return m_img;
 	}

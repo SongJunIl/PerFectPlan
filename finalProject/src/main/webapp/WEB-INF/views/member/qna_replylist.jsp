@@ -15,30 +15,37 @@ $('.collapse').bind("pageshow",function(event){
 
 $(function(){
 	$(".p_qna_view_btn_1").click(function () {
-		var n = $(".p_qnalist_nono").val();
-		
-		
+		alert("요요");
+		var i = $(".p_qnalist_id").val();
+		var n = $(".p_qnalist_no").val();
+	
 		$.ajax({
 			type:"POST",
-			url:"${pageContext.request.contextPath}/member/replyqna_getreplyview",
+			url:"${pageContext.request.contextPath}/member/qna_replylist",
 			data:{
-					qnalist_no:n,
+					id:i,
+					qnalist_no:n
 				 },
 				 success: function (result){
-							    $(".p_qna_body_1").html("");
-								$(".p_qna_body_1").html(result);
+								$(".p_reply_body").html(result);
 				 },
 				 error : function(){
 					 alert("아직안만들엇지렁");
 				 }
 		});
 	});	
-	
 });
 
-
+$(".p_qna_view_btn_2").click(function () {
+	$("#p_hidden_d_ata").html("");	
+	var no = $(this).val();
+	var id = $(this).attr("data-id");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='qnalist_no' value='"+no+"'>");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='id' value='"+id+"'>");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='com_no' value='"+no+"'>");
+	
+});
 </script>
-
 <c:choose>
 	<c:when test="${empty qna_list}">
 		<div id="p_qnanotice_con"><h2>질문 하신 글이 없습니다.</h2></div>
@@ -76,21 +83,8 @@ $(function(){
 				      		</c:when>
 				      		<c:otherwise>
 				      		
-								<div class="p_body_div_1 p_qna_body_1" id="p_qna_body_list_contents">
-										<div class="panel-group" id="p_replyqnaList">
-											<div class="panel-collapse collapse in">
-												<div class="p_collapse" id="${i.com_no}">
-													  	<div id="p_qna_body_list" class="p_body_div_1">
-															<!-- <div id="p_qna_list_img"></div> -->
-															<input type="hidden" class="p_qnalist_id" value="${i.id}">
-															<input type="hidden" class="p_qnalist_no" value="${i.no}">
-															<div class="p_qna_d_userimg"><span>userimg</span></div>
-															<div class="p_qna_d_title"><span>title</span></div>
-															<div class="p_qna_d_contents"><span>contents</span></div>
-						      							</div>
-												</div>
-											</div>
-										</div>
+								<div class="p_body_div_1 p_reply_body" id="p_qna_body_list_contents">
+										
 								</div>	
 				      		</c:otherwise>
 				      	</c:choose>	

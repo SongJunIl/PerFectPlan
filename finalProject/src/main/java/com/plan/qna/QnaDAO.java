@@ -21,6 +21,8 @@ public interface QnaDAO {
 	
 	public List<QnaDTO> getQna_view(QnaDTO qdto)throws Exception; 
 	
+	public ReplyQnaDTO replyqna_view(ReplyQnaDTO rqdto)throws Exception;
+	
 	
 	
 	/*관리자 전용*/
@@ -31,4 +33,8 @@ public interface QnaDAO {
 	public void replyQna_delete(int no)throws Exception; 
 	
 	public ReplyQnaDTO getReplyQna_view(ReplyQnaDTO rqdto)throws Exception; 
+
+	public List<QnaDTO> getReplyQna_list(QnaDTO qdto)throws Exception; 
+	
+	public int replyQna_replyupdate(int com_no)throws Exception;
 }

@@ -9,6 +9,7 @@ import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.daySpot.DaySpotDTO;
 import com.plan.spot.SpotDTO;
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -221,7 +222,40 @@ public class PlanServiceImpl implements PlanService {
 		
 	}
 	
+	//=======planDTO 최종 및 임시 저장==============================================================
+	@Override
+	public void s_plan_save_update(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.plan_save_update(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
+	//=======dayPlanDTO 없데이트 시키기=============================================================
+	@Override
+	public void s_get_daily_update(DayPlanDTO dayPlanDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.get_daily_update(dayPlanDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	//=======dayspotDTO insert 시키기=============================================================
+	@Override
+	public void s_daySpot_insert(DaySpotDTO daySpotDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.daySpot_insert(daySpotDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

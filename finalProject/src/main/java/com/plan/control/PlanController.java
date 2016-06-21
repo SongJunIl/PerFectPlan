@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.daySpot.DaySpotDTO;
 import com.plan.plan.PlanDTO;
 import com.plan.plan.PlanService;
 import com.plan.spot.SpotDTO;
@@ -32,6 +34,66 @@ import com.plan.spot.SpotDTO;
 public class PlanController {
 	@Autowired
 	private PlanService planService;
+	
+	@RequestMapping(value="/planSave", method=RequestMethod.POST)
+	public void planSave(@RequestParam("all_plan_list") String all_plan,@ModelAttribute PlanDTO planDTO,@RequestParam("days") String days,Model model){
+		/*System.out.println(all_plan);
+		System.out.println(planDTO.getPlan_no());
+		System.out.println(planDTO.getState());*/
+		String spot_plan[] = all_plan.split(",");
+		ArrayList<DaySpotDTO> ar = new ArrayList<>();
+		for(int i =0;i<spot_plan.length;i=i+5){
+			
+			DaySpotDTO daySpotDTO = new DaySpotDTO();
+			daySpotDTO.setDp_no(Integer.parseInt(spot_plan[i]));
+			daySpotDTO.setSpot_no(Integer.parseInt(spot_plan[i+1]));
+			daySpotDTO.setSpot_name(spot_plan[i+2]);
+			daySpotDTO.setSpot_xlocation(Double.parseDouble(spot_plan[i+3]));
+			daySpotDTO.setSpot_ylocation(Double.parseDouble(spot_plan[i+4]));
+			
+			ar.add(daySpotDTO);	
+			System.out.println(daySpotDTO.getDp_no());
+		}
+		// daily에서 선택한지역을 가지고 상세일정DB에 저장시키기
+		for(int i=0;i<ar.size();i++){
+			planService.s_daySpot_insert(ar.get(i));
+		}
+		System.out.println("check1");
+		Date start_date = planDTO.getS_date();
+		System.out.println(start_date);
+		planDTO.set_F_date(Integer.parseInt(days));
+		
+		//planDTO를 가지고 DB 업데이트 하기
+		planService.s_plan_save_update(planDTO);
+		System.out.println("check2");
+		//dayplan update 날짜 업데이트하기
+		ArrayList<DayPlanDTO> ar2 = new ArrayList<>();
+		for(int i=0;i<Integer.parseInt(days);i++){
+			
+			DayPlanDTO dayPlanDTO = new DayPlanDTO();
+			dayPlanDTO.setDaily_no(ar.get(i).getDp_no());
+			dayPlanDTO.setPlan_no(planDTO.getPlan_no());
+			
+			ar2.add(dayPlanDTO);
+			
+		}
+		System.out.println("check3");
+		// plan no가져와서 dayDTO에 값넣고 date값 계산해서 넣기
+			for(int i=0;i<ar2.size();i++){
+				Calendar cal = new GregorianCalendar();
+				cal.setTime(start_date);
+				cal.add(Calendar.DAY_OF_MONTH, i);
+				
+				SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+			    ar2.get(i).setDaily_date(Date.valueOf(fm.format(cal.getTime())));
+			    
+			    System.out.println(ar2.get(i).getDaily_date());
+			    planService.s_get_daily_update(ar2.get(i));
+			}	
+			
+		System.out.println("완료");
+			
+	}
 	
 	//spot ajax로 가져오기
 	@RequestMapping(value="/pspotList", method=RequestMethod.POST)
@@ -52,8 +114,8 @@ public class PlanController {
 		for(int i =0;i<plan_city.length;i=i+5){
 			for(int j=0;j<Integer.parseInt(plan_city[i+3]);j++){
 			DayPlanDTO dayPlanDTO = new DayPlanDTO();
-			dayPlanDTO.setDaily_xloaction(Double.parseDouble(plan_city[i+1]));
-			dayPlanDTO.setDaily_yloaction(Double.parseDouble(plan_city[i+2]));
+			dayPlanDTO.setDaily_xlocation(Double.parseDouble(plan_city[i+1]));
+			dayPlanDTO.setDaily_ylocation(Double.parseDouble(plan_city[i+2]));
 			dayPlanDTO.setCity_no(Integer.parseInt(plan_city[i+4]));
 					
 			ar.add(dayPlanDTO);

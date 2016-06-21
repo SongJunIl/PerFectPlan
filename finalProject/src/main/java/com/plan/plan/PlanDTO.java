@@ -26,7 +26,7 @@ public class PlanDTO {
 		set_F_date(days);
 	}
 	
-	private void set_F_date(int days){
+	public void set_F_date(int days){
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(this.s_date);
 		cal.add(Calendar.DAY_OF_MONTH, days-1);
@@ -35,6 +35,9 @@ public class PlanDTO {
 	    this.f_date = Date.valueOf(fm.format(cal.getTime()));
 	    System.out.println( this.f_date);
 	}
+	
+	
+	
 	
 	public int getPlan_no() {
 		return plan_no;

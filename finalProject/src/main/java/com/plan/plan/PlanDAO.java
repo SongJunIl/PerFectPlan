@@ -6,6 +6,7 @@ import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.daySpot.DaySpotDTO;
 import com.plan.spot.SpotDTO;
 
 public interface PlanDAO {
@@ -39,5 +40,11 @@ public interface PlanDAO {
 	public PlanDTO get_planDTOone(PlanDTO planDTO)throws Exception;
 	
 	public List<SpotDTO> get_pspotList(int city_no)throws Exception;
+	
+	public void plan_save_update(PlanDTO planDTO)throws Exception;
+	
+	public void get_daily_update(DayPlanDTO dayPlanDTO)throws Exception;
+	
+	public void daySpot_insert(DaySpotDTO daySpotDTO)throws Exception;
 	
 }

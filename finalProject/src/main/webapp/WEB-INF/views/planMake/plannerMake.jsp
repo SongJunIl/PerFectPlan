@@ -112,6 +112,7 @@
 		bottom: 0px; 
 	}
 	#pday_mid_save_btn{
+		border:1px solid gray !important;
 		background-color: gray;
 		width: 100px;
 		height:30px;
@@ -121,6 +122,7 @@
 		color: white;
 		text-align: center;
 		padding-top: 5px;
+		margin-left: 28px;
 		
 	}
 	.Pschedule_list_header{
@@ -140,7 +142,8 @@
 	}
 	.Pschedule_list_body{
 		width: 100%;
-		height: 100%;
+		height: 785px;
+		overflow: scroll;
 		
 	}
 	.planner_schedule_box_inner{
@@ -300,6 +303,71 @@
 	margin-right: 10px;
 	cursor: pointer;
 }
+#pday_final_save{
+	border-top: 1px #28344B solid;
+	width:265px;
+	height: 70px;
+	position:absolute;
+	/* bottom: 0px;  */
+}
+#pday_final_save_btn{
+	background-color: #ff9320;
+	width: 150px;
+	height:30px;
+	margin: 15px auto;
+	font-weight: bolder;
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	padding-top: 5px;
+	margin-left: 58px;
+	
+}
+/* modal 자체 */
+.modal-backdrop{
+	z-index: 0 !important;
+}
+.modal-body{
+	height: 300px;
+}
+
+#datepicker {
+	color: gray;
+	background: url(${pageContext.request.contextPath}/resources/img/plan/bg_cal.gif) no-repeat 125px 0px;
+	font-size: 12px;
+	width: 150px;
+	height: 30px;
+	border: 1px #c8c8ca solid;
+}
+/* modal 내부 */
+.plan_thema_box{
+	float: left;
+	margin-right: 20px;
+}
+.plan_modal_table_title{
+	width: 85px;
+	height: 50px;
+	margin-left: 30px;
+	
+}
+.plan_thema_box{
+	border: 1px solid #c8c8ca;
+	width: 80px;
+	height: 83px;
+	
+}
+.plan_thema_word{
+	width: 80px;
+	text-align: center;
+}
+.plan_thema_radio_btn{
+	width: 20px;
+	height: 20px;
+	margin: 10px auto;
+}
+#plan_title{
+	width: 380px;
+}
 
 </style>
 
@@ -309,8 +377,21 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+var positions = []; // 선택 도시 위치
+
+var positions2 = []; // 
+var positions3=[]; // 소도시 위치 
+var j=0;
+var i=0;
 $(function() {
 	var city_length = $("#day_list").val();
 	var city_array =[];
@@ -319,10 +400,10 @@ $(function() {
             plan_no: $(".plan_no"+a).val(), 
             city_name: $(".city_name"+a).val(),
             city_no : $(".city_no"+a).val(),
-            city_xlocation: $(".daily_xloaction"+a).val(),
-            city_ylocation: $(".daily_yloaction"+a).val()
-        })
-	}
+            city_xlocation: $(".daily_xlocation"+a).val(),
+            city_ylocation: $(".daily_ylocation"+a).val()
+        });
+	};
 	
 	
 		
@@ -335,57 +416,11 @@ $(function() {
 	$(".pschedule_box"+0).css("display","block"); 
 	
 	
-	//=========daily list 누으면 바뀌는 메서드===========================================================
-		
-	var pday_index=0;	
-	$(".pday_list_body_inner").click(function() {
-		pday_index = $(this).attr("data-index");
-		for(var t=0;t<city_length;t++){
-			$(".pday_list_box"+t).css("background-color","#28344B"); 
-			$(".pschedule_box"+t).css("display","none"); 
-		}
-		$(".pday_list_box"+pday_index).css("background-color","#4478FB"); 
-		$(".pschedule_box"+pday_index).css("display","block");
-		$("#pstop_header_title").html(city_array[pday_index].city_name);
-		
-		map.setCenter(new daum.maps.LatLng(city_array[pday_index].city_xlocation, city_array[pday_index].city_ylocation)); // 지도의 중심좌표 */
-		/*  map.setLevel(11); // 지도의 확대 레벨 */
-		//======클릭했을때 ajax로  spot 리스트 불러오기 =========
-		$.ajax({
-			url:"./pspotList",
-			type:"POST",
-			data: {
-				city_no : city_array[pday_index].city_no
-			},
-			success : function(data) {
-				
-				$("#pspot_list_body").html(data);
-			}
-		
-		})
-	});
 	
-	$(".pday_list_body_inner").mouseenter(function(){
-        $(this).css("background-color","#244390");
-		varvpday_index2 = $(this).attr("data-index");
-		if($(".pschedule_box"+pday_index2).css("display")=='block'){
-			$(this).css("background-color","#4478FB"); 
-		}
-    });
-	
-	$(".pday_list_body_inner").mouseleave(function(){
-			$(this).css("background-color","#28344B");
-		pday_index2 = $(this).attr("data-index");
-		if($(".pschedule_box"+pday_index2).css("display")=='block'){
-			$(this).css("background-color","#4478FB");
-		}
-		 
-	});
 	
 	
 	// spotList 첫화면에 이름을 미리 가져오기
 	$("#pstop_header_title").html(city_array[0].city_name);	
-	
 	
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -395,12 +430,7 @@ $(function() {
     };
 	
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-var positions = []; // 선택 도시 위치
 
-var positions2 = []; // spot장소 날짜만큼 배열 생성시키기
-var positions3=[]; // 소도시 위치 
-var j=0;
-var i=0;
 var check = true;
 
 var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
@@ -425,6 +455,9 @@ var marker3=[];
 			
 			$("#pspot_list_body").html(data);
 			spot_array_make();
+			for(a=0;a<spot_array.length;a++){
+				spot_array[a].dp_no = $(".daily_no"+0).val();
+			}
 			positions2_array_make();
 			
 		}
@@ -437,7 +470,7 @@ var marker3=[];
 		for(var a=0;a<spot_length;a++){
 			
 			spot_array.push({
-				dp_no : 0,
+				dp_no : 0 ,
 	            spot_num: $(".spot_num"+a).val(), 
 	            spot_name: $(".spot_name"+a).val(),
 	            city_no : $(".city_no"+a).val(),
@@ -447,6 +480,7 @@ var marker3=[];
 			
 		}
 	}
+	
 	
 function positions2_array_make() {
 	for(a=0;a<spot_array.length;a++){
@@ -461,22 +495,6 @@ function positions2_array_make() {
 		});	
 	}
 	
-
-
-/* for(a=0;a<city_array.length;a++){
-	positions2.push({
-			
-			big_name:big_array[a].big_name,
-			big_no : big_array[a].big_no,
-            title: big_array[a].big_ename,
-            big_xlocation :big_array[a].big_xlocation,
-	        big_ylocation :big_array[a].big_ylocation,
-            latlng: new daum.maps.LatLng(big_array[a].big_xlocation, big_array[a].big_ylocation)
-	});	
-	
-}
- */
-
 
 
 //===============================================================================
@@ -505,22 +523,218 @@ for (var i = 0; i < positions2.length; i ++) {
 
 }
  
+//=========daily list 누으면 바뀌는 메서드===========================================================
+function remove_array() {
+	/* for(i=0;i<city_array.length;i++){
+		city_array.splice(0,1);	
+	
+	}
+	alert("도"+city_array.length);
+	for(i=0;i<spot_array.length;i++){
+		spot_array.splice(0,1);	
+		
+	}
+	alert("레"+spot_array.length);
+	for(i=0;i<positions.length;i++){
+		positions.splice(0,1);		
+	}
+	alert("미"+positions.length);
+	for(i=0;i<positions2.length;i++){
+		positions2.splice(0,1);	
+	} */
+	city_array=[];
+	spot_array=[];
+	positions=[];
+	positions2=[];
+	
+}
+var q=0;
+var index_array=[];
+var spot_counts =0;
+var spot_list_length=0;
+var pday_index=0;	
+$(".pday_list_body_inner").click(function() {
+	
+	/* spot_counts =0; */
+	
+	positions=[];
+	
+	positions2=[];
+	
+	spot_array=[];
+	
+	index_array=[];
+	
+	
+	
+	//일정날짜 바뀔때마다 지워주기 (선과 거리 내용들)
+	deleteClickLine();
+	deleteDistnce();
+	deleteCircleDot();
+	
+	
+	for(var h=0;h<marker.length;h++){
+		marker[h].setMap(null);
+		
+	}
+	for(var h=0;h<marker2.length;h++){
+		marker2[h].setMap(null);
+		
+	}
+	
+	
+	
+	pday_index = $(this).attr("data-index");
+	spot_html =$("#schedule_list"+pday_index).html();
+	
+	
+	
+
+	
+	/* spot_counts = $("#pspot_list_length"+pday_index).val(); */
+	if(spot_html==''){
+		spot_counts = 0;
+	}else{
+		spot_counts = parseInt($("#pspot_list_length"+pday_index).val());
+		
+		
+	}
+	
+	
+	spot_list_length=$("#pspot_list_length"+pday_index).val();
+		
+	/* for(i=0;i<positions.length;i++){
+		positions.splice(0,1);		
+	} */
+	
+	/* for(var a=0;a<city_length;a++){
+		city_array.push({
+            plan_no: $(".plan_no"+a).val(), 
+            city_name: $(".city_name"+a).val(),
+            city_no : $(".city_no"+a).val(),
+            city_xlocation: $(".daily_xloaction"+a).val(),
+            city_ylocation: $(".daily_yloaction"+a).val()
+        });
+	}; */
+	
+
+	
+	
+	
+	/* if($("#schedule_list"+pday_index).html()!=""){
+		
+		alert("미2"+positions.length);
+		
+		for(j=0;j<spot_list_length;j++){
+			positions.push({
+								
+				dp_no : $(".dp_nav_no"+pday_index+"_"+j).val(),
+				name: $(".spot_nav_name"+pday_index+"_"+j).val(),
+		        title:  $(".spot_nav_name"+pday_index+"_"+j).val(),
+		        num : $(".spot_nav_num"+pday_index+"_"+j).val(),
+		        xlocation : $(".spot_nav_xloaction"+pday_index+"_"+j).val(),
+		        ylocation : $(".spot_nav_yloaction"+pday_index+"_"+j).val(),
+		        latlng: new daum.maps.LatLng($(".spot_nav_xloaction"+pday_index+"_"+j).val(),$(".spot_nav_yloaction"+pday_index+"_"+j).val())
+			 });
+			addMark()
+			
+		}
+	} */
+
+	
+	
+	
+	
+	for(var t=0;t<city_length;t++){
+		$(".pday_list_box"+t).css("background-color","#28344B"); 
+		$(".pschedule_box"+t).css("display","none"); 
+	}
+	
+	$(".pday_list_box"+pday_index).css("background-color","#4478FB");
+	$(".pschedule_box"+pday_index).css("display","block");
+	$("#pstop_header_title").html(city_array[pday_index].city_name);
+	
+	
+	map.setCenter(new daum.maps.LatLng(city_array[pday_index].city_xlocation, city_array[pday_index].city_ylocation)); // 지도의 중심좌표 */
+	/*  map.setLevel(11); // 지도의 확대 레벨 */
+	
+	/* if($("#schedule_list"+pday_index).html() != ""){
+		
+	} */
+	//======클릭했을때 ajax로  spot 리스트 불러오기 =========
+	$.ajax({
+		url:"./pspotList",
+		type:"POST",
+		data: {
+			city_no : city_array[pday_index].city_no
+		},
+		success : function(data) {
+			
+			$("#pspot_list_body").html(data);
+			
+			spot_array_make();
+			for(a=0;a<spot_array.length;a++){
+				spot_array[a].dp_no = $(".daily_no"+pday_index).val();
+			}
+			alert(spot_array[0].dp_no);
+			positions2_array_make();
+			if(spot_html != ""){
+				index_array=[];
+				if(spot_counts>0){
+					for(i=0;i<spot_counts;i++){
+						index_array.push(i);
+					}
+				}
+				
+				for(q=0;q<spot_counts;q++){
+					
+					var index_num =$(".spot_nav_index_num"+pday_index+"_"+q).val();
+					
+					addMark(index_num);
+					
+				}
+			}
+			
+		}
+	
+	});
+	
+});
+
+$(".pday_list_body_inner").mouseenter(function(){
+    $(this).css("background-color","#244390");
+	var pday_index2 = $(this).attr("data-index");
+	if($(".pschedule_box"+pday_index2).css("display")=='block'){
+		$(this).css("background-color","#4478FB"); 
+	}
+});
+
+$(".pday_list_body_inner").mouseleave(function(){
+		$(this).css("background-color","#28344B");
+	pday_index2 = $(this).attr("data-index");
+	if($(".pschedule_box"+pday_index2).css("display")=='block'){
+		$(this).css("background-color","#4478FB");
+	}
+	 
+});
+ 
 	var content2='';
-	var content3='';
+	
 	var allcont;
 	var marktitle;
+	var marknum;
 	var k =0;
 	var index =0;
-	var city_array =[];
+	/* var city_array =[]; */
 	//선택된 지역 지도에 다른마커로 표시하기
 	var data_kind ="";
 	
 	$(document).on("click",".big_btn",function() {
 		
-		
-				
+		check =true;
+		/* spot_counts = 0;	 */
 						
-			for(j=0;j<marker2.length;j++){
+			/* for(j=0;j<marker2.length;j++){
 				marker2[j].setMap(map);
 				
 		 	}
@@ -528,32 +742,15 @@ for (var i = 0; i < positions2.length; i ++) {
 			for(j=0;j<marker3.length;j++){
 				marker3[j].setMap(null);
 				
-		 	}
+		 	} */
 		
 		
-			
-		/* 
-		if(data_kind == 'city'){
-			
-			for(k=0; k<city_array.length;k++){
-				if($(this).attr("data-index")==k){
-					index = k;
-					break;
-				}
-			}
-			marktitle = city_array[index].city_ename;
-			
+		spot_counts = $("#pspot_list_length"+pday_index).val(); 
+		if(spot_counts==''){
+			spot_counts = 0;
 		}else{
-			
-			for(k=0; k<big_array.length;k++){
-				if($(this).attr("data-index")==k){
-					index = k;
-					break;
-				}
-			}
-			marktitle = big_array[index].big_ename;
+			spot_counts = parseInt($("#pspot_list_length"+pday_index).val());
 		}
-		 */
 		
 		for(k=0; k<spot_array.length;k++){
 			
@@ -562,10 +759,23 @@ for (var i = 0; i < positions2.length; i ++) {
 				break;
 			}
 		}
-		marktitle = spot_array[index].spot_num;
 		
-		for(i=0;i<positions.length;i++){
-			if(positions[i].num == marktitle){
+		marktitle = spot_array[index].spot_name;
+		marknum = spot_array[index].dp_no;
+		
+		/* for(i=0;i<positions.length;i++){
+			if(positions[i].num == marktitle && positions[i].dp_no == marknum){
+				check = false;
+				break;
+			}else{
+				
+				check=true;
+			}
+		} */
+		
+		for(i=0;i<spot_counts;i++){
+			
+			if($(".spot_nav_name"+pday_index+"_"+i).val() == marktitle && $(".dp_nav_no"+pday_index+"_"+i).val() == marknum){
 				check = false;
 				break;
 			}else{
@@ -575,32 +785,8 @@ for (var i = 0; i < positions2.length; i ++) {
 		}
 		
 		if(check){
-			
-			/* if(data_kind == 'big'){
-				positions.push({
-					day : 2,
-					name:big_array[index].big_name,
-			        title: big_array[index].big_ename ,
-			        no:big_array[index].big_no,
-			        xlocation :big_array[index].big_xlocation,
-			        ylocation :big_array[index].big_ylocation,
-			        latlng: new daum.maps.LatLng(big_array[index].big_xlocation, big_array[index].big_ylocation)
-			    });
-			}else{
-					positions.push({
-					day : 2,
-					name: city_array[index].city_name,
-			        title:  city_array[index].city_ename ,
-			        no : city_array[index].city_no,
-			        xlocation : city_array[index].city_xlocation,
-			        ylocation : city_array[index].city_ylocation,
-			        latlng: new daum.maps.LatLng(city_array[index].city_xlocation, city_array[index].city_ylocation)
-			    });
-				
-				
-			} */
-			
-			positions.push({
+			index_array.push(index);
+			/* positions.push({
 				
 				dp_no : spot_array[index].dp_no,
 				name: spot_array[index].spot_name,
@@ -610,10 +796,10 @@ for (var i = 0; i < positions2.length; i ++) {
 		        ylocation : spot_array[index].spot_ylocation,
 		        latlng: new daum.maps.LatLng(spot_array[index].spot_xlocation, spot_array[index].spot_ylocation)
 			 });
+			 */
 			
 			
-			
-			for(i=0; i<positions.length;i++){
+			/* for(i=0; i<positions.length;i++){
 				
 				if(i>0 && i<positions.length){
 					content2 += '<div class="pspot_nav_inner_line">';
@@ -630,13 +816,43 @@ for (var i = 0; i < positions2.length; i ++) {
 				content2 += '<div class="pspot_nav_inner_day">';
 				content2 += '</div></div></div>'
 				
-			} 
-		
+				content2 +=	'<input type="hidden" class="dp_nav_no'+index+"_"+i+'" value="'+positions[i].dp_no+'">'
+				content2 += '<input type="hidden" class="spot_nav_num'+index+"_"+i+'" value="'+positions[i].num+'">'
+				content2 += '<input type="hidden" class="spot_nav_name'+index+"_"+i+'" value="'+positions[i].name+'">'
+				content2 += '<input type="hidden" class="spot_nav_xloaction'+index+"_"+i+'" value="'+positions[i].xloaction+'">'
+				content2 += '<input type="hidden" class="spot_nav_yloaction'+index+"_"+i+'" value="'+positions[i].yloaction+'">'
+				
+				
+			}  */
+			if(spot_counts>0){
+				content2 += '<div class="pspot_nav_inner_line pspot_nav_line'+pday_index+"_"+spot_counts+'">';
+				content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png"></div>';
+			}
 			
-				alert(content2);
-				$("#schedule_list"+pday_index).html(content2);
-				content2="";
-			addMark();
+			content2 += '<div class="pspot_nav_inner nav_inner'+pday_index+"_"+spot_counts+'">';
+			content2 += '<div class="pspot_nav_inner_box">' ;
+			content2 += '<div class="pspot_nav_inner_img nav_close'+pday_index+"_"+spot_counts+'" data-index="'+spot_counts+'">';
+			content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png"></div>';
+			content2 += '<div class="pspot_nav_inner_name">';
+			
+			content2 += spot_array[index].spot_name+'</div>';
+			content2 += '<div class="pspot_nav_inner_day">';
+			
+			content2 +=	'<input type="hidden" class="dp_nav_no'+pday_index+"_"+spot_counts+'" value="'+spot_array[index].dp_no+'">'
+			content2 += '<input type="hidden" class="spot_nav_num'+pday_index+"_"+spot_counts+'" value="'+spot_array[index].spot_num+'">'
+			content2 += '<input type="hidden" class="spot_nav_name'+pday_index+"_"+spot_counts+'" value="'+spot_array[index].spot_name+'">'
+			content2 += '<input type="hidden" class="spot_nav_xloaction'+pday_index+"_"+spot_counts+'" value="'+spot_array[index].spot_xlocation+'">'
+			content2 += '<input type="hidden" class="spot_nav_yloaction'+pday_index+"_"+spot_counts+'" value="'+spot_array[index].spot_ylocation+'">'
+			content2 += '<input type="hidden" class="spot_nav_index_num'+pday_index+"_"+spot_counts+'" value="'+index+'">'
+			
+			content2 += '</div></div></div>'
+				
+			spot_counts = spot_counts+1;
+			$("#pspot_list_length"+pday_index).val(spot_counts);
+				
+			$("#schedule_list"+pday_index).append(content2);
+			content2="";
+			addMark(index);
 			
 		}
 	});
@@ -648,18 +864,30 @@ for (var i = 0; i < positions2.length; i ++) {
 		
 		var index = $(this).attr("data-index");
 		
-		positions.splice(index,1);
+		/* positions.splice(index,1); */
 		
+		spot_counts = Number($("#pspot_list_length"+pday_index).val());
 		
+		/* index_array=[];
+		if(spot_counts>0){
+			for(i=0;i<spot_counts;i++){
+				index_array.push(i);
+			}
+		} */
 		
 		
 		for(j=0;j<marker.length;j++){
 			marker[j].setMap(null);
 			
 		}
+		/* for(j=0;j<marker2.length;j++){
+			marker2[j].setMap(null);
+			
+		} */
+		
 		
 			
-			for(i=0; i<positions.length;i++){
+		/* 	for(i=0; i<positions.length;i++){
 				
 				if(i>0&&i<positions.length){
 					content2 += '<div class="pspot_nav_inner_line">';
@@ -675,15 +903,93 @@ for (var i = 0; i < positions2.length; i ++) {
 				content2 += positions[i].name+'</div>';
 				content2 += '<div class="pspot_nav_inner_day">';
 				content2 += '</div></div></div>';
-
+				
+				content2 +=	'<input type="hidden" class="dp_no'+index+"_"+i+'" value="'+positions[i].dp_no+'">'
+				content2 += '<input type="hidden" class="spot_num'+index+"_"+i+'" value="'+positions[i].num+'">'
+				content2 += '<input type="hidden" class="spot_name'+index+"_"+i+'" value="'+positions[i].name+'">'
+				content2 += '<input type="hidden" class="spot_xloaction'+index+"_"+i+'" value="'+positions[i].xloaction+'">'
+				content2 += '<input type="hidden" class="spot_yloaction'+index+"_"+i+'" value="'+positions[i].yloaction+'">'
 				
 			}
 			
+			content2 += '<input type="text" value="'+positions.length+'" id="pspot_list_length'+positions[index].dp_no+'">';
+			 */
+			 
+		/* if(spot_counts>0){
+			content2 += '<div class="pspot_nav_inner_line">';
+			content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png"></div>';
+		}
+		
+		content2 += '<div class="pspot_nav_inner nav_inner'+spot_counts+'">';
+		content2 += '<div class="pspot_nav_inner_box">' ;
+		content2 += '<div class="pspot_nav_inner_img nav_close'+spot_counts+'" data-index="'+spot_counts+'">';
+		content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png"></div>';
+		content2 += '<div class="pspot_nav_inner_name">';
+		
+		content2 += spot_array[index].spot_name+'</div>';
+		content2 += '<div class="pspot_nav_inner_day">';
+		content2 += '</div></div></div>'
+		
+		content2 +=	'<input type="hidden" class="dp_nav_no'+index+"_"+spot_counts+'" value="'+spot_array[index].dp_no+'">'
+		content2 += '<input type="hidden" class="spot_nav_num'+index+"_"+spot_counts+'" value="'+spot_array[index].spot_num+'">'
+		content2 += '<input type="hidden" class="spot_nav_name'+index+"_"+spot_counts+'" value="'+spot_array[index].spot_name+'">'
+		content2 += '<input type="hidden" class="spot_nav_xloaction'+index+"_"+spot_counts+'" value="'+spot_array[index].spot_xloaction+'">'
+		content2 += '<input type="hidden" class="spot_nav_yloaction'+index+"_"+spot_counts+'" value="'+spot_array[index].spot_yloaction+'">'
 			
-			
+		spot_counts +=1;
+		$("#pspot_list_length"+spot_array[index].dp_no).val(spot_counts); */
+		
+				/* $("div").remove(".nav_inner"+pday_index+"_"+index+", .pspot_nav_line"+pday_index+"_"+index); */
+				
+				
+				$("#schedule_list"+pday_index).html("");
+				
+				
+				index_array.splice(index,1);
+				
+				spot_counts = spot_counts-1;
+				
+				for(i=0;i<spot_counts;i++){
+					
+					if(i>0){
+						content2 += '<div class="pspot_nav_inner_line pspot_nav_line'+pday_index+"_"+i+'">';
+						content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png"></div>';
+					}
+					
+					content2 += '<div class="pspot_nav_inner nav_inner'+pday_index+"_"+i+'">';
+					content2 += '<div class="pspot_nav_inner_box">' ;
+					content2 += '<div class="pspot_nav_inner_img nav_close'+pday_index+"_"+i+'" data-index="'+i+'">';
+					content2 += '<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png"></div>';
+					content2 += '<div class="pspot_nav_inner_name">';
+					
+					content2 += spot_array[index_array[i]].spot_name+'</div>';
+					content2 += '<div class="pspot_nav_inner_day">';
+					
+					content2 +=	'<input type="hidden" class="dp_nav_no'+pday_index+"_"+i+'" value="'+spot_array[index_array[i]].dp_no+'">'
+					content2 += '<input type="hidden" class="spot_nav_num'+pday_index+"_"+i+'" value="'+spot_array[index_array[i]].spot_num+'">'
+					content2 += '<input type="hidden" class="spot_nav_name'+pday_index+"_"+i+'" value="'+spot_array[index_array[i]].spot_name+'">'
+					content2 += '<input type="hidden" class="spot_nav_xloaction'+pday_index+"_"+i+'" value="'+spot_array[index_array[i]].spot_xlocation+'">'
+					content2 += '<input type="hidden" class="spot_nav_yloaction'+pday_index+"_"+i+'" value="'+spot_array[index_array[i]].spot_ylocation+'">'
+					content2 += '<input type="hidden" class="spot_nav_index_num'+pday_index+"_"+i+'" value="'+index_array[i]+'">'
+					
+					content2 += '</div></div></div>'
+						
+				}
+				
+				/* if((spot_counts) != index){
+					index_array=[];
+					if(spot_counts>0){
+						for(i=0;i<spot_counts;i++){
+							index_array.push(i);
+						}
+					}
+				} */
+				
 				$("#schedule_list"+pday_index).html(content2);
+				
+				$("#pspot_list_length"+pday_index).val(spot_counts);
 				content2="";
-			removeMark();
+				removeMark(index); 
 	})
 	
 	
@@ -712,9 +1018,9 @@ for (var i = 0; i < positions2.length; i ++) {
 
 
 //==============================================================================================
-function removeMark(){
+function removeMark(index){
 	var imageSrc = "http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-	
+	positions.splice(index,1);
 	
 	for (i = 0; i < positions.length; i ++) {
 	
@@ -836,9 +1142,39 @@ function removeMark(){
 
 //===============================================================================================	
 
-function addMark(){
+function addMark(index){
+	spot_array=[];
+	spot_length=$("#spot_list").val();
+	
+	for(var a=0;a<spot_length;a++){
+		
+		spot_array.push({
+			dp_no : 0,
+            spot_num: $(".spot_num"+a).val(), 
+            spot_name: $(".spot_name"+a).val(),
+            city_no : $(".city_no"+a).val(),
+            spot_xlocation: $(".spot_xlocation"+a).val(),
+            spot_ylocation: $(".spot_ylocation"+a).val()
+        }); 
+		
+	}
+	for(a=0;a<spot_array.length;a++){
+		spot_array[a].dp_no = $(".daily_no"+pday_index).val();
+	}
+	
+	
 	imageSrc = "http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-	alert(positions.length);
+	
+	positions.push({
+		dp_no : spot_array[index].dp_no,
+		name: spot_array[index].spot_name,
+        title:  spot_array[index].spot_name ,
+        num : spot_array[index].spot_num,
+        xlocation : spot_array[index].spot_xlocation,
+        ylocation : spot_array[index].spot_ylocation,
+        latlng: new daum.maps.LatLng(spot_array[index].spot_xlocation, spot_array[index].spot_ylocation)
+	});
+	
 	for (i = 0; i < positions.length; i ++) {
 		
     // 마커 이미지의 이미지 크기 입니다
@@ -913,6 +1249,7 @@ function addMark(){
 
 
 }
+	
  // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
 if (drawingFlag) {
     
@@ -1263,9 +1600,52 @@ return content;
 			
 	});
 	
+	/* Data Submit */
+	$(document).on("click","#pday_mid_save_btn",function() {
 		
+		$("#plan_state").val(1);
+	});
+	$(document).on("click","#pday_final_save_btn",function() {
+		$("#plan_state").val(2);
+	});
+	
+	$(document).on("click", "#plan_save", function() {
+		var contents3='';
+		var day_length=$("#day_list").val();
+		for(i=0;i<day_length;i++){
+			var spot_list_length = $("#pspot_list_length"+i).val();
+			for(j=0;j<spot_list_length;j++){
+				if(i==0&&j==0){
+					contents3 +=  $(".dp_nav_no"+i+"_"+j).val()+","+$(".spot_nav_num"+i+"_"+j).val()+","+$(".spot_nav_name"+i+"_"+j).val()+","+$(".spot_nav_xloaction"+i+"_"+j).val()+","+$(".spot_nav_yloaction"+i+"_"+j).val();					
+				}else{
+					contents3 +=  ","+$(".dp_nav_no"+i+"_"+j).val()+","+$(".spot_nav_num"+i+"_"+j).val()+","+$(".spot_nav_name"+i+"_"+j).val()+","+$(".spot_nav_xloaction"+i+"_"+j).val()+","+$(".spot_nav_yloaction"+i+"_"+j).val();					
+				}
+			}
+		}
+		alert(contents3);
+		$("#all_plan_spot_list").val(contents3);
 		
-
+		contents3="";
+		var submit_check=false;
+		var plan_title = $("#plan_title").val();
+		if(plan_title != ""){
+			submit_check = true;
+		}
+		var radio_check = $(".radio_check").prop("checked");
+		var radio_check1 = $(".radio_check1").prop("checked");
+		var radio_check2 = $(".radio_check2").prop("checked");
+		var radio_check3 = $(".radio_check3").prop("checked");
+		radio_check = radio_check || radio_check1 || radio_check2 || radio_check3;
+		if(submit_check && radio_check){
+			alert("가능");
+			$("#frm").submit();
+			return true;
+		}else{
+			alert("불가능");
+			return false;
+		}
+	});
+	
 });
 //=======================================================================================
 
@@ -1305,11 +1685,12 @@ function closeNav() {
 		<ul	id="pday_list_body">
 			<c:forEach items="${daylist }" var="list" varStatus="i">
 				<li class="pday_list_body_inner pday_list_box${i.index }" data-index=${i.index }>
+					<input type="hidden" class="daily_no${i.index }" value="${list.daily_no }">
 					<input type="hidden" class="plan_no${i.index }" value="${list.plan_no }">
 					<input type="hidden" class="city_no${i.index }" value="${list.city_no }">
 					<input type="hidden" class="city_name${i.index }" value="${list.city_name }">
-					<input type="hidden" class="daily_xloaction${i.index }" value="${list.daily_xloaction }">
-					<input type="hidden" class="daily_yloaction${i.index }" value="${list.daily_yloaction }">
+					<input type="hidden" class="daily_xlocation${i.index }" value="${list.daily_xlocation }">
+					<input type="hidden" class="daily_ylocation${i.index }" value="${list.daily_ylocation }">
 					
 					<div class="pday_list_day">DAY${i.index+1}</div>
 					<div class="pday_list_week">${list.city_dailyWeek}</div>
@@ -1320,27 +1701,103 @@ function closeNav() {
 			</c:forEach>		
 		</ul>
 		<div id="pday_mid_save">
-			<div id="pday_mid_save_btn">임시 저장</div>
+			<div id="pday_mid_save_btn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">임시 저장</div>
 		</div>
 	</div>
 	
 	<div id="planner_schedule_box">
-		<c:forEach items="${daylist }" var="list" varStatus="i">
-			<div class="planner_schedule_box_inner pschedule_box${i.index}" data-index=${i.index }>
-				<div class="Pschedule_list_header" data-index=${i.index }>
-					<div class="Pschedule_list_header_inner" data-index=${i.index }>
-						DAY${i.index+1}
-						<span>│</span>
-						${list.daily_date }(${list.city_dailyWeek})
+		<form action="./planSave" method="post" id="frm">
+			<input type="hidden" name="days" value="${daylist.size() }">
+			<input type="hidden" value="${planDTO.plan_no}" name="plan_no">
+			<c:forEach items="${daylist }" var="list" varStatus="i">
+				<div class="planner_schedule_box_inner pschedule_box${i.index}" data-index=${i.index }>
+					<div class="Pschedule_list_header" data-index=${i.index }>
+						<div class="Pschedule_list_header_inner" data-index=${i.index }>
+							DAY${i.index+1}
+							<span>│</span>
+							${list.daily_date }(${list.city_dailyWeek})
+						
+						</div>
+					</div>
+						<input type="hidden" id="pspot_list_length${i.index}">
+					<div class="Pschedule_list_body" id="schedule_list${i.index}" data-index=${i.index }>
 					
 					</div>
 				</div>
-				<div class="Pschedule_list_body" id="schedule_list${i.index}" data-index=${i.index }>
-					
-				</div>
+			</c:forEach>
+			
+			<div id="pday_final_save">
+				<div id="pday_final_save_btn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">완료</div>
 			</div>
-		</c:forEach>
+			
+			
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content" tabindex="1">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">일정 만들기</h4>
+			      </div>
+			      <div class="modal-body">
+			      <input type="hidden" name="state" id="plan_state">
+			        <table id="plan_modal_table">
+			        	<tr>
+			        		<td class="plan_modal_table_title">여행 제목</td><td><input type="text" id="plan_title" name="plan_name"></td>		
+			        	</tr>
+			        	<tr>
+			        		<td class="plan_modal_table_title">출발일</td><td><input class="box pri" type="text" name="s_date" readonly="readonly" id="datepicker" value="${daylist['0'].daily_date }"></td>		
+			        	</tr>
+			        	
+			        	<tr>
+			        		<td class="plan_modal_table_title">여행 테마</td>
+			        		<td>
+			        			<div class="plan_thema_box">
+			        				<div class="plan_thema_radio">
+			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_family.gif"></div>
+			        					<div class="plan_thema_word">가족</div>
+			        				</div>			        			
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="1" class="radio_check"></div>
+			        			</div>
+			        			<div class="plan_thema_box">
+			        				<div class="plan_thema_radio">
+			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_frends.gif"></div>
+			        					<div class="plan_thema_word">친구</div>
+			        				</div>			        			
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="2" class="radio_check1"></div>
+			        			</div>
+			        			<div class="plan_thema_box">
+			        				<div class="plan_thema_radio">
+			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_couple.gif"></div>
+			        					<div class="plan_thema_word">커플</div>
+			        				</div>			        			
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="3" class="radio_check2"></div>
+			        			</div>
+			        			<div class="plan_thema_box">
+			        				<div class="plan_thema_radio">
+			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_alone.gif"></div>
+			        					<div class="plan_thema_word">나홀로</div>
+			        				</div>			        			
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="4" class="radio_check3"></div>
+			        			</div>
+			        			<div class="clear"></div>
+			        		</td>		
+			        	</tr>
+			        </table>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			        <button type="button" class="btn btn-primary" id="plan_save">저장하기</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<input type="hidden" id="all_plan_spot_list" name="all_plan_list">
+		</form>
+			
+			
 	</div>
+	
 </div>
 
 

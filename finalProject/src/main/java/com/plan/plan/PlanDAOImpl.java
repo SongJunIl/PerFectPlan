@@ -11,6 +11,7 @@ import com.plan.big.BigDTO;
 import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
+import com.plan.daySpot.DaySpotDTO;
 import com.plan.spot.SpotDTO;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
@@ -114,5 +115,27 @@ public class PlanDAOImpl implements PlanDAO {
 	public List<SpotDTO> get_pspotList(int city_no) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"get_pspotList", city_no);
+	}
+	
+	//=======planDTO 최종 및 임시 저장==============================================================
+	@Override
+	public void plan_save_update(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"plan_save_update", planDTO);
+	}
+	
+	
+	//=======dayPlanDTO 없데이트 시키기=============================================================
+	@Override
+	public void get_daily_update(DayPlanDTO dayPlanDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"get_daily_update", dayPlanDTO);
+	}
+	
+	//=======dayspotDTO insert 시키기=============================================================
+	@Override
+	public void daySpot_insert(DaySpotDTO daySpotDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+"daySpot_insert", daySpotDTO);
 	}
 }

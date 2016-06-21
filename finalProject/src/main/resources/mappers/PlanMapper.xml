@@ -46,6 +46,12 @@
   		insert into plan values(plan_seq.nextval,'mamamoo',null,#{s_date},#{f_date},0,null,0,0)
   	</insert>
   	
+  	<!-- plan DB 임시저장, 중간저장으로 업데이트하기 -->
+  	<update id="plan_save_update" parameterType="com.plan.plan.PlanDTO">
+  		update plan set plan_name=#{plan_name}, s_date = #{s_date}, f_date = #{f_date}, thema = #{thema}, state=#{state} where plan_no = #{plan_no}
+  	</update>
+  	
+  	
   	<!-- plan DB No 가져오기 -->
   	<select id="get_plan_no" resultType="java.lang.Integer">
 		  	select Max(plan_no) from plan
@@ -54,7 +60,7 @@
   	<!-- dayPlan DB insert for문 -->
   	<insert id="dayPlan_insert" parameterType="com.plan.dayPlan.DayPlanDTO">
 	  	
-  			insert into dailyplan values(dailyplan_seq.nextval,#{plan_no},#{daily_date},#{city_no},#{daily_xloaction},#{daily_yloaction})
+  		insert into dailyplan values(dailyplan_seq.nextval,#{plan_no},#{daily_date},#{city_no},#{daily_xlocation},#{daily_ylocation})
 	  	
 	 </insert>
 	 
@@ -73,7 +79,14 @@
 	 	select * from spot where city_no=#{city_no}
 	 </select>
 	 
+	 <!-- daily date, daily week 업데이트 -->
+	 <update id="get_daily_update" parameterType="com.plan.dayPlan.DayPlanDTO">
+	 	update dailyplan set daily_date=#{daily_date} where plan_no=#{plan_no} and daily_no=#{daily_no}
+	 </update>
 	 
-	 
+	 <!-- dailyspot DB에 저장시키기 -->
+	 <insert id="daySpot_insert" parameterType="com.plan.daySpot.DaySpotDTO">
+	 	insert into dailyspot values(dailyspot_seq.nextval,#{dp_no},#{spot_name},#{spot_xlocation},#{spot_ylocation},#{plan_no},#{spot_no})
+	 </insert>
 	 
   </mapper>

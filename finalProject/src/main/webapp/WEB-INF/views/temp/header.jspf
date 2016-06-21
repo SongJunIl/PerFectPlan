@@ -74,16 +74,9 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll" id="p_header_logo">
                 <!-- 프로젝트 로고 -->
-<<<<<<< HEAD
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-<<<<<<< HEAD
-=======
-                <a class="navbar-brand page-scroll" href="./"><img src="/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
+
                 <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
-=======
-                <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
->>>>>>> refs/heads/final1
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -94,47 +87,24 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#services"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
-<<<<<<< HEAD
-=======
+
                     </li>	
                     <li>
                         <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
                     </li>
+  
                     <li>
-<<<<<<< HEAD
-                        <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
-=======
                         <a class="page-scroll" href="#About"><span id="p_How" class="p_span_title_font" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
                     </li>
-                    <li>
-<<<<<<< HEAD
-                        <a class="page-scroll" href="#About"><span id="p_How" class="p_span_title_font" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
-=======
-                        <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
-                    </li>
-<<<<<<< HEAD
                     <li>
                         <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
                     </li>
                     
-                    <li class="nav_li_log" id="nav_li_log1">
-                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
-                    </li>
-=======
                     <c:if test="${ not empty member }">
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
-                    <li class="nav_li_log">
-<<<<<<< HEAD
-                        <a class="page-scroll" href="#notice"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
-                    </li>
+
                     <li class="nav_li_log">
                         <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
-=======
-                        <a class="page-scroll" href="member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
+                        <a class="page-scroll" href="member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
                     </li>
                     <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
                     <li class="nav_li_log">
@@ -218,8 +188,7 @@
 <!--join Modal -->
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-<<<<<<< HEAD
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">join</h4>
@@ -252,7 +221,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save</button>
       </div>
-=======
+=
       <form action="member/join" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -287,7 +256,7 @@
 		      </div>
 		</form>
     
->>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
+
     </div>
   </div>
 </div>

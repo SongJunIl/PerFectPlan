@@ -1,20 +1,30 @@
 package com.plan.spot;
 
 public class SpotDTO {
-	private int no;
-	private String big_name;
-	private String city_name;
+	private int num;
 	private String spot_name;
+	private String big_name;
+	private int city_no;
 	private String contents;
 	private double spot_xlocation;
 	private double spot_ylocation;
 	private int counts;
 	private int thema;
-	public int getNo() {
-		return no;
+	private String spot_img;
+	private int ref;
+	
+	
+	public int getNum() {
+		return num;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getSpot_name() {
+		return spot_name;
+	}
+	public void setSpot_name(String spot_name) {
+		this.spot_name = spot_name;
 	}
 	public String getBig_name() {
 		return big_name;
@@ -22,17 +32,11 @@ public class SpotDTO {
 	public void setBig_name(String big_name) {
 		this.big_name = big_name;
 	}
-	public String getCity_name() {
-		return city_name;
+	public int getCity_no() {
+		return city_no;
 	}
-	public void setCity_name(String city_name) {
-		this.city_name = city_name;
-	}
-	public String getSpot_name() {
-		return spot_name;
-	}
-	public void setSpot_name(String spot_name) {
-		this.spot_name = spot_name;
+	public void setCity_no(int city_no) {
+		this.city_no = city_no;
 	}
 	public String getContents() {
 		return contents;
@@ -64,6 +68,19 @@ public class SpotDTO {
 	public void setThema(int thema) {
 		this.thema = thema;
 	}
+	public String getSpot_img() {
+		return spot_img;
+	}
+	public void setSpot_img(String spot_img) {
+		this.spot_img = spot_img;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	
 	
 	
 }

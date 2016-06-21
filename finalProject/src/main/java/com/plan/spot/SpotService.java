@@ -27,6 +27,8 @@ public interface SpotService {
 	public void spotReplyUpdate(ReplyDTO replyDTO);
 	
 	public void category(int curPage,Model model,String type,String category);
+	
+	public void spotReplyUpdateForm(Model model,int num,int ref);
 
 	
 	

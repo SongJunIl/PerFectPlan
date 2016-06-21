@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-		 <c:forEach items="${list}" var="dto"> 
+   <c:forEach items="${list}" var="dto"> 
     <tr>
         <th scope="row" width="100%" height="100%"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="100%" height="210px"></a></th>
         <td ><a href="spotView?num=${dto.num}">${dto.spot_name}</a>

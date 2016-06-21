@@ -45,7 +45,6 @@ public class SpotDAOImpl implements SpotDAO {
 		List<SpotDTO> ar = sqlSession.selectList(SPACENAME+"search",spotSearchType);
 		return ar;
 	}
-	
 	@Override
 	public void spotUpdate(SpotDTO spotDTO) throws Exception {
 

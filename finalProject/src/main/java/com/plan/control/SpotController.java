@@ -55,7 +55,9 @@ public class SpotController {
 	}
 	
 	@RequestMapping(value = "/spotReplyUpdate",method=RequestMethod.GET)
-	public void replyUpdateForm(){}
+	public void replyUpdateForm(Model model,@RequestParam("num") int num,@RequestParam("ref") int ref){
+		spotService.spotReplyUpdateForm(model,num,ref);
+	}
 	
 	@RequestMapping(value="/spotReplyUpdate",method=RequestMethod.POST)
 	public String spotReplyUpdate(@ModelAttribute ReplyDTO replyDTO,@RequestParam("num") int num,@RequestParam("ref") int ref){

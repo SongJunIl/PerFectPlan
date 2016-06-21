@@ -178,7 +178,6 @@ public class SpotServiceImpl implements SpotService {
 			mp.setCategory(category);
 	
 		if(category.equals("1")){
-		
 			model.addAttribute("list",spotDAO.all_category(mp));
 		}else if(category.equals("2")){
 		
@@ -192,5 +191,11 @@ public class SpotServiceImpl implements SpotService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public void spotReplyUpdateForm(Model model, int num, int ref) {
+		model.addAttribute("num",num);
+		model.addAttribute("ref",ref);
+		
 	}
 }

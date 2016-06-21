@@ -35,6 +35,11 @@ public class PlanController {
 	@Autowired
 	private PlanService planService;
 	
+	@RequestMapping(value="/planView")
+	public void planView(){
+		
+	}
+	
 	@RequestMapping(value="/planSave", method=RequestMethod.POST)
 	public void planSave(@RequestParam("all_plan_list") String all_plan,@ModelAttribute PlanDTO planDTO,@RequestParam("days") String days,Model model){
 		/*System.out.println(all_plan);

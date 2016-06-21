@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <style>
 <%@include file="/resources/css/header.css" %>
-
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
 </style>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -256,7 +255,8 @@ $(function () {
                     <c:if test="${ not empty member || not empty admin }">
                    
                     <li class="nav_li_log">
-                        <a class="page-scroll" id="p_header_margin" data-toggle="modal" data-target="#p_imgmodal"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"></a>
+                        <a class="page-scroll" id="p_header_margin" data-toggle="modal" data-target="#p_imgmodal">
+                        <img  src="${pageContext.request.contextPath}/memberimg/${member.m_img}" style="width: 50px; height: 50px; border-radius: 50%; background-color: green; cursor: pointer;"></a>
                     </li>
                     <li class="nav_li_log">
                         <a class="page-scroll" href="${pageContext.request.contextPath}/member/plan"><img src="${pageContext.request.contextPath}/resources/img/login/plan.png" data-toggle="tooltip" data-placement="bottom" title="여행 일정"></a>
@@ -410,29 +410,35 @@ $(function () {
     
 
 <!-- img modal -->
-			<div class="modal fade bs-example-modal-sm-idnpw" id="p_imgmodal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-			  <div class="modal-dialog modal-sm">
-			    <div class="modal-content" id="p_modal_img">
-			      		<div id="p_img_form">
-			      			
-							  <div class="form-group">
-								    <label for="exampleInputName2">가입된 이메일로 id & pw 찾기</label>
-							    <input type="text" value="${member.no }">
-							  </div>
-							  <div class="form-group p_idnpw_margin">
-							   <p id="p_img_title">Image Upload</p>
-							    <input type="file" class="form-control" id="file" name="file" placeholder="이메일을 입력하세요.">
-							    
-							  </div>
-			      		
-			      		</div>
-			    </div>
-			     <div class="modal-footer" id="p_img_footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-default p_img_margin" id="p_img_send">등록</button>
+<div class="modal fade" id="p_imgmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="p_img_md_1">
+      <form id="p_joinform" method="post">
+		     	<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Image Upload</h4>
+     			 </div>
+		      <div class="modal-body">
+		      		<div id="p_mdjoin_total">
+		      			<div class="input-group">
+						  <span class="input-group-addon" id="p_join_addon1">IMG</span>
+							<input type="file" class="form-control" id="p_imgfile" name="file" placeholder="파일을 찾으세요.">
+						</div><div id="p_idcheckresult" class="p_img_check"></div><br>
+						<div id="p_imgcheckresult">
+							<img  src="${pageContext.request.contextPath}/memberimg/${member.m_img}" style="width: 50px; height: 50px; border-radius: 50%; background-color: green; margin-left: 115px; margin-top: 30px;">
+						</div>
+		      		</div>
 		      </div>
-			  </div>
-			</div>
+		      <div class="modal-footer" id="p_joinmd_footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" id="p_imgbtn" >Save</button><!-- onclick="go()" -->
+		      </div>
+		</form>
+    
+    </div>
+  </div>
+</div>
+		
     
     
     

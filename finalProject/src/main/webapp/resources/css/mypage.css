@@ -1,7 +1,7 @@
 <style>
 		#p_my_top{	height: 420px;	}	
 		#p_top_title{	height: 370px;	}
-		#p_top_menu{	height: 50px;   margin-top: 50px;}
+		#p_top_menu{	height: 50px;   margin-top: 195px;}
 		#p_header_top1{margin-bottom: 0px;}
 		
 		.p_top_menu_list{
@@ -141,7 +141,7 @@
 			
 			#p_qnanotice_con{margin: 60px auto; width: 455px;}
 
-
+			.p_home_body{ margin-top: 225px}
 
 
 

@@ -485,6 +485,7 @@ $(function(){
 			        <h4 class="modal-title" id="myModalLabel">질문 하기</h4>
      			</div>
      				<input type="hidden" name="id" value="${member.id}">
+     				<input type="hidden" name="m_img" value="${member.m_img}">
 					<input type="text" id="p_qna_mdtitle" name="title" placeholder="제목을 입력하세요.">
 							<div class="modal-body">
 					<textarea name="contents" id="SmartEditor" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>

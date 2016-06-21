@@ -131,7 +131,7 @@
 			#p_header_margin{margin-left: 340px;}
 			
 			
-			.p_qna_d_userimg{width: 80px; height: 80px; background-color: lime; display: inline-block; margin-left: 10px;  margin-top: 10px;}
+			.p_qna_d_userimg{width: 80px; height: 80px; /* background-color: lime;  */display: inline-block; margin-left: 10px;  margin-top: 10px;}
 			.p_qna_d_title{vertical-align:bottom; margin-bottom:20px; margin-left:15px; height:40px; width:555px;
     						font-size:27px;	  display:inline-block;}
 			.p_qna_d_contents{border-top: black 1px solid;border-bottom: black 1px solid; margin-top:10px; height: 152px;  } 

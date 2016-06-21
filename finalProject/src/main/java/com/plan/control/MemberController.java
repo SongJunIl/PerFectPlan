@@ -37,6 +37,16 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/logincheck",method = RequestMethod.POST)
+	public void logincheck(@ModelAttribute MemberDTO mdto,Model model){
+		mdto=memberService.login(mdto);
+		if(mdto==null){
+			model.addAttribute("message", "no");
+		}else{
+			model.addAttribute("message", "yes");
+		}
+	}
+	
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public void login(@ModelAttribute MemberDTO mdto, Model model){

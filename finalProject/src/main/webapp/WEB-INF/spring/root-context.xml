@@ -9,7 +9,7 @@
 		
 	<bean id="dataSoruce" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@192.168.152.134:1521:xe"></property>
+		<property name="url" value="jdbc:oracle:thin:@192.168.159.142:1521:xe"></property>
 		<property name="username" value="perple"></property>
 		<property name="password" value="perple"></property>
 	</bean>

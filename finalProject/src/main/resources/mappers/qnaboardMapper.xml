@@ -5,7 +5,7 @@
   
   <mapper namespace="qnaboardMapper">
   	<insert id="qna_write">
-  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, 0,0)
+  		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, #{m_img},0)
   	</insert>
   
   	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
@@ -30,5 +30,16 @@
 	<update id="replyqna_replyupdate" parameterType="com.plan.qna.QnaDTO">
 		update qna_board set qna_check=1 where com_no=#{com_no}	 	
   	</update>
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
+	  	
 	  	
   </mapper>

@@ -2,18 +2,11 @@
 <html>
 <%@ include file="/WEB-INF/views/temp/script.jspf" %>
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
-	<%=session.getAttribute("admin") %>
 
 <head>
 
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-<h1> ParkParkParkParkParkParkParkParkParkParkParkPark</h1>
-
-<P>  The time on the server is ${serverTime}.Song </P>
 
 <head>
 
@@ -23,7 +16,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +47,7 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-lead-in">Welcome To  Perfect Plan!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
                 <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>

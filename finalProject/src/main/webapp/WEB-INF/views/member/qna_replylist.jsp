@@ -15,7 +15,6 @@ $('.collapse').bind("pageshow",function(event){
 
 $(function(){
 	$(".p_qna_view_btn_1").click(function () {
-		alert("요요");
 		var i = $(".p_qnalist_id").val();
 		var n = $(".p_qnalist_no").val();
 	

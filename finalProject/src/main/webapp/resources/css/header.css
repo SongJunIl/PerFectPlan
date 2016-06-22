@@ -5,7 +5,7 @@
 			background-color: black;
 		}
 		#p_nav_bar{width: 1025px;}
-		#main-body{height: 1700px; }		
+		#main-body{}		
 		#nav_li_log1{margin-left: 250px;}
 		.input-group-addon:first-child{width: 65px;}
 		

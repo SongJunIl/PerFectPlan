@@ -471,7 +471,7 @@ $(function(){
 				
 			</div>
 			
-			
+		
 	  </div>
 	  
 	  
@@ -553,6 +553,7 @@ $(function(){
 	 
 	 
 	</div>
+	
 </div>
 
 
@@ -584,7 +585,6 @@ $(function(){
     
     </div>
   </div>
-</div>
 
 <!--QnA Replywrite Modal -->
 <div class="modal fade" id="p_qnaReplymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -616,6 +616,5 @@ $(function(){
 
 
 
-</div>
+<%@ include file="/WEB-INF/views/temp/footer.jspf" %>	
 </body>
-<%@ include file="/WEB-INF/views/temp/footer.jspf" %>

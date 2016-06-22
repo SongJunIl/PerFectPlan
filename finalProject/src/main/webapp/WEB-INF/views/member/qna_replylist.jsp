@@ -54,7 +54,8 @@ $(".p_qna_view_btn_2").click(function () {
 					<div class="p_qna_list">
 							<div id="p_qna_body_list" class="p_body_div_1">
 								<!-- <div id="p_qna_list_img"></div> -->
-										<div class="p_qna_d_userimg"><span>${i.m_img}</span></div>
+										<div class="p_qna_d_userimg"><span><img src="${pageContext.request.contextPath}/resources/memberimg/${i.m_img}"
+										style="width: 50px; height: 50px; border-radius: 50%;"></span></div>
 										<input type="hidden" class="p_qnalist_nono" value="${i.com_no}"> 
 										<div class="p_qna_d_title">&nbsp;&nbsp;<span>${i.title}</span>
 										<div class="p_qna_d_id"><span>작성자:&nbsp;&nbsp;${i.id}</span></div>

@@ -498,13 +498,13 @@ $(function(){
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_2">PW</span>
-  										<input type="password" class="form-control" id="p_up_pwcheck" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
+  										<input type="password" class="form-control" id="p_up_pwcheck" name="pw"  aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_3">Name</span>
-  										<input type="text" class="form-control" id="p_up_namecheck" placeholder="name" name="name" value="${member.name}"  aria-describedby="basic-addon1">
+  										<input type="text" class="form-control" id="p_up_namecheck"  name="name" value="${member.name}"  aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>

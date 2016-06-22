@@ -32,6 +32,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
+	public int imgipload(MemberDTO memberDTO) throws Exception {
+		System.out.println(memberDTO.getM_img());
+		System.out.println(memberDTO.getNo());
+		return sqlsession.update(namespace+"imgupload", memberDTO);
+	}
+	
+	@Override
 	public void delete(int no) throws Exception {
 		sqlsession.delete(namespace+"delete",no);
 	}

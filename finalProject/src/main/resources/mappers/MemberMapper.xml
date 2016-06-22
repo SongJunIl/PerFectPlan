@@ -15,6 +15,10 @@
   	<update id="update" parameterType="com.plan.member.MemberDTO">
 		update member set pw=#{pw},name=#{name},email=#{email} where no=#{no}   		
   	</update>
+  	
+  	<update id="imgupload" parameterType="com.plan.member.MemberDTO">
+  		update member set m_img=#{m_img} where no=#{no}
+  	</update>
   
   	<delete id="delete" parameterType="com.plan.member.MemberDTO">
   		delete member where no=#{no}

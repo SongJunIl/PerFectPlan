@@ -1,16 +1,24 @@
 package com.plan.control;
 
+import java.io.File;
+import java.util.UUID;
+
+import javax.mail.Multipart;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.ha.backend.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
@@ -183,7 +191,24 @@ public class MemberController {
 	  qnaservice.replyqna_getreplyview(rqdto, model);
   }
   
+  @RequestMapping(value="/imgupload", method=RequestMethod.POST)
+  public String imgupload(@ModelAttribute MemberDTO memberDTO,MultipartFile file, Model model,HttpServletRequest request) throws Exception{
+	  String uploadPath =request.getSession().getServletContext().getRealPath("/resources/memberimg");
+	  String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
+	  memberDTO.setM_img(savedName);
+	  memberService.imgupload(memberDTO);
+	  request.getSession().setAttribute("member", memberDTO);
+	  return "redirect:/"; 
+ }
   
+  private String uploadFile(String orginalName, byte[] fileData, String uploadPath) throws Exception{
+	UUID uid = UUID.randomUUID();
+	String saveName = uid.toString()+"_"+orginalName;
+	File target = new File(uploadPath,saveName);
+	FileCopyUtils.copy(fileData, target);
+	return saveName;
+	  
+  }
   
   
   

@@ -13,6 +13,6 @@ public interface MemberService {
 	public void delete(int no);
 	public MemberDTO getid(MemberDTO mdto);
 	public MemberDTO getemail(MemberDTO mdto);
-
+	public int imgupload(MemberDTO memberDTO);
 	public MemberDTO getemailck(MemberDTO mdto,Model model);
 }

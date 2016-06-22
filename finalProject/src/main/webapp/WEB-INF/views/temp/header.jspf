@@ -313,8 +313,8 @@
 
 						<li class="nav_li_log"><a class="page-scroll"
 							id="p_header_margin" data-toggle="modal"
-							data-target="#p_imgmodal"> <c:if test="${member.m_img != 0 }"><img src="${pageContext.request.contextPath}/resources/memberimg/${member.m_img}"
-								style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;"></c:if><c:if test="${ member.m_img == 0 }"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"
+							data-target="#p_imgmodal"> <c:if test="${member.m_img!= null}"><img src="${pageContext.request.contextPath}/resources/memberimg/${member.m_img}"
+								style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;"></c:if><c:if test="${ member.m_img == null }"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"
 								style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;"></c:if></a>
 						</li>
 						<li class="nav_li_log"><a class="page-scroll"

@@ -1,8 +1,9 @@
 package com.plan.spot;
 
+
+import java.util.ArrayList;
+
 import org.springframework.ui.Model;
-
-
 
 public interface SpotService {
 
@@ -29,6 +30,8 @@ public interface SpotService {
 	public void category(int curPage,Model model,String type,String category);
 	
 	public void spotReplyUpdateForm(Model model,int num,int ref);
+	
+	public void crilbCount(Model model,int num);
 
 	
 	

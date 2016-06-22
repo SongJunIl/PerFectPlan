@@ -43,7 +43,7 @@
 	<context:component-scan base-package="com.plan.city"></context:component-scan>
 	<context:component-scan base-package="com.plan.control" />
 	<context:component-scan base-package="com.plan.qna"></context:component-scan>
-	
+	<context:component-scan base-package="com.plan.scrap"></context:component-scan>
 	
 	
 	

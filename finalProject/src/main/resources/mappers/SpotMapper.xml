@@ -102,4 +102,13 @@
     <select id="landmark_category" resultType="com.plan.spot.SpotDTO">
  	 select * from spot where thema=#{category}
   </select>
+  
+  <insert id="jim" parameterType="com.plan.scrap.ScrapDTO">
+  insert into jim values(jim_seq.nextVal,#{id},null,#{spot_name})
+  </insert>
+  
+  <select id="clibCount" resultType="java.lang.Integer">
+  	select count(*) from jim where spot_name=#{spot_name}
+  </select>
+  
 </mapper>

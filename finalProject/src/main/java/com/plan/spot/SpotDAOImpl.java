@@ -120,5 +120,10 @@ public class SpotDAOImpl implements SpotDAO {
 		return ar;
 	}
 	
+	@Override
+	public int crilbCount(String spot_name) throws Exception {
+		int result = sqlSession.selectOne(SPACENAME+"clibCount",spot_name);
+		return result;
+	}
 	
 }

@@ -132,13 +132,13 @@ table.type03 td {
     </thead>
   
     <table class="type03" id="list_all">
-   <c:forEach items="${list}" var="dto"> 
+   <c:forEach items="${list}" var="dto" varStatus="i"> 
     <tr>
         <th scope="row" width="100%" height="100%"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="100%" height="210px"></a></th>
         <td><a href="spotView?num=${dto.num}">${dto.spot_name}</a>
         <p><img  src="${pageContext.request.contextPath}/resources/img/btn/postion.png">&nbsp;&nbsp;${dto.spot_address}</p>
         <p>${dto.contents}</p><br>
-        <p><img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"></p>
+        <p><img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"> ${clibcount[i.index]}</p> 
         </td>
     </tr>
     

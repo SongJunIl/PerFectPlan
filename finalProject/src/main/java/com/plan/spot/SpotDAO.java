@@ -42,4 +42,6 @@ public interface SpotDAO {
 	public List<SpotDTO> spot_category(MakePage mp) throws Exception;
 	
 	public List<SpotDTO> landmark_category(MakePage mp) throws Exception;
+	
+	public int crilbCount(String spot_name) throws Exception;
 }

@@ -1,6 +1,8 @@
 package com.plan.spot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,16 +22,30 @@ public class SpotServiceImpl implements SpotService {
 	
 	@Override
 	public void list(int curPage, Model model, String type) {
+		List<SpotDTO> ar = null;
+		ArrayList<Integer> ar2 = new ArrayList<>() ;
+		HashMap<String ,Integer> clib = new HashMap<>();
 		try {
 			int totalList = spotDAO.totlaList();
 			MakePage mp = new MakePage(curPage,totalList);
 			mp.setType(type);
 			model.addAttribute("page",mp);
-			model.addAttribute("list",spotDAO.list(mp));
+			ar =spotDAO.list(mp);
+			model.addAttribute("list",ar);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		for(int i=0; i<ar.size(); i++){
+			try {
+			ar2.add(spotDAO.crilbCount(ar.get(i).getSpot_name()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("clibcount",ar2);
 		
 	}
 
@@ -196,6 +212,26 @@ public class SpotServiceImpl implements SpotService {
 	public void spotReplyUpdateForm(Model model, int num, int ref) {
 		model.addAttribute("num",num);
 		model.addAttribute("ref",ref);
+		
+	}
+	
+	@Override
+	public void crilbCount(Model model,int num) {
+		HashMap<String ,Integer> clib = new HashMap<>();
+		
+		try {
+			SpotDTO spotDTO = spotDAO.spotView(num);
+			int result = spotDAO.crilbCount(spotDTO.getSpot_name());
+			
+			clib.put("clib", result);
+			
+			model.addAttribute("clib",clib);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 }

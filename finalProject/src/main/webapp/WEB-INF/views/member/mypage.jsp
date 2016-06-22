@@ -106,9 +106,93 @@ $(function(){
 	});	
 	
 	
+	$("#p_up_echeck").change(function () {
+		var e = $(this).val();
+		$.ajax({
+			type:"POST",
+			url:"${pageContext.request.contextPath}/member/email",
+			data:{
+					email:e
+				 },
+				 success: function (data){
+							$("#p_up_emailcheckresult").html(data); 	 
+				 }
+		});
+	});
+	
+	
+	$("#p_update_btn").click(function () {
+		
+		/* 공백 처리  */
+		
+		var joinpw = $('#p_up_pwcheck').val();			
+		var joinname = $('#p_up_namecheck').val();
+		var joinemail = $('#p_up_echeck').val();
+		
+		if (joinpw == '' || joinpw == null){
+			alert('pw를 입력하세요');
+			return;
+		}
+		
+		if (joinname == '' || joinname == null){
+			alert('name를 입력하세요');
+			return;
+		}
+		if (joinemail == '' || joinemail == null){
+			alert('email를 입력하세요');
+			return;
+		}
+		/* 이메일테스트  */
+		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		if(regex.test(joinemail) === false) {
+		 alert("잘못된 이메일 형식입니다.");
+		 return false;
+		} 
+		//-->
+		/* 회원가입 처리 */
+		/* alert($("#p_idok").val());
+		alert($("#p_idnotok").val());
+		alert($("#p_echeckok").val());
+		alert($("#p_echecknotok").val());  */
+		
+		  if($("#p_echeckok").val() ==2){	
+			var keep = 1;
+			/* 업데이트 진행*/
+		}else{
+			var keep = 2;
+			/* 회원가입 오류  */
+		}  
+	
+		 if(keep==1){
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/member/update",
+				data:{
+					pw:$("#p_up_pwcheck").val(),
+					name:$("#p_up_namecheck").val(),
+					email:$("#p_up_echeck").val()	
+				},
+				success: function () {
+					alert("수정 성공");
+					window.location.reload();
+				}
+			})
+		}else{
+			alert("입력 한 정보를 확인하세요.");
+		}
+		
+	});
+	
+	
+	
+	
+	
+	
 	
 	
 });
+	
+
 
 
 
@@ -408,31 +492,32 @@ $(function(){
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_1">ID</span>
-  										<input type="text" class="form-control" name="id" readonly="memberID" value="${member.id}" aria-describedby="basic-addon1">
+  										<input type="text" class="form-control"  name="id" readonly="memberID" value="${member.id}" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_2">PW</span>
-  										<input type="password" class="form-control" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
+  										<input type="password" class="form-control" id="p_up_pwcheck" name="pw" placeholder="PassWord" aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_3">Name</span>
-  										<input type="text" class="form-control" placeholder="name" name="name" value="${member.name}"  aria-describedby="basic-addon1">
+  										<input type="text" class="form-control" id="p_up_namecheck" placeholder="name" name="name" value="${member.name}"  aria-describedby="basic-addon1">
 											</div>
 									</td>
 								</tr>
 								<tr>
 									<td><div class="input-group p_myinfo_input"><span class="input-group-addon" id="p_addon_4" >Email</span>
-  										<input type="email" class="form-control" placeholder="Email" name="email" value="${member.email}" aria-describedby="basic-addon1">
+  										<input type="email" class="form-control" placeholder="Email" name="email" id="p_up_echeck"  value="${member.email}" aria-describedby="basic-addon1">
 											</div>
+											<div id="p_up_emailcheckresult">${echeck}</div>
 									</td>
 								</tr>
 								
 							</table>
-									<button type="submit" class="button button5" id="p_update_btn">수정 완료</button>
+									<button type="button" class="button button5" id="p_update_btn">수정 완료</button>
 							  </div>
 							</form>
 									<a href="${pageContext.request.contextPath}/member/mypage"><button class="button button3" id="p_updatecancel_btn">수정 취소</button></a><span>              </span>
@@ -445,7 +530,7 @@ $(function(){
 												 <input type="hidden" name="no" value="${member.no}">
 										      <br><br><span>정말로 탈퇴 하시겠습니까?</span><br><br><br>
 									  		  <button type="submit" class="button button3">예</button></a><span>              </span>
-										      <button class="button button5">아니오</button>
+										      <button class="button button5" data-dismiss="modal" >아니오</button>
 										     </form>	
 										    </div>	
 										  </div>

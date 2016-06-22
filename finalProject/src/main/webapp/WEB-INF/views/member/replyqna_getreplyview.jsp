@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="panel-group" id="p_replyqnaList">
 										
+										<div class="panel-group" id="p_replyqnaList">
 											<div class="panel-collapse collapse in">
 												<div class="p_collapse" id="${i.com_no}">
 													  	<div id="p_qna_body_list" class="p_body_div_1">

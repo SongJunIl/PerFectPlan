@@ -17,7 +17,6 @@ $(function(){
 	$(".p_qna_view_btn_1").click(function () {
 		var n = $(".p_qnalist_nono").val();
 		
-		
 		$.ajax({
 			type:"POST",
 			url:"${pageContext.request.contextPath}/member/replyqna_getreplyview",
@@ -25,6 +24,7 @@ $(function(){
 					qnalist_no:n,
 				 },
 				 success: function (result){
+					 			alert(result);
 							    $(".p_qna_body_1").html("");
 								$(".p_qna_body_1").html(result);
 				 },
@@ -76,22 +76,9 @@ $(function(){
 				      		</c:when>
 				      		<c:otherwise>
 				      		
-								<div class="p_body_div_1 p_qna_body_1" id="p_qna_body_list_contents">
-										<div class="panel-group" id="p_replyqnaList">
-											<div class="panel-collapse collapse in">
-												<div class="p_collapse" id="${i.com_no}">
-													  	<div id="p_qna_body_list" class="p_body_div_1">
-															<!-- <div id="p_qna_list_img"></div> -->
-															<input type="hidden" class="p_qnalist_id" value="${i.id}">
-															<input type="hidden" class="p_qnalist_no" value="${i.no}">
-															<div class="p_qna_d_userimg"><span>userimg</span></div>
-															<div class="p_qna_d_title"><span>title</span></div>
-															<div class="p_qna_d_contents"><span>contents</span></div>
-						      							</div>
-												</div>
-											</div>
-										</div>
-								</div>	
+								 <div class="p_body_div_1 p_qna_body_1" id="p_qna_body_list_contents">
+										
+								</div>	 
 				      		</c:otherwise>
 				      	</c:choose>	
 						</div>

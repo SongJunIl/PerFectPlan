@@ -17,10 +17,9 @@ $(function(){
 	$(".p_qna_view_btn_1").click(function () {
 		var i = $(".p_qnalist_id").val();
 		var n = $(".p_qnalist_no").val();
-	
 		$.ajax({
 			type:"POST",
-			url:"${pageContext.request.contextPath}/member/qna_replylist",
+			url:"${pageContext.request.contextPath}/member/replyqna_getreplyview",
 			data:{
 					id:i,
 					qnalist_no:n

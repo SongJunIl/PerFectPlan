@@ -94,8 +94,9 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void replyqna_getreplyview(ReplyQnaDTO rqdto,Model model) {
 		try {
-			qnadao.replyqna_view(rqdto);
-			model.addAttribute("replyqna", rqdto);
+			rqdto=qnadao.replyqna_view(rqdto);
+			model.addAttribute("replyqna", rqdto);	
+			System.out.println(rqdto.getTitle());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

@@ -51,7 +51,7 @@
   	</delete>  	
 	  	
 	<update id="qna_update" parameterType="com.plan.qna.QnaDTO">
-		update qna_board set title=#{title},contents=#{contents} where no=#{no}   		
+		update qna_board set title=#{title},contents=#{contents},m_img=#{m_img} where com_no=#{com_no}   		
   	</update>  	
 	  	
 	<delete id="replyqna_delete" parameterType="com.plan.qna.ReplyQnaDTO">

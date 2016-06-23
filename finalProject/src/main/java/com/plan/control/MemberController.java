@@ -89,12 +89,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/delete" ,method= RequestMethod.POST)
-	public String delete(int no,HttpSession session){
-		memberService.delete(no);
-		memberService.logout(session);
-		return "redirect:/";
-	}
+	
 	
 	@RequestMapping(value="/samrtEditor2Inputarea")
 	public String smartEditor2Inputarea(){
@@ -169,6 +164,17 @@ public class MemberController {
 
 	  qnaservice.qna_getview(curPage,model,id,type,page);
 	  
+  }
+  
+  @RequestMapping(value="/qna_listcheck",method=RequestMethod.POST)
+  public void qna_listcheck(@RequestParam(defaultValue="1")int curPage,Model model, String id,String type,int page){
+	  qnaservice.qna_getview(curPage, model, id, type, page);
+  }
+  
+  @RequestMapping(value="/qna_update",method=RequestMethod.POST)
+  public String qna_update(@ModelAttribute QnaDTO qdto,Model model){
+	  qnaservice.qna_update(qdto);
+	  return "redirect:/member/mypage";
   }
   
   

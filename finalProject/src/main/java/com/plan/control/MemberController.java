@@ -48,7 +48,7 @@ public class MemberController {
 	@RequestMapping(value="/logincheck",method = RequestMethod.POST)
 	public void logincheck(@ModelAttribute MemberDTO mdto,Model model){
 		mdto=memberService.login(mdto);
-		if(mdto==null){
+		if(mdto==null){  
 			model.addAttribute("message", "no");
 		}else{
 			model.addAttribute("message", "yes");
@@ -165,8 +165,10 @@ public class MemberController {
   }
   
   @RequestMapping(value="/qna_list",method = RequestMethod.POST)
-  public void qnalist(@ModelAttribute QnaDTO qdto,Model model){
-	  qnaservice.qna_getview(qdto, model);
+  public void qnalist(@RequestParam(defaultValue="1") int curPage, Model model, String id,String type,int page){
+
+	  qnaservice.qna_getview(curPage,model,id,type,page);
+	  
   }
   
   

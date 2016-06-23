@@ -62,6 +62,7 @@ $(function(){
 </script>
 <script type="text/javascript">
 $(function(){
+	var page=3;
 	$("#p_qnalist_1").click(function () {
 		
 		var i = $("#p_qnaid").val();
@@ -76,7 +77,8 @@ $(function(){
 			type:"POST",
 			url:"${pageContext.request.contextPath}/member/"+juso,
 			data:{
-					id:i
+					id:i,
+					page:page
 				 },
 				 success: function (result){
 								$(".p_qna_body").html(result);

@@ -8,9 +8,9 @@
   		insert into qna_board values (qna_seq.nextval, #{id}, #{title}, #{contents}, sysdate, #{m_img},0)
   	</insert>
   
-  	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
+  	<!-- <select id="qna_view" resultType="com.plan.qna.QnaDTO">
   		select * from qna_board where id=#{id} order by reg_date desc
-  	</select>
+  	</select> -->
 
 	<insert id="replyqna_write">
   		insert into replyqna_board values (replyqna_seq.nextval,${qnalist_no}, #{id}, #{contents}, sysdate,0, #{title})
@@ -31,15 +31,36 @@
 		update qna_board set qna_check=1 where com_no=#{com_no}	 	
   	</update>
 	  	
+	<select id="getTotalList" resultType="java.lang.Integer">
+  		select count(*) from qna_board
+  	</select>  	
 	  	
+	<select id="qna_view" resultType="com.plan.qna.QnaDTO">
+		select * from 
+		(select rownum R, A.* from
+		(select * from qna_board where id=#{id} order by reg_date desc) A) 
+		where R between #{startRow} and #{lastRow}
+	</select>	
+	
+	<sql id="qna_id">
+  		select * from qna_board where id=#{id}
+  	</sql>
 	  	
+	<delete id="qna_delete" parameterType="com.plan.qna.QnaDTO">
+  		delete qna_board where com_no=#{com_no}
+  	</delete>  	
 	  	
+	<update id="qna_update" parameterType="com.plan.qna.QnaDTO">
+		update qna_board set title=#{title},contents=#{contents} where no=#{no}   		
+  	</update>  	
 	  	
+	<delete id="replyqna_delete" parameterType="com.plan.qna.ReplyQnaDTO">
+  		delete replyqna_board where com_no=#{com_no}
+  	</delete>  	
 	  	
-	  	
-	  	
-	  	
-	  	
+	<update id="replyqna_update" parameterType="com.plan.qna.ReplyQnaDTO">
+		update replyqna_board set title=#{title},contents=#{contents} where no=#{no}   		
+  	</update>  	
 	  	
 	  	
   </mapper>

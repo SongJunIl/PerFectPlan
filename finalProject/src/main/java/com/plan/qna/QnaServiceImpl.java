@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+
 @Service
 public class QnaServiceImpl implements QnaService {
 
@@ -24,24 +25,53 @@ public class QnaServiceImpl implements QnaService {
 	
 	@Override
 	public int qna_update(QnaDTO qdto) {
-		
-		return 0;
+		int result=0;
+		try {
+			result=qnadao.qna_update(qdto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public void qna_delete(int no) {
-		// TODO Auto-generated method stub
 
+		try {
+			qnadao.qna_delete(no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	
 	@Override
-	public void qna_getview(QnaDTO qdto,Model model) {
+	public void qna_getview(int curPage,Model model, String id,String type,int page) {
+	
+		int totalList = qnadao.getTotalList();
+		PageMaker pm = new PageMaker(curPage, totalList);
+		pm.setType(type);
+		pm.setId(id);
 		try {
-			  if(qnadao.getQna_view(qdto)==null){
+			  if(qnadao.getQna_view(pm)==null){
 				  model.addAttribute("qnamessage", "질문 하신 글이 없습니다.");
-			  }else{
-				  model.addAttribute("qna_list", qnadao.getQna_view(qdto));
+			  }else if(qnadao.getQna_view(pm)!=null && pm.getType()==null) {
+				  model.addAttribute("list",qnadao.getQna_view(pm));
+				  model.addAttribute("page", pm);
+				  model.addAttribute("qna_list", qnadao.getQna_view(pm));
+			  }else if(qnadao.getQna_view(pm)!=null && pm.getType().equals("plus")){
+				  pm.setPerPage(page);
+				  pm.pageMake(curPage, totalList);
+				  System.out.println(pm.getPerPage());
+				  System.out.println(qnadao.getQna_view(pm).size());
+				  System.out.println(pm.getLastRow());
+				  model.addAttribute("qna_pm", pm);
+				  model.addAttribute("qna_list", qnadao.getQna_view(pm));
+ 
 			  }
+			  
 			  
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -80,9 +110,14 @@ public class QnaServiceImpl implements QnaService {
 
 	
 	@Override
-	public int replyQna_update(ReplyQnaDTO rqdto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int replyQna_update(int com_no) {
+	try {
+		com_no=qnadao.replyQna_replyupdate(com_no);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return com_no;
 	}
 
 	@Override

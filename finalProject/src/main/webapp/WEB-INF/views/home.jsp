@@ -156,7 +156,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="HOWTOUSE">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

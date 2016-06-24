@@ -62,6 +62,7 @@ $(function(){
 </script>
 <script type="text/javascript">
 $(function(){
+	var page=3;
 	$("#p_qnalist_1").click(function () {
 		
 		var i = $("#p_qnaid").val();
@@ -76,7 +77,8 @@ $(function(){
 			type:"POST",
 			url:"${pageContext.request.contextPath}/member/"+juso,
 			data:{
-					id:i
+					id:i,
+					page:page
 				 },
 				 success: function (result){
 								$(".p_qna_body").html(result);
@@ -148,12 +150,6 @@ $(function(){
 		 alert("잘못된 이메일 형식입니다.");
 		 return false;
 		} 
-		//-->
-		/* 회원가입 처리 */
-		/* alert($("#p_idok").val());
-		alert($("#p_idnotok").val());
-		alert($("#p_echeckok").val());
-		alert($("#p_echecknotok").val());  */
 		
 		  if($("#p_echeckok").val() ==2){	
 			var keep = 1;
@@ -616,5 +612,4 @@ $(function(){
 
 
 
-<%@ include file="/WEB-INF/views/temp/footer.jspf" %>	
 </body>

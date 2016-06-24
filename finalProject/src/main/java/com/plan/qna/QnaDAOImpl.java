@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class QnaDAOImpl implements QnaDAO {
 
@@ -17,7 +18,10 @@ public class QnaDAOImpl implements QnaDAO {
 	
 	private String namespace = "qnaboardMapper.";
 	
-	
+	@Override
+	public int getTotalList() {
+		return sqlsession.selectOne(namespace+"getTotalList");
+	}
 	
 	@Override
 	public void qna_write(QnaDTO qdto) throws Exception {
@@ -35,8 +39,8 @@ public class QnaDAOImpl implements QnaDAO {
 	}
 
 	@Override
-	public List<QnaDTO> getQna_view(QnaDTO qdto) throws Exception {
-		return sqlsession.selectList(namespace+"qna_view", qdto);
+	public List<QnaDTO> getQna_view(PageMaker pm) throws Exception {
+		return sqlsession.selectList(namespace+"qna_view",pm);
 	}
 
 	@Override

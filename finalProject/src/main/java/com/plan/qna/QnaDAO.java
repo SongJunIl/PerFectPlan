@@ -10,7 +10,7 @@ public interface QnaDAO {
 
 	
 	
-	
+	public int getTotalList();
 	
 	public void qna_write(QnaDTO qdto)throws Exception;
 	
@@ -19,7 +19,7 @@ public interface QnaDAO {
 	public void qna_delete(int no)throws Exception;
 	
 	
-	public List<QnaDTO> getQna_view(QnaDTO qdto)throws Exception; 
+	public List<QnaDTO> getQna_view(PageMaker pm)throws Exception; 
 	
 	public ReplyQnaDTO replyqna_view(ReplyQnaDTO rqdto)throws Exception;
 	

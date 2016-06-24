@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
@@ -48,7 +49,7 @@ public class MemberController {
 	@RequestMapping(value="/logincheck",method = RequestMethod.POST)
 	public void logincheck(@ModelAttribute MemberDTO mdto,Model model){
 		mdto=memberService.login(mdto);
-		if(mdto==null){
+		if(mdto==null){  
 			model.addAttribute("message", "no");
 		}else{
 			model.addAttribute("message", "yes");
@@ -89,12 +90,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/delete" ,method= RequestMethod.POST)
-	public String delete(int no,HttpSession session){
-		memberService.delete(no);
-		memberService.logout(session);
-		return "redirect:/";
-	}
+	
 	
 	@RequestMapping(value="/samrtEditor2Inputarea")
 	public String smartEditor2Inputarea(){
@@ -165,11 +161,28 @@ public class MemberController {
   }
   
   @RequestMapping(value="/qna_list",method = RequestMethod.POST)
-  public void qnalist(@ModelAttribute QnaDTO qdto,Model model){
-	  qnaservice.qna_getview(qdto, model);
+  public void qnalist(@RequestParam(defaultValue="1") int curPage, Model model, String id,String type,int page){
+
+	  qnaservice.qna_getview(curPage,model,id,type,page);
+	  
   }
   
+  @RequestMapping(value="/qna_listcheck",method=RequestMethod.POST)
+  public void qna_listcheck(@RequestParam(defaultValue="1")int curPage,Model model, String id,String type,int page){
+	  qnaservice.qna_getview(curPage, model, id, type, page);
+  }
   
+  @RequestMapping(value="/qna_update",method=RequestMethod.POST)
+  public String qna_update(@ModelAttribute QnaDTO qdto,Model model){
+	  qnaservice.qna_update(qdto);
+	  return "redirect:/member/mypage";
+  }
+  
+  @RequestMapping(value="/qna_delete",method=RequestMethod.POST)
+  public String qna_delete(@RequestParam int com_no,Model model){
+	 qnaservice.qna_delete(com_no);
+	 return "redirect:/member/mypage";
+  }
   
   //replyqna_board
   

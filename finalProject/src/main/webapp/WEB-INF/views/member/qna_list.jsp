@@ -16,8 +16,9 @@ $('.collapse').bind("pageshow",function(event){
 $(function(){
 	var page=3;
 	$("#qnalist3").click(function () {
+		page=page+3;
+		var type=$(this).val();
 		var id=$("#qnaid").val();
-		var type=$("#qnalist3").val();
 		$.ajax({
 			type:"POST",
 			url:"${pageContext.request.contextPath}/member/qna_listcheck",
@@ -27,7 +28,7 @@ $(function(){
 				page:page
 			},
 			 success: function (result){
-			 	$("#p_qna_form").html(result);
+			 	$("#list_chek_form").html(result);
 			 },
 			 error:function(){
 				 alert("eeeeeeeeeeeeeee");
@@ -123,7 +124,7 @@ $(function(){
 	</c:when>
 	<c:otherwise>
 	
-	
+	<div id="list_chek_form">
 		<c:forEach items="${qna_list}" var="i" varStatus="a">	
 			<div id="p_qna_form">
 					<div class="p_qna_list" id="${a}">
@@ -165,7 +166,7 @@ $(function(){
 			<input type="hidden" id="qnaid" name="qnaid" value="${member.id}">
 							
 						
-		
+		</div>
 		
 	</c:otherwise>
 </c:choose>

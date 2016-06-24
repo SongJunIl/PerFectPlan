@@ -56,12 +56,12 @@ $(function(){
 		});
 	});	
 	
-	$("#p_qnaupdate_no").click(function () {
-		var n = $(".p_qnalist_nono").val();
-		alert(n);
-		$("#p_qnaup_no").html("<input type='hidden' id='p_qnaup_nono' value="+n+">");
+	$(".p_qnaupdate_no").click(function () {
+		var a=$(this).attr("data-index");
+		var n = $(".p_qnalist_nono"+a).val();
+/* 		$("#p_qnaup_no").html("<input type='hidden' id='p_qnaup_nono' value="+n+">"); */
 		
-		$("#p_qnaupbdtn").click(function () {
+		$(".p_qnaupbdtn").click(function () {
 			var t = $("#p_qnauptitle").val();
 			var c = $("#p_qnaupcontents").val();
 			var m = $("#p_qnaupm_img").val();
@@ -76,17 +76,36 @@ $(function(){
 					 },
 					 success: function (result){
 								    alert("수정성공")
-									
+								    window.location.reload();
 					 },	
 					 error : function(){
 						 alert("실패");
 					 }
 			}); 
-		})
+		});
 	});
 	
 	
-	
+	$(".p_qnadel").click(function () {
+		var a=$(this).attr("data-index");
+		var n = $(".p_qnalist_nono"+a).val();
+			$(".qna_delbt").click(function () {
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/member/qna_delete",
+					data:{
+						com_no:n
+					},
+					success:function(){
+						alert("삭제완료");
+						window.location.reload();
+					},
+					error:function(){
+						alert("실패");
+					}
+				});
+		})
+	});
 	
 	
 	
@@ -111,12 +130,15 @@ $(function(){
 							<div id="p_qna_body_list" class="p_body_div_1">
 								<!-- <div id="p_qna_list_img"></div> -->
 										<div id="p_updel" style="float: right;">
-										<a data-toggle="modal" data-target="#p_qnaupmodal" style="cursor: pointer;" id="p_qnaupdate_no" ><span class="glyphicon glyphicon-pencil" aria-hidden="true">수정</span></a>&nbsp;
-										<a data-toggle="modal" data-target="#p_qnadelete"  style="cursor: pointer;" id="p_qna"><span class="glyphicon glyphicon-trash" aria-hidden="true">삭제</span></a>
+										<a data-toggle="modal" data-target="#p_qnaupmodal" style="cursor: pointer;" class="p_qnaupdate_no"data-index="${a.index}" ><span class="glyphicon glyphicon-pencil" aria-hidden="true">수정</span></a>&nbsp;
+										<a data-toggle="modal" data-target="#p_qnadelete"  style="cursor: pointer;" class="p_qnadel" data-index="${a.index}"><span class="glyphicon glyphicon-trash" aria-hidden="true">삭제</span></a>
 										</div>
+										<c:if test="${ i.m_img == null }"><img src="${pageContext.request.contextPath}/resources/img/login/user.png"
+											style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;"></c:if>
+										<c:if test="${ i.m_img != null }">
 										<div class="p_qna_d_userimg"><span><img src="${pageContext.request.contextPath}/resources/memberimg/${i.m_img}"
-										style="width: 50px; height: 50px; border-radius: 50%;"></span></div>
-										<input type="hidden" class="p_qnalist_nono" value="${i.com_no}"> 
+										style="width: 50px; height: 50px; border-radius: 50%;"></span></div></c:if>
+										<input type="hidden" class="p_qnalist_nono${a.index }" value="${i.com_no}"> 
 										<div class="p_qna_d_title">&nbsp;&nbsp;<span>${i.title}</span>
 										<div class="p_qna_d_id"><span>작성자:&nbsp;&nbsp;${i.id}</span></div>
 										<div class="p_qna_d_reg_date"><span>${i.reg_date}</span></div></div>
@@ -160,26 +182,34 @@ $(function(){
      			    <div id="p_qnaup_no" ></div>	 
      				<input type="hidden" id="p_qnaupid" name="id" value="${member.id}">
      				<input type="hidden" id="p_qnaupm_img" name="m_img" value="${member.m_img}">
-					<input type="text" id="p_qnauptitle" name="title" placeholder="제목을 입력하세요.">
-							<div class="modal-body">
-					<textarea name="contents" id="p_qnaupcontents" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
+						<div class="input-group" id="p_qnaup_input1">
+							<span class="input-group-addon" id="p_qna_addon1">title</span> 
+							<input	type="text" class="form-control p_join_form" id="p_qnauptitle" name="title" placeholder="제목을 입력하세요."	aria-describedby="basic-addon1">
+						</div>
+							<div class="modal-body" style="margin-top: -15px;">
+							<br>
+								<div class="input-group">
+									 <span class="input-group-addon" id="p_qna_addon2">Contents</span>
+									 <textarea class="form-control p_join_form"	id="p_qnaupcontents" name="contents" placeholder="내용을 입력하세요." aria-describedby="basic-addon1"></textarea>
+								</div>
 							</div>
 		      </div>
 		      <div class="modal-footer" id="p_qna_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" id="p_qnaupbdtn" class="btn btn-primary">Save</button>
+		        <button type="button" class="btn btn-primary p_qnaupbdtn">Save</button>
 		      </div>
 		</form>
     </div>
   </div>
 
-
-<div class="modal fade bs-example-modal-sm" id="p_qnadelete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		<!-- qna_delete modal -->
+									<div class="modal fade bs-example-modal-sm" id="p_qnadelete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 										  <div class="modal-dialog modal-sm">
 										    <div class="modal-content" id="p_modal_mout">
 										     <form action="${pageContext.request.contextPath}/member/qna_delete" method="post">
+										      <div id="p_qnadel_no" ></div>	 
 										      <br><br><span style="margin-left: 65px;">정말로 삭제 하시겠습니까?</span><br><br><br>
-									  		  <button type="button" id="qna_delbt"class="button button3" style="	margin-left: 90px;margin-bottom: 20px;">예</button></a><span>              </span>
+									  		  <button type="button" class="button button3 qna_delbt" style="margin-left: 90px;margin-bottom: 20px;">예</button></a><span>              </span>
 										      <button class="button button5" data-dismiss="modal" >아니오</button>
 										     </form>	
 										    </div>	

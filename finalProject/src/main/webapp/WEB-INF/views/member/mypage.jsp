@@ -150,12 +150,6 @@ $(function(){
 		 alert("잘못된 이메일 형식입니다.");
 		 return false;
 		} 
-		//-->
-		/* 회원가입 처리 */
-		/* alert($("#p_idok").val());
-		alert($("#p_idnotok").val());
-		alert($("#p_echeckok").val());
-		alert($("#p_echecknotok").val());  */
 		
 		  if($("#p_echeckok").val() ==2){	
 			var keep = 1;

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
@@ -177,7 +178,11 @@ public class MemberController {
 	  return "redirect:/member/mypage";
   }
   
-  
+  @RequestMapping(value="/qna_delete",method=RequestMethod.POST)
+  public String qna_delete(@RequestParam int com_no,Model model){
+	 qnaservice.qna_delete(com_no);
+	 return "redirect:/member/mypage";
+  }
   
   //replyqna_board
   

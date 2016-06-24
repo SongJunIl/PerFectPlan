@@ -25,14 +25,25 @@ public class QnaServiceImpl implements QnaService {
 	
 	@Override
 	public int qna_update(QnaDTO qdto) {
-		
-		return 0;
+		int result=0;
+		try {
+			result=qnadao.qna_update(qdto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public void qna_delete(int no) {
-		// TODO Auto-generated method stub
 
+		try {
+			qnadao.qna_delete(no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

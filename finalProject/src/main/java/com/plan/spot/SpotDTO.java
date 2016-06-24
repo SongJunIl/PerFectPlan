@@ -17,6 +17,17 @@ public class SpotDTO {
 	private double spot_ylocation;
 	private int counts;
 	private int thema;
+	private int city_no;
+	
+	
+	
+	
+	public int getCity_no() {
+		return city_no;
+	}
+	public void setCity_no(int city_no) {
+		this.city_no = city_no;
+	}
 	public int getNum() {
 		return num;
 	}

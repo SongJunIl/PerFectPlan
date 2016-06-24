@@ -468,6 +468,20 @@ var marker3=[];
 					
 				}
 			}
+			index_array=[];
+			if(parseInt($("#pspot_list_length"+pday_index).val())>0){
+				for(i=0;i<parseInt($("#pspot_list_length"+pday_index).val());i++){
+					index_array.push($(".spot_nav_index_num"+pday_index+"_"+i).val());
+				}
+			}
+			
+			for(q=0;q<parseInt($("#pspot_list_length"+pday_index).val());q++){
+				
+				var index_num =$(".spot_nav_index_num0"+"_"+q).val();
+				
+				addMark(index_num);
+				
+			}
 		}
 	
 	});	
@@ -582,8 +596,6 @@ $(".pday_list_body_inner").click(function() {
 	
 	
 	
-
-	
 	/* spot_counts = $("#pspot_list_length"+pday_index).val(); */
 	if(spot_html==''){
 		spot_counts = 0;
@@ -675,6 +687,7 @@ $(".pday_list_body_inner").click(function() {
 			for(a=0;a<spot_array.length;a++){
 				spot_array[a].dp_no = $(".daily_no"+0).val();
 			}
+			
 			positions2_array_make();
 			for(a=0;a<$(".plan_spot_list_length").val();a++){
 				for(b=0;b<$("#spot_list").val();b++){
@@ -686,10 +699,11 @@ $(".pday_list_body_inner").click(function() {
 			}
 			
 			if(spot_html != ""){
+				
 				index_array=[];
 				if(spot_counts>0){
 					for(i=0;i<spot_counts;i++){
-						index_array.push(i);
+						index_array.push($(".spot_nav_index_num"+pday_index+"_"+i).val());
 					}
 				}
 				
@@ -952,7 +966,7 @@ $(".pday_list_body_inner").mouseleave(function(){
 				
 				
 				$("#schedule_list"+pday_index).html("");
-				
+				alert(index_array);
 				
 				index_array.splice(index,1);
 				
@@ -1740,9 +1754,9 @@ function closeNav() {
 						
 						</div>
 					</div>
-						<input type="hidden" id="pspot_list_length${i.index}">
+						<input type="hidden" id="pspot_list_length${i.index}" value="${list.value.size() }">
 					<div class="Pschedule_list_body" id="schedule_list${i.index}" data-index=${i.index }>
-					<input type="text" class="plan_spot_list_length" value="${list.value.size() }">
+					<input type="hidden" class="plan_spot_list_length" value="${list.value.size() }">
 					<c:forEach items="${list.value }" var="list2" varStatus="j">
 						
 						
@@ -1768,7 +1782,7 @@ function closeNav() {
 							<input type="hidden" class="spot_nav_name${i.index }_${j.index }" value="${list2.spot_name }">
 							<input type="hidden" class="spot_nav_xloaction${i.index }_${j.index }" value="${list2.spot_xlocation }">
 							<input type="hidden" class="spot_nav_yloaction${i.index }_${j.index }" value="${list2.spot_ylocation }">
-							<input type="text" class="spot_nav_index_num${i.index }_${j.index }" >
+							<input type="hidden" class="spot_nav_index_num${i.index }_${j.index }" >
 							
 							</div>
 						</div>

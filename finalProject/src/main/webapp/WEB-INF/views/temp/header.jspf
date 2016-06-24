@@ -417,8 +417,7 @@
 					<div id="p_md_footer">
 
 						<div class="p_md_footer_1" id="p_md_f1">
-							<a data-toggle="modal" data-target=".bs-example-modal-sm-idnpw">아이디
-								& 비밀번호 찾기</a>
+							<a data-toggle="modal" data-target=".bs-example-modal-sm-idnpw">아이디 & 비밀번호 찾기</a>
 						</div>
 						<div class="p_md_footer_1" id="p_md_f2">
 						<a href="">회원 가입</a>

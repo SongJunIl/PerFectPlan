@@ -67,7 +67,7 @@
 
 	/*  */
 </script>
->>>>>>> refs/remotes/origin/master
+
 
 <script type="text/javascript">
 	$(function() {
@@ -148,9 +148,7 @@
 			});
 		});
 
-		$("#p_joinbtn")
-				.click(
-						function() {
+		$("#p_joinbtn").click(function() {
 
 							/* 공백 처리  */
 
@@ -282,77 +280,7 @@
 </head>
 
 <body id="page-top" class="index">
-<<<<<<< HEAD
-	
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" id="p_header_top1">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll" id="p_header_logo">
-                <!-- 프로젝트 로고 -->
 
-                <a class="navbar-brand page-scroll" href="./"><img src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg" id="p_perfectLOGO_1"></a>
-
-            </div>
-=======
->>>>>>> refs/remotes/origin/master
-
-<<<<<<< HEAD
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" id="p_nav_bar">
-                    <li class="hidden" id="p_nav_li_margin">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services"><span class="p_span_title_font" id="p_travel" onmouseover="on()" onmouseout="out()">Travel Spot</span></a>
-
-                    </li>	
-                    <li>
-                        <a class="page-scroll" href="#portfolio"><span class="p_span_title_font" id="p_Schedule" onmouseover="on1()" onmouseout="out1()">Schedule</span></a>
-                    </li>
-  
-                    <li>
-                        <a class="page-scroll" href="#About"><span id="p_How" class="p_span_title_font" onmouseover="on2()" onmouseout="out2()">How to use</span></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#About"><span id="p_notice" class="p_span_title_font" onmouseover="on3()" onmouseout="out3()">Notice</span></a>
-                    </li>
-                    
-                    <c:if test="${ not empty member }">
-
-                    <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
-                        <a class="page-scroll" href="member/logout"><span id="p_logout" class="p_span_title_font" onmouseover="on7()" onmouseout="out7()">LogOut</span></a>>>>>>>> branch 'master' of https://github.com/JinDoo2/FinalProject.git
-                    </li>
-                    <!-- my page 는 로그인을 해야 보여지게끔 해줘야함. -->
-                    <li class="nav_li_log">
-                        <a class="page-scroll" href="#team"><span id="p_mypage" class="p_span_title_font" onmouseover="on6()" onmouseout="out6()">my page</span></a>
-                    </li>
-                    </c:if>
-                    <c:if test="${empty member}">
-                    
-                    <li class="nav_li_log" id="nav_li_log1">
-                        <a class="page-scroll" href="#notice"><span id="p_log" class="p_span_title_font" onmouseover="on4()" onmouseout="out4()" data-toggle="modal" data-target="#p_loginmodal">Login</span></a>
-                    </li>
-                    <li class="nav_li_log">
-                        <a class="page-scroll" href="#notice"><span id="p_join" class="p_span_title_font" onmouseover="on5()" onmouseout="out5()" data-toggle="modal" data-target="#p_joinmodal">Join</span></a>
-                    </li>
-                    </c:if>
-                   
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    
-    
-    
-    
-    
-    
-=======
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top" id="p_header_top1">
 		<div class="container">
@@ -364,49 +292,8 @@
 					src="${pageContext.request.contextPath}/resources/img/perfectLOGO/perfectLOGO.jpg"
 					id="p_perfectLOGO_1"></a>
 			</div>
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
-<!--login Modal -->
-<div class="modal fade" id="p_loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">login</h4>
-      </div>
-      <div class="modal-body">
 
-        	<div id="modal_logform" >
-					<form class="form-horizontal" action="member/login" method="post">
-					  <div class="form-group">
-					    <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
-					    <div class="col-sm-10-input">
-					      <input type="text" class="form-control" name="id" id="p_logform_id" placeholder="아이디를 입력하세요.">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-					    <div class="col-sm-10-input">
-					      <input type="password" class="form-control" name="pw" id="p_logform_pw" placeholder="비밀번호를 입력하세요.">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
-					      <button type="submit" class="btn btn-default" id="p_loginbt">log in</button>
-					    </div>
-					  </div>
-					</form>
-        	</div>
-        	
-      </div>
-      <div class="modal-footer" id="p_logmd_footer">
-			<div id="p_md_footer">
-=======
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -528,13 +415,12 @@
 				</div>
 				<div class="modal-footer" id="p_logmd_footer">
 					<div id="p_md_footer">
->>>>>>> refs/remotes/origin/master
+
 						<div class="p_md_footer_1" id="p_md_f1">
 							<a data-toggle="modal" data-target=".bs-example-modal-sm-idnpw">아이디
 								& 비밀번호 찾기</a>
 						</div>
 						<div class="p_md_footer_1" id="p_md_f2">
-<<<<<<< HEAD
 						<a href="">회원 가입</a>
 						</div>						
 			</div>
@@ -547,45 +433,6 @@
 <div class="modal fade" id="p_joinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">join</h4>
-      </div>
-      <div class="modal-body">
-      		<div id="p_mdjoin_total">
-      			<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon1">ID</span>
-				  <input type="text" class="form-control" placeholder="아이디를 입력하세요." aria-describedby="basic-addon1">
-				  <div id="p_idcheckresult"></div>
-				</div><br>
-      			<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon2">PW</span>
-				  <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." aria-describedby="basic-addon1">
-				  <div id="p_pwcheckresult"></div>
-				</div><br>
-				<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon3">Name</span>
-				  <input type="text" class="form-control" placeholder="이름을 입력하세요." aria-describedby="basic-addon1">
-				</div><br>
-				<div class="input-group">
-				  <span class="input-group-addon" id="p_join_addon4">e-mail</span>
-				  <input type="text" class="form-control" placeholder="이메일을 입력하세요." aria-describedby="basic-addon1">
-					<div id="p_emailcheckresult"></div>
-=======
-							<a data-toggle="modal" data-target="#p_joinmodal">회원 가입</a>
-						</div>
-					</div>
->>>>>>> refs/remotes/origin/master
-				</div>
-<<<<<<< HEAD
-      		</div>
-
-      </div>
-      <div class="modal-footer" id="p_joinmd_footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
-=
       <form action="member/join" method="post">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -623,13 +470,8 @@
 
     </div>
   </div>
-</div>
+
     
-=======
-			</div>
-		</div>
-	</div>
->>>>>>> refs/remotes/origin/master
 
 
 	<!-- id&pw 찾기 modal -->

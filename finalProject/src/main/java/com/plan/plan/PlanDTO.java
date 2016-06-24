@@ -17,6 +17,8 @@ public class PlanDTO {
 	private int counts;
 	private int state;
 	
+	
+	
 	public PlanDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,6 +37,7 @@ public class PlanDTO {
 	    this.f_date = Date.valueOf(fm.format(cal.getTime()));
 	    System.out.println( this.f_date);
 	}
+	
 	
 	
 	

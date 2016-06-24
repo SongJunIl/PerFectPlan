@@ -335,6 +335,7 @@
 .distanceInfo .label {display:inline-block;width:50px;color: black;margin-right: 5px;}
 .distanceInfo:after {content:none;}
 
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -369,13 +370,14 @@ var positions3=[]; // 소도시 위치
 var j=0;
 var i=0;
 var check = true;
-
+var customOverlay=[];
 for(a=0;a<big_array.length;a++){
 	positions2.push({
 			big_day : 2,
+			big_ename : big_array[a].big_ename,
 			big_name:big_array[a].big_name,
 			big_no : big_array[a].big_no,
-            title: big_array[a].big_ename,
+            title: big_array[a].big_name,
             big_xlocation :big_array[a].big_xlocation,
 	        big_ylocation :big_array[a].big_ylocation,
             latlng: new daum.maps.LatLng(big_array[a].big_xlocation, big_array[a].big_ylocation)
@@ -415,7 +417,10 @@ for (var i = 0; i < positions2.length; i ++) {
 	        title : positions2[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 	       /*  image : markerImage // 마커 이미지  */
 	    	}));
+     
+	
 }
+
 	var content2='';
 	var content3='';
 	var allcont;
@@ -445,6 +450,7 @@ for (var i = 0; i < positions2.length; i ++) {
 				marker3[j].setMap(null);
 				
 		 	}
+			
 		}
 		
 		
@@ -456,7 +462,7 @@ for (var i = 0; i < positions2.length; i ++) {
 					break;
 				}
 			}
-			marktitle = city_array[index].city_ename;
+			marktitle = city_array[index].city_name;
 			
 		}else{
 			
@@ -466,7 +472,7 @@ for (var i = 0; i < positions2.length; i ++) {
 					break;
 				}
 			}
-			marktitle = big_array[index].big_ename;
+			marktitle = big_array[index].big_name;
 		}
 		
 		
@@ -486,8 +492,9 @@ for (var i = 0; i < positions2.length; i ++) {
 			if(data_kind == 'big'){
 				positions.push({
 					day : 2,
+					ename:big_array[a].big_ename,
 					name:big_array[index].big_name,
-			        title: big_array[index].big_ename ,
+			        title: big_array[index].big_name ,
 			        no:big_array[index].big_no,
 			        xlocation :big_array[index].big_xlocation,
 			        ylocation :big_array[index].big_ylocation,
@@ -496,8 +503,9 @@ for (var i = 0; i < positions2.length; i ++) {
 			}else{
 					positions.push({
 					day : 2,
+					ename:city_array[index].city_ename ,
 					name: city_array[index].city_name,
-			        title:  city_array[index].city_ename ,
+			        title:  city_array[index].city_name ,
 			        no : city_array[index].city_no,
 			        xlocation : city_array[index].city_xlocation,
 			        ylocation : city_array[index].city_ylocation,
@@ -535,7 +543,7 @@ for (var i = 0; i < positions2.length; i ++) {
 				$("#planner_nav_body").html(content2);
 				content2="";
 			addMark();
-			
+		
 		}
 	});
 
@@ -553,6 +561,7 @@ for (var i = 0; i < positions2.length; i ++) {
 			marker[j].setMap(null);
 			
 		}
+		
 		
 			openNav();
 			for(i=0; i<positions.length;i++){
@@ -587,6 +596,8 @@ for (var i = 0; i < positions2.length; i ++) {
 				$("#planner_nav_body").html(content2);
 				content2="";
 			removeMark();
+		
+		
 	})
 	
 	
@@ -604,7 +615,7 @@ for (var i = 0; i < positions2.length; i ++) {
 	$(document).on("click", ".plan_date_plus", function() {
 		day_count = $(this).attr("data-index");
 		day_default = positions[day_count].day;
-		if(day_default>1){
+		if(day_default>0){
 			
 			positions[day_count].day= parseInt(day_default)+1;
 			$("#plan_date"+day_count).html(positions[day_count].day);
@@ -635,7 +646,7 @@ function removeMark(){
         image : markerImage // 마커 이미지
        	
     }));
-    
+	
  // 마우스로 클릭한 위치입니다 
     var clickPosition = positions[i].latlng;
 
@@ -758,7 +769,7 @@ function addMark(){
         image : markerImage // 마커 이미지 
     }));
     
-    
+	
  // 마우스로 클릭한 위치입니다 
     var clickPosition = positions[i].latlng;
 
@@ -1080,7 +1091,7 @@ return content;
 					marker3[j].setMap(null);
 					
 			 }
-			
+			 
 			 map.setCenter(new daum.maps.LatLng(big_array[box_index].big_xlocation, big_array[box_index].big_ylocation)); // 지도의 중심좌표 */
 			 map.setLevel(11); // 지도의 확대 레벨
 			 
@@ -1102,8 +1113,9 @@ return content;
 			 	for(a=0;a<city_array.length;a++){
 					positions3.push({
 							city_day : 2,
+							city_ename : city_array[a].city_ename,
 							city_name:city_array[a].city_name,
-				            title: city_array[a].city_ename,
+				            title: city_array[a].city_name,
 				            no: city_array[a].city_no,
 				            city_xlocation :city_array[a].city_xlocation,
 				            city_ylocation :city_array[a].city_ylocation,
@@ -1120,8 +1132,8 @@ return content;
 			 		        position: positions3[i].latlng, // 마커를 표시할 위치
 			 		        title : positions3[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			 		    	}));
+			 		
 			 	}
-			 	
 			 	
 				
 			 	
@@ -1133,11 +1145,12 @@ return content;
 					marker2[j].setMap(map);
 					
 			 	}
+				
 				for(j=0;j<marker3.length;j++){
 					marker3[j].setMap(null);
 					
 			 	}
-				
+								
 				map.setCenter(new daum.maps.LatLng(36.3666102, 127.8783881)); // 지도의 중심좌표 */
 				 map.setLevel(13); // 지도의 확대 레벨
 			}

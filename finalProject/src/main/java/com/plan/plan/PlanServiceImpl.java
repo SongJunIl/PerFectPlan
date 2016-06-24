@@ -10,6 +10,9 @@ import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.daySpot.DaySpotDTO;
+import com.plan.daySpot.DaySpotReDTO;
+import com.plan.member.MemberDTO;
+import com.plan.planRe.PlanReDTO;
 import com.plan.spot.SpotDTO;
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -256,6 +259,92 @@ public class PlanServiceImpl implements PlanService {
 			e.printStackTrace();
 		}
 	}
+	//=======글쓴이 검색하기===========================================================================
+	@Override
+	public MemberDTO s_writer_search(String id) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.writer_search(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//=======plna_no로 일정관련 DB 가져오기=============================================================
+
+	@Override
+	public List<DayPlanReDTO> s_daily_plan_search(int plan_no) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.daily_plan_search(plan_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
+	@Override
+	public List<DaySpotReDTO> s_daily_spot_search(int plan_no, int daily_no) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.daily_spot_search(plan_no,daily_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public PlanDTO s_plan_search(int plan_no) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_search(plan_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//==========plan 댓글 쓰기 ======================================================================
+	@Override
+	public PlanReDTO s_plan_reply_write(PlanReDTO planReDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_reply_write(planReDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//=========plan reply 리스트 읽어오기=============================================================
+	@Override
+	public List<PlanReDTO> s_plan_reply_list(int plan_no) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_reply_list(plan_no);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//=========plan reply 리스트 지우기=============================================================
+
+	@Override
+	public List<PlanReDTO> s_plan_reply_del(PlanReDTO planReDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_reply_del(planReDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

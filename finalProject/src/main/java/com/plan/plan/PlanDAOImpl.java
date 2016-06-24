@@ -1,5 +1,7 @@
 package com.plan.plan;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +14,9 @@ import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.daySpot.DaySpotDTO;
+import com.plan.daySpot.DaySpotReDTO;
+import com.plan.member.MemberDTO;
+import com.plan.planRe.PlanReDTO;
 import com.plan.spot.SpotDTO;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
@@ -137,5 +142,56 @@ public class PlanDAOImpl implements PlanDAO {
 	public void daySpot_insert(DaySpotDTO daySpotDTO) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace+"daySpot_insert", daySpotDTO);
+	}
+	
+	//=======글쓴이 검색하기=======================================================================
+	@Override
+	public MemberDTO writer_search(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"writer_search", id);
+	}
+	//=======plna_no로 일정관련 DB 가져오기=============================================================
+	@Override
+	public List<DayPlanReDTO> daily_plan_search(int plan_no) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"plan_view_counts_update", plan_no);
+		return sqlSession.selectList(namespace+"daily_plan_search", plan_no);
+	}
+	@Override
+	public List<DaySpotReDTO> daily_spot_search(int plan_no,int daily_no) throws Exception {
+		// TODO Auto-generated method stub
+		HashMap<String, Integer> hs = new HashMap<>();
+		hs.put("plan_no", plan_no);
+		hs.put("daily_no", daily_no);
+		return sqlSession.selectList(namespace+"daily_spot_search", hs);
+	}
+	@Override
+	public PlanDTO plan_search(int plan_no) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"plan_search", plan_no);
+	}
+	
+	//==========plan 댓글 쓰기 ======================================================================
+	@Override
+	public PlanReDTO plan_reply_write(PlanReDTO planReDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+"plan_reply_write",planReDTO);
+		int no = sqlSession.selectOne(namespace+"plan_reply_maxNo", planReDTO);
+		return sqlSession.selectOne(namespace+"plan_reply_write_result", no);
+	}
+	//=========plan reply 리스트 읽어오기=============================================================
+	@Override
+	public List<PlanReDTO> plan_reply_list(int plan_no) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"plan_reply_list", plan_no);
+	}
+	
+	//=========plan reply 리스트 지우기=============================================================
+	@Override
+	public List<PlanReDTO> plan_reply_del(PlanReDTO planReDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+"plan_reply_del", planReDTO);
+		int plan_no = planReDTO.getP_no();
+		return sqlSession.selectList(namespace+"plan_reply_list", plan_no);
 	}
 }

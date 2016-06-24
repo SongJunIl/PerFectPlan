@@ -236,6 +236,7 @@
 .distanceInfo .label {display:inline-block;width:50px;color: black;margin-right: 5px;}
 .distanceInfo:after {content:none;}
 
+
 /* daily Spot List */
 #pspot_nav_btn{
 	width: 100%;
@@ -522,26 +523,11 @@ for (var i = 0; i < positions2.length; i ++) {
 	}
 
 }
+
  
 //=========daily list 누으면 바뀌는 메서드===========================================================
 function remove_array() {
-	/* for(i=0;i<city_array.length;i++){
-		city_array.splice(0,1);	
 	
-	}
-	alert("도"+city_array.length);
-	for(i=0;i<spot_array.length;i++){
-		spot_array.splice(0,1);	
-		
-	}
-	alert("레"+spot_array.length);
-	for(i=0;i<positions.length;i++){
-		positions.splice(0,1);		
-	}
-	alert("미"+positions.length);
-	for(i=0;i<positions2.length;i++){
-		positions2.splice(0,1);	
-	} */
 	city_array=[];
 	spot_array=[];
 	positions=[];
@@ -676,7 +662,7 @@ $(".pday_list_body_inner").click(function() {
 			for(a=0;a<spot_array.length;a++){
 				spot_array[a].dp_no = $(".daily_no"+pday_index).val();
 			}
-			alert(spot_array[0].dp_no);
+			
 			positions2_array_make();
 			if(spot_html != ""){
 				index_array=[];
@@ -1038,7 +1024,7 @@ function removeMark(index){
 	        image : markerImage // 마커 이미지
 	       	
 	    }));
-	    
+		
 	 // 마우스로 클릭한 위치입니다 
 	    var clickPosition = positions[i].latlng;
 	
@@ -1135,7 +1121,7 @@ function removeMark(index){
 	    drawingFlag = false;          
 	}
     
-
+	
         
 }
 
@@ -1191,7 +1177,7 @@ function addMark(index){
         image : markerImage // 마커 이미지 
     }));
     
-   
+	
  // 마우스로 클릭한 위치입니다 
     var clickPosition = positions[i].latlng;
 
@@ -1578,7 +1564,7 @@ return content;
 		}
 	});	 */
 	//================================submit 보내기 ====================================
-	$("#mySidenav").on('click',"#planner_nav_btn_go",function(){
+/* 	$("#mySidenav").on('click',"#planner_nav_btn_go",function(){
 		for(i=0; i<positions.length;i++){
 			if(i<1){	
 				content3 += positions[i].title+","+positions[i].xlocation+","+positions[i].ylocation+","+positions[i].day+","+positions[i].no;		
@@ -1598,7 +1584,7 @@ return content;
 				return false;
 			}
 			
-	});
+	}); */
 	
 	/* Data Submit */
 	$(document).on("click","#pday_mid_save_btn",function() {
@@ -1611,6 +1597,7 @@ return content;
 	
 	$(document).on("click", "#plan_save", function() {
 		var contents3='';
+		var contents4="";
 		var day_length=$("#day_list").val();
 		for(i=0;i<day_length;i++){
 			var spot_list_length = $("#pspot_list_length"+i).val();
@@ -1622,9 +1609,20 @@ return content;
 				}
 			}
 		}
-		alert(contents3);
-		$("#all_plan_spot_list").val(contents3);
+		for(i=0;i<day_length;i++){
+			
+			
+				if(i==0){
+					contents4 +=  $(".daily_no"+i).val();					
+				}else{
+					contents4 +=  ","+$(".daily_no"+i).val();;					
+				}
+			
+		}
 		
+		
+		$("#all_plan_spot_list").val(contents3);
+		$("#all_day_no_list").val(contents4);
 		contents3="";
 		var submit_check=false;
 		var plan_title = $("#plan_title").val();
@@ -1637,7 +1635,7 @@ return content;
 		var radio_check3 = $(".radio_check3").prop("checked");
 		radio_check = radio_check || radio_check1 || radio_check2 || radio_check3;
 		if(submit_check && radio_check){
-			alert("가능");
+			
 			$("#frm").submit();
 			return true;
 		}else{
@@ -1793,6 +1791,7 @@ function closeNav() {
 			  </div>
 			</div>
 			<input type="hidden" id="all_plan_spot_list" name="all_plan_list">
+			<input type="hidden" id="all_day_no_list" name="all_day_no">
 		</form>
 			
 			

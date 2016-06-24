@@ -3,16 +3,28 @@ package com.plan.notice;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private int com_no;
+	private int notice_no;
 	private String title;
 	private String contents;
 	private Date reg_date;
-	public int getNo() {
-		return com_no;
+	private String m_img;
+	
+	
+	
+	
+	public int getNotice_no() {
+		return notice_no;
 	}
-	public void setNo(int com_no) {
-		this.com_no = com_no;
+	public void setNotice_no(int notice_no) {
+		this.notice_no = notice_no;
 	}
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

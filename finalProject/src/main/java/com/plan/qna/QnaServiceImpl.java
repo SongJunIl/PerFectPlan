@@ -64,9 +64,6 @@ public class QnaServiceImpl implements QnaService {
 			  }else if(qnadao.getQna_view(pm)!=null && pm.getType().equals("plus")){
 				  pm.setPerPage(page);
 				  pm.pageMake(curPage, totalList);
-				  System.out.println(pm.getPerPage());
-				  System.out.println(qnadao.getQna_view(pm).size());
-				  System.out.println(pm.getLastRow());
 				  model.addAttribute("qna_pm", pm);
 				  model.addAttribute("qna_list", qnadao.getQna_view(pm));
  

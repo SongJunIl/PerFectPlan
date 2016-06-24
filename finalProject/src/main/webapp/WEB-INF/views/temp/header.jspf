@@ -71,7 +71,6 @@
 	$(function() {
 		$("#p_imgbtn").click(function() {
 			var no = $("#no").val();
-			alert(no);
 			$.ajax({
 				type : "POST",
 				url : "${pageContext.request.contextPath}/member/imgupload",

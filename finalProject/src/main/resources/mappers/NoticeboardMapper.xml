@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="NoticeboardMapper">
+
+	<insert id="notice_write">
+  		insert into notice_board values (notice_seq.nextval, #{title}, #{contents}, sysdate,${m_img})
+  	</insert>	
+
+	<delete id="notice_delete" parameterType="com.plan.qna.QnaDTO">
+  		delete notice_board where notice_no=#{notice_no}
+  	</delete>
+
+	<update id="notice_update" parameterType="com.plan.qna.QnaDTO">
+		update notice_board set title=#{title},contents=#{contents},m_img=#{m_img} where notice_no=#{notice_no}   		
+  	</update>
+  	
+  	<select id="notice_list" resultType="com.plan.qna.ReplyQnaDTO">
+  		select * from notice_board  
+  	</select>
+  	
+  	<select id="notice_view" resultType="com.plan.qna.ReplyQnaDTO">
+  		select * from notice_board where notice_no=#{notice_no} 
+  	</select>
+  
+  </mapper>

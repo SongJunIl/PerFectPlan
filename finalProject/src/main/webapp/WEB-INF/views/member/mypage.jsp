@@ -90,7 +90,7 @@ $(function(){
 			 sess = null;
 	});	
 	
-	$("#replyqna_submit").click(function () {
+	/* $("#replyqna_submit").click(function () {
 		var i = $("#p_qnaid").val();
 		$.ajax({
 			type:"POST",
@@ -105,7 +105,7 @@ $(function(){
 					 alert("error");
 				 }
 		});
-	});	
+	});	 */
 	
 	
 	$("#p_up_echeck").change(function () {

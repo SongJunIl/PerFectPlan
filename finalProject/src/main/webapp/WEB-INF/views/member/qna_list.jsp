@@ -28,6 +28,7 @@ $(function(){
 				page:page
 			},
 			 success: function (result){
+
 			 	$("#list_chek_form").html(result);
 			 },
 			 error:function(){
@@ -174,7 +175,7 @@ $(function(){
 <!--QnA-update write Modal -->
 <div class="modal fade" id="p_qnaupmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" id="p_qna_md_2">
-      <form action="${pageContext.request.contextPath}/member/qna_update" method="post">
+      <form action="${pageContext.request.contextPath}/member/qna_write" method="post">
     <div class="modal-content" id="p_qna_md_3">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -203,7 +204,7 @@ $(function(){
     </div>
   </div>
 
-		<!-- qna_delete modal -->
+						<!-- qna_delete modal -->
 									<div class="modal fade bs-example-modal-sm" id="p_qnadelete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 										  <div class="modal-dialog modal-sm">
 										    <div class="modal-content" id="p_modal_mout">
@@ -216,3 +217,5 @@ $(function(){
 										    </div>	
 										  </div>
 										</div>
+
+										

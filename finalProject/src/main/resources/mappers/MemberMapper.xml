@@ -5,7 +5,7 @@
   
   <mapper namespace="MemberMapper">
   	<insert id="join" parameterType="com.plan.member.MemberDTO">
-  		insert into member values(member_seq.nextVal,#{id},#{pw},#{name},#{email}) 
+  		insert into member values(member_seq.nextVal,#{id},#{pw},#{name},#{email},'null') 
   	</insert>
   
 	<select id="login" resultType="com.plan.member.MemberDTO">
@@ -13,12 +13,29 @@
 	</select>  
   
   	<update id="update" parameterType="com.plan.member.MemberDTO">
-		update member set pw=#{pw},name=#{name},{email=#{email} where num=#{num}   		
+		update member set pw=#{pw},name=#{name},email=#{email} where no=#{no}   		
+  	</update>
+  	
+  	<update id="imgupload" parameterType="com.plan.member.MemberDTO">
+  		update member set m_img=#{m_img} where no=#{no}
   	</update>
   
-  	<delete id="delete">
-  		delete member where num=#{num}
+  	<delete id="delete" parameterType="com.plan.member.MemberDTO">
+  		delete member where no=#{no}
   	</delete>
-  
-  
+  	
+  	<select id="email" resultType="com.plan.member.MemberDTO">
+		select * from member where email=#{email}
+	</select>
+	
+	  <select id="emailck" resultType="com.plan.member.MemberDTO">
+		select * from member where email=#{email}
+	</select>
+	
+	<select id="id" resultType="com.plan.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
+  	
+
+
   </mapper>

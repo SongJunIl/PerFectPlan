@@ -1,6 +1,7 @@
 package com.plan.control;
 
 
+
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -196,8 +197,5 @@ public class PlanController {
 		
 	}
 	
-	
-	
-	@RequestMapping(value="/planList")
-	public void planList(){}
+
 }

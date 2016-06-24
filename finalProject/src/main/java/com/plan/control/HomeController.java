@@ -40,5 +40,9 @@ public class HomeController {
 	public void test(){
 		System.out.println("haha");
 	}
+	@RequestMapping(value="/admin/adminController")
+	public void amdin(){
+		
+	}
 	
 }

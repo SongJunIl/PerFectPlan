@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<<style>
+
+<%@include file="/resources/css/foot.css" %>  
+
+</style>
+<footer>
+<div id="footerbar_1">
+ <br><br><br>
+ 	<div id="footbarboard">
+ 	<a href="#">공지사항 |</a>&nbsp;&nbsp;
+ 	<a href="<%=application.getContextPath() %>/member/agreement.jsp">이용약관 |</a>&nbsp;&nbsp;   
+ 	<a href="etc/privacy.jsp">개인정보취급방침 |</a>&nbsp;&nbsp;
+ 	<a href="etc/teenager.jsp">청소년보호정책 |</a>&nbsp;&nbsp;
+ 	<a href="#">건의사항 | </a>&nbsp;&nbsp;
+ 	<a href="#">등급별 혜택</a>
+	</div>	
+		<div id="footer">
+			(유) Perfect Plan 서울시 서초구 역삼동 KH정보원<br>
+			통신판매업신고번호 : 2016-서울강남-xxxxx  /  등록번호 : xxx-xx-xxx68 사업자정보확인<br>
+			정보보호책임자: 안희주  개인정보관리책임자 : 송준일    디자인정보관리책임자 : 박용성    기능관리책임자: 조진우<br> 
+			대표번호 : 080-xxx-xxxx FAX : 02-xxxx-xxxx    E-mail : PerfectPlan@khacademy.co.kr  호스팅서비스사업자 : ㈜PFP<br>
+		</div>
+	
+	</div>
+	
+
+</footer>

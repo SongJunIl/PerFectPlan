@@ -3,21 +3,43 @@ package com.plan.qna;
 import java.sql.Date;
 
 public class QnaDTO {
-	private int no;
-	private String email;
+	private int com_no;
+	private String id;
+	private String title;
 	private String contents;
 	private Date reg_date;
-	public int getNo() {
-		return no;
+	private String m_img;
+	private String qna_check;
+	
+	public String getQna_check() {
+		return qna_check;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setQna_check(String qna_check) {
+		this.qna_check = qna_check;
 	}
-	public String getEmail() {
-		return email;
+	public String getM_img() {
+		return m_img;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+	public int getCom_no() {
+		return com_no;
+	}
+	public void setCom_no(int com_no) {
+		this.com_no = com_no;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getContents() {
 		return contents;
@@ -32,4 +54,5 @@ public class QnaDTO {
 		this.reg_date = reg_date;
 	}
 	
-}
+	}
+

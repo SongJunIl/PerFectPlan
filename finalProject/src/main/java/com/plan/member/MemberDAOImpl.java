@@ -13,9 +13,9 @@ public class MemberDAOImpl implements MemberDAO {
 	private String namespace = "MemberMapper.";
 	
 	@Override
-	public void join(MemberDTO mdto) throws Exception {
+	public void join(MemberDTO mdto) throws Exception {	
 		sqlsession.insert(namespace+"join", mdto);
-		
+		System.out.println(mdto.getM_img());
 	}
 	
 	@Override
@@ -24,5 +24,39 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlsession.selectOne(namespace+"login", mdto);
 	}
 	
+	@Override
+	public int update(MemberDTO mdto) throws Exception {
+		
+		return sqlsession.update(namespace+"update", mdto);
+		 
+	}
+	
+	@Override
+	public int imgipload(MemberDTO memberDTO) throws Exception {
+		System.out.println(memberDTO.getM_img());
+		System.out.println(memberDTO.getNo());
+		return sqlsession.update(namespace+"imgupload", memberDTO);
+	}
+	
+	@Override
+	public void delete(int no) throws Exception {
+		sqlsession.delete(namespace+"delete",no);
+	}
+	
+	@Override
+	public MemberDTO getEmail(MemberDTO mdto) throws Exception {
+		return 	sqlsession.selectOne(namespace+"email", mdto);
+	}
+	
+	@Override
+	public MemberDTO getid(MemberDTO mdto) throws Exception {
+		return sqlsession.selectOne(namespace+"id", mdto);
+	}
+	
+	@Override
+	public MemberDTO getEmailck(MemberDTO mdto) throws Exception {
+		return sqlsession.selectOne(namespace+"emailck",mdto);
+	}
+
 	
 }

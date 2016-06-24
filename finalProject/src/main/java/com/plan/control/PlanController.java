@@ -39,6 +39,33 @@ import com.plan.spot.SpotDTO;
 public class PlanController {
 	@Autowired
 	private PlanService planService;
+	
+	
+	
+	
+	//plannerUpdate
+	@RequestMapping(value="/plannerUpdate")
+	public void plannerUpdate(@ModelAttribute PlanDTO planDTO,Model model){
+		int plan_no = planDTO.getPlan_no();
+		//plan 번호로 일정관련 DB 다가져오기
+				planDTO = planService.s_plan_search(plan_no);
+				List<DayPlanReDTO> ar_day_plan = planService.s_daily_plan_search(plan_no);
+				HashMap<Integer,List<DaySpotReDTO>> hs= new HashMap<>();
+				for(int i=0;i<ar_day_plan.size();i++){
+					List<DaySpotReDTO> ar_day_spot = planService.s_daily_spot_search(plan_no,ar_day_plan.get(i).getDaily_no());
+					hs.put(i, ar_day_spot);
+				}
+				// dayplanReDTO에 요일 값 대입하기
+				for(int i=0;i<ar_day_plan.size();i++){
+					ar_day_plan.get(i).get_dailyWeek(ar_day_plan.get(i).getDaily_date());
+				}
+				
+				model.addAttribute("planDTO", planDTO);
+				model.addAttribute("day_plan", ar_day_plan);
+				model.addAttribute("day_spot", hs);
+		
+	}
+	
 	//plan 댓글 삭제
 	@RequestMapping(value="/planDelete")
 	public void planDelete(@ModelAttribute PlanReDTO planReDTO,Model model){

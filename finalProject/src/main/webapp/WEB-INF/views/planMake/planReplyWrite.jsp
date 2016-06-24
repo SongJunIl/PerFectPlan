@@ -26,6 +26,7 @@
 	.reply_del1{
 		float: right;
 		margin-left: 20px;
+		cursor: pointer;
 	}
 	.reply_update{
 		float: right;

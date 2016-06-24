@@ -54,6 +54,8 @@
 	.plan_view_inner{
 		margin-left: 30px;
 		margin-top: 10px;
+		width: 800px;
+		float: left;
 	}
 	.plan_title{
 		font-weight: bolder;
@@ -321,7 +323,20 @@
 		margin-right: 10px;
 		margin-top: 10px;
 	}
-	
+	.plan_update{
+		float: right;
+		width: 150px;
+		height: 40px;
+		border-radius:8px;
+		background-color: #ff9320;
+		text-align: center;
+		margin-top: 85px;
+		margin-right: 20px;
+		font-size: 15px;
+		font-weight: bolder;
+		line-height: 40px;
+		cursor: pointer;
+	}
 	
 	/* map에대한 css */	
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
@@ -1370,6 +1385,12 @@ return content;
 	}); 
 	
 	$("#paln_reply2").css("display","none");
+	
+	//update 버튼
+	$(".plan_update").click(function() {
+		location.href= "plannerUpdate?plan_no="+$("#plan_no").val();
+	});
+	
 });
 //=======================================================================================
 //tab script
@@ -1465,10 +1486,16 @@ function closeNav() {
 						<div class="plan_jim_inner">
 							<img src="${pageContext.request.contextPath}/resources/img/plan/cnt_copy.png"> 10
 						</div>
+						
 						<div class="clear"></div>
 					</div>
 				</div>
 			</div>
+			<div class="plan_update">
+				수정하기
+			</div>
+			
+			<div class="clear"></div>
 		</div>
 		
 		<ul class="tab" >

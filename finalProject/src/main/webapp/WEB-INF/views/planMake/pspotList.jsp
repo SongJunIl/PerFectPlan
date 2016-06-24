@@ -60,7 +60,7 @@
 					<input class="city_no${i2.index}" type="hidden" value="${spot_list.city_no }">
 					<input class="spot_xlocation${i2.index}" type="hidden" value="${spot_list.spot_xlocation }">
 					<input class="spot_ylocation${i2.index}" type="hidden" value="${spot_list.spot_ylocation }">
-					
+					<input class="spot_index${i2.index}" type="text" value="${i2.index}">
 					<div class="spot_list_inner">
 						<div class="spot_list_inner_box">
 							<div class="spot_list_inner_img">

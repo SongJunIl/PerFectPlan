@@ -612,5 +612,4 @@ $(function(){
 
 
 
-<%@ include file="/WEB-INF/views/temp/footer.jspf" %>	
 </body>

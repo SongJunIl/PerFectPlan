@@ -4,12 +4,14 @@ public class CityDTO {
 	private int no;
 	private String city_name;
 	private String e_name;
-	private String big_name;
+	private String big_ename;
 	private String city_img1;
 	private String city_img2;
 	private String city_img3;
 	private double city_xlocation;
 	private double city_ylocation;
+	private String lat;
+	private String lon;
 	private int jim;
 	
 	
@@ -49,11 +51,11 @@ public class CityDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getBig_name() {
-		return big_name;
+	public String getBig_ename() {
+		return big_ename;
 	}
-	public void setBig_name(String big_name) {
-		this.big_name = big_name;
+	public void setBig_ename(String big_ename) {
+		this.big_ename = big_ename;
 	}
 	public String getCity_name() {
 		return city_name;
@@ -73,6 +75,20 @@ public class CityDTO {
 	public void setCity_ylocation(double city_ylocation) {
 		this.city_ylocation = city_ylocation;
 	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLon() {
+		return lon;
+	}
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+	
+	
 	
 	
 }

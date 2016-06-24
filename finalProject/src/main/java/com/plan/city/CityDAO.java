@@ -3,11 +3,11 @@ package com.plan.city;
 import java.util.List;
 
 import com.plan.plan.PlanDTO;
-import com.plan.spot.SpotDTO;
-import com.plan.spotRe.SpotReDTO;
 
 public interface CityDAO {
-	public CityDTO cityView(String e_name)throws Exception;
+	public List<CityDTO> city();
+	
+	public CityDTO cityView(int no)throws Exception;
 	
 	public void cityWrite(CityDTO cityDTO)throws Exception;
 	
@@ -15,9 +15,15 @@ public interface CityDAO {
 	
 	public List<CityDTO> cityList()throws Exception;
 	
-	public List<SpotDTO> popular_spot()throws Exception;
+	public List<PopularSpotDTO> popular_spot(int city_no)throws Exception;
 	
-	public List<PlanDTO> popular_plan()throws Exception;
+	public List<PlanDTO> popular_plan(int city_no)throws Exception;
 	
-	public List<SpotReDTO> reply_city(int city_no)throws Exception;
+	public List<City_ReDTO> reply_city(int city_no)throws Exception;
+	
+	public List<CityDTO> searchCity(String search)throws Exception;
+	
+	public List<CityDTO> searchCitySpot(String search)throws Exception;
+	
+	public List<CityDTO> searchCityReply(String search)throws Exception;
 }

@@ -1,13 +1,19 @@
 
 
-select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B inner join SPOT on B.spot_name = SPOT.spot_name;
-select plan.* from (select A.plan_no from (select count(plan_no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3) B inner join PLAN on B.plan_no = PLAN.plan_no;
-select count(no) total,spot_name from jim group by spot_name order by total desc;
-select * from (select rownum R, A.* from (select * from bank order by no desc) A) where R between ? and ?";
+======인기 장소======================================================================================================================================================================================================
+select B.*, spot.spot_img from (select count(spot_name) total,A.spot_name from (select spot.city_no, spot.spot_name from spot join jim on jim.spot_name = spot.spot_name where city_no=1) A group by spot_name order by total desc) B join spot on spot.spot_name = B.spot_name where rownum<9;
+======인기 계획================================================================================================================================================================================================================================
+select plan.* from	(select * from (select count(B.plan_no) total, B.plan_no from (select A.* from (select dailyplan.plan_no, dailyplan.city_no from jim join dailyplan on jim.plan_no = dailyplan.plan_no) A where A.city_no=2)B group by B.plan_no order by total desc)where rownum<4) C join plan on c.plan_no = plan.plan_no;
+====인기 도시=========================================================================================================================================================================================================================
+select city.* from (select city_no from (select count(city_no) total, city_no from (select spot.city_no from jim join spot on jim.spot_name = spot.spot_name) group by city_no order by total desc) where rownum<7) B join city on city.no = B.city_no;
+====도시 검색(big_ename, spot개수, city정보)==============================================================================================================================================================================================================================
+select B.*, city.big_ename,city.no from (select count(city_name) jim, city_name from (select A.* from (select * from city where city_name like '%강릉%') A join spot on A.no = spot.city_no) group by city_name) B join city on city.city_name=B.city_name
+====도시 검색 (리뷰 개수)=======================================================================================================================================================================================================================
+select count(city_name)jim, city_name from (select  A.* from (select * from city where city_name like '%강릉%') A join spot_reply on A.no = spot_reply.city_no) group by city_name;
+===========================================================================================================================================================================================================================
+====커뮤니티 list=====================================================================================================================================
+select A.*,member.m_img from (select B.*,spot.spot_name from (select * from SPOT_REPLY where city_no=1)B join spot on B.ref=spot.ref) A join MEMBER on A.id = member.id order by reg_date desc;
 
-
-
-select A.plan_no from (select count(no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3
 
 select * from city;
 
@@ -17,21 +23,33 @@ select * from jim;
 
 select * from plan;
 
+select * from spot_reply;
+
+select * from member;
+
+select * from bigcity ;
+
+
+select plan.* from	(select * from (select count(B.plan_no) total, B.plan_no from (select A.* from (select dailyplan.plan_no, dailyplan.city_no from jim join dailyplan on jim.plan_no = dailyplan.plan_no) A where A.city_no=1)B group by B.plan_no order by total desc)where rownum<4) C join plan on c.plan_no = plan.plan_no
+
+
+select B.*,spot.spot_name from (select A.*,member.m_img from (select * from SPOT_REPLY where city_no=1) A join MEMBER on A.id = member.id) B join SPOT on B.ref = spot.num;
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B inner join SPOT on B.spot_name = SPOT.spot_name;
+select plan.* from (select A.plan_no from (select count(plan_no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3) B inner join PLAN on B.plan_no = PLAN.plan_no;
+select count(no) total,spot_name from jim group by spot_name order by total desc;
+select * from (select rownum R, A.* from (select * from bank order by no desc) A) where R between ? and ?";
+
+select A.plan_no from (select count(no) total,plan_no from jim group by plan_no order by total desc) A where rownum <3
+
 select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <4) B join SPOT on B.spot_name = SPOT.spot_name;
 
 select plan.* from (select A.plan_no from (select count(plan_no) total,plan_no from jim group by plan_no order by total desc) A where rownum <4) B join plan on B.plan_no = PLAN.plan_no;
-select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B join SPOT on B.spot_name = SPOT.spot_name
-select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3 and is not null) B join SPOT on B.spot_name = SPOT.spot_name;
 
-select count(no) total,spot_name from jim group by spot_name order by total desc
+==================================================================================================================================================================================================================
 
-insert into plan values(0,'tjsdlswkd0216','부산여행',sysdate,sysdate,2,'여름',12,1);
-insert into plan values(1,'tjsdlswkd0216','경주여행',sysdate,sysdate,1,'가을',24,0);
-insert into plan values(2,'tjsdlswkd0216','서울 타임머신 여행',sysdate,sysdate,4,'여름',12,1);
-insert into plan values(3,'tjsdlswkd0216','울산여행',sysdate,sysdate,1,'봄',26,1);
-insert into plan values(4,'tjsdlswkd0216','전주여행',sysdate,sysdate,3,'봄',38,0);
-insert into plan values(5,'tjsdlswkd0216','강릉여행',sysdate,sysdate,2,'겨울',8,1);
-insert into plan values(6,'tjsdlswkd0216','울산여행',sysdate,sysdate,2,'여름',41,1);
-insert into plan values(7,'tjsdlswkd0216','목포여행',sysdate,sysdate,1,'가을',25,0);
-insert into plan values(8,'tjsdlswkd0216','구례여행',sysdate,sysdate,3,'가을',52,0);
-insert into plan values(9,'tjsdlswkd0216','일산여행',sysdate,sysdate,3,'봄',13,1);
+select spot.* from (select A.spot_name from (select count(no) total,spot_name from jim group by spot_name order by total desc) A where rownum <3) B join SPOT on B.spot_name = SPOT.spot_name where spot.city_no=1
+
+select A.* from (select dailyplan.plan_no, dailyplan.city_no from jim join dailyplan on jim.plan_no = dailyplan.plan_no) A where A.city_no=2
+
+
+

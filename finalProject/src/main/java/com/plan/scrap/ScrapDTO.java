@@ -5,6 +5,7 @@ public class ScrapDTO {
 	private String id;
 	private int plan_no;
 	private String spot_name;
+	
 	public int getNo() {
 		return no;
 	}

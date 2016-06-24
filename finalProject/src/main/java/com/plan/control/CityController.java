@@ -1,9 +1,11 @@
 package com.plan.control;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.plan.city.CityDTO;
 import com.plan.city.CityService;
+import com.plan.city.Weather;
+import com.plan.city.WeatherDTO;
 
 @Controller
 @RequestMapping("/city/*")
@@ -27,7 +31,10 @@ public class CityController {
 	
 	//사용자 여행지 리스트
 	@RequestMapping("/city")
-	public void city(){}
+	public void city(Model model){
+		cityService.city(model);
+		
+	}
 	
 	//관리자 여행지 리스트 
 	@RequestMapping("/cityList")
@@ -76,8 +83,14 @@ public class CityController {
 	}
 	
 	@RequestMapping("/cityView")
-	public void cityView(@RequestParam("e_name") String e_name,@RequestParam("city_no") int city_no, Model model){
+	public void cityView(@RequestParam("e_name") String e_name,@RequestParam("city_no") int city_no,@RequestParam("lat") String lat, @RequestParam("lon")String lon, Model model) throws Exception{
 		cityService.cityView(e_name,city_no, model);
+		cityService.weatherView(lat,lon,model);
+	}
+	
+	@RequestMapping("/searchCity")
+	public void searchCity(@RequestParam("search") String search,Model model){
+		cityService.searchCity(search, model);
 	}
 	
 }

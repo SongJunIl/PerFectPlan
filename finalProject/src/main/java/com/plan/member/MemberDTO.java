@@ -6,6 +6,8 @@ public class MemberDTO {
 	private String pw;
 	private String name;
 	private String email;
+	private String m_img;
+	
 	public int getNo() {
 		return no;
 	}
@@ -36,6 +38,13 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+
 	
 	
 }

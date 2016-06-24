@@ -11,7 +11,7 @@ public class PlanDTO {
 	private String city_name;
 	private int thema;
 	private String season;
-	private int counts;
+	private int counts; 
 	private int state;
 	public int getPlan_no() {
 		return plan_no;

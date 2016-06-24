@@ -86,7 +86,50 @@
 	 
 	 <!-- dailyspot DB에 저장시키기 -->
 	 <insert id="daySpot_insert" parameterType="com.plan.daySpot.DaySpotDTO">
-	 	insert into dailyspot values(dailyspot_seq.nextval,#{dp_no},#{spot_name},#{spot_xlocation},#{spot_ylocation},#{plan_no},#{spot_no})
+	 	insert into dailyspot values(dailyspot_seq.nextval,#{daily_no},#{spot_name},#{spot_xlocation},#{spot_ylocation},#{plan_no},#{spot_no})
 	 </insert>
+	 
+	 <!-- member 정보 읽어오기 -->
+	 <select id="writer_search" resultType="com.plan.member.MemberDTO" parameterType="java.lang.String">
+	 	select * from member where id=#{id}
+	 </select>
+	 
+	 <!-- plan_no로 일정 다 select해오기 -->
+	 <select id="plan_search" resultType="com.plan.plan.PlanDTO" parameterType="java.lang.Integer">
+	 	select * from plan where plan_no=#{plan_no}
+	 </select>
+	 <select id="daily_plan_search" resultType="com.plan.dayPlan.DayPlanReDTO" parameterType="java.lang.Integer">
+	 	select * from dailyplan join city on dailyplan.CITY_NO = city.NO where plan_no = #{plan_no} order by daily_date
+	 </select>
+	 <select id="daily_spot_search" resultType="com.plan.daySpot.DaySpotReDTO" parameterType="java.util.HashMap">
+	 	select * from dailyspot join spot on dailyspot.SPOT_NO = spot.NUM where plan_no = #{plan_no} and daily_no=#{daily_no} order by no
+	 </select>
+	 <!-- view했을때 counts +1 업데이트 -->
+	 <update id="plan_view_counts_update" parameterType="java.lang.Integer">
+	 	update plan set counts = counts+1 where plan_no=#{plan_no}
+	 </update>
+	 
+	 <!-- plan 댓글 달기 -->
+	 <insert id="plan_reply_write" parameterType="com.plan.planRe.PlanReDTO">
+	 	insert into plan_review values(plan_review_seq.nextval,#{id},#{p_no},#{contents},sysdate)
+	 </insert>
+	 <!-- plan 댓글 쓰고 바로 최고 번호 가져오기 -->
+	 <select id="plan_reply_maxNo" resultType="java.lang.Integer" parameterType="com.plan.planRe.PlanReDTO">
+	 	select max(no) from plan_review where plan_no=#{p_no} and id=#{id}
+	 </select>
+	 <!-- 최고번호로 최신글 가져오기 -->
+	 <select id="plan_reply_write_result" parameterType="java.lang.Integer" resultType="com.plan.planRe.PlanReDTO">
+	 	select * from plan_review where no = #{no}
+	 </select>
+	 
+	 <!-- plan reply list 읽어오기 -->
+	 <select id="plan_reply_list" resultType="com.plan.planRe.PlanReDTO" parameterType="java.lang.Integer">
+	 	select * from plan_review where plan_no = #{plan_no} order by reg_date
+	 </select>
+	 
+	 <!-- plan reply 삭제 -->
+	 <delete id="plan_reply_del" parameterType="com.plan.planRe.PlanReDTO">
+	 	delete plan_review where no=#{no} and plan_no=#{p_no} and id=#{id}
+	 </delete>
 	 
   </mapper>

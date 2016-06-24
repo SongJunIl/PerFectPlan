@@ -130,15 +130,16 @@ table.type03 td {
     </ul>
     </div>
     </thead>
-  
+
+    
     <table class="type03" id="list_all">
-   <c:forEach items="${list}" var="dto" varStatus="i"> 
+   <c:forEach items="${list}" var="dto"> 
     <tr>
-        <th scope="row" width="100%" height="100%"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="100%" height="210px"></a></th>
-        <td><a href="spotView?num=${dto.num}">${dto.spot_name}</a>
+        <th scope="row" width="300px" height="300px"><a href="spotView?num=${dto.num}"><img src="${pageContext.request.contextPath}/resources/fileimg/${dto.spot_img}" width="100%" height="300px"></a></th>
+        <td><a href="spotView?num=${dto.num}">{dto.spot_name}</a>
         <p><img  src="${pageContext.request.contextPath}/resources/img/btn/postion.png">&nbsp;&nbsp;${dto.spot_address}</p>
         <p>${dto.contents}</p><br>
-        <p><img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"> ${clibcount[i.index]}</p> 
+        <p><img src="${pageContext.request.contextPath}/resources/img/btn/clib.png"></p>
         </td>
     </tr>
     
@@ -149,7 +150,6 @@ table.type03 td {
     
     </c:forEach>
 		</table>
-		
 </table>
 	
 
@@ -178,16 +178,29 @@ table.type03 td {
 		<a href="./spotList?curPage=${page.lastNum+1}">[다음]</a>
 	</c:if>
 </div>
+
+
+
 </body>
 <script type="text/javascript">
-
 	$("#write").on('click',function(){
 		location.href = "spotWrite?type=${page.type}";
 	});
 	
 	$( document ).ready(function() {
 		$("#all_category").css("background-color","#FF6600");
-		
+			var t = $("#all_category").attr("value");
+			 $.ajax({
+		            type:"POST",
+		            url:"${pageContext.request.contextPath}/spot/category",
+		            data:{
+		            	category:t
+		                },
+		                success: function (data){
+		                	 $("#list_all").html(data);     
+		                }
+			 });
+
 	$( ".active" ).click(function() {
 		if($(this).attr("value") == 1){
 		$("#all_category").css("background-color","#FF6600");
@@ -210,6 +223,8 @@ table.type03 td {
 			$("#all_category").css("background-color","white");
 			$("#spot_category").css("background-color","#FF6600");
 			$("#landmark_category").css("background-color","white");
+			
+
 				var t = $("#spot_category").attr("value");
 				 $.ajax({
 			            type:"POST",

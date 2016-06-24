@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -409,7 +408,7 @@ $(function() {
 	
 	
 		
-	
+	 
 	
 	//======dailyplan 날짜별 목록=============================================================
 	
@@ -461,7 +460,14 @@ var marker3=[];
 				spot_array[a].dp_no = $(".daily_no"+0).val();
 			}
 			positions2_array_make();
-			
+			for(a=0;a<$(".plan_spot_list_length").val();a++){
+				for(b=0;b<$("#spot_list").val();b++){
+					if($(".spot_nav_num0_"+a).val() == $(".spot_num"+b).val()){
+						$(".spot_nav_index_num0_"+a).val($(".spot_index"+b).val());
+					}
+					
+				}
+			}
 		}
 	
 	});	
@@ -665,6 +671,20 @@ $(".pday_list_body_inner").click(function() {
 			}
 			
 			positions2_array_make();
+			
+			for(a=0;a<spot_array.length;a++){
+				spot_array[a].dp_no = $(".daily_no"+0).val();
+			}
+			positions2_array_make();
+			for(a=0;a<$(".plan_spot_list_length").val();a++){
+				for(b=0;b<$("#spot_list").val();b++){
+					if($(".spot_nav_num"+pday_index+"_"+a).val() == $(".spot_num"+b).val()){
+						$(".spot_nav_index_num"+pday_index+"_"+a).val($(".spot_index"+b).val());
+					}
+					
+				}
+			}
+			
 			if(spot_html != ""){
 				index_array=[];
 				if(spot_counts>0){
@@ -672,6 +692,8 @@ $(".pday_list_body_inner").click(function() {
 						index_array.push(i);
 					}
 				}
+				
+				
 				
 				for(q=0;q<spot_counts;q++){
 					
@@ -1680,9 +1702,9 @@ function closeNav() {
 				<div id="pday_list_edit">수정</div>
 			</li>
 		</ul>
-		<input type="hidden" id="day_list" value="${daylist.size() }">
+		<input type="hidden" id="day_list" value="${day_plan.size() }">
 		<ul	id="pday_list_body">
-			<c:forEach items="${daylist }" var="list" varStatus="i">
+			<c:forEach items="${day_plan }" var="list" varStatus="i">
 				<li class="pday_list_body_inner pday_list_box${i.index }" data-index=${i.index }>
 					<input type="hidden" class="daily_no${i.index }" value="${list.daily_no }">
 					<input type="hidden" class="plan_no${i.index }" value="${list.plan_no }">
@@ -1706,21 +1728,57 @@ function closeNav() {
 	
 	<div id="planner_schedule_box">
 		<form action="./planSave" method="post" id="frm">
-			<input type="hidden" name="days" value="${daylist.size() }">
+			<input type="hidden" name="days" value="${day_plan.size() }">
 			<input type="hidden" value="${planDTO.plan_no}" name="plan_no">
-			<c:forEach items="${daylist }" var="list" varStatus="i">
+			<c:forEach items="${day_spot }" var="list" varStatus="i">
 				<div class="planner_schedule_box_inner pschedule_box${i.index}" data-index=${i.index }>
 					<div class="Pschedule_list_header" data-index=${i.index }>
 						<div class="Pschedule_list_header_inner" data-index=${i.index }>
 							DAY${i.index+1}
 							<span>│</span>
-							${list.daily_date }(${list.city_dailyWeek})
+							${day_plan[list.key].daily_date }(${day_plan[list.key].city_dailyWeek})
 						
 						</div>
 					</div>
 						<input type="hidden" id="pspot_list_length${i.index}">
 					<div class="Pschedule_list_body" id="schedule_list${i.index}" data-index=${i.index }>
+					<input type="text" class="plan_spot_list_length" value="${list.value.size() }">
+					<c:forEach items="${list.value }" var="list2" varStatus="j">
+						
+						
+					<c:if test="${j.index>0 }">
+					<div class="pspot_nav_inner_line pspot_nav_line${i.index }_${j.index }">
+						<img src="${pageContext.request.contextPath}/resources/img/plan/item_route_bg.png">
+					</div>
+					</c:if>
 					
+					<div class="pspot_nav_inner nav_inner${i.index }_${j.index }">
+						<div class="pspot_nav_inner_box">
+							<div class="pspot_nav_inner_img nav_close${i.index }_${j.index }" data-index="${j.index }">
+								<img src="${pageContext.request.contextPath}/resources/img/plan/del_city_btn_b.png">
+							</div>
+							<div class="pspot_nav_inner_name">
+					
+								${ list2.spot_name}
+							</div>
+							<div class="pspot_nav_inner_day">
+					
+							<input type="hidden" class="dp_nav_no${i.index }_${j.index }" value="${list2.daily_no }">
+							<input type="hidden" class="spot_nav_num${i.index }_${j.index }" value="${list2.spot_no }">
+							<input type="hidden" class="spot_nav_name${i.index }_${j.index }" value="${list2.spot_name }">
+							<input type="hidden" class="spot_nav_xloaction${i.index }_${j.index }" value="${list2.spot_xlocation }">
+							<input type="hidden" class="spot_nav_yloaction${i.index }_${j.index }" value="${list2.spot_ylocation }">
+							<input type="text" class="spot_nav_index_num${i.index }_${j.index }" >
+							
+							</div>
+						</div>
+					</div>
+						
+						
+						
+						
+						
+					</c:forEach>
 					</div>
 				</div>
 			</c:forEach>

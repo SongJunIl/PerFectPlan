@@ -7,6 +7,9 @@ import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.daySpot.DaySpotDTO;
+import com.plan.daySpot.DaySpotReDTO;
+import com.plan.member.MemberDTO;
+import com.plan.planRe.PlanReDTO;
 import com.plan.spot.SpotDTO;
 
 public interface PlanService {
@@ -47,4 +50,17 @@ public interface PlanService {
 	
 	public void s_daySpot_insert(DaySpotDTO daySpotDTO);
 	
+	public MemberDTO s_writer_search(String id);
+	
+	public PlanDTO s_plan_search(int plan_no);
+	
+	public List<DayPlanReDTO> s_daily_plan_search(int plan_no);
+	
+	public List<DaySpotReDTO> s_daily_spot_search(int plan_no, int daily_no);
+
+	public PlanReDTO s_plan_reply_write(PlanReDTO planReDTO);
+	
+	public List<PlanReDTO> s_plan_reply_list(int plan_no);
+	
+	public List<PlanReDTO> s_plan_reply_del(PlanReDTO planReDTO);
 }

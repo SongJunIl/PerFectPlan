@@ -3,7 +3,7 @@ package com.plan.daySpot;
 public class DaySpotDTO {
 	private int plan_no;
 	private int no;
-	private int dp_no;
+	private int daily_no;
 	private int spot_no;
 	private String spot_name;
 	private double spot_xlocation;
@@ -41,11 +41,12 @@ public class DaySpotDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getDp_no() {
-		return dp_no;
+	
+	public int getDaily_no() {
+		return daily_no;
 	}
-	public void setDp_no(int dp_no) {
-		this.dp_no = dp_no;
+	public void setDaily_no(int daily_no) {
+		this.daily_no = daily_no;
 	}
 	public String getSpot_name() {
 		return spot_name;

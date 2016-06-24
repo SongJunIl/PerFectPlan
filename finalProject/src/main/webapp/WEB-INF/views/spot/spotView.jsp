@@ -13,48 +13,11 @@
 function rego(){
 	document.getElementById("reply_write_spot").scrollIntoView();
 }
-	
 
 	$( document ).ready(function() {
 		$("#badmyBar").css("width","${icon.badicon}");
 		$("#sosomyBar").css("width","${icon.sosoicon}");
 		$("#goodmyBar").css("width","${icon.goodicon}");
-		
-		$("#clib_img").click(function(){
-			var id=$("#id").val();
-			var spot_name=$("#spot_names").val();
-			var no= $("#no").val();
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/spot/jims",
-				data:{
-					  id:id,
-					  spot_name:spot_name,
-					  no:no
-					 },
-				success:function(result){
-					if(result.trim()=="YES"){
-						alert("클립 하셨습니다!");
-					}else{
-						alert("로그인 확인 또는 다시 한번 클립해주세요!");
-					}
-				}
-			});
-		});
-		
-		$("#update_add").click(function(){
-			var num = $("#num").val();
-			var ref = $("#ref").val();
-			$.ajax({
-				type:"GET",
-				url:"${pageContext.request.contextPath}/spot/spotReplyUpdate?num="+num+"&ref="+ref,
-				success:function(result){
-					$("#reply_view").html(result);
-				}
-					   
-				});
-			});
-		
 		$( ".rate_box div" ).click(function() {
 		if($(this).attr("data-val") == 1){
 		$("#p1").css("background-color","#FF6600");
@@ -158,17 +121,16 @@ function rego(){
     border: 1px solid #e9e9e9;
     margin-top: 10px;
     margin-left: 5px;}
-#reply_id{margin-top: 10px;}
+#reply_id{margin-top: 15px;}
 #reply_submit{ float: right; width: 70px;
     height: 30px;
-   	width:80px;
     line-height: 20px;
     color: white;
     font-size: 13px;
     background: #ff9320;
     border: 1px solid #f7870f;
     cursor: pointer;}
-#reply_write_btn{width: 700px; height: 50px; margin-top: 10px;   }
+#reply_write_btn{width: 700px; height: 50px; margin-top: 20px;   }
 #no_result{margin-top: 50px; margin-top: 20px; margin-bottom: 20px; text-align: center;}
 #reply_form{margin-bottom:50px; border-bottom: 1px solid #d8d8d8;}
 #no_result_text{padding-bottom: 20px;}
@@ -196,7 +158,7 @@ function rego(){
 	<img  src="${pageContext.request.contextPath}/resources/img/btn/postion.png">&nbsp;&nbsp;${spotDTO.spot_address }
 	</div>
 	<div id="clib_cnt">
-	<img src="${pageContext.request.contextPath}/resources/img/btn/clib.png" height="20px;"> ${clib.clib}
+	<img src="${pageContext.request.contextPath}/resources/img/btn/clib.png" height="20px;">
 	</div>
 	<div id="rate_cnt">
 	<img src="${pageContext.request.contextPath}/resources/img/btn/rate.png" height="20px;">&nbsp;&nbsp;${icon2.totalicon2}/10
@@ -205,23 +167,22 @@ function rego(){
 
 <div id="btn_contain">
 
-
+<div id="plan_btn">
+<img  src="${pageContext.request.contextPath}/resources/img/btn/spot_padd_btn.png">
+<div id="plan_text">일정추가</div>
+</div>
 
 <div id="clib_btn">
-<img id="clib_img" src="${pageContext.request.contextPath}/resources/img/btn/spot_clip_btn.png">
+<img  src="${pageContext.request.contextPath}/resources/img/btn/spot_clip_btn.png">
 <div id="clib_text">클립</div>
 </div>
 
 <div id="review_btn" >
-<img id="review_btn_img" onclick="rego()" src="${pageContext.request.contextPath}/resources/img/btn/spot_review_btn.png">
+<img id="review_btn_img" onclick="rego()"  src="${pageContext.request.contextPath}/resources/img/btn/spot_review_btn.png">
 <div id="review_text" >리뷰쓰기</div>
 </div>
 </div>
 <!-- center bar -->
-<input type="hidden" id="no" name="no" value="${spotDTO.num}">
-<input type="hidden" id="id" name="id" value="${member.id}">
-<input type="hidden" id="spot_names"name="spot_names" value="${spotDTO.spot_name}" >
-
 <div id="center_bar">
 <div id="center_box">
 <div id="img_bar"><img src="${pageContext.request.contextPath}/resources/fileimg/${spotDTO.spot_img}" width="850px" height="300px"></div>
@@ -290,21 +251,13 @@ function rego(){
 <c:forEach items="${spotReply}" var="spotReplys">
 <div id="reply_form">
 <div id="review_opbtn">
-
-<c:if test="${member.id==spotReplys.id || admin.id=='admin'}">
 <div id="delect"><a href="spotReplyDelete?num=${spotReplys.num}&ref=${spotReplys.ref}">삭제&nbsp;&nbsp;</a>|</div>
-<div id="update"><a id="update_add">&nbsp;&nbsp;수정</a></div>
-</c:if>
+<div id="update"><a href="spotReplyUpdate?num=${spotReplys.num}&ref=${spotReplys.ref}">&nbsp;&nbsp;수정</a></div>
 
-<input type="hidden" name="num"  id="num" value="${spotReplys.num}">
-<input type="hidden" name="ref" id="ref" value="${spotReplys.ref}">
 </div>
 </div>
-
 <div id="user_txt">
-
-<div id="user_name"><img src="${pageContext.request.contextPath}/resources/memberimg/${spotReplys.spot_img}"
-										style="width: 50px; height: 50px; border-radius: 50%; ">&nbsp;&nbsp;&nbsp;&nbsp;${spotReplys.id}&nbsp;&nbsp;&nbsp;&nbsp;<span id="reg_Date">${spotReplys.reg_date}</span></div>
+<div id="user_name">${spotReplys.id}&nbsp;&nbsp;&nbsp;&nbsp;<span id="reg_Date">${spotReplys.reg_date}</span></div>
 </div>
 <div id="user_rate">
 <c:if test="${spotReplys.icon == 1 }"><span class="icon_rate">별로에요!</span></c:if>
@@ -313,10 +266,10 @@ function rego(){
 </div>
 <div id="user_content">${spotReplys.contents}</div>
 </c:forEach>
-
 </c:if>
 <div id="reply_view_title"></div>
 </div>
+
 <div id="reply_write"> 
 <div id="reply_write_spot">${spotDTO.spot_name} 리뷰 남기기</div>
 <div id="reply_rate_box">
@@ -330,13 +283,10 @@ function rego(){
 </div>
 
 <form action="spotReply" method="post">
-<c:if test="${admin.id=='admin' || admin.id != member.id}">
-ID : &nbsp;<input type="text" name="id" id="reply_id" readonly="readonly" value="<c:if test="${admin.id=='admin'}">${admin.id}</c:if><c:if test="${admin.id!='admin'}">${member.id}</c:if>">
-</c:if>
-<textarea rows="6" cols="75" id="reply_area" name="contents" placeholder="장소에 대한 리뷰를 입력하세요."></textarea><div id="reply_write_btn"><input type="submit" value="등록" id="reply_submit"></div>
+<input type="hidden" name="num" value="${spotDTO.num}">
+ID : &nbsp;<input type="text" name="id" id="reply_id">
+<textarea rows="6" cols="75" id="reply_area" name="contents" placeholder="장소에 대한 리뷰를 입력하세요."></textarea><div id="reply_write_btn"><input type="submit" value="댓글달기" id="reply_submit"></div>
 <input type="hidden" id="icon" name="icon" >
-<input type="hidden" id="num" name="num" value="${spotDTO.num}" >
-<input type="hidden" id="spot_img" name="spot_img" value="${member.m_img}">
 </form>
 </div>
 </div>
@@ -344,6 +294,8 @@ ID : &nbsp;<input type="text" name="id" id="reply_id" readonly="readonly" value=
 </div>
 </div>
 <a href="spotUpdate?num=${spotDTO.num}"><input type="button" value="UPDATE" id="update" name="update"></a>
+
+
 <a href="spotDelete?num=${spotDTO.num}"><input type="button" value="DELETE" id="delete"></a>
 </div>
 

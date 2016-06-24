@@ -11,6 +11,7 @@
 		<property name="url" value="jdbc:oracle:thin:@172.16.186.147:1521:xe"></property>
 		<property name="username" value="user01"></property>
 		<property name="password" value="user01"></property>
+
 	</bean>
 	<!-- Root Context: defines shared resources visible to all other web components -->
 

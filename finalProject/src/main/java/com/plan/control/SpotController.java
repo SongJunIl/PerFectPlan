@@ -1,7 +1,5 @@
 package com.plan.control;
 
-
-import java.awt.List;
 import java.io.File;
 import java.util.UUID;
 
@@ -9,7 +7,6 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -19,12 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.plan.scrap.ScrapDTO;
-import com.plan.scrap.ScrapService;
 import com.plan.spot.ReplyDTO;
 import com.plan.spot.SpotDTO;
 import com.plan.spot.SpotSearchType;
@@ -33,17 +26,19 @@ import com.plan.spot.SpotService;
 @Controller
 @RequestMapping("/spot/*")
 public class SpotController {
+
+
 	
 	@Inject
 	private SpotService spotService;
 	
-	@Inject
-	private ScrapService scrapService;
+	
 
 	
 	@RequestMapping("/spotList")
 	public void spotdList(@RequestParam(defaultValue="1") int curPage, Model model,String type){
-		spotService.list(curPage,model,type);	
+		spotService.list(curPage,model,type);
+		
 	}
 	
 	@RequestMapping(value = "/spotUpdate",method=RequestMethod.GET)
@@ -59,9 +54,7 @@ public class SpotController {
 	}
 	
 	@RequestMapping(value = "/spotReplyUpdate",method=RequestMethod.GET)
-	public void replyUpdateForm(Model model,@RequestParam("num") int num,@RequestParam("ref") int ref){
-		spotService.spotReplyUpdateForm(model,num,ref);
-	}
+	public void replyUpdateForm(){}
 	
 	@RequestMapping(value="/spotReplyUpdate",method=RequestMethod.POST)
 	public String spotReplyUpdate(@ModelAttribute ReplyDTO replyDTO,@RequestParam("num") int num,@RequestParam("ref") int ref){
@@ -91,12 +84,9 @@ public class SpotController {
 		return savedName;
 	}
 	@RequestMapping(value="/spotView")
-	public void spotView(@RequestParam int num, Model model,String icon){
+	public void spotdView(@RequestParam int num, Model model , String icon){
 		spotService.spotView(num, model);
-		
 		spotService.spotReplyView(num, model,icon);
-		
-		spotService.crilbCount(model,num);
 	}
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
@@ -121,10 +111,9 @@ public class SpotController {
 	}
 
 	@RequestMapping(value="/spotReply", method=RequestMethod.POST)
-	public String reply(@ModelAttribute ReplyDTO replyDTO, int num,@RequestParam int icon,String spot_img){
+	public String reply(@ModelAttribute ReplyDTO replyDTO, int num,@RequestParam int icon){
 		replyDTO.setNum(num);
 		replyDTO.setIcon(icon);
-		replyDTO.setSpot_img(spot_img);
 		spotService.spotReply(replyDTO);
 		return "redirect:/spot/spotView?num="+num;
 	}
@@ -135,21 +124,4 @@ public class SpotController {
 	}
 	
 
-	@RequestMapping(value="/jims")
-	@ResponseBody
-	public String jim(@ModelAttribute ScrapDTO scrapDTO){
-		int result=0;
-		System.out.println(scrapDTO.getId());
-		System.out.println(scrapDTO.getNo());
-		System.out.println(scrapDTO.getSpot_name());
-		
-		result=scrapService.jim(scrapDTO);
-		System.out.println(result);
-		String message="NO";
-		if(result == 1 ){
-			message="YES";
-			
-		}
-		return message;
-	}
 }

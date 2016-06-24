@@ -1,5 +1,6 @@
 package com.plan.plan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.plan.big.BigDTO;
@@ -7,6 +8,9 @@ import com.plan.city.CityDTO;
 import com.plan.dayPlan.DayPlanDTO;
 import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.daySpot.DaySpotDTO;
+import com.plan.daySpot.DaySpotReDTO;
+import com.plan.member.MemberDTO;
+import com.plan.planRe.PlanReDTO;
 import com.plan.spot.SpotDTO;
 
 public interface PlanDAO {
@@ -47,4 +51,17 @@ public interface PlanDAO {
 	
 	public void daySpot_insert(DaySpotDTO daySpotDTO)throws Exception;
 	
+	public MemberDTO writer_search(String id)throws Exception;
+	
+	public PlanDTO plan_search(int plan_no)throws Exception;
+	
+	public List<DayPlanReDTO> daily_plan_search(int plan_no)throws Exception;
+	
+	public List<DaySpotReDTO> daily_spot_search(int plan_no, int daily_no)throws Exception;
+	
+	public PlanReDTO plan_reply_write(PlanReDTO planReDTO)throws Exception;
+	
+	public List<PlanReDTO> plan_reply_list(int plan_no)throws Exception;
+	
+	public List<PlanReDTO> plan_reply_del(PlanReDTO planReDTO)throws Exception;
 }

@@ -23,6 +23,8 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	
+	
 	@Override
 	public MemberDTO login(MemberDTO mdto) {
 			
@@ -51,6 +53,19 @@ public class MemberServiceImpl implements MemberService {
 			}
 		return result;
 	}
+	
+	@Override
+	public int imgupload(MemberDTO memberDTO) {
+		int result =0;
+			try {
+				result=mdao.imgipload(memberDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return result;
+	}
+	
 	
 	@Override
 	public void delete(int no) {
@@ -102,5 +117,5 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 				
 	}
-	
+
 }

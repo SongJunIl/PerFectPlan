@@ -108,7 +108,6 @@ public class SpotServiceImpl implements SpotService {
 	public void spotReply(ReplyDTO replyDTO) {
 		try {
 			spotDAO.spotReply(replyDTO);
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -218,7 +217,6 @@ public class SpotServiceImpl implements SpotService {
 	@Override
 	public void crilbCount(Model model,int num) {
 		HashMap<String ,Integer> clib = new HashMap<>();
-		
 		try {
 			SpotDTO spotDTO = spotDAO.spotView(num);
 			int result = spotDAO.crilbCount(spotDTO.getSpot_name());

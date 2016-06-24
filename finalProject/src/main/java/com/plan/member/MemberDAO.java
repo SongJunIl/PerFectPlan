@@ -17,4 +17,5 @@ public interface MemberDAO {
 
 	public MemberDTO getEmailck(MemberDTO mdto)throws Exception; 
 
+	public int imgipload(MemberDTO memberDTO)throws Exception;
 }

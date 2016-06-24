@@ -121,9 +121,10 @@ public class SpotController {
 	}
 
 	@RequestMapping(value="/spotReply", method=RequestMethod.POST)
-	public String reply(@ModelAttribute ReplyDTO replyDTO, int num,@RequestParam int icon){
+	public String reply(@ModelAttribute ReplyDTO replyDTO, int num,@RequestParam int icon,String spot_img){
 		replyDTO.setNum(num);
 		replyDTO.setIcon(icon);
+		replyDTO.setSpot_img(spot_img);
 		spotService.spotReply(replyDTO);
 		return "redirect:/spot/spotView?num="+num;
 	}

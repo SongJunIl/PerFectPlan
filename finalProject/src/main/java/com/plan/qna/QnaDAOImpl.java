@@ -57,8 +57,28 @@ public class QnaDAOImpl implements QnaDAO {
 	
 	@Override
 	public ReplyQnaDTO getReplyQna_view(ReplyQnaDTO rqdto) throws Exception {
-
 		return rqdto;
 	}
 
+	@Override
+	public List<QnaDTO> getReplyQna_list(QnaDTO qdto) throws Exception {
+		 	
+		return sqlsession.selectList(namespace+"replyqna_replyview", qdto);
+	}
+	
+	@Override
+	public int replyQna_replyupdate(int com_no) throws Exception {
+			
+		return sqlsession.update(namespace+"replyqna_replyupdate", com_no);
+	}
+	
+	
+	
+	@Override
+	public ReplyQnaDTO replyqna_view(ReplyQnaDTO rqdto) throws Exception {
+		return sqlsession.selectOne(namespace+"replyqna_view", rqdto);
+	}
+	
+	
+	
 }

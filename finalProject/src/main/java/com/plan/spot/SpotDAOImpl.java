@@ -1,4 +1,4 @@
-package com.plan.spot;
+	package com.plan.spot;
 
 import java.util.HashMap;
 import java.util.List;

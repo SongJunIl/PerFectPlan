@@ -3,10 +3,10 @@ package com.plan.spot;
 
 public class SpotDTO {
 	private int num;
-	private String big_name;
+	private String big_name; 
 	private String spot_img;
 	private String city_name;
-	private String spot_name;
+	private String spot_name; 
 	private String contents;
 	private String spot_address;
 	private String category;

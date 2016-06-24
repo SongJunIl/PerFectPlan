@@ -15,34 +15,41 @@ $('.collapse').bind("pageshow",function(event){
 
 $(function(){
 	$(".p_qna_view_btn_1").click(function () {
-		var n = $(this).val();
+		var i = $(".p_qnalist_id").val();
+		var n = $(".p_qnalist_no").val();
 		$.ajax({
 			type:"POST",
 			url:"${pageContext.request.contextPath}/member/replyqna_getreplyview",
 			data:{
-					qnalist_no:n,
+					id:i,
+					qnalist_no:n
 				 },
 				 success: function (result){
-							    $("#"+n).html("");
-								$("#"+n).html(result);
-				 },	
+								$(".p_reply_body").html(result);
+				 },
 				 error : function(){
 					 alert("아직안만들엇지렁");
 				 }
 		});
 	});	
-	
 });
 
-
+$(".p_qna_view_btn_2").click(function () {
+	$("#p_hidden_d_ata").html("");	
+	var no = $(this).val();
+	var id = $(this).attr("data-id");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='qnalist_no' value='"+no+"'>");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='id' value='"+id+"'>");
+	$("#p_hidden_d_ata").append("<input type='hidden' name='com_no' value='"+no+"'>");
+	
+});
 </script>
-
 <c:choose>
 	<c:when test="${empty qna_list}">
 		<div id="p_qnanotice_con"><h2>질문 하신 글이 없습니다.</h2></div>
 	</c:when>
 	<c:otherwise>
-		<c:forEach items="${qna_list}" var="i" varStatus="a">	
+		<c:forEach items="${qna_list}" var="i">	
 			<div id="p_qna_form">
 					<div class="p_qna_list">
 							<div id="p_qna_body_list" class="p_body_div_1">
@@ -61,17 +68,25 @@ $(function(){
 										<!--관리자만 볼 수 있는 버튼  -->
 										<div class="p_qnaadminbt"><button class="btn btn-danger p_qna_view_btn_2" data-toggle="modal" data-target="#p_qnaReplymodal" data-id="${i.id}" value="${i.com_no}">답변 하기</button></div>
 										</c:if>
-										
 										<div id="p_qna_view_btn">
-											<a data-toggle="collapse" data-parent="p_replyqnaList" data-target="#${i.com_no}" aria-expanded="false" aria-controls="collapseExample" href="#p_collapse"><button class="btn btn-primary p_qna_view_btn_1" value="${i.com_no}" type="button">답변 보기</button></a>
+											<a data-toggle="collapse" data-parent="p_replyqnaList" data-target="#${i.com_no}" aria-expanded="false" aria-controls="collapseExample" href="#p_collapse"><button class="btn btn-primary p_qna_view_btn_1" type="button">답변 보기</button></a>
 										</div>
 				      		</div>
 				      					
 										
+				      	<c:choose>
+				      		<c:when test="${empty replyqna }">
 								<div class="collapse" id="${i.com_no}">
-									<div id="${i.com_no}" ></div>
+								<div><h2>답변이 아직 등록되지 않았습니다.</h2></div>
 								</div>
-								 	 
+				      		</c:when>
+				      		<c:otherwise>
+				      		
+								<div class="p_body_div_1 p_reply_body" id="p_qna_body_list_contents">
+										
+								</div>	
+				      		</c:otherwise>
+				      	</c:choose>	
 						</div>
 			</div>
 		</c:forEach>	

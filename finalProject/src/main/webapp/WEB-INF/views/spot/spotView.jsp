@@ -205,10 +205,7 @@ function rego(){
 
 <div id="btn_contain">
 
-<div id="plan_btn">
-<img  src="${pageContext.request.contextPath}/resources/img/btn/spot_padd_btn.png">
-<div id="plan_text">일정추가</div>
-</div>
+
 
 <div id="clib_btn">
 <img id="clib_img" src="${pageContext.request.contextPath}/resources/img/btn/spot_clip_btn.png">
@@ -303,8 +300,11 @@ function rego(){
 <input type="hidden" name="ref" id="ref" value="${spotReplys.ref}">
 </div>
 </div>
+
 <div id="user_txt">
-<div id="user_name">${spotReplys.id}&nbsp;&nbsp;&nbsp;&nbsp;<span id="reg_Date">${spotReplys.reg_date}</span></div>
+
+<div id="user_name"><img src="${pageContext.request.contextPath}/resources/memberimg/${spotReplys.spot_img}"
+										style="width: 50px; height: 50px; border-radius: 50%; ">&nbsp;&nbsp;&nbsp;&nbsp;${spotReplys.id}&nbsp;&nbsp;&nbsp;&nbsp;<span id="reg_Date">${spotReplys.reg_date}</span></div>
 </div>
 <div id="user_rate">
 <c:if test="${spotReplys.icon == 1 }"><span class="icon_rate">별로에요!</span></c:if>
@@ -333,9 +333,10 @@ function rego(){
 <c:if test="${admin.id=='admin' || admin.id != member.id}">
 ID : &nbsp;<input type="text" name="id" id="reply_id" readonly="readonly" value="<c:if test="${admin.id=='admin'}">${admin.id}</c:if><c:if test="${admin.id!='admin'}">${member.id}</c:if>">
 </c:if>
-
 <textarea rows="6" cols="75" id="reply_area" name="contents" placeholder="장소에 대한 리뷰를 입력하세요."></textarea><div id="reply_write_btn"><input type="submit" value="등록" id="reply_submit"></div>
 <input type="hidden" id="icon" name="icon" >
+<input type="hidden" id="num" name="num" value="${spotDTO.num}" >
+<input type="hidden" id="spot_img" name="spot_img" value="${member.m_img}">
 </form>
 </div>
 </div>
@@ -343,7 +344,6 @@ ID : &nbsp;<input type="text" name="id" id="reply_id" readonly="readonly" value=
 </div>
 </div>
 <a href="spotUpdate?num=${spotDTO.num}"><input type="button" value="UPDATE" id="update" name="update"></a>
-
 <a href="spotDelete?num=${spotDTO.num}"><input type="button" value="DELETE" id="delete"></a>
 </div>
 

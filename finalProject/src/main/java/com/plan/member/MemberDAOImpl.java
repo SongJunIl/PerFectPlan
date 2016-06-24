@@ -14,8 +14,9 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void join(MemberDTO mdto) throws Exception {
-		sqlsession.insert(namespace+"join", mdto);
 		
+		sqlsession.insert(namespace+"join", mdto);
+		System.out.println(mdto.getM_img());
 	}
 	
 	@Override
@@ -29,6 +30,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlsession.update(namespace+"update", mdto);
 		 
+	}
+	
+	@Override
+	public int imgipload(MemberDTO memberDTO) throws Exception {
+		System.out.println(memberDTO.getM_img());
+		System.out.println(memberDTO.getNo());
+		return sqlsession.update(namespace+"imgupload", memberDTO);
 	}
 	
 	@Override

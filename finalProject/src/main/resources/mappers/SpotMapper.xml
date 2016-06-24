@@ -52,7 +52,7 @@
   </delete>
   
   	<insert id="spotReply" parameterType="com.plan.spot.ReplyDTO">
-  	insert into spot_reply values(spotreply_seq.nextVal,#{id},#{contents},sysdate,#{num},#{icon})
+  	insert into spot_reply values(spotreply_seq.nextVal,#{id},#{contents},sysdate,#{num},#{icon},#{spot_img})
   	</insert>
   	
   	<select id="spotReplyView" resultType="com.plan.spot.ReplyDTO">

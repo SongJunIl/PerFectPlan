@@ -4,10 +4,11 @@
 			border-bottom: 1px solid black;
 			background-color: black;
 		}
-		#p_nav_bar{width: 1000px;}
-		#main-body{height: 1700px; }		
+		#p_nav_bar{width: 1025px;}
+		#main-body{}		
 		#nav_li_log1{margin-left: 250px;}
 		.input-group-addon:first-child{width: 65px;}
+		
 		
 		#p_test{margin-top: 15px;}
 		
@@ -31,7 +32,7 @@
 		#p_logform_pw{width: 210px; margin-left: 100px;}
 		#p_loginbt{margin-left: 60px;}
 		#p_mdjoin_total{width: 260px; margin: 0 auto;}
-		#p_join_addon1{width: 80px;}
+		#p_join_addon1{width: 80px;}	
 		#p_join_addon2{width: 80px;}	
 		#p_join_addon3{width: 80px;}
 		#p_join_addon4{width: 80px;}
@@ -64,12 +65,12 @@
 		#p_email_send{margin-right: 10px; float: right; margin-top: 1px;}
 		#p_mail_send_btn{margin-top: 15px;}
 		#p_join_idcheck{height: 30px;}
-		#p_join_pwcheck{height: 30px;}
+		#p_join_pwcheck{height: 30px;}		
 		#p_join_namecheck{height: 30px;}
 		#p_join_echeck{height: 30px;}		
 		.p_j_check{width: 161px;margin: 0 auto; margin-top: 10px;}
 		#p_join_echeck{width: 180px;margin: 0 auto; margin-top: 0px;}
 		#p_emailcheckresult{ margin: 0 auto; width: 165px; margin-top: 10px;}
-		
-		
-		
+		#p_img_md_1{height: 310px;}
+		#p_imgfile{ width: 230px;  height: 40px;}
+		.container{width: 1200px;}

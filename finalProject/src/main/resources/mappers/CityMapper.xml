@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="CityMapper">
+ 	
+ 	<select id="city" resultType="com.plan.city.CityDTO">
+ 		<![CDATA[select city.* from (select city_no from (select count(city_no) total, city_no from (select spot.city_no from jim join spot on jim.spot_name = spot.spot_name) group by city_no order by total desc) where rownum<7) B join city on city.no = B.city_no]]>
+ 	</select>
+ 	
+ 	<select id="cityView" resultType="com.plan.city.CityDTO" parameterType="java.lang.Integer">
+ 		select * from city where no=#{no}
+ 	</select>
+ 	
+  	<select id="popular_spot" resultType="com.plan.city.PopularSpotDTO" parameterType="java.lang.Integer">
+  	
+ 		<![CDATA[select B.*, spot.spot_img from (select count(spot_name) total,A.spot_name from (select spot.city_no, spot.spot_name from spot join jim on jim.spot_name = spot.spot_name where city_no=#{city_no}) A group by spot_name order by total desc) B join spot on spot.spot_name = B.spot_name where rownum<9]]>
+ 	</select>
+ 	
+ 	<select id="popular_plan" resultType="com.plan.plan.PlanDTO" parameterType="java.lang.Integer">
+ 		<![CDATA[select plan.* from	(select * from (select count(B.plan_no) total, B.plan_no from (select A.* from (select dailyplan.plan_no, dailyplan.city_no from jim join dailyplan on jim.plan_no = dailyplan.plan_no) A where A.city_no=#{city_no})B group by B.plan_no order by total desc)where rownum<4) C join plan on c.plan_no = plan.plan_no]]>
+ 	</select>
+ 	
+ 	<select id="reply_city" resultType="com.plan.city.City_ReDTO" parameterType="java.lang.Integer">
+ 		<![CDATA[select A.*,member.m_img from (select B.*,spot.spot_name from (select * from SPOT_REPLY where city_no=#{city_no})B join spot on B.ref=spot.ref) A join MEMBER on A.id = member.id order by reg_date desc]]>
+ 	</select>
+
+ 	<insert id="cityWrite" parameterType="com.plan.city.CityDTO">
+ 		insert into city values(2,#{city_name}, #{e_name}, #{big_name},#{city_img1},#{city_img2},#{city_img3},0,0,0)
+ 	</insert>
+ 	
+ 	<select id="cityList" resultType="com.plan.city.CityDTO">
+ 		select * from city;
+ 	</select>
+ 	
+ 	<select id="totalList" resultType="java.lang.Integer">
+ 		select count(no) from city;
+ 	</select>
+ 	
+ 	<select id="searchCity" resultType="com.plan.city.CityDTO" parameterType="java.lang.String">
+ 		select * from city where city_name like '%' || #{search} || '%'
+ 	</select>
+ 	
+ 	<select id="searchCitySpot" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+ 		<![CDATA[select B.*, city.big_ename, city.no from (select count(city_name) jim, city_name from (select * from (select * from city where city_name like '%' || #{search} || '%') A join spot on spot.city_no = A.no) group by city_name) B join city on city.city_name=B.city_name]]>
+ 	</select>
+ 	
+ 	<select id="searchCityReply" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+ 		<![CDATA[select count(city_name)jim, city_name from (select  A.* from (select * from city where city_name like '%' || #{search} || '%') A join spot_reply on A.no = spot_reply.city_no) group by city_name]]>
+ 	</select>
+ 
+ </mapper>

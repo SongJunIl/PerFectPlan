@@ -300,7 +300,7 @@
 				<ul class="nav navbar-nav navbar-right" id="p_nav_bar">
 					<li class="hidden" id="p_nav_li_margin"><a href="#page-top"></a>
 					</li>
-					<li><a class="page-scroll" href="#services"><span
+					<li><a class="page-scroll" href="city/city"><span
 							class="p_span_title_font" id="p_travel" onmouseover="on()"
 							onmouseout="out()">Travel Spot</span></a></li>
 					<li><a class="page-scroll" href="#portfolio"><span

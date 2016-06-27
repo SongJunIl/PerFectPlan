@@ -1,111 +1,6 @@
 <style>
 		#p_my_top{	height: 420px;	}	
 		#p_top_title{	height: 370px;	}
-<<<<<<< HEAD
-		#p_top_menu{	height: 50px;   margin-top: 50px;}
-		#p_header_top1{margin-bottom: 0px;}
-		
-		.p_top_menu_list{
-			vertical-align:middle;
-			text-align:center;
-			font:bolder;
-			font-size:20px;
-			width: 170px;
-			display: inline-block;
-		}
-		#p_top_menu_center{width: 1010px; margin: 0 auto;}
-		.p_tab_title_tab{width: 200px;}
-		.p_home_body{width: 800px; height: 1000px; /* background-color: green; */ margin: 0 auto; margin-top: 100px;}
-		.p_home_body_d1{height: 350px; margin-top: 10px; }
-/* 		#p_home_body_d1_1{background-color: aqua;}
-		#p_home_body_d1_2{background-color: orange;}
-		#p_home_body_d1_3{background-color: lime;} */
-		.p_home_body_title{float: left;}
-		.p_home_body_plus{float: right; margin-top: 10px; margin-right: 15px;}
-		.p_home_body_d1_header{clear: both; border-bottom: 1px black solid; height: 75px;}
-	
-		.p_ac_1{display: inline-block; margin-left: 15px;}
-		#p_ac_delete{display:inline-block; margin-top:-15px; float: right; width: 50px;}	
-		#p_ac_trash{margin-left: 20px;}
-		
-		.p_panel_body_list{width: 800px; height: 350px;}
-		#p_panel_body_list_img{width:770px; height: 250px; }
-		.p_body_div_1{background-color: fuchsia;}
-		.p_body_div_2{background-color: lime;}
-		.p_body_div_3{background-color: navy;}
-		#p_panel_body_list_img_info{width:770px; margin-top: 200px; height:50px;  display: inline-block;}
-		#p_panel_body_list_contents{width:770px; height: 100px; }
-		#p_home_body_mypage{
-						display:block;
-						width: 400px; 
-						height: 370px; 
-						margin-top: 150px; 
-						margin: 0 auto; 
-						background-color: white;
-						vertical-align: middle;
-						text-align: center;
-						}
-			.input-group{display: inline-flex;}
-			#p_addon_1{width: 80px;}
-			#p_addon_2{width: 80px;}
-			#p_addon_3{width: 80px;}
-			#p_addon_4{width: 80px;}
-				.button {
-			    border: none;
-			    color: white;
-			    padding: 8px 16px;
-			    text-align: center;
-			    text-decoration: none;
-			    display: inline-block;
-			    font-size: 8px;
-			    margin: 4px 2px;
-			    -webkit-transition-duration: 0.4s; /* Safari */
-			    transition-duration: 0.4s;
-			    cursor: pointer;
-			}	
-			.button3 {
-			    background-color: white; 
-			    color: black; 
-			    border: 2px solid #f44336;
-			}
-			
-			.button3:hover {
-			    background-color: #f44336;
-			    color: white;
-			}
-			.button5 {
-			    background-color: white;
-			    color: black;
-			    border: 2px solid #555555;
-			}
-			
-			.button5:hover {
-			    background-color: #555555;
-			    color: white;
-			}
-			#p_mypage_moutbt{margin-top: 150px;}
-			#p_modal_mout{margin-top: 350px;}
-			
-			#p_home_body_reviewnsacrap_1{width: 1000px;}
-			.p_reviewnscrap_1{width: 480px; height: 100%; margin: 5px 5px;}
-			#p_review_1{background-color: orange; float: left; }
-			#p_scrap_1{background-color: yellow; float: right;}
-			
-			.p_review_list{height: 400px; background-color: silver; margin-top: 10px;}
-			.p_scrap_list{height: 400px; background-color: gray; margin-top: 10px;}
-			
-			#p_review_body_list_img{height: 250px;}
-			#p_review_body_list_img_info{height: 50px;}
-			#p_review_body_list_contents{height: 100px;}
-			#p_scrap_body_list_img{height: 250px;}
-			#p_scrap_body_list_img_info{height: 50px;}
-			#p_scrap_body_list_contents{height: 100px;}
-			
-			
-			.p_slide_img{width: 100%; height: 100%;}
-
-			
-=======
 		#p_top_menu{	height: 50px;   margin-top: 195px;}
 		#p_header_top1{margin-bottom: 0px;}
 		
@@ -248,16 +143,26 @@
 
 			.p_home_body{ margin-top: 225px}
 
-<<<<<<< HEAD
-=======
 			#p_qnaup_input1{margin-top: 12px; margin-left: 15px; width: 548px;}
 			#p_qna_addon1{font-size: large; width: 92px;}
 			#p_qnaupcontents{width: 466px; height: 275px; margin: 0px; }
 			#p_qna_addon2{width: 82px;}
 
+			.scrap_form{width: 220px; height:220px; float: left;  overflow:hidden;  }
+			#scrap_form_bit{margin-right:20px; margin-top:20px; margin-bottom: 40px;}
+			.scrap_form_bit_body{height: 140px; transform-origin: center center 0px;  transform-origin: center center 0px; 
+    /*transform: matrix(1, 0, 0, 1, 0, 0);*/
+    
+      -webkit-transition: all 2.5s ease;
+      -moz-transition: all 2.5s ease;
+      -o-transition: all 2.5s ease;
+      transition: all 2.5s ease; }
+			.scrap_form_bit_body:hover{    -webkit-transform: scale(1.3,1.3);
+    -moz-transform: scale(1.3,1.3);
+    -o-transform: scale(1.3,1.3);
+    transform: scale(1.3,1.3);}
+			
+			.scrap_form_bit_foot{height: 80px;  border: 2px solid #ddd;}
 
->>>>>>> refs/remotes/origin/parkpark
 
-
->>>>>>> refs/remotes/origin/master
 </style>			

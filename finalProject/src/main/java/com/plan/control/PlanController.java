@@ -28,9 +28,11 @@ import com.plan.dayPlan.DayPlanReDTO;
 import com.plan.daySpot.DaySpotDTO;
 import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
+import com.plan.plan.NewPlanDTO;
 import com.plan.plan.PlanDTO;
 import com.plan.plan.PlanService;
 import com.plan.planRe.PlanReDTO;
+import com.plan.scrap.ScrapDTO;
 import com.plan.spot.SpotDTO;
 
 
@@ -42,6 +44,199 @@ public class PlanController {
 	private PlanService planService;
 	
 	
+	//planJimCan
+	@RequestMapping(value="/planJimCan")
+	public String planJimCan(@ModelAttribute ScrapDTO scrapDTO,Model model,HttpSession session){
+		String id=scrapDTO.getId();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		scrapDTO.setId(memberDTO.getId());
+		planService.s_plan_jim_delete(scrapDTO);
+		return "redirect:/planMake/planView?id="+id+"&plan_no="+scrapDTO.getPlan_no();
+	}
+	
+	//planJim
+	@RequestMapping(value="/planJim")
+	public String planJim(@ModelAttribute ScrapDTO scrapDTO,Model model,HttpSession session){
+		
+		String id=scrapDTO.getId();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		scrapDTO.setId(memberDTO.getId());
+		planService.s_plan_jim_insert(scrapDTO);
+		
+		return "redirect:/planMake/planView?id="+id+"&plan_no="+scrapDTO.getPlan_no();
+	}
+	
+	
+	//plan_list ajax로 부르기
+	@RequestMapping(value="/plannerList")
+	public void plannerList(@ModelAttribute NewPlanDTO newPlanDTO, Model model){
+		System.out.println(newPlanDTO.getCity_no());
+		System.out.println(newPlanDTO.getDays());
+		System.out.println(newPlanDTO.getSeason());
+		System.out.println(newPlanDTO.getThema());
+		
+		List<NewPlanDTO> ar = planService.s_plan_list_ajax(newPlanDTO);
+		for(int i=0;i<ar.size();i++){
+			
+		    
+		    int spot_counts = planService.s_spot_counts(ar.get(i));
+		    
+		    int clip_counts = planService.s_clip_counts(ar.get(i));
+		    List<String> ar2 = planService.s_get_city_names(ar.get(i));
+		    String city_names = "";
+		    for(int j=0;j<ar2.size();j++){
+		    	if(j==0){
+		    		city_names += ar2.get(j);		    		
+		    	}else{
+		    		city_names += ","+ ar2.get(j);
+		    	}
+		    }
+		   
+		    ar.get(i).setSpot_counts(spot_counts);
+		    ar.get(i).setJim(clip_counts);
+		    ar.get(i).setCity_names(city_names);
+		}
+		
+		System.out.println("길이"+ar.size());
+		
+		/*List<CityDTO> city_list = planService.s_city_list_all();*/
+		
+		model.addAttribute("plan_list2", ar);
+		/*model.addAttribute("city_list",city_list);*/
+		
+		
+		
+	}
+	//plan_list 불러오기
+	@RequestMapping(value="/planList")
+	public void planList(Model model){
+		
+		List<NewPlanDTO> ar = planService.s_plan_list_select();
+		for(int i=0;i<ar.size();i++){
+			
+		    
+		    int spot_counts = planService.s_spot_counts(ar.get(i));
+		    
+		    int clip_counts = planService.s_clip_counts(ar.get(i));
+		    List<String> ar2 = planService.s_get_city_names(ar.get(i));
+		    String city_names = "";
+		    for(int j=0;j<ar2.size();j++){
+		    	if(j==0){
+		    		city_names += ar2.get(j);		    		
+		    	}else{
+		    		city_names += ","+ ar2.get(j);
+		    	}
+		    }
+		   
+		    ar.get(i).setSpot_counts(spot_counts);
+		    ar.get(i).setJim(clip_counts);
+		    ar.get(i).setCity_names(city_names);
+		}
+		
+		
+		List<CityDTO> city_list = planService.s_city_list_all();
+		
+		model.addAttribute("plan_list", ar);
+		model.addAttribute("city_list",city_list);
+		
+	}
+	
+	
+	
+	//day_plan_update ReInsert plan_spot
+	@RequestMapping(value="/planSpotUpdate", method=RequestMethod.POST)
+	public String planSpotUpdate(@RequestParam("all_day_no") String all_day,@RequestParam("all_plan_list") String all_plan,@ModelAttribute PlanDTO planDTO,@RequestParam("days") String days,Model model,HttpSession session){
+		planService.s_plan_spot_del(planDTO);
+		
+		planSave(all_day, all_plan, planDTO, days, model, session);
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		return "redirect:/planMake/planView?id="+memberDTO.getId()+"&plan_no="+planDTO.getPlan_no();
+	}
+	
+	
+	//day_plan_del
+	@RequestMapping(value="/dayPlanDel")
+	public String dayPlanDel(@ModelAttribute DayPlanReDTO dayPlanReDTO,Model model){
+		System.out.println(dayPlanReDTO.getDaily_no());
+		System.out.println(dayPlanReDTO.getPlan_no());
+		//dayily_no로 dayplan에서 지우기
+		List<DayPlanReDTO> ar = planService.s_day_plan_del(dayPlanReDTO);
+		PlanDTO planDTO = new PlanDTO();
+		planDTO = planService.s_plan_search(dayPlanReDTO.getPlan_no());
+		planDTO.set_F_date(ar.size());
+		planDTO.setDays(planDTO.getDays()-1);
+		planService.s_plan_fdate_update(planDTO);
+		
+		// plan no가져와서 dayDTO에 값넣고 date값 계산해서 넣기
+			for(int i=0;i<ar.size();i++){
+				Calendar cal = new GregorianCalendar();
+				cal.setTime(planDTO.getS_date());
+				cal.add(Calendar.DAY_OF_MONTH, i);
+				
+				SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+			    ar.get(i).setDaily_date(Date.valueOf(fm.format(cal.getTime())));
+			    
+			    System.out.println(ar.get(i).getDaily_date());
+			    System.out.println("번호"+ar.get(i).getDaily_no());
+			    planService.s_get_daily_update(ar.get(i));
+			}
+			
+			plannerUpdate(planDTO, model);
+			
+			
+			 return "redirect:/planMake/plannerUpdate?plan_no="+planDTO.getPlan_no();
+	}
+	
+	//day_plan_add
+	@RequestMapping(value="/dayPlanAdd")
+	public String dayPlanAdd(@ModelAttribute DayPlanReDTO dayPlanReDTO,Model model){
+		
+		
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(dayPlanReDTO.getDaily_date());
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+	    dayPlanReDTO.setDaily_date(Date.valueOf(fm.format(cal.getTime())));
+	    
+	    planService.s_dayPlan_insert(dayPlanReDTO);
+	    PlanDTO planDTO = planService.s_plan_search(dayPlanReDTO.getPlan_no());
+	    planDTO.setF_date(dayPlanReDTO.getDaily_date());
+	    planDTO.setPlan_no(dayPlanReDTO.getPlan_no());
+	    planDTO.setDays(planDTO.getDays()+1);
+	    planService.s_plan_fdate_update(planDTO);
+	   
+	    plannerUpdate(planDTO, model);
+	    
+	    return "redirect:/planMake/plannerUpdate?plan_no="+planDTO.getPlan_no();
+	}
+	
+	//city_list
+	@RequestMapping(value="/cityList")
+	public void cityList(Model model){
+		
+		List<BigDTO> bigList = planService.s_bigCity_list();
+		List<CityDTO> gang = planService.s_gang_list();
+		List<CityDTO> gyeong = planService.s_gyeong_list();
+		List<CityDTO> gyeongsangN = planService.s_gyeongsangN_list();
+		List<CityDTO> gyeongsangS = planService.s_gyeongsangS_list();
+		List<CityDTO> jeollaN = planService.s_jeollaN_list();
+		List<CityDTO> jeollaS = planService.s_jeollaS_list();
+		List<CityDTO> chungcheongN = planService.s_chungcheongN_list();
+		List<CityDTO> chungcheongS = planService.s_chungcheongS_list();
+		model.addAttribute("bigCity", bigList);
+		model.addAttribute("gang", gang);
+		model.addAttribute("gyeong", gyeong);
+		model.addAttribute("gyeongsangN", gyeongsangN);
+		model.addAttribute("gyeongsangS", gyeongsangS);
+		model.addAttribute("jeollaN", jeollaN);
+		model.addAttribute("jeollaS", jeollaS);
+		model.addAttribute("chungcheongN", chungcheongN);
+		model.addAttribute("chungcheongS", chungcheongS);
+		
+		
+	}
 	
 	
 	//plannerUpdate
@@ -86,10 +281,10 @@ public class PlanController {
 	}
 	
 	@RequestMapping(value="/planView")
-	public void planView(@RequestParam("id") String id,@RequestParam("plan_no") int plan_no,Model model){
+	public void planView(@RequestParam("id") String id,@RequestParam("plan_no") int plan_no,Model model,HttpSession session){
 		//유저 찾아서 DTO 가져오기
 		MemberDTO memberDTO = planService.s_writer_search(id);
-		model.addAttribute("member", memberDTO);
+		model.addAttribute("member2", memberDTO);
 		//plan 번호로 일정관련 DB 다가져오기
 		PlanDTO planDTO = planService.s_plan_search(plan_no);
 		List<DayPlanReDTO> ar_day_plan = planService.s_daily_plan_search(plan_no);
@@ -102,14 +297,27 @@ public class PlanController {
 		for(int i=0;i<ar_day_plan.size();i++){
 			ar_day_plan.get(i).get_dailyWeek(ar_day_plan.get(i).getDaily_date());
 		}
+		int spot_counts = planService.s_spot_counts(planDTO);
 		
 		model.addAttribute("planDTO", planDTO);
 		model.addAttribute("day_plan", ar_day_plan);
 		model.addAttribute("day_spot", hs);
-		
+		model.addAttribute("spot_counts", spot_counts);
 		// reply 리스트 뽑아오기
 		List<PlanReDTO> ar_reply_list = planService.s_plan_reply_list(plan_no);
 		model.addAttribute("reply_list", ar_reply_list);
+		
+		//jim
+		ScrapDTO scrapDTO = new ScrapDTO();
+		memberDTO = (MemberDTO)session.getAttribute("member");
+		if(memberDTO != null){
+			scrapDTO.setId(memberDTO.getId());
+			scrapDTO.setPlan_no(plan_no);
+			scrapDTO = planService.s_plan_jim_select(scrapDTO);
+		}else{
+			scrapDTO = null;
+		}
+		model.addAttribute("jim", scrapDTO);
 		
 	}
 	
@@ -140,6 +348,21 @@ public class PlanController {
 		System.out.println(start_date);
 		planDTO.set_F_date(Integer.parseInt(days));
 		
+		Calendar cal2 = new GregorianCalendar();
+		cal2.setTime(start_date);
+		int season = cal2.get(Calendar.MONTH);
+		String season2 ="";
+		if(season<4|| season==12 ){
+			season2="겨울";
+		}else if(season>=4 && season<7){
+			season2="봄";
+		}else if(season>=7 && season<10){
+			season2="여름";
+		}else{
+			season2="가을";
+		}
+		planDTO.setSeason(season2);
+		planDTO.setDays(Integer.parseInt(days));
 		//planDTO를 가지고 DB 업데이트 하기
 		planService.s_plan_save_update(planDTO);
 		System.out.println("check2");
@@ -165,6 +388,8 @@ public class PlanController {
 				cal.setTime(start_date);
 				cal.add(Calendar.DAY_OF_MONTH, i);
 				
+				
+				
 				SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 			    ar2.get(i).setDaily_date(Date.valueOf(fm.format(cal.getTime())));
 			    
@@ -172,9 +397,10 @@ public class PlanController {
 			    System.out.println("번호"+ar2.get(i).getDaily_no());
 			    planService.s_get_daily_update(ar2.get(i));
 			}	
-			
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
 		System.out.println("완료");
-		return "redirect:/planMake/planView?id=mamamoo&plan_no="+planDTO.getPlan_no();
+		return "redirect:/planMake/planView?id="+memberDTO.getId()+"&plan_no="+planDTO.getPlan_no();
 				
 	}
 	
@@ -187,7 +413,7 @@ public class PlanController {
 	
 	//일정만들기 데이터 넘기기
 	@RequestMapping(value="/plannerMake", method=RequestMethod.POST)
-	public void planMake(@RequestParam("all_positions") String all_positions,@RequestParam("start_day") String start_day,Model model){
+	public void planMake(@RequestParam("all_positions") String all_positions,@RequestParam("start_day") String start_day,Model model,HttpSession session){
 		System.out.println("planMake_submit 들어옴");
 		String plan_city[] = all_positions.split(",");
 		ArrayList<DayPlanDTO> ar =new ArrayList<>();
@@ -205,13 +431,13 @@ public class PlanController {
 			}
 			days += Integer.parseInt(plan_city[i+3]);
 		}
-		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		Date start_date = Date.valueOf(start_day);
 		System.out.println(start_date);
 		System.out.println(days);
 		PlanDTO planDTO = new PlanDTO(start_date,days);
-		/*planDTO.setId(id);//session 받아서 넣기*/
-		
+		planDTO.setId(memberDTO.getId());//session 받아서 넣기
+		planDTO.setDays(days);
 		// plan DB에 값넣기
 		planService.s_plan_insert(planDTO);
 		int plan_no = planService.s_plan_no();

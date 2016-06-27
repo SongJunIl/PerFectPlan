@@ -1,8 +1,12 @@
 package com.plan.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.plan.spot.SpotDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -13,9 +17,17 @@ public class MemberDAOImpl implements MemberDAO {
 	private String namespace = "MemberMapper.";
 	
 	@Override
-	public void join(MemberDTO mdto) throws Exception {	
+	public List<SpotDTO> jimlist(MemberDTO mdto) throws Exception {
+		 System.out.println(mdto.getId());
+	 List<SpotDTO> ar = sqlsession.selectList(namespace+"jimlist", mdto);
+	 System.out.println(ar.get(0).getSpot_img());
+		return ar;
+	}
+	
+	@Override
+	public void join(MemberDTO mdto) throws Exception {
 		sqlsession.insert(namespace+"join", mdto);
-		System.out.println(mdto.getM_img());
+		
 	}
 	
 	@Override
@@ -57,6 +69,5 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO getEmailck(MemberDTO mdto) throws Exception {
 		return sqlsession.selectOne(namespace+"emailck",mdto);
 	}
-
 	
 }

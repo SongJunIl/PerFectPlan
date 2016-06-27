@@ -27,7 +27,7 @@
 
 		
 	<beans:bean id="member" class="com.plan.intercept.MemberInterCept"></beans:bean>
-	
+	<beans:bean id="plan" class="com.plan.intercept.PlanInterCept"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -38,6 +38,11 @@
 			<mapping path="/member/update"/>
 			<beans:ref bean="member" />
 		</interceptor>
+		<interceptor>
+			<mapping path="/planMake/planSelectCity"/>
+			<beans:ref bean="plan" />
+		</interceptor>
+		
 	</interceptors>
 	<context:component-scan base-package="com.plan.member"></context:component-scan>	
 	<context:component-scan base-package="com.plan.email"></context:component-scan>

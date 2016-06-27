@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,8 +16,8 @@
 	.plan_view_header{
 		width: 100%;
 		height: 350px;
-		color: window;
 		border: 1px solid #c8c8ca;
+		color: white;
 	}
 	.plan_view_mem{
 		float: left;
@@ -26,6 +26,11 @@
 	}
 	.paln_mem_profile{
 		float: left;
+		width: 45px;
+		height: 45px;
+		
+	}
+	.paln_mem_profile img{
 		width: 45px;
 		height: 45px;
 		border-radius:100px;
@@ -42,11 +47,31 @@
 	.plan_view_jim{
 		width: 45px;
 		height: 45px;
+		margin-top: 15px;
+		margin-right: 15px;
+		float: right;
+		opacity:0.5;
+	}
+	.plan_view_jim img{
+		width: 45px;
+		height: 45px;
 		border-radius:100px;
 		background-color: white;
+		
+	}
+	
+	.plan_view_jim_cancle{
+		width: 45px;
+		height: 45px;
 		float: right;
 		margin-top: 15px;
 		margin-right: 15px;
+	}
+	.plan_view_jim_cancle img{
+		width: 45px;
+		height: 45px;
+		border-radius:100px;
+		background-color: white;
 	}
 	.clear{
 		clear: both;
@@ -110,7 +135,6 @@
 		width: 1092px;
 		/* margin-top: 30px; */
 		height: 125px;
-		
 	}
 	.plan_view_body_dailyplan{
 		float:left;
@@ -254,6 +278,8 @@
 		margin-top: 30px;
 	}
 	.writer_img img{
+		width: 45px;
+		height: 45px;
 		border: 1px solid gray;
 		border-radius:100px; 
 	}
@@ -292,6 +318,11 @@
 	}
 	.reply_list_writer_img{
 		float: left;
+	}
+	.reply_list_writer_img img{
+		width: 45px;
+		height: 45px;
+		border-radius:100px; 
 	}
 	.plan_daily_spot_box{
 		float: right;
@@ -363,8 +394,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 
   <style>
@@ -381,7 +411,7 @@
   	height: 700px;
   }
   #nav_li li{
-  	width: 120px;
+  	width: 130px;
   	clear: both !important;
   	font-weight: bolder;
   	margin-left: 25px;
@@ -389,7 +419,7 @@
   #navbar_body{
   	position:fixed;
  	width: 200px;
-  	margin-top: 88px;
+  	margin-top: 115px;
   	margin-left:200px;
   }
   
@@ -400,7 +430,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 30px !important;
    
 }
 
@@ -473,12 +503,12 @@ $(function() {
 	    $('.rigth_map').css('position', 'absolute');
 	    $(window).scroll(function() {
 	        var sclTop = $(this).scrollTop();
-	        if (sclTop > 465)
+	        if (sclTop > 525)
 	        {
 	            $('.rigth_map').css('position', 'fixed').css('top', '8px');        
 	        }
 	        else 
-	        {$('.rigth_map').css('position','absolute').css('top','514px').css('right','405px');}
+	        {$('.rigth_map').css('position','absolute').css('top','544px').css('right','405px');}
 	    });
 	
 	var big_length = $(".big_List").val();
@@ -1318,7 +1348,7 @@ return content;
 	
 	// plan 댓글 ajax로 insert 시키기
 	$(".reply_submit_btn").click(function() {
-		
+		if($("#id").val() != ""){
 			$.ajax({
 				url:"./planReplyWrite",
 				type:"POST",
@@ -1333,7 +1363,9 @@ return content;
 				}
 			
 			});
-			
+		}else{
+			alert("댓글은 로그인 후 이용 가능합니다.");
+		}
 		
 	});
 	//plan 댓글 삭제
@@ -1391,6 +1423,25 @@ return content;
 		location.href= "plannerUpdate?plan_no="+$("#plan_no").val();
 	});
 	
+	/* var city_counts = 0;
+	for(a=0;a<$("#day_plan_length").val();a++){
+		city_counts = city_counts+parseInt($(".spot_list_size"+a).val());
+	}
+		$(".plan_loc_inner").append(city_counts); */
+		
+	//jim 하기
+	$(".plan_view_jim").mouseenter(function() {
+		$(this).css("opacity","1");
+	});
+	$(".plan_view_jim").mouseleave(function() {
+		$(this).css("opacity","0.5");
+	});
+	$(".plan_view_jim").click(function() {
+		location.href="planJim?id="+$("#memid").val()+"&plan_no="+$("#plan_no").val();
+	});
+	$(".plan_view_jim_cancle").click(function() {
+		location.href="planJimCan?id="+$("#memid").val()+"&plan_no="+$("#plan_no").val();
+	});	
 });
 //=======================================================================================
 //tab script
@@ -1419,10 +1470,12 @@ function closeNav() {
 }
 </script>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="87">
+<body data-spy="scroll" data-target=".navbar" data-offset="120">
 <!-- header -->
  <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- section -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<div class="all_page">
 	<!-- scroll spy -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar_body">
@@ -1435,9 +1488,9 @@ function closeNav() {
 	      <div class="collapse navbar-collapse" id="myNavbar">
 	        <input type="hidden" value="${day_plan[0].plan_no }" id="plan_no">
 	        <ul class="nav navbar-nav" id="nav_li">
-	        <c:forEach items="${day_plan }" varStatus="i" var="day_plan_li">
-	          <li class="nav_menu" data-index="${i.index }"><a href="#day${i.index+1 }">DAY${i.index+1 } - ${day_plan_li.city_name}</a></li>	        
-	        </c:forEach>
+		        <c:forEach items="${day_plan }" varStatus="i" var="day_plan_li">
+		          <li class="nav_menu" data-index="${i.index }"><a href="#day${i.index+1 }">DAY${i.index+1 } - ${day_plan_li.city_name}</a></li>	        
+		        </c:forEach>
 	        </ul>
 	      </div>
 	    </div>
@@ -1446,18 +1499,40 @@ function closeNav() {
 		<div class="plan_view_header" style="background-color: black;">
 			<div class="plan_view_mem">
 				<div class="paln_mem_profile">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
+				<c:choose>
+					<c:when test="${member2.m_img=='null'}">
+						<img src="${pageContext.request.contextPath}/resources/img/login/user.png">
+					</c:when>
+					<c:otherwise>
+						<img src="${pageContext.request.contextPath}/resources/memberimg/${member2.m_img}">
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<div class="paln_mem_name">
-					${member.name }
+					${member2.name }
+					<input type="hidden" value="${member2.id }" id="memid">
 				</div>
 			</div>
-			<div class="plan_view_jim">
-				<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
-			</div>
+			<c:if test="${!empty member && member.id != member2.id}">
+				<c:choose>
+					<c:when test="${!empty jim }">
+						<div class="plan_view_jim_cancle">
+							<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like_on.png">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="plan_view_jim">
+							<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
+						</div>
+					</c:otherwise>
+				
+				</c:choose>
+				
+				
+			</c:if>
 			<div class="clear"></div>
 			<div class="plan_view_inner">
-				<div class="plan_title">
+				<div class="plan_title" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">
 					${planDTO.plan_name }
 				</div>
 				<div class="plan_date_thema">				
@@ -1468,7 +1543,7 @@ function closeNav() {
 						<c:choose>
 							<c:when test="${planDTO.thema == 1 }">가족 여행</c:when>
 							<c:when test="${planDTO.thema == 2 }">친구 여행</c:when>
-							<c:when test="${planDTO.thema == 3 }">연인 여행</c:when>
+							<c:when test="${planDTO.thema == 3 }">커플 여행</c:when>
 							<c:otherwise>나홀로 여행</c:otherwise>
 						</c:choose>
 						
@@ -1478,7 +1553,7 @@ function closeNav() {
 				<div class="plan_loc_co_jim_box">
 					<div class="plan_loc_co_jim_inner">
 						<div class="plan_loc_inner">
-							<img src="${pageContext.request.contextPath}/resources/img/plan/cnt_spot.png"> ${day_spot.size()}
+							<img src="${pageContext.request.contextPath}/resources/img/plan/cnt_spot.png"> ${spot_counts }
 						</div>
 						<div class="plan_co_inner">
 							<img src="${pageContext.request.contextPath}/resources/img/plan/cnt_view.png"> ${planDTO.counts }						
@@ -1491,18 +1566,20 @@ function closeNav() {
 					</div>
 				</div>
 			</div>
-			<div class="plan_update">
-				수정하기
-			</div>
+			<c:if test="${member2.id == member.id }">
+				<div class="plan_update">
+					수정하기
+				</div>			
+			</c:if>
 			
 			<div class="clear"></div>
 		</div>
+		
 		
 		<ul class="tab" >
 		  <li><a href="#" id="plan_tab" class="tablinks" onclick="openCity(event, 'plan_view_body2')">일정</a></li>
 		  <li><a href="#" class="tablinks" onclick="openCity(event, 'paln_reply2')">댓글</a></li>
 		</ul>
-		
 		<div class="plan_view_body tabcontent" id="plan_view_body2">
 			<div class="plan_view_plna_list">
 				<input type="hidden" id="day_plan_length" value="${day_plan.size() }">
@@ -1582,11 +1659,20 @@ function closeNav() {
 				<span>댓글</span>
 				<hr style="border: 0.1ex solid #c8c8ca">
 				
-				<form action="">
+				
 					<div class="reply_write">
 						<div class="writer_img">
-							<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
-							<input type="hidden" value="mamamoo" name="id" id="id">
+						<c:choose>
+							<c:when test="${!empty member }">
+								<img src="${pageContext.request.contextPath}/resources/memberimg/${member.m_img}">						
+							</c:when>
+							<c:otherwise>
+								<img src="${pageContext.request.contextPath}/resources/img/login/user.png">							
+							</c:otherwise>	
+						
+						</c:choose>
+							
+							<input type="hidden" value="${member.id }" name="id" id="id">
 						</div>
 						<div class="reply_content">
 							<textarea rows="3" cols="60" name="content" id="content"></textarea>
@@ -1596,22 +1682,33 @@ function closeNav() {
 						</div>
 						<div class="clear"></div>
 					</div>
-				</form>
+				
 				<div class="reply_content_list">
 				<c:forEach items="${reply_list }" var="re_list" varStatus="i">
 					<div class="reply_list">
 						<div class="reply_list_inner">
 							<div class="reply_list_writer_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
-								<input type="hidden" value="mamamoo" name="id">
+							<c:choose>
+								<c:when test="${member2.m_img=='null'}">
+									<img src="${pageContext.request.contextPath}/resources/img/login/user.png">
+								</c:when>
+								<c:otherwise>
+									<img src="${pageContext.request.contextPath}/resources/memberimg/${re_list.m_img}">
+								</c:otherwise>
+							</c:choose>
+								
+								<input type="hidden" value="${re_list.id}" name="id">
 								<input type="hidden" value="${re_list.no }" id="reply_no${i.index }">
 							</div>
 							<div class="reply_list_cotent_box">
 								<div class="reply_list_up_box">
 									<div class="reply_list_writer">${re_list.id }</div>
 									<div class="reply_list_date">${re_list.reg_date }</div>
-									<div class="reply_del" data-index="${i.index }">삭제</div>
-									<div class="reply_update">수정</div>
+									<c:if test="${member.id == re_list.id || !empty admin }">
+										<div class="reply_del" data-index="${i.index }">삭제</div>
+										
+									</c:if>
+									<!-- <div class="reply_update">수정</div> -->
 									<div class="clear"></div>
 								</div>
 								<div class="reply_list_down_box">
@@ -1631,7 +1728,7 @@ function closeNav() {
 		
 	</div>
 <!-- footer -->
-<%@ include file="/WEB-INF/views/temp/footer.jspf" %>
+
 </body>
 </html>
 

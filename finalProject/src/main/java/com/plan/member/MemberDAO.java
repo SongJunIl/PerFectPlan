@@ -1,5 +1,9 @@
 package com.plan.member;
 
+import java.util.List;
+
+import com.plan.spot.SpotDTO;
+
 public interface MemberDAO {
 
 	
@@ -7,7 +11,6 @@ public interface MemberDAO {
 	
 	public void join(MemberDTO mdto)throws Exception;
 	
-
 	public int update(MemberDTO mdto) throws Exception;
 	
 	public void delete(int no)throws Exception;
@@ -19,5 +22,8 @@ public interface MemberDAO {
 	public MemberDTO getEmailck(MemberDTO mdto)throws Exception; 
 
 	public int imgipload(MemberDTO memberDTO)throws Exception;
+	
+	public List<SpotDTO> jimlist(MemberDTO mdto)throws Exception;
+
 
 }

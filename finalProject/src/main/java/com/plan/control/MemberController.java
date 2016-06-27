@@ -1,26 +1,11 @@
 package com.plan.control;
 
-
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.plan.member.MemberDTO;
-import com.plan.member.MemberService;
 import java.io.File;
 import java.util.UUID;
 
 import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +43,12 @@ public class MemberController {
 	@RequestMapping("mypage")
 	public void mypage(){
 		
+	}
+	
+	@RequestMapping(value="/jimlist")
+	public void jimlist(@ModelAttribute MemberDTO mdto,Model model){
+		memberService.jimlist(mdto, model);
+		 
 	}
 	
 	@RequestMapping(value="/logincheck",method = RequestMethod.POST)

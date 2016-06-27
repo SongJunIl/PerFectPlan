@@ -24,7 +24,6 @@ public class SpotServiceImpl implements SpotService {
 	public void list(int curPage, Model model, String type) {
 		List<SpotDTO> ar = null;
 		ArrayList<Integer> ar2 = new ArrayList<>() ;
-		HashMap<String ,Integer> clib = new HashMap<>();
 		try {
 			int totalList = spotDAO.totlaList();
 			MakePage mp = new MakePage(curPage,totalList);

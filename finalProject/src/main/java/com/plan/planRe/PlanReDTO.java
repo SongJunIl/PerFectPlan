@@ -8,6 +8,15 @@ public class PlanReDTO {
 	private int p_no;
 	private String contents;
 	private Date reg_date;
+	private String m_img;
+	
+	
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
 	public int getNo() {
 		return no;
 	}

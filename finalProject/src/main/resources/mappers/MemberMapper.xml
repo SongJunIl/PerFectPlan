@@ -4,8 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="MemberMapper">
+  
+  	<select id="jimlist" resultType="com.plan.spot.SpotDTO">
+		select spot.* from (select spot_name from jim where id=#{id})A join spot on A.spot_name=spot.spot_name
+	</select>  
+  
   	<insert id="join" parameterType="com.plan.member.MemberDTO">
-  		insert into member values(member_seq.nextVal,#{id},#{pw},#{name},#{email},'null') 
+  		insert into member values(member_seq.nextVal,#{id},#{pw},#{name},#{email},null) 
   	</insert>
   
 	<select id="login" resultType="com.plan.member.MemberDTO">
@@ -36,6 +41,4 @@
 		select * from member where id=#{id}
 	</select>
   	
-
-
   </mapper>

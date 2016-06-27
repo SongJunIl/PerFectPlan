@@ -13,6 +13,7 @@ import com.plan.daySpot.DaySpotDTO;
 import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
 import com.plan.planRe.PlanReDTO;
+import com.plan.scrap.ScrapDTO;
 import com.plan.spot.SpotDTO;
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -347,4 +348,151 @@ public class PlanServiceImpl implements PlanService {
 		}
 	}
 	
+	//=========plan f_date 업데이트==================================================================
+
+	@Override
+	public void s_plan_fdate_update(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.plan_fdate_update(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	//=========daily_plan_del====================================================================
+	
+	@Override
+	public List<DayPlanReDTO> s_day_plan_del(DayPlanReDTO dayPlanReDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.day_plan_del(dayPlanReDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//===========plan_spot plan_no이면 싹다 지우기=====================================================
+	@Override
+	public void s_plan_spot_del(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.plan_spot_del(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//==========plan_list 뽑아오기===================================================================
+	@Override
+	public List<NewPlanDTO> s_plan_list_select() {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_list_select();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//========spot_counts get하기=================================================================
+	@Override
+	public int s_spot_counts(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.spot_counts(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//========clip_counts get하기=================================================================
+	@Override
+	public int s_clip_counts(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.clip_counts(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//========get_city_names get하기=================================================================
+	@Override
+	public List<String> s_get_city_names(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.get_city_names(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//========city_list_all get하기=================================================================
+	@Override
+	public List<CityDTO> s_city_list_all() {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.city_list_all();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//========plan_list_ajax get하기=================================================================
+	@Override
+	public List<NewPlanDTO> s_plan_list_ajax(NewPlanDTO newPlanDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_list_ajax(newPlanDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//========plan_jim insert하기===========================================================================
+	@Override
+	public void s_plan_jim_insert(ScrapDTO scrapDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.plan_jim_insert(scrapDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	//========plan_jim select하기===========================================================================
+	@Override
+	public ScrapDTO s_plan_jim_select(ScrapDTO scrapDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_jim_select(scrapDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//========plan_jim delete하기===========================================================================
+	@Override
+	public void s_plan_jim_delete(ScrapDTO scrapDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.plan_jim_delete(scrapDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

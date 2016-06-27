@@ -14,7 +14,7 @@
  	
   	<select id="popular_spot" resultType="com.plan.city.PopularSpotDTO" parameterType="java.lang.Integer">
   	
- 		<![CDATA[select B.*, spot.spot_img from (select count(spot_name) total,A.spot_name from (select spot.city_no, spot.spot_name from spot join jim on jim.spot_name = spot.spot_name where city_no=#{city_no}) A group by spot_name order by total desc) B join spot on spot.spot_name = B.spot_name where rownum<9]]>
+ 		<![CDATA[select B.*, spot.spot_img,spot.num from (select count(spot_name) total,A.spot_name from (select spot.city_no, spot.spot_name from spot join jim on jim.spot_name = spot.spot_name where city_no=#{city_no}) A group by spot_name order by total desc) B join spot on spot.spot_name = B.spot_name where rownum<9]]>
  	</select>
  	
  	<select id="popular_plan" resultType="com.plan.plan.PlanDTO" parameterType="java.lang.Integer">
@@ -26,11 +26,11 @@
  	</select>
 
  	<insert id="cityWrite" parameterType="com.plan.city.CityDTO">
- 		insert into city values(2,#{city_name}, #{e_name}, #{big_name},#{city_img1},#{city_img2},#{city_img3},0,0,0)
+ 		update city set city_img1=#{city_img1}, city_img2=#{city_img2}, city_img3=#{city_img3} where no=#{no}
  	</insert>
  	
  	<select id="cityList" resultType="com.plan.city.CityDTO">
- 		select * from city;
+ 		select * from city order by no desc;
  	</select>
  	
  	<select id="totalList" resultType="java.lang.Integer">
@@ -48,5 +48,66 @@
  	<select id="searchCityReply" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
  		<![CDATA[select count(city_name)jim, city_name from (select  A.* from (select * from city where city_name like '%' || #{search} || '%') A join spot_reply on A.no = spot_reply.city_no) group by city_name]]>
  	</select>
- 
+ 	
+ 	<select id="gangwon_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+ 		select * from city where big_ename=#{bigEname} order by no
+ 	</select>
+ 	
+ 	<select id="gyeonggi_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+ 		select * from city where big_ename=#{bigEname} order by no
+ 	</select>
+ 	
+ 	<select id="gyeongsangS_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+ 		select * from city where big_ename=#{bigEname} order by no
+ 	</select>
+ 	
+	<select id="gyeongsangN_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where big_ename=#{bigEname} order by no
+	</select> 	
+	
+	<select id="JeollaS_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where big_ename=#{bigEname} order by no
+	</select>
+	
+	<select id="JeollaN_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where big_ename=#{bigEname} order by no
+	</select>
+	
+	<select id="chungcheongS_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where big_ename=#{bigEname} order by no
+	</select>
+	
+	<select id="chungcheongN_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where big_ename=#{bigEname} order by no
+	</select>
+	
+	<select id="main_cityList" parameterType="java.lang.String" resultType="com.plan.city.CityDTO">
+		select * from city where e_name=big_ename
+	</select>
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

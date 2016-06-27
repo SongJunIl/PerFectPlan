@@ -81,23 +81,23 @@
 		height: 30px;
 		font-size: 20px;
 		font-weight: bolder;
-		margin-left: 30px;
+		margin-left: 20px;
 	}
 	.pday_list_week{
 		float: left;
 		height: 30px;
-		margin-left: 15px;
+		margin-left: 10px;
 		font-size: 15px;
 	}
 	.pday_list_date{
 		float: left;
 		height: 30px;
-		margin-left: 30px;
+		margin-left: 20px;
 	}
 	.pday_list_city{
 		float: left;
 		height: 30px;
-		margin-left: 15px;
+		margin-left: 10px;
 		
 	}
 	#pstart_date,#pfinal_date{
@@ -376,9 +376,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c13f7a56e3fd7a30f74913f2574d70f1"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -1640,7 +1638,7 @@ return content;
 			$("#frm").submit();
 			return true;
 		}else{
-			alert("불가능");
+			alert("빈곳을 다 채워주세요.");
 			return false;
 		}
 	});
@@ -1665,10 +1663,13 @@ function closeNav() {
 
 </script>
 </head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <body>
 <!-- header -->
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- section -->
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div id="plan_planner_maker">
 	<div id="planner_date_box">
 		<ul id="pday_list_header">

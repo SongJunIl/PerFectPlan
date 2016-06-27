@@ -7,10 +7,19 @@ public class ReplyDTO {
 	private String id;
 	private String contents;
 	private Date reg_date;
+	private int city_no;
 	private int ref;
 	private int icon;
 	private String spot_img;
 	
+	
+	
+	public int getCity_no() {
+		return city_no;
+	}
+	public void setCity_no(int city_no) {
+		this.city_no = city_no;
+	}
 	public String getSpot_img() {
 		return spot_img;
 	}

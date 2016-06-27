@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <div id="reply_write"> 
 <div id="reply_write_spot">리뷰 남기기</div>
 <div id="reply_rate_box">
@@ -21,17 +20,5 @@ ID : &nbsp;<input type="text" name="id" id="reply_id">
 </form>
 </div>
 </div>
-
-
-<form action="spotReplyUpdate" method="post">
-<p>id : <input type="text" name="id"></p>
-<p>contents : <textarea rows="" cols="" name="contents"></textarea></p>
-<p>reply_num :  ${param.num}</p>
-<p>reply_ref : ${param.ref}</p>
-	<input type="hidden" name="num" value="${param.num}">
-	<input type="hidden" name="ref" value="${param.ref}">
-	<input type="submit" value="전송">
-</form>
-
 </body>
 </html>

@@ -14,7 +14,7 @@
 	#section_1{
 		background-color: #F8F8F8;
 		height: 660px;
-		margin-bottom: 30px;
+		/* margin-bottom: 30px; */
 	}
 	#section_2{
 		background-color: #F8F8F8;
@@ -29,9 +29,8 @@
 		height: 50px;
 		float: left;
 		margin-left: 165px;
-		margin-top: 50px;
-		padding-top: 50px;
-		margin-bottom: 10px;
+		padding-top: 30px;
+		margin-bottom: 30px;
 		font-weight: bold;
 		font-size: 15px;
 	}
@@ -39,15 +38,15 @@
 		width: 130px;
 		height: 50px;
 		float: left;
-		margin-top: 110px;
+		margin-top: 80px;
 	}
 	#listImg{
 		padding-top: 10px;
-		height: 18px;
+		height: 27px;
 	}
 	#backText{
 		width: 60px;
-		height: 17px;
+		height: 20px;
 		border: 0px;
 		font-size: 15px;
 		color: #606060;
@@ -84,7 +83,7 @@
 	}
 	#h2{
 		width: 1092px;
-		height: 400px;
+		height: 440px;
 		padding-top: 30px;
 		overflow: hidden;
 		margin-left: 165px;
@@ -98,12 +97,12 @@
 	#weather{
 		float: left;
 		width: 500px;
-		height: 400px;
-		margin-left: 30px;
+		height: 495px;
+		margin-left: 23px;
 	}
 	#weather_list{
 		width: 498px;
-		height: 362px;
+		height: 360px;
 		margin-top: 15px;
 		margin-bottom: 15px;
 		border-radius: 4px;
@@ -115,8 +114,8 @@
 		width: 109px;
 		height: 160px;
 		float: left;
-		margin-left: 6.5px;
-		margin-right: 6.5px;
+		margin-left: 8.5px;
+		margin-right: 5.5px;
 		margin-bottom:9px;
 		margin-top: 9.5px;
 		background-color: white  ; 
@@ -124,28 +123,28 @@
 		border: 1px solid #C8C8C8  ;
 	}
 	.day_text{
-		width: 90	px;
+		width: 100px;
 		height: 28px;
 		font-size :14px;
-		padding-top:7px;
-		padding-left:15px;
+		padding-top:5px;
+		text-align: center;
 		color: gray;
 		border-bottom: 1px solid #C8C8C8;
 	}
 	.weather_img{
 		width: 109px;
-		height: 55px;
+		height: 50px;
 		
 	}
 	.weather_image{
 		margin-left: 23px;
 	}
 	.weather_info{
-		padding-top:5px;
-		font-size: 11px;
-		padding-left: 5px;
+		padding-top:10px;
+		font-size: 12px;
+		padding-left: 8px;
 		color: gray;
-		line-height: 20px;
+		line-height: 22px;
 	}
 	#week{
 		width: 500px;
@@ -170,7 +169,6 @@
 		width: 532px;
 		height: 350px;
 		float: left;
-		background-color: aqua;
 		border: 1px solid #D8D8D8;
 		border-radius:4px; 
 		
@@ -339,6 +337,7 @@
 		color: white;
 		padding-left: 8px;
 		font-size: 13px;
+		padding-top: 30px;
 	}
 	#plan_content{
 		width: 348px;
@@ -362,12 +361,16 @@
 		width: 40px;
 		margin-top: 8px;
 		margin-left: 10px;
+		font-size: 14px;
 		color:#909090;
+	}
+	#clear{
+		clear: both;
 	}
 	#memberImg{
 		width: 30px;
 		height: 15px;
-		margin-left: 23px;
+		margin-left: 18px;
 		margin-top: 5px;
 		float: left;
 	}
@@ -423,7 +426,7 @@
 	#myImg{
 		width: 55px;
 		height: 55px;
-		padding-top: 20px;
+		margin-top: 15px;
 		background-color: aqua;
 		border-radius: 50%;
 	}
@@ -432,33 +435,36 @@
 		height: 30px;
 		text-align: center;
 		color: #606060  ;
+		padding-top: 5px;
 	}
 	#banner_qna{
-		width: 100px;
+		width: 90px;
 		height: 36px;
-		margin-left:20px;
+		margin-left:30px;
 		margin-right:20px;
 		margin-bottom:10px;
+		margin-top:5px;
 		float: left;
 	}
 	#banner_community{
-		width: 100px;
+		width: 90px;
 		height: 36px;
 		float: left;
 		margin-left:20px;
 		margin-right:20px;
 		margin-bottom:10px;
+		margin-top:5px;
 	}
 	#banner_myReview{
-		width: 100px;
+		width: 90px;
 		height: 36px;
 		float: left;
-		margin-left:20px;
+		margin-left:30px;
 		margin-right:20px;
 		margin-bottom:10px;
 	}
 	#banner_myPage{
-		width: 100px;
+		width: 90px;
 		height: 36px;
 		float: left;
 		margin-left:20px;
@@ -466,7 +472,7 @@
 		margin-bottom:10px;
 	}
 	.banner_button{
-		width: 100px;
+		width: 90px;
 		height: 36px;
 		background-color: white;
 		border: 1px solid #C8C8C8;
@@ -541,13 +547,13 @@
 		width: 530px;
 		height: 50px;
 		float: left;
-		color:	#484848 ;
+		color:	 red;
 		font-size: 13px;
 	}
 	.community_contents{
 		height: 60px;
 		width: 630px;
-		padding-left: 80px;
+		padding-left: 97px;
 		overflow: hidden;
 		margin: 0;
 		color: 	#888888 ;
@@ -564,6 +570,7 @@
 	#community_upDel{
 		margin-left: 572px;
 	}
+	
 /* 
 #thema_menu img{
 -webkit-transform:scale(0.8); /*Webkit: Scale down image to 0.8x original size*/
@@ -760,13 +767,13 @@ body {font-family: Verdana,sans-serif;margin:0}
 	           var sclTop = $(this).scrollTop();
 	           if (sclTop > 2810)
 	           {
-	               $('#banner').css('position', 'fixed').css('top', '100px').css('right','185px');        
+	               $('#banner').css('position', 'fixed').css('top', '100px').css('right','165px');        
 	           }
 	           else 
-	           {$('#banner').css('position','absolute').css('top','2880px').css('right','185px');}
+	           {$('#banner').css('position','absolute').css('top','2960px').css('right','165px');}
 	       });
 	       
-	       $(".thema_image").mouseenter(function(){
+ 	       $(".thema_image").mouseenter(function(){
 	    	   var id = $(this).attr("id");
 	    	   $("#"+id).css("border-color","#8dbff2");
 	    	   $("#"+id).css("border-width","3px");
@@ -777,7 +784,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 	    	   var id = $(this).attr("id");
 	    	   $("#"+id).css("border-color","#D8D8D8");
 	    	   $("#"+id).css("border-width","1px");
-	       });
+	       }); 
 	       
 	
 		$("#back_menu").on("click",function(){
@@ -807,7 +814,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 </head>
 <body>
 <!-- <body onload="InitializeM();"> -->
-
+<%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <div id ="section">
 <div id="section_1">
 		<div id="cityTitle"><h2>${cityView.e_name}&nbsp;&nbsp;&nbsp;&nbsp;${cityView.city_name}</h2></div>
@@ -886,9 +893,9 @@ body {font-family: Verdana,sans-serif;margin:0}
 							<c:if test="${wea.wfKor== '눈' }"><img src="${pageContext.request.contextPath}/resources/img/city/weather/rain.png" class="weather_image"></c:if>
 						</div>
 						<div class="weather_info">
-							기 &nbsp;&nbsp;&nbsp;&nbsp;  온&nbsp;&nbsp;&nbsp;${weather['0'].temp} ℃<br>
-							강수 확률&nbsp;&nbsp; ${weather['0'].pop} %<br>
-							습 &nbsp;&nbsp;&nbsp;&nbsp;    도&nbsp;&nbsp;&nbsp;${weather['0'].reh} %
+							기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;온&nbsp;&nbsp;&nbsp;${weather['0'].temp} ℃<br>
+							강수확률&nbsp;&nbsp; ${weather['0'].pop} %<br>
+							습 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 도&nbsp;&nbsp;&nbsp;&nbsp;${weather['0'].reh} %
 							
 						</div>
 					</div>
@@ -900,8 +907,8 @@ body {font-family: Verdana,sans-serif;margin:0}
 </div>
 		<div id="thema"><h1>여 행  테 마</h1></div>
 		<div id="thema_menu">
-			<div id="thema_1" class="thema_image"><img src="${pageContext.request.contextPath}/resources/img/city/landmark.jpg"></div>
-			<div id="thema_2" class="thema_image"><img src="${pageContext.request.contextPath}/resources/img/city/dddp.jpg"></div>
+			<div id="thema_1" class="thema_image"> <img src="${pageContext.request.contextPath}/resources/img/city/landmark1.jpg"> </div>
+			<div id="thema_2" class="thema_image"> <img src="${pageContext.request.contextPath}/resources/img/city/dddp1.jpg"> </div>
 		</div>	
 <div id="section_2">
 		<div id="popular"><h1>${cityView.city_name} 인기 장소</h1></div>
@@ -909,7 +916,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 		<c:forEach items="${spotView}" var="spot" varStatus="spot_list">
  		
 			<div class="popular_inner_list" id="${spot_list.index+1}">
-				<div id="spotIMG"><img src="${pageContext.request.contextPath}/resources/img/city/hj1.jpg" class="spot_img"></div>
+				<div id="spotIMG"><a href="<%=request.getContextPath()%>/spot/spotView?num=${spot.num}"><img src="${pageContext.request.contextPath}/resources/img/city/hj1.jpg" class="spot_img"></a></div>
 				<div id="spotNAME">
 					<div id="name_spot">&nbsp;&nbsp;&nbsp;&nbsp;${spot.spot_name}</div>	
 					<div id="clip_img"><img src="${pageContext.request.contextPath}/resources/img/city/clip.png"></div>
@@ -947,6 +954,7 @@ body {font-family: Verdana,sans-serif;margin:0}
 					 </div>
 					 <div id="plan_count"><img src="${pageContext.request.contextPath}/resources/img/city/countImg.png"></div>
 					 <div id="plan_counts">${planView['0'].counts}</div>
+					 <div id="clear"></div>
 					 <div id="memberImg"><img src="${pageContext.request.contextPath}/resources/img/city/member.png"></div>
 					<div id="plan_id">${planView['0'].id}</div>
 				</div>

@@ -39,7 +39,6 @@ public class MemberInterCept extends HandlerInterceptorAdapter{
 	   
 	
 	
-
 	}
 	
 	

@@ -24,6 +24,7 @@
 	spot_xlocation : <input type="text" name="spot_xlocation"><br>
 	spot_ylocation : <input type="text" name="spot_ylocation"><br>
 	thema 		   : <input type="text" name="thema"><br>
+	city_no : <input type="text" name="city_no"><br>
 	spot_address : <input type="text" name="spot_address"><br>
 	img : <input type="file" name="file"><br>
 	category : <input type="text" name="category"><br>

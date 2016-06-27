@@ -10,6 +10,7 @@ import com.plan.daySpot.DaySpotDTO;
 import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
 import com.plan.planRe.PlanReDTO;
+import com.plan.scrap.ScrapDTO;
 import com.plan.spot.SpotDTO;
 
 public interface PlanService {
@@ -63,4 +64,28 @@ public interface PlanService {
 	public List<PlanReDTO> s_plan_reply_list(int plan_no);
 	
 	public List<PlanReDTO> s_plan_reply_del(PlanReDTO planReDTO);
+	
+	public void s_plan_fdate_update(PlanDTO planDTO);
+	
+	public void s_plan_spot_del(PlanDTO planDTO);
+	
+	public List<DayPlanReDTO> s_day_plan_del(DayPlanReDTO dayPlanReDTO);
+	
+	public List<NewPlanDTO> s_plan_list_select();
+	
+	public int s_spot_counts(PlanDTO planDTO);
+	
+	public int s_clip_counts(PlanDTO planDTO);
+	
+	public List<String> s_get_city_names(PlanDTO planDTO);
+	
+	public List<CityDTO> s_city_list_all();
+	
+	public List<NewPlanDTO> s_plan_list_ajax(NewPlanDTO newPlanDTO);
+	
+	public void s_plan_jim_insert(ScrapDTO scrapDTO);
+	
+	public ScrapDTO s_plan_jim_select(ScrapDTO scrapDTO);
+	
+	public void s_plan_jim_delete(ScrapDTO scrapDTO);
 }

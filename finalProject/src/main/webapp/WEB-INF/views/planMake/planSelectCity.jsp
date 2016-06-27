@@ -340,9 +340,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c13f7a56e3fd7a30f74913f2574d70f1"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script>
 
 $(function() {
@@ -492,7 +490,7 @@ for (var i = 0; i < positions2.length; i ++) {
 			if(data_kind == 'big'){
 				positions.push({
 					day : 2,
-					ename:big_array[a].big_ename,
+					ename:big_array[index].big_ename,
 					name:big_array[index].big_name,
 			        title: big_array[index].big_name ,
 			        no:big_array[index].big_no,
@@ -623,6 +621,130 @@ for (var i = 0; i < positions2.length; i ++) {
 		
 	});
 	
+
+	//========================== 광역시,특별시 제외 포인터 css===============================			
+	for(i=0;i<big_array.length;i++){
+		if(i>7){			
+			$(".inner_box_chech"+i).css("cursor","pointer");
+		}
+	}
+	//========================== 도내 주요 시 보여주기====================================
+	var box_index_check=0;
+	$(".pcity_inner_box").click(function(){
+		var box_index = $(this).attr("data-index");
+		if(box_index>7){
+			
+			
+			for(i=0;i<big_array.length;i++){
+			    $(".window_check"+i).slideUp();			
+			}
+			if(box_index_check != box_index){
+			 $(".window_check"+box_index).slideDown();
+			 for(j=0;j<marker2.length;j++){
+					marker2[j].setMap(null);
+					
+			 }
+			 for(j=0;j<marker3.length;j++){
+					marker3[j].setMap(null);
+					
+			 }
+			 
+			 map.setCenter(new daum.maps.LatLng(big_array[box_index].big_xlocation, big_array[box_index].big_ylocation)); // 지도의 중심좌표 */
+			 map.setLevel(11); // 지도의 확대 레벨
+			 
+			 
+			 
+			 var city_length = $(".city_List"+box_index).val();
+			
+			 	city_array.splice(0,city_array.length);
+				for(var a=0;a<city_length;a++){
+					city_array.push({
+						city_name: $(".window_check"+box_index+" .city_name"+a).val(), 
+						city_ename: $(".window_check"+box_index+" .e_name"+a).val(), 
+						city_no: $(".window_check"+box_index+" .city_no"+a).val(), 
+						city_xlocation: $(".window_check"+box_index+" .city_xlocation"+a).val(),
+						city_ylocation: $(".window_check"+box_index+" .city_ylocation"+a).val()
+			        })
+				}
+				positions3.splice(0,positions3.length);
+			 	for(a=0;a<city_array.length;a++){
+					positions3.push({
+							city_day : 2,
+							city_ename : city_array[a].city_ename,
+							city_name:city_array[a].city_name,
+				            title: city_array[a].city_name,
+				            no: city_array[a].city_no,
+				            city_xlocation :city_array[a].city_xlocation,
+				            city_ylocation :city_array[a].city_ylocation,
+				            latlng: new daum.maps.LatLng(city_array[a].city_xlocation, city_array[a].city_ylocation)
+					});	
+					
+				}
+			 	marker3.splice(0,marker3.length);
+			 	for (var i = 0; i < positions3.length; i ++) {
+			 	    
+			 	    // 마커를 생성합니다
+			 	    marker3.push(new daum.maps.Marker({
+			 		        map: map, // 마커를 표시할 지도
+			 		        position: positions3[i].latlng, // 마커를 표시할 위치
+			 		        title : positions3[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			 		    	}));
+			 		
+			 	}
+			 	
+				
+			 	
+			 
+			 box_index_check=box_index;
+			}else if(box_index_check == box_index){
+				box_index_check=0;
+				for(j=0;j<marker2.length;j++){
+					marker2[j].setMap(map);
+					
+			 	}
+				
+				for(j=0;j<marker3.length;j++){
+					marker3[j].setMap(null);
+					
+			 	}
+								
+				map.setCenter(new daum.maps.LatLng(36.3666102, 127.8783881)); // 지도의 중심좌표 */
+				 map.setLevel(13); // 지도의 확대 레벨
+			}
+		}
+	});	
+	
+	// =====================================================datepicker
+	$("#datepicker").datepicker(
+		{
+			inline : true,
+			dateFormat : "yy-mm-dd", /* 날짜 포맷 */
+			prevText : 'prev',
+			nextText : 'next',
+			changeMonth : true, /* 월 선택박스 사용 */
+			changeYear : true, /* 년 선택박스 사용 */
+			showOtherMonths : true, /* 이전/다음 달 일수 보이기 */
+			selectOtherMonths : true, /* 이전/다음 달 일 선택하기 */
+			buttonImageOnly : true,
+			minDate : 0,
+			closeText : '닫기',
+			currentText : '오늘',
+			showMonthAfterYear : true, /* 년과 달의 위치 바꾸기 */
+			/* 한글화 */
+			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+					'8월', '9월', '10월', '11월', '12월' ],
+			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+					'7월', '8월', '9월', '10월', '11월', '12월' ],
+			dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+			showAnim : 'slideDown',
+			/* 날짜 유효성 체크 */
+			onClose: function(selectedDate) {
+				$('#fromDate').datepicker("option", "minDate",
+						selectedDate);
+			}
+		});
 
 
 //==============================================================================================
@@ -1033,129 +1155,7 @@ return content;
 }
 
 
-// =====================================================datepicker
-			$("#datepicker").datepicker(
-				{
-					inline : true,
-					dateFormat : "yy-mm-dd", /* 날짜 포맷 */
-					prevText : 'prev',
-					nextText : 'next',
-					changeMonth : true, /* 월 선택박스 사용 */
-					changeYear : true, /* 년 선택박스 사용 */
-					showOtherMonths : true, /* 이전/다음 달 일수 보이기 */
-					selectOtherMonths : true, /* 이전/다음 달 일 선택하기 */
-					buttonImageOnly : true,
-					minDate : 0,
-					closeText : '닫기',
-					currentText : '오늘',
-					showMonthAfterYear : true, /* 년과 달의 위치 바꾸기 */
-					/* 한글화 */
-					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
-							'8월', '9월', '10월', '11월', '12월' ],
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-					showAnim : 'slideDown',
-					/* 날짜 유효성 체크 */
-					onClose: function(selectedDate) {
-						$('#fromDate').datepicker("option", "minDate",
-								selectedDate);
-					}
-				});
-		
-	//========================== 광역시,특별시 제외 포인터 css===============================			
-	for(i=0;i<big_array.length;i++){
-		if(i>7){			
-			$(".inner_box_chech"+i).css("cursor","pointer");
-		}
-	}
-	//========================== 도내 주요 시 보여주기====================================
-	var box_index_check=0;
-	$(".pcity_inner_box").click(function(){
-		var box_index = $(this).attr("data-index");
-		if(box_index>7){
-			
-			
-			for(i=0;i<big_array.length;i++){
-			    $(".window_check"+i).slideUp();			
-			}
-			if(box_index_check != box_index){
-			 $(".window_check"+box_index).slideDown();
-			 for(j=0;j<marker2.length;j++){
-					marker2[j].setMap(null);
-					
-			 }
-			 for(j=0;j<marker3.length;j++){
-					marker3[j].setMap(null);
-					
-			 }
-			 
-			 map.setCenter(new daum.maps.LatLng(big_array[box_index].big_xlocation, big_array[box_index].big_ylocation)); // 지도의 중심좌표 */
-			 map.setLevel(11); // 지도의 확대 레벨
-			 
-			 
-			 
-			 var city_length = $(".city_List"+box_index).val();
-			
-			 	city_array.splice(0,city_array.length);
-				for(var a=0;a<city_length;a++){
-					city_array.push({
-						city_name: $(".window_check"+box_index+" .city_name"+a).val(), 
-						city_ename: $(".window_check"+box_index+" .e_name"+a).val(), 
-						city_no: $(".window_check"+box_index+" .city_no"+a).val(), 
-						city_xlocation: $(".window_check"+box_index+" .city_xlocation"+a).val(),
-						city_ylocation: $(".window_check"+box_index+" .city_ylocation"+a).val()
-			        })
-				}
-				positions3.splice(0,positions3.length);
-			 	for(a=0;a<city_array.length;a++){
-					positions3.push({
-							city_day : 2,
-							city_ename : city_array[a].city_ename,
-							city_name:city_array[a].city_name,
-				            title: city_array[a].city_name,
-				            no: city_array[a].city_no,
-				            city_xlocation :city_array[a].city_xlocation,
-				            city_ylocation :city_array[a].city_ylocation,
-				            latlng: new daum.maps.LatLng(city_array[a].city_xlocation, city_array[a].city_ylocation)
-					});	
-					
-				}
-			 	marker3.splice(0,marker3.length);
-			 	for (var i = 0; i < positions3.length; i ++) {
-			 	    
-			 	    // 마커를 생성합니다
-			 	    marker3.push(new daum.maps.Marker({
-			 		        map: map, // 마커를 표시할 지도
-			 		        position: positions3[i].latlng, // 마커를 표시할 위치
-			 		        title : positions3[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			 		    	}));
-			 		
-			 	}
-			 	
-				
-			 	
-			 
-			 box_index_check=box_index;
-			}else if(box_index_check == box_index){
-				box_index_check=0;
-				for(j=0;j<marker2.length;j++){
-					marker2[j].setMap(map);
-					
-			 	}
-				
-				for(j=0;j<marker3.length;j++){
-					marker3[j].setMap(null);
-					
-			 	}
-								
-				map.setCenter(new daum.maps.LatLng(36.3666102, 127.8783881)); // 지도의 중심좌표 */
-				 map.setLevel(13); // 지도의 확대 레벨
-			}
-		}
-	});	
+
 	//================================submit 보내기 ====================================
 	$("#mySidenav").on('click',"#planner_nav_btn_go",function(){
 		for(i=0; i<positions.length;i++){
@@ -1192,9 +1192,12 @@ function closeNav() {
 }
 </script>
 </head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <body>
-<!-- header -->
+ <!-- header -->
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!-- section -->
 <div id="plan_select_city">
 	<div id="pselect_city_header">

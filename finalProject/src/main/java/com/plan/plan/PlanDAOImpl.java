@@ -17,6 +17,7 @@ import com.plan.daySpot.DaySpotDTO;
 import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
 import com.plan.planRe.PlanReDTO;
+import com.plan.scrap.ScrapDTO;
 import com.plan.spot.SpotDTO;
 @Repository
 public class PlanDAOImpl implements PlanDAO {
@@ -99,6 +100,12 @@ public class PlanDAOImpl implements PlanDAO {
 	@Override
 	public void dayPlan_insert(DayPlanDTO dayPlanDTO) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println(dayPlanDTO.getCity_no());
+		System.out.println(dayPlanDTO.getDaily_no());
+		System.out.println(dayPlanDTO.getDaily_xlocation());
+		System.out.println(dayPlanDTO.getDaily_ylocation());
+		System.out.println(dayPlanDTO.getPlan_no());
+		System.out.println(dayPlanDTO.getDaily_date());
 		sqlSession.insert(namespace+"dayPlan_insert", dayPlanDTO);
 	}
 	//=======dayPlanReDTO 데이터 값 리스트로 받기==============================================================================
@@ -194,4 +201,92 @@ public class PlanDAOImpl implements PlanDAO {
 		int plan_no = planReDTO.getP_no();
 		return sqlSession.selectList(namespace+"plan_reply_list", plan_no);
 	}
+	
+	//=========plan f_date 업데이트==================================================================
+	@Override
+	public void plan_fdate_update(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"plan_fdate_update", planDTO);
+	}
+	//=========daily_plan_del====================================================================
+	@Override
+	public List<DayPlanReDTO> day_plan_del(DayPlanReDTO dayPlanReDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+"day_plan_del", dayPlanReDTO);
+		HashMap<String, Integer> hs = new HashMap<>();
+		hs.put("plan_no", dayPlanReDTO.getPlan_no());
+		hs.put("daily_no", dayPlanReDTO.getDaily_no());
+		if(sqlSession.selectList(namespace+"daily_spot_search", hs)!=null){
+			sqlSession.delete(namespace+"day_spot_del", dayPlanReDTO);
+		};
+		return sqlSession.selectList(namespace+"daily_plan_search", dayPlanReDTO);
+	}
+	//===========plan_spot plan_no이면 싹다 지우기=====================================================
+	@Override
+	public void plan_spot_del(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+		System.out.println(sqlSession.delete(namespace+"day_spot_del2", planDTO));
+	}
+	//==========plan_list 뽑아오기===================================================================
+	@Override
+	public List<NewPlanDTO> plan_list_select() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"plan_list_select");
+	}
+	
+	//========spot_counts get하기=================================================================
+	@Override
+	public int spot_counts(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"spot_counts", planDTO);
+	}
+	
+	//========clip_counts get하기=================================================================
+	@Override
+	public int clip_counts(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"clip_counts",planDTO);
+	}
+	
+	//========get_city_names get하기=================================================================
+	@Override
+	public List<String> get_city_names(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"get_city_names", planDTO);
+	}
+	
+	//========city_list_all get하기=================================================================
+	@Override
+	public List<CityDTO> city_list_all() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"city_list_all");
+	}
+	//========plan_list_ajax get하기=================================================================
+	@Override
+	public List<NewPlanDTO> plan_list_ajax(NewPlanDTO newPlanDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"plan_list_ajax", newPlanDTO);
+	}
+	//========plan_jim insert하기===========================================================================
+	@Override
+	public void plan_jim_insert(ScrapDTO scrapDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+"plan_jim_insert", scrapDTO);
+	}
+	//========plan_jim select하기===========================================================================
+	@Override
+	public ScrapDTO plan_jim_select(ScrapDTO scrapDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"plan_jim_select", scrapDTO);
+	}
+	
+	//========plan_jim delete하기===========================================================================
+
+	@Override
+	public void plan_jim_delete(ScrapDTO scrapDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+"plan_jim_delete", scrapDTO);
+	}
+	
 }

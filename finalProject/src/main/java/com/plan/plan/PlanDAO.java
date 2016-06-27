@@ -11,6 +11,7 @@ import com.plan.daySpot.DaySpotDTO;
 import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
 import com.plan.planRe.PlanReDTO;
+import com.plan.scrap.ScrapDTO;
 import com.plan.spot.SpotDTO;
 
 public interface PlanDAO {
@@ -64,4 +65,29 @@ public interface PlanDAO {
 	public List<PlanReDTO> plan_reply_list(int plan_no)throws Exception;
 	
 	public List<PlanReDTO> plan_reply_del(PlanReDTO planReDTO)throws Exception;
+	
+	public void plan_fdate_update(PlanDTO planDTO)throws Exception;
+	
+	public List<DayPlanReDTO> day_plan_del(DayPlanReDTO dayPlanReDTO)throws Exception;
+	
+	public void plan_spot_del(PlanDTO planDTO)throws Exception;
+	
+	public List<NewPlanDTO> plan_list_select()throws Exception;
+	
+	public int spot_counts(PlanDTO planDTO)throws Exception;
+	
+	public int clip_counts(PlanDTO planDTO)throws Exception;
+	
+	public List<String> get_city_names(PlanDTO planDTO)throws Exception;
+	
+	public List<CityDTO> city_list_all()throws Exception;
+	
+	public List<NewPlanDTO> plan_list_ajax(NewPlanDTO newPlanDTO)throws Exception;
+	
+	public void plan_jim_insert(ScrapDTO scrapDTO)throws Exception; 
+	
+	public ScrapDTO plan_jim_select(ScrapDTO scrapDTO)throws Exception;
+	
+	public void plan_jim_delete(ScrapDTO scrapDTO)throws Exception;
+	
 }

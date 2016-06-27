@@ -77,4 +77,56 @@ public class CityDAOImpl implements CityDAO {
 	public int totalList() throws Exception{
 		return sqlSession.selectOne(namespace+"totalList");
 	}*/
+	
+	
+	@Override
+	public List<CityDTO> gangwon_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"gangwon_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> gyeonggi_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"gyeonggi_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> gyeongsangS_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"gyeongsangS_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> gyeongsangN_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"gyeongsangN_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> JeollaS_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"JeollaS_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> JeollaN_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"JeollaN_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> chungcheongS_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"chungcheongS_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> chungcheongN_cityList(String bigEname) throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"chungcheongN_cityList", bigEname);
+		return ar;
+	}
+	@Override
+	public List<CityDTO> main_cityList() throws Exception {
+		List<CityDTO> ar = sqlSession.selectList(namespace+"main_cityList");
+		return ar;
+	}
 }
+
+
+
+
+

@@ -12,6 +12,11 @@
 	.reply_list_writer_img{
 		float: left;
 	}
+	.reply_list_writer_img img{
+		width: 45px;
+		height: 45px;
+		border-radius:100px; 
+	}
 	.plan_daily_spot_box{
 		float: right;
 	}
@@ -49,16 +54,27 @@
 	<div class="reply_list">
 		<div class="reply_list_inner">
 			<div class="reply_list_writer_img">
-				<img src="${pageContext.request.contextPath}/resources/img/plan/btn_like.png">
-				<input type="hidden" value="mamamoo" name="id">
+			<c:choose>
+				<c:when test="${member2.m_img=='null'}">
+					<img src="${pageContext.request.contextPath}/resources/img/login/user.png">
+				</c:when>
+				<c:otherwise>
+					<img src="${pageContext.request.contextPath}/resources/memberimg/${plan_reply.m_img}">
+				</c:otherwise>
+			</c:choose>
+				
+				<input type="hidden" value="${plan_reply.id}" name="id">
 				<input type="hidden" value="${plan_reply.no }" id="reply_no">
 			</div>
 			<div class="reply_list_cotent_box">
 				<div class="reply_list_up_box">
 					<div class="reply_list_writer">${plan_reply.id}</div>
 					<div class="reply_list_date">${plan_reply.reg_date}</div>
-					<div class="reply_del1" id="reply_del">삭제</div>
-					<div class="reply_update">수정</div>
+					<c:if test="${member.id == plan_reply.id || !empty admin }">
+						<div class="reply_del1" id="reply_del">삭제</div>
+					</c:if>
+					
+					<!-- <div class="reply_update">수정</div> -->
 					<div class="clear"></div>
 				</div>
 				<div class="reply_list_down_box">

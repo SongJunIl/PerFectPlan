@@ -75,17 +75,17 @@ public class Weather {
 		             // i번째 data 태그를 node에 저장
 		             Node node = list.item(i);
 		             NodeList temp = node.getChildNodes();
-		             System.out.println("*************************************************");
+		          /*   System.out.println("*************************************************");
 		             System.out.println(node.getAttributes().getNamedItem("seq"));
-		             System.out.println("----------------------------------------");
+		             System.out.println("----------------------------------------");*/
 		             WeatherDTO weatherDTO =null;
 		             weatherDTO = new WeatherDTO();
 		             for(int j=0;j<temp.getLength();j++){
 		                Node chnode = temp.item(j);
 		                Node te = chnode.getFirstChild();
 		                
-		                System.out.print(chnode.getNodeName() +" : ");
-		                System.out.println(te.getNodeValue());
+		             /*   System.out.print(chnode.getNodeName() +" : ");
+		                System.out.println(te.getNodeValue());*/
 		                
 		                if(chnode.getNodeName().equals("hour")){
 		                	weatherDTO.setHour(te.getNodeValue());
@@ -116,7 +116,7 @@ public class Weather {
 		                }
 		             }
 		             weather.add(weatherDTO);
-		             System.out.println("**********************************************");
+		             /*System.out.println("**********************************************");*/
 		         }
 		         
 		    } catch (Exception e) {

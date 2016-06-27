@@ -16,9 +16,16 @@ public class PlanDTO {
 	private String season;
 	private int counts;
 	private int state;
+	private int days;
 	
 	
 	
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
 	public PlanDTO() {
 		// TODO Auto-generated constructor stub
 	}

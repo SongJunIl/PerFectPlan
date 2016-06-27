@@ -55,8 +55,24 @@ public class CityServiceImpl implements CityService {
 			/*MakePage mp = new MakePage(curPage, totalList);
 			mp.setType(type);
 			model.addAttribute("page", mp);*/
-			List<CityDTO> ar = cityDAO.cityList();
-			model.addAttribute("cityList", ar);
+			List<CityDTO> ar = cityDAO.gangwon_cityList("Gangwon");
+			List<CityDTO> ar2=cityDAO.gyeonggi_cityList("Gyeonggi");
+			List<CityDTO> ar3=cityDAO.gyeongsangS_cityList("GyeongsangSouth");
+			List<CityDTO> ar4=cityDAO.gyeongsangN_cityList("GyeongsangNorth");
+			List<CityDTO> ar5=cityDAO.JeollaS_cityList("JeollaSouth");
+			List<CityDTO> ar6=cityDAO.JeollaN_cityList("JeollaNorth");
+			List<CityDTO> ar7=cityDAO.chungcheongS_cityList("ChungcheongSouth");
+			List<CityDTO> ar8=cityDAO.chungcheongN_cityList("ChungcheongNorth");
+			List<CityDTO> ar9=cityDAO.main_cityList();
+			model.addAttribute("gangwon_cityList", ar);
+			model.addAttribute("gyeonggi_cityList", ar2);
+			model.addAttribute("gyeongsangS_cityList", ar3);
+			model.addAttribute("gyeongsangN_cityList", ar4);
+			model.addAttribute("JeollaS_cityList", ar5);
+			model.addAttribute("JeollaN_cityList", ar6);
+			model.addAttribute("chungcheongS_cityList", ar7);
+			model.addAttribute("chungcheongN_cityList", ar8);
+			model.addAttribute("main_cityList", ar9);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

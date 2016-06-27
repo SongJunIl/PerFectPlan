@@ -43,12 +43,12 @@
   	
   	<!-- plan DB 중간넣기 -->
   	<insert id="plan_insert" parameterType="com.plan.plan.PlanDTO">
-  		insert into plan values(plan_seq.nextval,'mamamoo',null,#{s_date},#{f_date},0,null,0,0)
+  		insert into plan values(plan_seq.nextval,#{id},null,#{s_date},#{f_date},0,null,0,0,#{days})
   	</insert>
   	
   	<!-- plan DB 임시저장, 중간저장으로 업데이트하기 -->
   	<update id="plan_save_update" parameterType="com.plan.plan.PlanDTO">
-  		update plan set plan_name=#{plan_name}, s_date = #{s_date}, f_date = #{f_date}, thema = #{thema}, state=#{state} where plan_no = #{plan_no}
+  		update plan set plan_name=#{plan_name}, s_date = #{s_date}, f_date = #{f_date}, thema = #{thema}, state=#{state}, season=#{season} where plan_no = #{plan_no}
   	</update>
   	
   	
@@ -124,7 +124,7 @@
 	 
 	 <!-- plan reply list 읽어오기 -->
 	 <select id="plan_reply_list" resultType="com.plan.planRe.PlanReDTO" parameterType="java.lang.Integer">
-	 	select * from plan_review where plan_no = #{plan_no} order by reg_date
+	 	select * from plan_review join member on plan_review.id=member.id where plan_no = #{plan_no} order by reg_date
 	 </select>
 	 
 	 <!-- plan reply 삭제 -->
@@ -132,4 +132,93 @@
 	 	delete plan_review where no=#{no} and plan_no=#{p_no} and id=#{id}
 	 </delete>
 	 
+	 
+	 <!-- city add할때 plan f_date업데이트하기 -->
+	 <update id="plan_fdate_update" parameterType="com.plan.plan.PlanDTO">
+	 	update plan set f_date=#{f_date}, days=#{days} where plan_no=#{plan_no}
+	 </update>
+	 
+	 
+	 <!-- day_plan delete하기 -->
+	 <delete id="day_plan_del" parameterType="com.plan.dayPlan.DayPlanReDTO">
+	 	delete dailyplan where plan_no=#{plan_no} and daily_no = #{daily_no}
+	 </delete>
+	 <!-- day_spot delete하기 -->
+	 <delete id="day_spot_del" parameterType="com.plan.planRe.PlanReDTO">
+	 	delete dailyspot where plan_no=#{plan_no} and daily_no = #{daily_no}
+	 </delete>
+	 <!-- day_spot delete하기 -->
+	 <delete id="day_spot_del2" parameterType="com.plan.plan.PlanDTO">
+	 	delete dailyspot where plan_no=#{plan_no}
+	 </delete>
+	 
+	 <!-- 기본 신규순으로 plan_list 불러오기 -->
+	 <select id="plan_list_select" resultType="com.plan.plan.NewPlanDTO">
+	 	select * from plan where state=2 order by s_date desc
+	 </select>
+	 
+	 <!-- spot 갯수 중복 제거하여 보여주기 -->
+	 <select id="spot_counts" parameterType="com.plan.plan.PlanDTO" resultType="java.lang.Integer">
+	 	select count(*) from (select distinct spot_no from dailyspot where plan_no=#{plan_no}) 
+	 </select>
+	 
+	 <!-- 클립 갯수 보여주기 -->
+  	 <select id="clip_counts" parameterType="com.plan.plan.PlanDTO" resultType="java.lang.Integer">
+  	 	select count(*) from jim where plan_no = #{plan_no}
+  	 </select>
+  
+  	<!-- 일정에잡힌 city_name들 나열해주기 -->
+  	<select id="get_city_names" parameterType="com.plan.plan.PlanDTO" resultType="java.lang.String">
+  		select city_name from (select distinct city_no, city_name from dailyplan join city on dailyplan.CITY_NO = city.NO where plan_no=#{plan_no})
+  	</select>
+  
+  	<!-- city_list 전체 뽑아오기 -->
+  	<select id="city_list_all" resultType="com.plan.city.CityDTO">
+  		select city.*, bigcity.BIG_NAME , bigcity.NO as big_no from bigcity join city on bigcity.BIG_ENAME = city.BIG_ENAME order by bigcity.no
+  	</select> 
+  	
+  	<!-- plan_list ajax로 조건으로 뽑기 -->
+  <select id="plan_list_ajax" parameterType="com.plan.plan.NewPlanDTO" resultType="com.plan.plan.NewPlanDTO">
+  		select distinct plan.* from plan join dailyplan on plan.PLAN_NO = dailyplan.PLAN_NO where state=2
+  		<if test="city_no != 0">
+  			and city_no=#{city_no}
+  		</if>
+  		<if test="season != ''.toString()">
+  			and season=#{season}
+  		</if>
+  		<if test="thema != 0">
+  			and thema=#{thema}
+  		</if>
+  		<if test="days != 0">
+  			<choose>
+  				<when test="days == 3">
+  					and days between #{days}-2 and #{days}
+  				</when>
+  				<when test="days == 6">
+  					and days between #{days}-2 and #{days}
+  				</when>
+  				<when test="days == 6">
+  					and days between #{days}-2 and #{days}
+  				</when>
+  				<otherwise>
+  					and days > #{days}
+  				</otherwise>
+  			</choose>
+  		</if>
+  		order by s_date desc
+  	</select>
+   
+  	<!-- plan_jim 하기 -->
+  	<insert id="plan_jim_insert" parameterType="com.plan.scrap.ScrapDTO">
+  		insert into jim(no,id,plan_no) values(jim_seq.nextval,#{id},#{plan_no})
+  	</insert>
+  	<!-- plan_jim 취소하기 -->
+  	<delete id="plan_jim_delete" parameterType="com.plan.scrap.ScrapDTO">
+  		delete jim where id=#{id} and plan_no=#{plan_no}
+  	</delete>
+  	<!-- plan_jim 검색-->
+  	<select id="plan_jim_select" parameterType="com.plan.scrap.ScrapDTO" resultType="com.plan.scrap.ScrapDTO">
+  		select * from jim where id=#{id} and plan_no=#{plan_no}
+  	</select>
+  	
   </mapper>

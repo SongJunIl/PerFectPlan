@@ -74,29 +74,35 @@
 		padding-left: 0px;
 		border-bottom: 1px gray solid;
 		cursor: pointer;
+		
+	}
+	.pday_list_del_inner{
+		float: right;
+		list-style: none;
+		
 	}
 	.pday_list_day{
 		float: left;
 		height: 30px;
 		font-size: 20px;
 		font-weight: bolder;
-		margin-left: 30px;
+		margin-left: 10px;
 	}
 	.pday_list_week{
 		float: left;
 		height: 30px;
-		margin-left: 15px;
+		margin-left: 10px;
 		font-size: 15px;
 	}
 	.pday_list_date{
 		float: left;
 		height: 30px;
-		margin-left: 30px;
+		margin-left: 10px;
 	}
 	.pday_list_city{
 		float: left;
 		height: 30px;
-		margin-left: 15px;
+		margin-left: 10px;
 		
 	}
 	#pstart_date,#pfinal_date{
@@ -369,15 +375,39 @@
 #plan_title{
 	width: 380px;
 }
-
+.pday_add{
+	border: 1px white solid;
+	width: 150px;
+	height: 40px;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	line-height: 40px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 30px;
+	cursor: pointer;
+}
+.day_del_btn{
+	background-color: white;
+	border-radius: 100px;
+	width: 30px;
+	height: 30px; 
+	float: right;
+	cursor: pointer;
+		
+}
+.day_del_btn img{
+	margin: 4px 3px;
+	width: 24px;
+	height: 24px;
+}
 </style>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c13f7a56e3fd7a30f74913f2574d70f1"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -407,7 +437,22 @@ $(function() {
 	};
 	
 	
+	//day delete
+	$(".day_del_btn").click( function() {
 		
+		var day_del_index=$(this).attr("data-index");
+		$("#daily_no_del").val($(".daily_no"+day_del_index).val());
+		$("#plan_no_del").val($(".plan_no"+day_del_index).val());
+		
+		if (confirm("일정을 삭제 하시겠습니까?") == true){    //확인
+		    $("#frm2").submit();
+		}else{   //취소
+		    return false;
+		}
+		
+	});
+	
+
 	 
 	
 	//======dailyplan 날짜별 목록=============================================================
@@ -485,6 +530,19 @@ var marker3=[];
 		}
 	
 	});	
+	$("#pday_add").click(function() {
+	  $.ajax({
+	    	url:"cityList",
+	    	type:"POST",
+	    	success:function(data) {
+	    		
+	    		$("#mySidenav2").append(data);
+	    		$(".plan_no").val($("#plan_no").val());
+	    		$(".daily_date").val($("#f_date").val());
+	    	}
+	   });	
+		
+	})
 
 	function spot_array_make() {
 		spot_length=$("#spot_list").val();
@@ -544,7 +602,8 @@ for (var i = 0; i < positions2.length; i ++) {
 	}
 
 }
-
+var thema = $("#thema").val();
+$(".radio_check"+thema).prop("checked",true);
  
 //=========daily list 누으면 바뀌는 메서드===========================================================
 function remove_array() {
@@ -1681,8 +1740,28 @@ return content;
 		}
 	});
 	
+	
+	
+	
+	
 });
 //=======================================================================================
+// day add
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav2() {
+    document.getElementById("mySidenav2").style.width = "350px";
+    /* document.getElementById("main").style.marginLeft = "250px"; */
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav2() {
+    document.getElementById("mySidenav2").style.width = "0";
+    /* document.getElementById("main").style.marginLeft = "0"; */
+    document.body.style.backgroundColor = "white";
+}
 
 // map planner show
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
@@ -1701,10 +1780,13 @@ function closeNav() {
 
 </script>
 </head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <body>
 <!-- header -->
 <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- section -->
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div id="plan_planner_maker">
 	<div id="planner_date_box">
 		<ul id="pday_list_header">
@@ -1712,13 +1794,24 @@ function closeNav() {
 				<div id="pday_list_term">
 					<div id="pstart_date">${planDTO.s_date }</div>
 					<div id="pfinal_date">~ &nbsp;${planDTO.f_date}</div>
+					<input type="hidden" id="f_date" value="${planDTO.f_date}">
 				</div>
-				<div id="pday_list_edit">수정</div>
+				<div id="pday_list_edit">
+					
+				</div>
 			</li>
 		</ul>
 		<input type="hidden" id="day_list" value="${day_plan.size() }">
 		<ul	id="pday_list_body">
 			<c:forEach items="${day_plan }" var="list" varStatus="i">
+				<li class="pday_list_del_inner">
+					<div class="day_del_btn" data-index="${i.index }">
+						<img src="${pageContext.request.contextPath}/resources/img/plan/empty-tash-can.png">
+					</div>
+					<div class="clear"></div>		
+				</li>
+					
+				
 				<li class="pday_list_body_inner pday_list_box${i.index }" data-index=${i.index }>
 					<input type="hidden" class="daily_no${i.index }" value="${list.daily_no }">
 					<input type="hidden" class="plan_no${i.index }" value="${list.plan_no }">
@@ -1728,22 +1821,43 @@ function closeNav() {
 					<input type="hidden" class="daily_ylocation${i.index }" value="${list.daily_ylocation }">
 					
 					<div class="pday_list_day">DAY${i.index+1}</div>
-					<div class="pday_list_week">${list.city_dailyWeek}</div>
+					<div class="pday_list_week">${list.city_dailyWeek} </div>
+						
 					<div class="clear"></div>
 					<div class="pday_list_date">${list.daily_date }</div>
 					<div class="pday_list_city">${list.city_name }</div>
 				</li>
-			</c:forEach>		
+				
+					
+			</c:forEach>
+			
+			
 		</ul>
+		<div class="pday_add" id="pday_add" onclick="openNav2()">
+			Day 추가
+		</div>
+		<!-- day_plan deleyte form -->
+		<form action="dayPlanDel" method="post" id="frm2">
+			<input type="hidden" name="daily_no" id="daily_no_del">
+			<input type="hidden" name="plan_no" id="plan_no_del">
+		</form>
+		<div id="mySidenav2" class="sidenav" >
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+		  
+		  
+		  
+		  
+		</div>
+		
 		<div id="pday_mid_save">
 			<div id="pday_mid_save_btn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">임시 저장</div>
 		</div>
 	</div>
 	
 	<div id="planner_schedule_box">
-		<form action="./planSave" method="post" id="frm">
+		<form action="./planSpotUpdate" method="post" id="frm">
 			<input type="hidden" name="days" value="${day_plan.size() }">
-			<input type="hidden" value="${planDTO.plan_no}" name="plan_no">
+			<input type="hidden" value="${planDTO.plan_no}" name="plan_no" id="plan_no">
 			<c:forEach items="${day_spot }" var="list" varStatus="i">
 				<div class="planner_schedule_box_inner pschedule_box${i.index}" data-index=${i.index }>
 					<div class="Pschedule_list_header" data-index=${i.index }>
@@ -1812,12 +1926,13 @@ function closeNav() {
 			      </div>
 			      <div class="modal-body">
 			      <input type="hidden" name="state" id="plan_state">
+	        		<input type="hidden" id="thema" value="${planDTO.thema }">
 			        <table id="plan_modal_table">
 			        	<tr>
-			        		<td class="plan_modal_table_title">여행 제목</td><td><input type="text" id="plan_title" name="plan_name"></td>		
+			        		<td class="plan_modal_table_title">여행 제목</td><td><input type="text" id="plan_title" name="plan_name" value="${planDTO.plan_name }"></td>		
 			        	</tr>
 			        	<tr>
-			        		<td class="plan_modal_table_title">출발일</td><td><input class="box pri" type="text" name="s_date" readonly="readonly" id="datepicker" value="${daylist['0'].daily_date }"></td>		
+			        		<td class="plan_modal_table_title">출발일</td><td><input class="box pri" type="text" name="s_date" readonly="readonly" id="datepicker" value="${planDTO.s_date }"></td>		
 			        	</tr>
 			        	
 			        	<tr>
@@ -1828,28 +1943,28 @@ function closeNav() {
 			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_family.gif"></div>
 			        					<div class="plan_thema_word">가족</div>
 			        				</div>			        			
-				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="1" class="radio_check"></div>
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="1" class="radio_check1"></div>
 			        			</div>
 			        			<div class="plan_thema_box">
 			        				<div class="plan_thema_radio">
 			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_frends.gif"></div>
 			        					<div class="plan_thema_word">친구</div>
 			        				</div>			        			
-				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="2" class="radio_check1"></div>
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="2" class="radio_check2"></div>
 			        			</div>
 			        			<div class="plan_thema_box">
 			        				<div class="plan_thema_radio">
 			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_couple.gif"></div>
 			        					<div class="plan_thema_word">커플</div>
 			        				</div>			        			
-				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="3" class="radio_check2"></div>
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="3" class="radio_check3"></div>
 			        			</div>
 			        			<div class="plan_thema_box">
 			        				<div class="plan_thema_radio">
 			        					<div class="plan_thema_img"><img src="${pageContext.request.contextPath}/resources/img/plan/theme_alone.gif"></div>
 			        					<div class="plan_thema_word">나홀로</div>
 			        				</div>			        			
-				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="4" class="radio_check3"></div>
+				        			<div class="plan_thema_radio_btn"><input type="radio" name="thema" value="4" class="radio_check4"></div>
 			        			</div>
 			        			<div class="clear"></div>
 			        		</td>		

@@ -13,8 +13,25 @@ public class CityDTO {
 	private String lat;
 	private String lon;
 	private int jim;
+	private String big_no;
+	private String big_name;
 	
 	
+	
+	public String getBig_name() {
+		return big_name;
+	}
+	public void setBig_name(String big_name) {
+		this.big_name = big_name;
+	}
+
+
+	public String getBig_no() {
+		return big_no;
+	}
+	public void setBig_no(String big_no) {
+		this.big_no = big_no;
+	}
 	public String getCity_img2() {
 		return city_img2;
 	}

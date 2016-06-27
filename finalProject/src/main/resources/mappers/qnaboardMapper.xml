@@ -31,9 +31,6 @@
 		update qna_board set qna_check=1 where com_no=#{com_no}	 	
   	</update>
 	  	
-
-	
-
 	<select id="getTotalList" resultType="java.lang.Integer">
   		select count(*) from qna_board
   	</select>  	
@@ -66,6 +63,4 @@
   	</update>  	
 	  	
 	  	
-
-
   </mapper>

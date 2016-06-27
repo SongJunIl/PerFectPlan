@@ -1,6 +1,7 @@
 package com.plan.city;
 
 public class PopularSpotDTO {
+	private int num;
 	private int total;
 	private String spot_name;
 	private String spot_img;
@@ -21,6 +22,12 @@ public class PopularSpotDTO {
 	}
 	public void setSpot_img(String spot_img) {
 		this.spot_img = spot_img;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 	

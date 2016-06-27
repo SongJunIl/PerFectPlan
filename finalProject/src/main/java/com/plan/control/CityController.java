@@ -42,16 +42,17 @@ public class CityController {
 		cityService.cityList(model);
 	}
 	
-	//관리자 여행지 작성폼
+/*	//관리자 여행지 작성폼
 	@RequestMapping(value="/cityWrite", method=RequestMethod.GET)
-	public void cityWriteForm(){
+	public void cityWriteForm(int no){
 	}
+	*/
 	
-	
-	@RequestMapping(value="/cityWrite",method=RequestMethod.POST)
-	public String cityWrite(@ModelAttribute CityDTO cityDTO, MultipartFile file1, MultipartFile file2, MultipartFile file3, Model model, HttpServletRequest request)throws Exception{
+	@RequestMapping(value="/cityWrite")
+	public String cityWrite(@ModelAttribute CityDTO cityDTO, MultipartFile file1, MultipartFile file2, MultipartFile file3, Model model, HttpServletRequest request,@RequestParam("update_no") int no)throws Exception{
 		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/img/city/cityIMG");
-		
+		System.out.println("uup");
+		System.out.println(no);
 		String savedName1 = uploadFile(file1.getOriginalFilename(), file1.getBytes(),uploadPath);
 		System.out.println("file1");
 		System.out.println(savedName1);
@@ -66,6 +67,7 @@ public class CityController {
 		System.out.println("file3");
 		System.out.println(savedName3);
 		cityDTO.setCity_img3(savedName3);
+		cityDTO.setNo(no);
 		
 		System.out.println(cityDTO.getCity_img1());
 		System.out.println(cityDTO.getCity_img2());

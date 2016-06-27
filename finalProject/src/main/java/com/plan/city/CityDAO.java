@@ -26,4 +26,14 @@ public interface CityDAO {
 	public List<CityDTO> searchCitySpot(String search)throws Exception;
 	
 	public List<CityDTO> searchCityReply(String search)throws Exception;
+	
+	public List<CityDTO> gangwon_cityList(String bigEname)throws Exception;
+	public List<CityDTO> gyeonggi_cityList(String bigEname)throws Exception;
+	public List<CityDTO> gyeongsangS_cityList(String bigEname)throws Exception;
+	public List<CityDTO> gyeongsangN_cityList(String bigEname)throws Exception;
+	public List<CityDTO> JeollaS_cityList(String bigEname)throws Exception;
+	public List<CityDTO> JeollaN_cityList(String bigEname)throws Exception;
+	public List<CityDTO> chungcheongS_cityList(String bigEname)throws Exception;
+	public List<CityDTO> chungcheongN_cityList(String bigEname)throws Exception;
+	public List<CityDTO> main_cityList()throws Exception;
 }

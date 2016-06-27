@@ -114,7 +114,7 @@
 		/* overflow: hidden; */
 	}
 	#city_title{
-		height: 110px;
+		height: 130px;
 		margin: 0px auto;
 		text-align: center;
 		overflow: hidden;
@@ -160,9 +160,10 @@
 		border-spacing: 0px;
 	} 
 	#list_inner_table{
+	
 		background-color: #fafafa;
 		font-size: 13px;
-		color: #808080;
+		color: #337ab7 !important;
 		border: none;
 		border-bottom: 1px solid #c8c8ca;
 		border-left: 1px solid #c8c8ca;
@@ -204,14 +205,14 @@
 		/* background-color: aqua; */
 	}
 	.list_img{
-		width: 260px;
-		height: 260px;
-		margin-left: 10px;
-		margin-bottom: 10px;
-		float: left;
-		font-size: 40px;
-		color:white;
-		font-weight: bold;
+		width: 260px !important;
+		height: 260px !important;
+		margin-left: 10px !important;
+		margin-bottom: 10px !important;
+		float: left !important;
+		font-size: 40px !important;
+		color:white !important;
+		font-weight: bold !important;
 		/* background-color: yellow; */	
 	}
 	#list_img1{
@@ -293,39 +294,30 @@
 	a:HOVER{
 		color:gray;
 	}
+	.upupupup{
+		display: none;
+		width: 19px;
+		height: 15px;
+	}
+	
 </style>
 <script type="text/javascript">
 
 		$(document).ready(function(){
-/* 			  $(".smallCity").mouseenter(function(){
-		    	   var id = $(this).attr("id");
-		    	   $("#"+id).css("color","#1a7ad9");
-		    	   $("#"+id).css("font-weight","bold");
-		       });
-		       $(".smallCity").mouseleave(function(){
-		    	   var id = $(this).attr("id");
-		   			$("#"+id).css("color","#909090");
-		   			$("#"+id).css("font-weight","lighter");
-		       });
-		       $(".bigCity").mouseenter(function(){
-		    	   var id = $(this).attr("id");
-		    	   $("#"+id).css("color","#1a7ad9");
-		    	   $("#"+id).css("font-weight","bold");
-		       });
-		       $(".bigCity").mouseleave(function(){
-		    	   var id = $(this).attr("id");
-		   			$("#"+id).css("color","#909090");
-		   			$("#"+id).css("font-weight","lighter");
-		       }); */
-		       
-		       
 		    $(".bigCity").click(function(){
 		    	var id = $(this).attr("id");
 		    	if( $("#"+id+"_detailCity").css("display") == "block"){
+		    		$("#"+id+"_up").css("display","none");
+		    		$("#"+id+"_down").css("display"," inline-block");
 		    		$("#"+id+"_detailCity").slideUp("quick");
 		    		$("#"+id).css("color","#909090");
 		    		$("#"+id).css("font-weight","lighter");
 		    	}else{
+		    		$(".upupupup").css("display","none");
+		    		$(".downdowndown").css("display","inline-block");
+		    		$("#"+id+"_down").css("display","none");
+		    		$("#"+id+"_up").css("display"," inline-block");
+		    		
 		    		$(".bigCity").css("color", "gray");
 		    		$(".bigCity").css("font-weight", "lighter");
 			    	$(".detail_city").slideUp("quick");
@@ -347,7 +339,9 @@
 				var id = $(this).attr("id");
 				var city_ename = $("#hidden_ename_"+id).val();
 				var city_no = $("#hidden_no_"+id).val();
-				location.href="./cityView?e_name="+city_ename+"&city_no="+city_no;
+				var lat = $("#hidden_lat_"+id).val();
+				var lon = $("#hidden_lon_"+id).val();
+				location.href="./cityView?e_name="+city_ename+"&city_no="+city_no+"&lat="+lat+"&lon="+lon;
 			});
 			
 		});
@@ -355,6 +349,7 @@
 </script>
 </head>
 <body>
+ <%@ include file="/WEB-INF/views/temp/header.jspf" %>
 <!-- 상단에 검색 부분 -->
 <div id="body_header">
 	<div id="searchBox">
@@ -380,19 +375,19 @@
 				<td><a href="cityView?e_name=Jeju&city_no=163"><input type="text" value="제주도" class="smallCity" readonly="readonly" id="jjd"></a></td>
 			</tr>
 			<tr>
-				<td><input type="text" value="강원도" onclick="drop_city()" class="bigCity" id="gangWon" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="arrowImg"></td>
-				<td><input type="text" value="경기도" onclick="drop_city()" class="bigCity" id="gyeonGi" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="경상남도" onclick="drop_city()" class="bigCity" id="gsn" readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="경상북도" onclick="drop_city()" class="bigCity" id="gsb"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="전라남도" onclick="drop_city()" class="bigCity" id="jln"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="전라북도" onclick="drop_city()" class="bigCity" id="jlb" readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="충청남도" onclick="drop_city()" class="bigCity" id="ccn" readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
-				<td><input type="text" value="충청북도" readonly="readonly" class="bigCity" id="ccb">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png"></td>
+				<td><input type="text" value="강원도"   class="bigCity" id="gangWon" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="gangWon_down" class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="gangWon_up" class="upupupup"></td>
+				<td><input type="text" value="경기도"   class="bigCity" id="gyeonGi" readonly="readonly"><img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="gyeonGi_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="gyeonGi_up" class="upupupup"></td>
+				<td><input type="text" value="경상남도" class="bigCity" id="gsn"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="gsn_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="gsn_up" class="upupupup"></td>
+				<td><input type="text" value="경상북도" class="bigCity" id="gsb"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="gsb_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="gsb_up" class="upupupup"></td>
+				<td><input type="text" value="전라남도" class="bigCity" id="jln"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="jln_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="jln_up" class="upupupup"></td>
+				<td><input type="text" value="전라북도" class="bigCity" id="jlb"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="jlb_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="jlb_up" class="upupupup"></td>
+				<td><input type="text" value="충청남도" class="bigCity" id="ccn"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="ccn_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="ccn_up" class="upupupup"></td>
+				<td><input type="text" value="충청북도" class="bigCity" id="ccb"readonly="readonly">&nbsp;<img src="${pageContext.request.contextPath}/resources/img/city/arrowDown.png" id="ccb_down"class="downdowndown"><img src="${pageContext.request.contextPath}/resources/img/city/arrowUp.png" id="ccb_up" class="upupupup"></td>
 			</tr>
 		</table> 
 		<div id="gangWon_detailCity" class="detail_city">
 			<table class="list_table" id="list_inner_table">
-				<tr><td>	<a href="cityView?e_name=Gangneung&city_no=1&lat=92&lon=131">강릉</a>	</td><td>	<a href="cityView?e_name=Goseong &city_no=2&lat=85&lon=145">고성</a>	</td><td>	<a href="cityView?e_name=Donghae&city_no=3&lat=97&lon=127">동해</a>	</td><td>	<a href="cityView?e_name=Samcheok&city_no=4&lat=98&lon=125">삼척</a>	</td><td>	<a href="cityView?e_name=Sokcho&city_no=5&lat=87&lon=141">속초</a>	</td></tr>
+				<tr><td>	<a href="cityView?e_name=Gangneung&city_no=1&lat=92&lon=131" style="color:#337ab7;">강릉</a>	</td><td>	<a href="cityView?e_name=Goseong &city_no=2&lat=85&lon=145" style="color:#337ab7;">고성</a>	</td><td>	<a href="cityView?e_name=Donghae&city_no=3&lat=97&lon=127">동해</a>	</td><td>	<a href="cityView?e_name=Samcheok&city_no=4&lat=98&lon=125">삼척</a>	</td><td>	<a href="cityView?e_name=Sokcho&city_no=5&lat=87&lon=141">속초</a>	</td></tr>
 				<tr><td>	<a href="cityView?e_name=Yanggu &city_no=6&lat=77&lon=139">양구</a>	</td><td>	<a href="cityView?e_name=Yangyang &city_no=7&lat=88&lon=138">양양</a>	</td><td>	<a href="cityView?e_name=Yeongwol &city_no=8&lat=86&lon=119">영월</a>	</td><td>	<a href="cityView?e_name=Wonju&city_no=9&lat=76&lon=122">원주</a>	</td><td>	<a href="cityView?e_name=Inje &city_no=10&lat=80&lon=138">인제</a>	</td></tr>
 				<tr><td>	<a href="cityView?e_name=Jeongseon &city_no=11&lat=89&lon=123">정선</a>	</td><td>	<a href="cityView?e_name=Cheorwon &city_no=12&lat=65&lon=139">철원</a>	</td><td>	<a href="cityView?e_name=Chuncheon&city_no=13&lat=73&lon=134">춘천</a>	</td><td>	<a href="cityView?e_name=Taebaek&city_no=14&lat=95&lon=119">태백</a>	</td><td>	<a href="cityView?e_name=Pyeongchang &city_no=15&lat=84&lon=123">평창</a>	</td></tr>
 				<tr><td>	<a href="cityView?e_name=Hongcheon &city_no=16&lat=75&lon=130">홍천</a>	</td><td>	<a href="cityView?e_name=Hwacheon &city_no=17&lat=72&lon=139">화천</a>	</td><td>	<a href="cityView?e_name=Hoengseong &city_no=18&lat=77&lon=125">횡성</a>	</td><td>		</td><td>		</td></tr>
@@ -474,28 +469,40 @@
 			<div id="list_img1" class="clickevent gogo" style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['0'].city_img1}'); background-size:530px 260px;"><h2>${city['0'].city_name}</h2>
 			<input type="hidden" value="${city['0'].e_name}" id="hidden_ename_list_img1">
 			<input type="hidden" value="${city['0'].no}" id="hidden_no_list_img1">
+			<input type="hidden" value="${city['0'].lat}" id="hidden_lat_list_img1">
+			<input type="hidden" value="${city['0'].lon}" id="hidden_lon_list_img1">
 		</div>
 			<div class="list_img gogo" id="go1"         style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['1'].city_img1}'); background-size:260px 260px;"><h2>${city['1'].city_name}</h2>
 			<input type="hidden" value="${city['1'].e_name}" id="hidden_ename_go1">
 			<input type="hidden" value="${city['1'].no}" id="hidden_no_go1">
+			<input type="hidden" value="${city['1'].lat}" id="hidden_lat_go1">
+			<input type="hidden" value="${city['1'].lon}" id="hidden_lon_go1">
 		</div>
 			<div class="list_img gogo" id="go2"         style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['2'].city_img1}'); background-size:260px 260px;"><h2>${city['2'].city_name}</h2>
 			<input type="hidden" value="${city['2'].e_name}" id="hidden_ename_go2">
 			<input type="hidden" value="${city['2'].no}" id="hidden_no_go2">
+			<input type="hidden" value="${city['2'].lat}" id="hidden_lat_go2">
+			<input type="hidden" value="${city['2'].lon}" id="hidden_lon_go2">
 		</div>
 			<div class="list_img gogo" id="go3"         style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['3'].city_img1}'); background-size:260px 260px;"><h2>${city['3'].city_name}</h2>
 			<input type="hidden" value="${city['3'].e_name}" id="hidden_ename_go3">
 			<input type="hidden" value="${city['3'].no}" id="hidden_no_go3">
+			<input type="hidden" value="${city['3'].lat}" id="hidden_lat_go3">
+			<input type="hidden" value="${city['3'].lon}" id="hidden_lon_go3">
 		</div>
 			<div class="list_img gogo" id="go4"         style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['4'].city_img1}'); background-size:260px 260px;"><h2>${city['4'].city_name}</h2>
 			<input type="hidden" value="${city['4'].e_name}" id="hidden_ename_go4">
 			<input type="hidden" value="${city['4'].no}" id="hidden_no_go4">
+			<input type="hidden" value="${city['4'].lat}" id="hidden_lat_go4">
+			<input type="hidden" value="${city['4'].lon}" id="hidden_lon_go4">
 		</div>
 		</div>
 		<div id="right">
 		 	<div id="list_img2" class="clickevent gogo"  style="background: url('${pageContext.request.contextPath}/resources/img/city/cityIMG/${city['5'].city_img1}'); background-size:270px 530px;"><h2>${city['5'].city_name}</h2>
 		 	<input type="hidden" value="${city['5'].city_name}" id="hidden_ename_list_img2">
 		 	<input type="hidden" value="${city['5'].no}" id="hidden_no_list_img2">
+		 	<input type="hidden" value="${city['5'].lat}" id="hidden_lat_list_img2">
+			<input type="hidden" value="${city['5'].lon}" id="hidden_lon_list_img2">
 		 </div>
 		</div>
 	</div>

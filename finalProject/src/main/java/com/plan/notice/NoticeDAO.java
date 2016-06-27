@@ -15,4 +15,6 @@ public interface NoticeDAO {
 	public List<NoticeDTO> notcie_list(PageMaker pm)throws Exception;
 	
 	public NoticeDTO notice_view(int notice_no)throws Exception;
+
+	public int getTotalList();
 }

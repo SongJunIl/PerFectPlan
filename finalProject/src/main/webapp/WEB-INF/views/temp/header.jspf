@@ -308,7 +308,7 @@
 					<a class="page-scroll" href="${pageContext.request.contextPath}/#HOWTOUSE" data-scroll><span id="p_How"
 							class="p_span_title_font" onmouseover="on2()" onmouseout="out2()">How
 								to use</span></a></li>
-					<li><a class="page-scroll" href="#About"><span
+					<li><a class="page-scroll" href="${pageContext.request.contextPath}/notice/board"><span
 							id="p_notice" class="p_span_title_font" onmouseover="on3()"
 							onmouseout="out3()">Notice</span></a></li>
 					<c:if test="${ not empty member || not empty admin }">

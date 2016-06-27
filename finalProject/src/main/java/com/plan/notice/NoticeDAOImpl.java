@@ -16,7 +16,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 	private String namespace="NoticeboardMapper.";
 	
-	
+	@Override
+	public int getTotalList() {
+		return sqlsession.selectOne(namespace+"getTotalList");
+	}
 	
 	@Override
 	public List<NoticeDTO> notcie_list(PageMaker pm) throws Exception {

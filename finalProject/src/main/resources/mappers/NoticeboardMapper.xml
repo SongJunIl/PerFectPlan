@@ -22,7 +22,13 @@
   	</select>
   	
   	<select id="notice_view" resultType="com.plan.qna.ReplyQnaDTO">
-  		select * from notice_board where notice_no=#{notice_no} 
+  		select * from 
+		(select rownum R, A.* from
+		(select * from notice_board order by reg_date desc) A) 
+		where R between #{startRow} and #{lastRow} 
   	</select>
   
+  	<select id="getTotalList" resultType="java.lang.Integer">
+  		select count(*) from notice_board
+  	</select>  	
   </mapper>

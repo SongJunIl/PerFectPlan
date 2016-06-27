@@ -6,7 +6,7 @@
   <mapper namespace="NoticeboardMapper">
 
 	<insert id="notice_write">
-  		insert into notice_board values (notice_seq.nextval, #{title}, #{contents}, sysdate,${m_img})
+  		insert into notice_board values (notice_seq.nextval, #{title}, #{contents}, sysdate,null)
   	</insert>	
 
 	<delete id="notice_delete" parameterType="com.plan.qna.QnaDTO">

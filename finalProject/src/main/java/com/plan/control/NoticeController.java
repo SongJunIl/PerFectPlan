@@ -29,11 +29,9 @@ public class NoticeController {
 		
 	}
 	
-	@RequestMapping(value="boardWrite", method=RequestMethod.GET)
-	public String notice_write(@ModelAttribute NoticeDTO ndto){
+	@RequestMapping(value="boardWrite", method=RequestMethod.POST)
+	public void notice_write(@ModelAttribute NoticeDTO ndto){
 		noticeService.notice_write(ndto);
-		System.out.println("더르움");
-		return "redirect:/board/list";
 				
 	}
 	

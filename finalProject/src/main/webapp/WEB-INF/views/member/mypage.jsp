@@ -284,7 +284,7 @@ $(function(){
 				  	</c:otherwise>
 				  </c:choose>
 				 </a></li>
-				  <li role="presentation" class=""><a data-target="#myinfo" role="tab" id="myinfo-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_myinfo" onmouseover="ontop4()" onmouseout="outtop4()">My Info</span></div></a></li>	
+				  <li role="presentation" class=""><a data-target="#myinfo" role="tab" id="myinfo-tab" data-toggle="tab" aria-controls="myinfo" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span id="p_top_menu_myinfo" onmouseover="ontop4()" onmouseout="outtop4()">My Info</span></div></a></li>	
 				</ul>
 			</div>										
 		</div>	
@@ -350,59 +350,26 @@ $(function(){
 			<div class="p_home_body">
 				
 			
-								<div class="panel-group" id="accordion">
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-								       <div id="p_ac_title">
-								       	<div class="p_ac_1">여행일정 이름</div>
-								       	<div class="p_ac_1">여행날짜</div>
-								       	<div class="p_ac_1">여행위치</div>
-								       </div></a><div class="p_ac_1" id="p_ac_delete"><span class="glyphicon glyphicon-trash" id="p_ac_trash" aria-hidden="true"></span></div>
-								      </h4>
-								    </div>
-								    <div id="collapse1" class="panel-collapse collapse in">
-								      <div class="panel-body">
-								      			<div class="p_panel_body_list">
-										      		<div class="p_body_div_1" id="p_panel_body_list_img">
-										      			<div class="p_body_div_2" id="p_panel_body_list_img_info">g</div>
-										      		</div>
-													<div class="p_body_div_3" id="p_panel_body_list_contents"></div>	      			
-								      			
-								      			</div>
-								      </div>
-								    </div>
-								  </div>
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-								        Collapsible Group 2</a>
-								      </h4>
-								    </div>
-								    <div id="collapse2" class="panel-collapse collapse">
-								      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								      commodo consequat.</div>
-								    </div>
-								  </div>
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-								        Collapsible Group 3</a>
-								      </h4>
-								    </div>
-								    <div id="collapse3" class="panel-collapse collapse">
-								      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								      commodo consequat.</div>
-								    </div>
-								  </div>
-								</div>
+								<ul id="myTab" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a data-target="#complete" role="tab" id="myinfo-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span>완료</span></div></a></li>	
+									<li role="presentation" class=""><a data-target="#incomplete" role="tab" id="myinfo-tab" data-toggle="tab" aria-controls="QnA" aria-expanded="false" class="p_tab_title_tab"><div class="p_top_menu_list" ><span>미완료</span></div></a></li>	
+								</ul>
+
+
+		<div role="tabpanel" class="tab-pane fade" id="complete" aria-labelledby="schedule-tab">
+			<div class="p_com_body" style="background-color: fuchsia; width: 300px; height: 300px; float: left;">
+			
+			
+			</div>
+		</div>
+		
+		<div role="tabpanel" class="tab-pane fade" id="incomplete" aria-labelledby="schedule-tab">
+			<div class="p_com_body" style="background-color: blue; width: 300px; height: 300px; float: right;">
+			
+			</div>
+		</div>
+		
+
 			
 			</div>
 	  </div>
@@ -607,6 +574,8 @@ $(function(){
 
 
 
+
+		
 
 
 

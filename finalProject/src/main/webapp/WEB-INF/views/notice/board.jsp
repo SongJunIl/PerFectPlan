@@ -11,15 +11,48 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#write").on('click', function() {
-			location.href="board_WriteForm";
+		$(".noticeviewtitle4").click(function() {
+		 	$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/notice/boardView",
+				data : {
+					notice_no: $(this).val(),
+				},
+				success : function(result) {
+					$("#test").html(result);
+				},
+				error : function(xhr, status, error) {
+					alert(error);
+				}
+			});
 		});
+		
+		$("#savebutton").click(function() {
+			var t=$("#p_notice_mdtitle").val();
+			var c=$("#p_notice_contents").val();
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/notice/boardWrite",
+				data:{
+					title:t,
+					contents:c
+				},
+				success:function(){
+					alert("공지사항 작성");
+					window.location.href="${pageContext.request.contextPath}/notice/board";
+				},
+				error:function(){
+					alert("에러데스");
+				}
+			});
+		});
+		
 	});
 </script>
 </head>
 <body>
 
-	<table border="1" width="800px" height="600px">
+<%-- 	<table border="1" width="800px" height="600px">
 		<tr>
 			<td>No</td><td>Title</td><td>Date</td><td>Writer</td>
 		</tr>
@@ -36,8 +69,38 @@
 			</tr>
 		
 		</c:forEach>
-	</table>
+	</table> --%>
+	<div class="container">
+	<table class="table table-hover" id="MozipTablelist">
+						<thead>
+							<tr>
+								<th class="mozipListTh">작성자</th>
+								<th class="mozipListTh">제목</th>
+								<th class="mozipListTh">날짜</th>
+							</tr>
+						</thead>
+						<!--     [D] 게시물 뿌려주는 for문    -->
+
+						<c:forEach var="i" items="${notice_list}">
+							<tbody id="MozipViewtitle">
+							</tbody>
+							<tr>
+								<td>${i.writer}</td>
+								<td><button type="button" 
+										class="btn btn-link btn-lg noticeviewtitle4" data-toggle="modal"
+										data-target="#noticeview" value="${i.notice_no}">${i.title}</button></td>
+								<td>${i.reg_date}</td>
+							</tr>
+						</c:forEach>
+
+					</table>
+					<c:if test="${not empty admin }">
+						<input class="btn btn-warning" data-toggle="modal" data-target="#p_noticeWritemodal" type="button" value="글쓰기" id="write" style="float: right;">
+					</c:if>
+	</div>
 	
+	
+	<div id="p_page_center">
 	<c:if test="${page.curBlock>1 }">
 		<a href="boardList?curPage=${page.startNum-1 }">[prev]</a>
 	</c:if>
@@ -48,40 +111,58 @@
 	<c:if test="${page.curBlock < page.totalBlock }">
 		<a href="boardList?curPage=${page.lastNum+1 }">[next]</a>
 	</c:if>
-	
-	
-		<c:if test="${not empty admin }">
-		<input class="btn btn-warning" type="button" value="글쓰기" id="write">
-		</c:if>
+	</div>
 </body>
 </html>
 
 
 
-<!--QnA write Modal -->
-<div class="modal fade" id="p_noticeWritemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--notice write Modal -->
+<div class="modal fade" id="p_noticeWritemodal" style="margin-top: 340px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" id="p_qna_md_2">
-      <form action="${pageContext.request.contextPath}/member/qna_write" id="frm" method="post">
+      <form method="post">
     <div class="modal-content" id="p_qna_md_3">
 		     	<div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">질문 하기</h4>
+			        <h4 class="modal-title" id="myModalLabel">공지 사항</h4>
      			</div>
-     				<input type="hidden" name="id" value="${member.id}">
-     				<input type="hidden" name="m_img" value="${member.m_img}">
-					<input type="text" id="p_qna_mdtitle" name="title" placeholder="제목을 입력하세요.">
+     				<input type="hidden" id="p_notice_m_img" name="m_img" value="${member.m_img}">
+					<input type="text" id="p_notice_mdtitle" name="title" style="margin-left: 15px;width: 567px;margin-top: 10px;" placeholder="제목을 입력하세요.">
 							<div class="modal-body">
-					<textarea name="contents" id="SmartEditor" rows="10" cols="100" style="width: 568px; height: 170px;"></textarea>
+					<textarea name="contents" id="p_notice_contents" rows="10" cols="100" style="width: 568px; height: 200px;"></textarea>
 							</div>
-		      </div>
 		      <div class="modal-footer" id="p_qna_footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        <button type="button" id="savebutton" class="btn btn-primary">Save</button>
+		      </div>
 		      </div>
 		</form>
     
     </div>
   </div>
+
+
+<!-- mozip view&수정 modal  -->
+					<div class="modal fade" id="noticeview" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content" id=momomo1>
+										<div id="test"></div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

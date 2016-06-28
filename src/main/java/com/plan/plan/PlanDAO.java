@@ -72,7 +72,7 @@ public interface PlanDAO {
 	
 	public void plan_spot_del(PlanDTO planDTO)throws Exception;
 	
-	public List<NewPlanDTO> plan_list_select()throws Exception;
+	public List<NewPlanDTO> plan_list_select(PlanMakePage planMakePage)throws Exception;
 	
 	public int spot_counts(PlanDTO planDTO)throws Exception;
 	
@@ -90,4 +90,11 @@ public interface PlanDAO {
 	
 	public void plan_jim_delete(ScrapDTO scrapDTO)throws Exception;
 	
+	public int plan_list_counts()throws Exception;
+	
+	public List<NewPlanDTO> select_complite_plan(NewPlanDTO newPlanDTO)throws Exception;
+	
+	public List<NewPlanDTO> select_incomplite_plan(NewPlanDTO newPlanDTO)throws Exception;
+	
+	public void del_my_plan(PlanDTO planDTO)throws Exception;
 }

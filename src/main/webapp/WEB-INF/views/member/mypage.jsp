@@ -62,7 +62,16 @@ $(function(){
 </script>
 <script type="text/javascript">
 $(function(){
-	
+	/* $.ajax({
+		url:"./complitePlan",
+		type:"POST",
+		success: function(data) {
+			alert(data);
+			$(".complite_inner").html(data);
+		},error: function() {
+			alert("error");
+		}
+	}); */
 	$("#home-tab").click(function(){
 		var id =$("#p_qnaid").val();
 		$.ajax({
@@ -194,11 +203,27 @@ $(function(){
 	
 	
 	
+	/* plan관한 script */
+	
+	$(".complite").click(function() {
+		$(".complite_inner").css("display","block");
+		$(".incomplite_inner").css("display","none");
+	});
+	$(".incomplite").click(function() {
+		$(".complite_inner").css("display","none");
+		$(".incomplite_inner").css("display","block");
+	});
 	
 	
-	
-	
-	
+		for(var i=1;i<$("#plan_list2_size").val();i++){
+			$("."+(i*3)).css("margin-right","0px");
+			
+		}
+		for(var i=1;i<$("#plan_list3_size").val();i++){
+			$("."+(i*3)).css("margin-right","0px");
+			
+		}
+
 });
 	
 
@@ -206,6 +231,236 @@ $(function(){
 
 
 </script>
+<style type="text/css">
+	.pfilter_clear{
+ 	clear: both;
+ }
+ .pfilter_right_content{
+ 	float: left;
+ 	width: 95px;
+ 	height: 50px;
+ 	text-align: center;
+ 	cursor: pointer;
+ }
+ .plan_inner_list{
+ 	float: left;
+ 	margin-right:28px;
+ 	margin-bottom: 20px;
+    width: 345px;
+    height: 296px;
+    border: 1px solid #dfdfdf;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+ }
+ .plan_list_bg{
+ 	/* width: 345px;
+ 	height: 200px;
+ 	background-color: gray;
+ 	overflow: hidden; */
+ 	width: 345px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    overflow: hidden;
+ 	transform-origin: center center 0px;  
+    -webkit-transition: all 2.5s ease;
+    -moz-transition: all 2.5s ease;
+    -o-transition: all 2.5s ease;
+    transition: all 2.5s ease; 
+ }
+ .plan_list_bg:hover{
+ color:white !important;
+ 	-webkit-transform: scale(1.3,1.3);
+    -moz-transform: scale(1.3,1.3);
+   	-o-transform: scale(1.3,1.3);
+    transform: scale(1.3,1.3);
+    
+ } 
+ .plan_list_bg img{
+ 	width: 100%;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    transition: all 3.6s;
+    -webkit-transition: all 3.6s;
+ }
+ .plan_list_title span{
+ 	margin-left: 10px;
+ }
+ .plan_list_title{
+ 	/* margin-top: 140px; */
+ 	/* width: 200px; */
+ 	width: 100%;
+    height: 100px;
+    background: linear-gradient( to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 100px;
+ }
+ #pinner_list_order{
+ 	width: 100%;
+ 	margin-top: 50px;
+ 	margin-bottom: 10px;
+ }
+ #pinner_order_menu{
+ 	float: left;
+ 	font-size: 20px;
+ }
+ #pinner_list_counts{
+ 	float: right;
+ 	font-size: 15px;
+ }
+ .plan_counts{
+ 	float: right;
+ 	margin-left: 10px;
+ }
+ .plan_clips{
+ 	float: right;
+ 	margin-left: 10px;
+ }
+ .plan_spots{
+ 	float: right;
+ 	
+ }
+ .plan_bigcity{
+ 	margin-top: 5px;
+ }
+ .plan_id{
+ 	margin-top: 5px;
+ 
+ }
+ .plan_list_ex{
+ 	padding: 10px;
+ 	width: 100%;
+    position: absolute;
+    top: 200px;
+    font-size: 14px;
+    color: #6f6f6f;
+    line-height: 20px;
+    background-color: white;
+ }
+ 
+ 
+ .big_city_list{
+ 	float: left;
+ 	margin-left: 30px;
+ 	width: 80px;
+ 	height: 50px;
+ 	line-height:50px;
+ 	text-align: center;
+ 	cursor: pointer;
+ }
+ 
+ .big_city_name_title{
+ 	width: 100%;
+ 	text-align: center;
+ }
+ 
+ .pfilter_rigth_filter_inner{
+ 	float: left;
+ 	margin-left: 30px;
+ 	width: 80px;
+ 	height: 30px;
+ 	line-height: 30px;
+ 	text-align: center;
+ 	display: none;
+ 	background-color: #c8c8c8;
+ 	border-radius: 7px;
+ 	margin-top: 10px;
+ }
+  .pfilter_rigth_filter_inner1{
+ 	float: left;
+ 	margin-left: 30px;
+ 	width: 80px;
+ 	height: 50px;
+ 	line-height: 50px;
+ 	text-align: center;
+ 	display: none;
+ }	
+ .planner_List_inner_big_box a{
+ 	color:white !important;
+ 	
+ }
+.plan_title{
+width:600px;
+
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+#ppage_view{
+	width: 250px;
+	height: 50px;
+	background-color: #213B82;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 50px;
+	cursor: pointer;
+} 
+	.complite{
+		width: 150px;
+		height: 50px;
+		font-size: 15px;
+		font-weight:bolder;
+		color:gray;
+		text-align:center;
+		border: 1px solid #c8c8c8;
+		border-radius: 10px;
+		line-height: 50px;
+		margin-right: 10px;
+		cursor: pointer;
+		float: left;
+	}
+	.incomplite{
+		width: 150px;
+		height: 50px;
+		font-size: 15px;
+		font-weight:bolder;
+		color:gray;
+		text-align:center;
+		border: 1px solid #c8c8c8;
+		border-radius: 10px;
+		line-height: 50px;
+		cursor: pointer;
+		float: left;
+	}
+	.clear{
+		clear: both;
+	}
+	.complite_inner{
+		width: 1092px;
+		margin-top: 30px;
+	
+	}
+	.incomplite_inner{
+		width: 1092px;
+		display: none;
+		margin-top: 30px;
+	}
+
+  .complite_inner a{
+ 	color:black !important;
+ }
+  .incomplite_inner a{
+ 	color:black !important;
+ }
+/*  .plan_sc_body{
+ 	width: 1092px;
+ 	height:1000px;
+ 	margin: 0 auto;
+ 	margin-top: 100px;
+ } */
+</style>
 </Head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
@@ -357,68 +612,112 @@ $(function(){
 	  
 	  
 	  
-	  <!--schedule tab  -->
-	  
-	  <div role="tabpanel" class="tab-pane fade" id="schedule" aria-labelledby="schedule-tab">
-			<div class="p_home_body">
-				
+	<!--schedule tab  -->
+     
+     <div role="tabpanel" class="tab-pane fade" id="schedule" aria-labelledby="schedule-tab">
+         <div class="p_home_body" style="width: 1092px;">
+            <div class="plan_title">
+            	<div class="plan_title_inner complite">완성된 일정</div>
+            	<div class="plan_title_inner incomplite">미완성된 일정</div>
+            	<div class="clear"></div>
+            </div>
 			
-								<div class="panel-group" id="accordion">
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-								       <div id="p_ac_title">
-								       	<div class="p_ac_1">여행일정 이름</div>
-								       	<div class="p_ac_1">여행날짜</div>
-								       	<div class="p_ac_1">여행위치</div>
-								       </div></a><div class="p_ac_1" id="p_ac_delete"><span class="glyphicon glyphicon-trash" id="p_ac_trash" aria-hidden="true"></span></div>
-								      </h4>
-								    </div>
-								    <div id="collapse1" class="panel-collapse collapse in">
-								      <div class="panel-body">
-								      			<div class="p_panel_body_list">
-										      		<div class="p_body_div_1" id="p_panel_body_list_img">
-										      			<div class="p_body_div_2" id="p_panel_body_list_img_info">g</div>
-										      		</div>
-													<div class="p_body_div_3" id="p_panel_body_list_contents"></div>	      			
-								      			
-								      			</div>
-								      </div>
-								    </div>
-								  </div>
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-								        Collapsible Group 2</a>
-								      </h4>
-								    </div>
-								    <div id="collapse2" class="panel-collapse collapse">
-								      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								      commodo consequat.</div>
-								    </div>
-								  </div>
-								  <div class="panel panel-default">
-								    <div class="panel-heading">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-								        Collapsible Group 3</a>
-								      </h4>
-								    </div>
-								    <div id="collapse3" class="panel-collapse collapse">
-								      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-								      commodo consequat.</div>
-								    </div>
-								  </div>
-								</div>
-			
+			<div class="complite_inner">
+			<div style="color: orange;">${plan_list2.size() } 개의 완성된 일정</div>
+				<input type="hidden" value="${plan_list2.size() }" id="plan_list2_size">
+		<c:forEach items="${plan_list2 }" var="planList" varStatus="i2">
+	 			<a href="${pageContext.request.contextPath}/planMake/planView?id=${planList.id }&plan_no=${planList.plan_no}">
+		 		<div class="plan_inner_list ${i2.index+1 }" >
+	 				<div class="plan_list_title" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">
+		 				<div style="margin-top: 50px;">
+		 					<span>${planList.s_date }</span><span>${planList.days}DAYS</span><br>
+		 					<span class="plan_title">${planList.plan_name }</span>
+		 				</div>
+	 				</div>
+		 			<div class="plan_list_bg">
+		 				<img src="${pageContext.request.contextPath}/resources/img/mypage/photo1.jpg">
+		 				
+		 			</div>
+		 			<div class="plan_list_ex">
+		 				<span>
+							<c:choose>
+								<c:when test="${planList.thema == 1 }">
+									가족여행
+								</c:when>
+								<c:when test="${planList.thema == 2 }">
+									친구여행
+								</c:when>
+								<c:when test="${planList.thema == 3 }">
+									커플여행
+								</c:when>
+								<c:otherwise>
+									나홀로여행
+								</c:otherwise>
+							</c:choose>
+							
+						</span>
+		 				<div class="plan_counts"><img src="${pageContext.request.contextPath}/resources/img/plan/pn_list_view_icon.png">&nbsp;&nbsp;${planList.counts }</div>
+		 				<div class="plan_clips"><img src="${pageContext.request.contextPath}/resources/img/plan/list_clip_icon.png">&nbsp;&nbsp;${planList.jim }</div>
+		 				<div class="plan_spots"><img src="${pageContext.request.contextPath}/resources/img/plan/pn_list_spot_icon.png">&nbsp;&nbsp;${planList.spot_counts }</div>
+		 				<div class="pfilter_clear"></div>
+		 				<div class="plan_bigcity">${planList.city_names}</div>
+		 				<div class="pfilter_clear"></div>
+		 				<div class="plan_id">${planList.id }</div>
+		 			</div>
+		 		</div>
+		 		</a>
+	 		</c:forEach>
 			</div>
-	  </div>
+  			
+  			<div class="incomplite_inner">
+  			<div style="color: orange;">${plan_list3.size() } 개의 미완성된 일정</div>
+  			<input type="hidden" value="${plan_list3.size() }" id="plan_list3_size">
+				<c:forEach items="${plan_list3 }" var="planList" varStatus="i3">
+	 			<a href="${pageContext.request.contextPath}/planMake/planView?id=${planList.id }&plan_no=${planList.plan_no}">
+		 		<div class="plan_inner_list ${i3.index+1 }" >
+	 				<div class="plan_list_title" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">
+	 					<div style="margin-top: 50px;">	
+	 					<span>${planList.s_date }</span><span>${planList.days}DAYS</span><br>
+	 					<span class="plan_title">${planList.plan_name }</span>
+	 					</div>
+	 				</div>
+		 			<div class="plan_list_bg">
+		 				<img src="${pageContext.request.contextPath}/resources/img/mypage/photo1.jpg">
+		 				
+		 			</div>
+		 			<div class="plan_list_ex">
+		 				<span>
+							<c:choose>
+								<c:when test="${planList.thema == 1 }">
+									가족여행
+								</c:when>
+								<c:when test="${planList.thema == 2 }">
+									친구여행
+								</c:when>
+								<c:when test="${planList.thema == 3 }">
+									커플여행
+								</c:when>
+								<c:otherwise>
+									나홀로여행
+								</c:otherwise>
+							</c:choose>
+							
+						</span>
+		 				<div class="plan_counts"><img src="${pageContext.request.contextPath}/resources/img/plan/pn_list_view_icon.png">&nbsp;&nbsp;${planList.counts }</div>
+		 				<div class="plan_clips"><img src="${pageContext.request.contextPath}/resources/img/plan/list_clip_icon.png">&nbsp;&nbsp;${planList.jim }</div>
+		 				<div class="plan_spots"><img src="${pageContext.request.contextPath}/resources/img/plan/pn_list_spot_icon.png">&nbsp;&nbsp;${planList.spot_counts }</div>
+		 				<div class="pfilter_clear"></div>
+		 				<div class="plan_bigcity">${planList.city_names}</div>
+		 				<div class="pfilter_clear"></div>
+		 				<div class="plan_id">${planList.id }</div>
+		 			</div>
+		 		</div>
+		 		</a>
+	 		</c:forEach>
+			</div>
+			          
+         </div>
+     </div>
 	 
 	 
 	 

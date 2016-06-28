@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.plan.plan.NewPlanDTO;
 import com.plan.spot.SpotDTO;
 
 @Repository
@@ -15,6 +16,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession sqlsession;
 	
 	private String namespace = "MemberMapper.";
+	private String namespace2 = "PlanMapper.";
 	
 	@Override
 	public List<SpotDTO> jimlist(MemberDTO mdto) throws Exception {
@@ -69,5 +71,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO getEmailck(MemberDTO mdto) throws Exception {
 		return sqlsession.selectOne(namespace+"emailck",mdto);
 	}
+	
+	
+	
 	
 }

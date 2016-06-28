@@ -16,7 +16,7 @@ public class PlanInterCept extends HandlerInterceptorAdapter {
 		if(session.getAttribute("member") != null || session.getAttribute("admin") != null){
 			return true;
 		}else{
-			response.sendRedirect(request.getContextPath()+"/planMake/planList");
+			response.sendRedirect(request.getContextPath()+"/planMake/planList?curPage=1");
 			session.setAttribute("message", "일정 만들기는 회원 가입 후 이용 가능합니다.");
 			return false;
 		}

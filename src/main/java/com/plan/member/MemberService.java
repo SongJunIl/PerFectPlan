@@ -1,8 +1,12 @@
 package com.plan.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
+
+import com.plan.plan.NewPlanDTO;
 
 public interface MemberService {
 
@@ -17,5 +21,6 @@ public interface MemberService {
 	public MemberDTO getemailck(MemberDTO mdto,Model model);
 	public void jimlist(MemberDTO mdto,Model model);
 
+	
 
 }

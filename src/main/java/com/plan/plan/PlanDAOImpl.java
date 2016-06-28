@@ -230,9 +230,9 @@ public class PlanDAOImpl implements PlanDAO {
 	}
 	//==========plan_list 뽑아오기===================================================================
 	@Override
-	public List<NewPlanDTO> plan_list_select() throws Exception {
+	public List<NewPlanDTO> plan_list_select(PlanMakePage planMakePage) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"plan_list_select");
+		return sqlSession.selectList(namespace+"plan_list_select", planMakePage);
 	}
 	
 	//========spot_counts get하기=================================================================
@@ -287,6 +287,32 @@ public class PlanDAOImpl implements PlanDAO {
 	public void plan_jim_delete(ScrapDTO scrapDTO) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.delete(namespace+"plan_jim_delete", scrapDTO);
+	}
+	
+	//========plan_list_counts============================================================================
+	@Override
+	public int plan_list_counts() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"plan_list_counts");
+	}
+	
+	//========select_complite_plan=======================================================================
+			@Override
+	public List<NewPlanDTO> select_complite_plan(NewPlanDTO newPlanDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"select_complite_plan", newPlanDTO);
+	}
+	//========select_incomplite_plan=======================================================================
+		@Override
+	public List<NewPlanDTO> select_incomplite_plan(NewPlanDTO newPlanDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"select_incomplite_plan", newPlanDTO);
+	}
+	//========del_my_plan=================================================================================
+	@Override
+	public void del_my_plan(PlanDTO planDTO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+"del_my_plan", planDTO);
 	}
 	
 }

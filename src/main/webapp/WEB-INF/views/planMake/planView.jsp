@@ -100,7 +100,7 @@
 		background-color: gray;
 		color: white;
 		border-radius :6px; 
-		width: 70px;
+		width: 80px;
 		text-align: center;
 		
 		
@@ -361,14 +361,27 @@
 		border-radius:8px;
 		background-color: #ff9320;
 		text-align: center;
-		margin-top: 85px;
+		margin-top: 30px;
 		margin-right: 20px;
 		font-size: 15px;
 		font-weight: bolder;
 		line-height: 40px;
 		cursor: pointer;
 	}
-	
+	.plan_delete{
+		float: right;
+		width: 150px;
+		height: 40px;
+		border-radius:8px;
+		background-color: #ff9320;
+		text-align: center;
+		margin-top: 20px;
+		margin-right: 20px;
+		font-size: 15px;
+		font-weight: bolder;
+		line-height: 40px;
+		cursor: pointer;
+	}
 	/* map에대한 css */	
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
@@ -1422,6 +1435,14 @@ return content;
 	$(".plan_update").click(function() {
 		location.href= "plannerUpdate?plan_no="+$("#plan_no").val();
 	});
+	$(".plan_delete").click(function() {
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+			location.href= "plannerDelete?plan_no="+$("#plan_no").val();
+		    
+		}else{   //취소
+		    return false;
+		}
+	});
 	
 	/* var city_counts = 0;
 	for(a=0;a<$("#day_plan_length").val();a++){
@@ -1569,6 +1590,9 @@ function closeNav() {
 			<c:if test="${member2.id == member.id }">
 				<div class="plan_update">
 					수정하기
+				</div>
+				<div class="plan_delete">
+					삭제하기
 				</div>			
 			</c:if>
 			

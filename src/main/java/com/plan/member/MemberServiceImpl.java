@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.plan.plan.NewPlanDTO;
 import com.plan.spot.SpotDTO;
 
 @Service
@@ -135,5 +136,6 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 				
 	}
+
 
 }

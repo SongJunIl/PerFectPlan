@@ -101,7 +101,7 @@
 		border: 1px solid gray;
 		width: 60px;
 		height: 60px;
-		overflow: auto;
+		/* overflow: auto; */
 	}
 	.pcity_inner_addbtn img{
 		border: 1px solid gray;
@@ -299,7 +299,7 @@
 		border: 1px solid gray;
 		width: 50px;
 		height: 50px;
-		overflow: auto;
+		/* overflow: auto; */
 	}
 	.city_list_inner_addbtn img{
 		border: 1px solid gray;
@@ -1210,7 +1210,6 @@ function closeNav() {
 	</div>
 	
 	<div id="pselect_city_body">
-	
 		<input class="big_List" type="hidden" value="${bigCity.size() }">
 	<c:forEach items="${bigCity}" var="bigList" varStatus="i">
 		
@@ -1223,7 +1222,12 @@ function closeNav() {
 		<div class="pselect_city_inner">
 			<div class="pcity_inner_box inner_box_chech${i.index}" data-index="${i.index}">
 				<div class="pcity_inner_img">
-					<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+				<c:if test="${bigList.no < 164}">
+					<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${all_city[i.index].city_img1}">
+				</c:if>
+				<c:if test="${bigList.no >= 164}">
+					<img src="${pageContext.request.contextPath}/resources/img/plan/big/${bigList.no }.jpg">
+				</c:if>
 				</div>
 				<div class="pcity_inner_name">
 					<div class="pcity_inner_kname">
@@ -1261,7 +1265,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1296,7 +1300,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1331,7 +1335,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1366,7 +1370,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1401,7 +1405,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1436,7 +1440,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1471,7 +1475,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">
@@ -1505,7 +1509,7 @@ function closeNav() {
 					<div class="city_list_inner">
 						<div class="city_list_inner_box">
 							<div class="city_list_inner_img">
-								<img src="${pageContext.request.contextPath}/resources/img/plan/backpacker-running.png">
+								<img src="${pageContext.request.contextPath}/resources/img/city/cityIMG/${check_city_1.city_img1}">
 							</div>
 							<div class="city_list_inner_name">
 								<div class="pcity_inner_kname">

@@ -76,6 +76,7 @@
   	font-weight: bolder;
   	color: white;
  	border-radius:5px; 
+ 	cursor: pointer;
   }
   #pinner_pbtn_2 img{
   	float:left;
@@ -168,19 +169,62 @@
  	float: left;
  	margin-right:28px;
  	margin-bottom: 20px;
+    width: 345px;
+    height: 296px;
+    border: 1px solid #dfdfdf;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
  }
  .plan_list_bg{
- 	width: 345px;
+ 	/* width: 345px;
  	height: 200px;
  	background-color: gray;
- 	overflow: hidden;
+ 	overflow: hidden; */
+ 	width: 345px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    overflow: hidden;
+ 	transform-origin: center center 0px;  
+    -webkit-transition: all 2.5s ease;
+    -moz-transition: all 2.5s ease;
+    -o-transition: all 2.5s ease;
+    transition: all 2.5s ease; 
+ }
+ .plan_list_bg:hover{
+ color:white !important;
+ 	-webkit-transform: scale(1.3,1.3);
+    -moz-transform: scale(1.3,1.3);
+   	-o-transform: scale(1.3,1.3);
+    transform: scale(1.3,1.3);
+    
+ } 
+ .plan_list_bg img{
+ 	width: 100%;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    transition: all 3.6s;
+    -webkit-transition: all 3.6s;
  }
  .plan_list_title span{
  	margin-left: 10px;
  }
  .plan_list_title{
- 	margin-top: 140px;
- 	width: 200px;
+ 	/* margin-top: 140px; */
+ 	/* width: 200px; */
+ 	width: 100%;
+    height: 100px;
+    background: linear-gradient( to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 100px;
  }
  #pinner_list_order{
  	width: 100%;
@@ -216,6 +260,13 @@
  }
  .plan_list_ex{
  	padding: 10px;
+ 	width: 100%;
+    position: absolute;
+    top: 200px;
+    font-size: 14px;
+    color: #6f6f6f;
+    line-height: 20px;
+    background-color: white;
  }
  
  
@@ -256,7 +307,8 @@
  	display: none;
  }	
  .planner_List_inner_big_box a{
- 	color:black !important;
+ 	color:white !important;
+ 	
  }
 .plan_title{
 width:200px;
@@ -265,14 +317,26 @@ overflow:hidden;
 text-overflow:ellipsis;
 white-space:nowrap;
 }
- 
+#ppage_view{
+	width: 250px;
+	height: 50px;
+	background-color: #213B82;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 50px;
+	cursor: pointer;
+} 
   </style>
  
  
  <script type="text/javascript">
  	$(function() {
- 		for(var i=1;i<5;i++){
- 			$("#"+(i*3)).css("margin-right","0px");
+ 		for(var i=1;i<$("#total_List").val();i++){
+ 			$("."+(i*3)).css("margin-right","0px");
  			
  		}
  		var data_city_no=0;
@@ -304,7 +368,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정")
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -338,7 +409,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -371,7 +449,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -404,7 +489,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -437,7 +529,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -471,7 +570,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -504,7 +610,14 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					$(".planner_List_inner_big_box").html(data);
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -537,7 +650,13 @@ white-space:nowrap;
 				},
 				success:function(data){
 					$(".planner_List_inner_big_box").html(data);
-					$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+					if(data_city_no != 0 && data_days != 0 && data_season !="" && data_thema !=0){
+						$("#pinner_list_counts").html($("#total_List").val()+"개의 일정");
+						$("#ppage_view").css("display","block");
+					}else{
+						$("#pinner_list_counts").html($("#plan_list2_size").val()+"개의 일정");
+						$("#ppage_view").css("display","none");
+					}
 				},error :function(){
 					alert("오류");
 				}
@@ -548,11 +667,42 @@ white-space:nowrap;
  		$("#pinner_pbtn_1").click(function() {
 			location.href="${pageContext.request.contextPath}/planMake/planSelectCity";
 		});
- 		
+ 		$("#pinner_pbtn_2").click(function() {
+ 			var member = $("#member_se_ch").val();
+ 			if(member !=""){
+				location.href="${pageContext.request.contextPath}/member/mypage";	
+ 			}else{
+ 				alert("my Planner는 로그인 후 사용 할 수 있습니다.");
+ 			}
+		});
  		if($("#message").val() != ""){
  			alert($("#message").val());
  			
  		}
+ 		
+ 		var curPage=1;
+ 		$("#ppage_view").click(function() {
+ 			curPage= curPage+1;
+ 			$.ajax({
+ 				url:"planList2",
+ 				type:"POST",
+				data:{
+					curPage:curPage
+				},success:function(data){
+					$(".planner_List_inner_big_box").append(data);
+					if($("#total_BLock").val()<=curPage){
+						$("#ppage_view").css("display","none");
+					}
+				},error :function(){
+					alert("오류");
+				}
+ 				
+ 			});
+			/* location.href="${pageContext.request.contextPath}/planMake/planList?curPage=2"; */
+		});
+ 		
+ 		
+ 		
  	});
  	
  	
@@ -566,6 +716,7 @@ white-space:nowrap;
  <%@ include file="/WEB-INF/views/temp/header.jspf" %>
  
  <!-- section -->
+ <input type="hidden"value="${member}" id="member_se_ch">
  <input type="hidden" value="${message }" id="message">
  <c:remove var="message"/> <!-- message session 지우기 -->
  <div id="planList_header">
@@ -750,8 +901,9 @@ white-space:nowrap;
 	 				<span>│</span>
 	 				<span>신규</span> -->
 	 			</div>
+	 			<input type="hidden" value="${totalList}" id="total_List">
 	 			<div id="pinner_list_counts">
-	 				${plan_list.size() }개의 일정
+	 				${totalList }개의 일정
 	 			</div>
 	 			<div class="pfilter_clear"></div>
 	 		</div>
@@ -759,13 +911,15 @@ white-space:nowrap;
 	 		
 	 		<c:forEach items="${plan_list }" var="planList" varStatus="i">
 	 			<a href="${pageContext.request.contextPath}/planMake/planView?id=${planList.id }&plan_no=${planList.plan_no}">
-		 		<div class="plan_inner_list" id="${i.index+1 }">
-		 			<div class="plan_list_bg">
-		 				<div class="plan_list_title" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">
+		 		<div class="plan_inner_list ${i.index+1 }" >
+	 				<div class="plan_list_title" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">
+		 				<div style="margin-top: 50px;">
 		 					<span>${planList.s_date }</span><span>${planList.days}DAYS</span><br>
 		 					<span  class="plan_title">${planList.plan_name }</span>
 		 				</div>
-		 				
+	 				</div>
+		 			<div class="plan_list_bg">
+		 				<img src="${pageContext.request.contextPath}/resources/img/mypage/photo1.jpg">
 		 			</div>
 		 			<div class="plan_list_ex">
 		 				<span>
@@ -799,11 +953,13 @@ white-space:nowrap;
 	 		
 	 		
 	 		</div>
- 		<div class="pfilter_clear"></div>	
-  		<div id="pinner_page">
- 		
- 			<div id="ppage_view">Pagging 할곳</div>
-  		</div>
+	 		<div class="pfilter_clear"></div>	
+	 		
+	  		<div id="pinner_page">
+	 		
+	 			<div id="ppage_view">+ 9개 더 보기</div>
+	  		</div>
+  			<input type="hidden" value="${page.totalBlock }" id="total_BLock">
   		</div>
   		
   		

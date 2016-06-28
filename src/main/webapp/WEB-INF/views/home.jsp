@@ -19,7 +19,7 @@
 
 
 <a href="./spot/spotList">Spot List</a>
-
+<a href="./admin/adminPage">adminList</a>
 
 
 

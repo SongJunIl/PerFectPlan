@@ -153,8 +153,13 @@
 	 </delete>
 	 
 	 <!-- 기본 신규순으로 plan_list 불러오기 -->
-	 <select id="plan_list_select" resultType="com.plan.plan.NewPlanDTO">
-	 	select * from plan where state=2 order by s_date desc
+	 <select id="plan_list_select" resultType="com.plan.plan.NewPlanDTO" parameterType="com.plan.plan.PlanMakePage">
+	 	select * from (select rownum r, a.* from (select * from plan where state=2 order by s_date desc) a) where r between #{startRow} and #{lastRow}
+	 </select>
+	 
+	 <!-- plan_list 총갯수 세기 -->
+	 <select id="plan_list_counts" resultType="java.lang.Integer">
+	 	select count(*)  from plan where state=2
 	 </select>
 	 
 	 <!-- spot 갯수 중복 제거하여 보여주기 -->
@@ -221,4 +226,17 @@
   		select * from jim where id=#{id} and plan_no=#{plan_no}
   	</select>
   	
+  	<!-- Mypage 완성 -->
+  	<select id="select_complite_plan" resultType="com.plan.plan.NewPlanDTO" parameterType="com.plan.plan.NewPlanDTO">
+  		select * from plan where id=#{id} and state=2 order by plan_no
+  	</select>
+  	<!-- Mypage 미완성 -->
+  	<select id="select_incomplite_plan" resultType="com.plan.plan.NewPlanDTO" parameterType="com.plan.plan.NewPlanDTO">
+  		select * from plan where id=#{id} and state=1 order by plan_no
+  	</select>
+  	
+  	<!-- 자신의 일정 지우기 -->
+  	<delete id="del_my_plan" parameterType="com.plan.plan.PlanDTO">
+  		delete plan where id=#{id} and plan_no=#{plan_no}
+  	</delete>
   </mapper>

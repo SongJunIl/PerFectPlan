@@ -302,7 +302,7 @@
 					<li><a class="page-scroll" href="${pageContext.request.contextPath}/city/city"><span
 							class="p_span_title_font" id="p_travel" onmouseover="on()"
 							onmouseout="out()">Travel Spot</span></a></li>
-					<li><a class="page-scroll" href="${pageContext.request.contextPath}/planMake/planList"><span
+					<li><a class="page-scroll" href="${pageContext.request.contextPath}/planMake/planList?curPage=1"><span
 							class="p_span_title_font" id="p_Schedule" onmouseover="on1()"
 							onmouseout="out1()">Schedule</span></a></li>
 					<li>

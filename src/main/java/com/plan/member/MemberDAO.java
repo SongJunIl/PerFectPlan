@@ -2,6 +2,7 @@ package com.plan.member;
 
 import java.util.List;
 
+import com.plan.plan.NewPlanDTO;
 import com.plan.spot.SpotDTO;
 
 public interface MemberDAO {
@@ -26,4 +27,6 @@ public interface MemberDAO {
 	public List<SpotDTO> jimlist(MemberDTO mdto)throws Exception;
 
 
+	
+	
 }

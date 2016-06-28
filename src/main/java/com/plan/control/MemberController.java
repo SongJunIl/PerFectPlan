@@ -1,6 +1,7 @@
 package com.plan.control;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.Multipart;
@@ -23,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.plan.email.EmailSender;
 import com.plan.member.MemberDTO;
 import com.plan.member.MemberService;
+import com.plan.plan.NewPlanDTO;
+import com.plan.plan.PlanService;
 import com.plan.qna.QnaDTO;
 import com.plan.qna.QnaService;
 import com.plan.qna.ReplyQnaDTO;
@@ -33,6 +36,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private PlanService planService;
 	
 	@Autowired
 	private QnaService qnaservice;
@@ -40,9 +45,69 @@ public class MemberController {
 	@Autowired
 	private EmailSender emailsender;
 	
-	@RequestMapping("mypage")
-	public void mypage(){
+	
+	// 미완성 완성 뽑아오기
+		//완성===
 		
+	
+	@RequestMapping("mypage")
+	public void mypage(HttpSession session, Model model){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		NewPlanDTO newPlanDTO = new NewPlanDTO();
+		newPlanDTO.setId(memberDTO.getId());
+		System.out.println(newPlanDTO.getId());
+		List<NewPlanDTO> ar = planService.s_select_complite_plan(newPlanDTO);
+		System.out.println(ar.size());
+		for(int i=0;i<ar.size();i++){
+			
+		    
+		    int spot_counts = planService.s_spot_counts(ar.get(i));
+		    
+		    int clip_counts = planService.s_clip_counts(ar.get(i));
+		    List<String> ar2 = planService.s_get_city_names(ar.get(i));
+		    String city_names = "";
+		    for(int j=0;j<ar2.size();j++){
+		    	if(j==0){
+		    		city_names += ar2.get(j);		    		
+		    	}else{
+		    		city_names += ","+ ar2.get(j);
+		    	}
+		    }
+		   
+		    ar.get(i).setSpot_counts(spot_counts);
+		    ar.get(i).setJim(clip_counts);
+		    ar.get(i).setCity_names(city_names);
+		}
+		
+		List<NewPlanDTO> ar3 = planService.s_select_incomplite_plan(newPlanDTO);
+		for(int i=0;i<ar3.size();i++){
+			
+		    
+		    int spot_counts = planService.s_spot_counts(ar3.get(i));
+		    
+		    int clip_counts = planService.s_clip_counts(ar3.get(i));
+		    List<String> ar4 = planService.s_get_city_names(ar3.get(i));
+		    String city_names = "";
+		    for(int j=0;j<ar4.size();j++){
+		    	if(j==0){
+		    		city_names += ar4.get(j);		    		
+		    	}else{
+		    		city_names += ","+ ar4.get(j);
+		    	}
+		    }
+		   
+		    ar3.get(i).setSpot_counts(spot_counts);
+		    ar3.get(i).setJim(clip_counts);
+		    ar3.get(i).setCity_names(city_names);
+		}
+		
+		System.out.println("길이"+ar.size());
+		System.out.println("길이"+ar3.size());
+		/*List<CityDTO> city_list = planService.s_city_list_all();*/
+		
+		model.addAttribute("plan_list2", ar);
+		model.addAttribute("plan_list3", ar3);
+		/*model.addAttribute("city_list",city_list);*/
 	}
 	
 	@RequestMapping(value="/jimlist")

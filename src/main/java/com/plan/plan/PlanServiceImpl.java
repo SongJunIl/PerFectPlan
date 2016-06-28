@@ -387,10 +387,10 @@ public class PlanServiceImpl implements PlanService {
 	
 	//==========plan_list 뽑아오기===================================================================
 	@Override
-	public List<NewPlanDTO> s_plan_list_select() {
+	public List<NewPlanDTO> s_plan_list_select(PlanMakePage planMakePage) {
 		// TODO Auto-generated method stub
 		try {
-			return pdao.plan_list_select();
+			return pdao.plan_list_select(planMakePage);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -494,5 +494,54 @@ public class PlanServiceImpl implements PlanService {
 		}
 		
 	}
+	//========plan_list_counts==============================================================================
+	@Override
+	public int s_plan_list_counts() {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.plan_list_counts();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	//========select_complite_plan=========================================================================
+	@Override
+	public List<NewPlanDTO> s_select_complite_plan(NewPlanDTO newPlanDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.select_complite_plan(newPlanDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 
+	//========select_incomplite_plan=========================================================================
+	@Override
+	public List<NewPlanDTO> s_select_incomplite_plan(NewPlanDTO newPlanDTO) {
+		// TODO Auto-generated method stub
+		try {
+			return pdao.select_incomplite_plan(newPlanDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//========del_my_plan===================================================================================
+	@Override
+	public void s_del_my_plan(PlanDTO planDTO) {
+		// TODO Auto-generated method stub
+		try {
+			pdao.del_my_plan(planDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		
+	}
 }

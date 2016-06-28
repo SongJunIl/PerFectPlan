@@ -30,6 +30,7 @@ import com.plan.daySpot.DaySpotReDTO;
 import com.plan.member.MemberDTO;
 import com.plan.plan.NewPlanDTO;
 import com.plan.plan.PlanDTO;
+import com.plan.plan.PlanMakePage;
 import com.plan.plan.PlanService;
 import com.plan.planRe.PlanReDTO;
 import com.plan.scrap.ScrapDTO;
@@ -42,6 +43,24 @@ import com.plan.spot.SpotDTO;
 public class PlanController {
 	@Autowired
 	private PlanService planService;
+	
+	
+	//plan 삭제
+	@RequestMapping(value="/plannerDelete")
+	public String plannerDelete(@RequestParam("plan_no") int plan_no, HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		PlanDTO planDTO = new PlanDTO();
+		planDTO.setPlan_no(plan_no);
+		planDTO.setId(memberDTO.getId());
+		planService.s_del_my_plan(planDTO);
+		
+		return "redirect:/member/mypage";
+		
+	}
+	
+	
+	
+	
 	
 	
 	//planJimCan
@@ -107,11 +126,53 @@ public class PlanController {
 		
 		
 	}
+	//plan_list ajax불러오기
+		@RequestMapping(value="/planList2")
+		public void planList2(Model model,@RequestParam("curPage") int curPage){
+			
+			int totalList = planService.s_plan_list_counts();
+			
+			PlanMakePage planMakePage = new PlanMakePage(curPage,totalList);
+			List<NewPlanDTO> ar = planService.s_plan_list_select(planMakePage);
+			for(int i=0;i<ar.size();i++){
+				
+			    
+			    int spot_counts = planService.s_spot_counts(ar.get(i));
+			    
+			    int clip_counts = planService.s_clip_counts(ar.get(i));
+			    List<String> ar2 = planService.s_get_city_names(ar.get(i));
+			    String city_names = "";
+			    for(int j=0;j<ar2.size();j++){
+			    	if(j==0){
+			    		city_names += ar2.get(j);		    		
+			    	}else{
+			    		city_names += ","+ ar2.get(j);
+			    	}
+			    }
+			   
+			    ar.get(i).setSpot_counts(spot_counts);
+			    ar.get(i).setJim(clip_counts);
+			    ar.get(i).setCity_names(city_names);
+			}
+			
+			
+			List<CityDTO> city_list = planService.s_city_list_all();
+			
+			model.addAttribute("plan_list2", ar);
+			/*model.addAttribute("city_list2",city_list);*/
+			/*model.addAttribute("page", planMakePage);
+			model.addAttribute("totalList", totalList);*/
+			
+		}
+	
 	//plan_list 불러오기
 	@RequestMapping(value="/planList")
-	public void planList(Model model){
+	public void planList(Model model,@RequestParam("curPage") int curPage){
 		
-		List<NewPlanDTO> ar = planService.s_plan_list_select();
+		int totalList = planService.s_plan_list_counts();
+		
+		PlanMakePage planMakePage = new PlanMakePage(curPage,totalList);
+		List<NewPlanDTO> ar = planService.s_plan_list_select(planMakePage);
 		for(int i=0;i<ar.size();i++){
 			
 		    
@@ -138,6 +199,8 @@ public class PlanController {
 		
 		model.addAttribute("plan_list", ar);
 		model.addAttribute("city_list",city_list);
+		model.addAttribute("page", planMakePage);
+		model.addAttribute("totalList", totalList);
 		
 	}
 	
@@ -326,6 +389,7 @@ public class PlanController {
 		String spot_plan[] = all_plan.split(",");
 		ArrayList<DaySpotDTO> ar = new ArrayList<>();
 		System.out.println("길이"+spot_plan.length);
+		if(spot_plan.length>=5){
 		for(int i =0;i<spot_plan.length;i=i+5){
 			
 			DaySpotDTO daySpotDTO = new DaySpotDTO();
@@ -339,6 +403,7 @@ public class PlanController {
 			ar.add(daySpotDTO);	
 			System.out.println(daySpotDTO.getDaily_no());
 		}
+		}
 		// daily에서 선택한지역을 가지고 상세일정DB에 저장시키기
 		for(int i=0;i<ar.size();i++){
 			planService.s_daySpot_insert(ar.get(i));
@@ -350,7 +415,8 @@ public class PlanController {
 		
 		Calendar cal2 = new GregorianCalendar();
 		cal2.setTime(start_date);
-		int season = cal2.get(Calendar.MONTH);
+		int season = cal2.get(Calendar.MONTH)+1;
+		System.out.println("계절"+season);
 		String season2 ="";
 		if(season<4|| season==12 ){
 			season2="겨울";
@@ -488,6 +554,8 @@ public class PlanController {
 		List<CityDTO> jeollaS = planService.s_jeollaS_list();
 		List<CityDTO> chungcheongN = planService.s_chungcheongN_list();
 		List<CityDTO> chungcheongS = planService.s_chungcheongS_list();
+		List<CityDTO> city_all = planService.s_city_list_all();
+		
 		model.addAttribute("bigCity", bigList);
 		model.addAttribute("gang", gang);
 		model.addAttribute("gyeong", gyeong);
@@ -497,6 +565,7 @@ public class PlanController {
 		model.addAttribute("jeollaS", jeollaS);
 		model.addAttribute("chungcheongN", chungcheongN);
 		model.addAttribute("chungcheongS", chungcheongS);
+		model.addAttribute("all_city", city_all);
 		
 	}
 	

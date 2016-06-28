@@ -71,7 +71,7 @@ public interface PlanService {
 	
 	public List<DayPlanReDTO> s_day_plan_del(DayPlanReDTO dayPlanReDTO);
 	
-	public List<NewPlanDTO> s_plan_list_select();
+	public List<NewPlanDTO> s_plan_list_select(PlanMakePage planMakePage);
 	
 	public int s_spot_counts(PlanDTO planDTO);
 	
@@ -88,4 +88,12 @@ public interface PlanService {
 	public ScrapDTO s_plan_jim_select(ScrapDTO scrapDTO);
 	
 	public void s_plan_jim_delete(ScrapDTO scrapDTO);
+	
+	public int s_plan_list_counts();
+
+	public List<NewPlanDTO> s_select_complite_plan(NewPlanDTO newPlanDTO);
+	
+	public List<NewPlanDTO> s_select_incomplite_plan(NewPlanDTO newPlanDTO);
+	
+	public void s_del_my_plan(PlanDTO planDTO);
 }

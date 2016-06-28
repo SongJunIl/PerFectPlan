@@ -184,7 +184,7 @@ white-space:nowrap;
 </style>
 <script type="text/javascript">
 $(function() {
-		for(var i=1;i<5;i++){
+		for(var i=1;i<$("#plan_list2_size").val();i++){
 			$("."+(i*3)).css("margin-right","0px");
 			
 		}
@@ -198,7 +198,7 @@ $(function() {
 	 					<div style="margin-top: 50px;">
 		 					<span>${planList.s_date }</span><span>${planList.days}DAYS</span><br>
 		 					<span class="plan_title">${planList.plan_name }</span>
-	 					</div>
+		 				</div>
 	 				</div>
 		 			<div class="plan_list_bg">
 		 				<img src="${pageContext.request.contextPath}/resources/img/mypage/photo1.jpg">
